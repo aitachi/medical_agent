@@ -1,0 +1,202 @@
+// gRPC 服务定义
+// 医疗智能助手 Skill 服务
+
+syntax = "proto3";
+
+package medical.skills;
+
+// ============================================================
+// 基础消息定义
+// ============================================================
+
+// 意图类型枚举
+enum IntentType {
+    INTENT_UNKNOWN = 0;
+    INTENT_SYMPTOM_INQUIRY = 1;
+    INTENT_DEPARTMENT_QUERY = 2;
+    INTENT_MEDICATION_CONSULT = 3;
+    INTENT_APPOINTMENT = 4;
+    INTENT_REPORT_INTERPRET = 5;
+    INTENT_HEALTH_EDUCATION = 6;
+    INTENT_GREETING = 7;
+}
+
+// 实体信息
+message Entity {
+    string type = 1;      // 实体类型
+    string value = 2;     // 实体值
+    float confidence = 3; // 置信度
+}
+
+// 意图识别结果
+message IntentResult {
+    IntentType intent = 1;           // 意图类型
+    float confidence = 2;            // 置信度
+    string target_skill = 3;         // 目标Skill
+    map<string, string> entities = 4; // 抽取的实体
+    bool requires_clarification = 5; // 是否需要澄清
+    string clarification_question = 6;// 澄清问题
+}
+
+// 对话上下文
+message DialogueContext {
+    string session_id = 1;
+    string user_id = 2;
+    int32 turn_count = 3;
+    string last_intent = 4;
+    map<string, string> accumulated_entities = 5;
+}
+
+// Skill请求
+message SkillRequest {
+    string skill_name = 1;
+    IntentType intent = 2;
+    map<string, string> entities = 3;
+    DialogueContext context = 4;
+    map<string, string> metadata = 5;
+}
+
+// Skill响应
+message SkillResponse {
+    bool success = 1;
+    string content = 2;
+    string error = 3;
+    bool need_clarification = 4;
+    repeated string follow_up_suggestions = 5;
+    map<string, string> data = 6;
+}
+
+// Agent处理请求
+message ProcessRequest {
+    string user_input = 1;
+    string session_id = 2;
+    string user_id = 3;
+}
+
+// Agent处理响应
+message ProcessResponse {
+    string response = 1;
+    IntentResult intent = 2;
+    string skill_used = 3;
+    float processing_time = 4;
+}
+
+// 心跳请求
+message HeartbeatRequest {
+    string service_id = 1;
+    int64 timestamp = 2;
+}
+
+// 心跳响应
+message HeartbeatResponse {
+    string service_id = 1;
+    int64 timestamp = 2;
+    string status = 3;
+}
+
+// 健康检查请求
+message HealthCheckRequest {}
+
+// 健康检查响应
+message HealthCheckResponse {
+    bool healthy = 1;
+    string version = 2;
+    string uptime = 3;
+    int32 active_sessions = 4;
+}
+
+// ============================================================
+// Skill 服务定义
+// ============================================================
+
+// 症状分析服务
+service SymptomAnalyzerService {
+    rpc AnalyzeSymptom(SkillRequest) returns (SkillResponse);
+}
+
+// 科室推荐服务
+service DepartmentRecommenderService {
+    rpc RecommendDepartment(SkillRequest) returns (SkillResponse);
+}
+
+// 用药咨询服务
+service MedicationAdvisorService {
+    rpc AdviseMedication(SkillRequest) returns (SkillResponse);
+}
+
+// 预约挂号服务
+service AppointmentService {
+    rpc BookAppointment(SkillRequest) returns (SkillResponse);
+    rpc QueryAvailability(SkillRequest) returns (SkillResponse);
+    rpc CancelAppointment(SkillRequest) returns (SkillResponse);
+}
+
+// 健康教育服务
+service HealthEducationService {
+    rpc ProvideHealthInfo(SkillRequest) returns (SkillResponse);
+}
+
+// 意图分类服务
+service IntentClassifierService {
+    rpc ClassifyIntent(ProcessRequest) returns (IntentResult);
+}
+
+// ============================================================
+// Agent 主服务
+// ============================================================
+
+// 医疗Agent服务
+service MedicalAgentService {
+    // 处理用户输入
+    rpc ProcessInput(ProcessRequest) returns (ProcessResponse);
+
+    // 流式处理（支持流式响应）
+    rpc ProcessInputStream(stream ProcessRequest) returns (stream ProcessResponse);
+
+    // 健康检查
+    rpc HealthCheck(HealthCheckRequest) returns (HealthCheckResponse);
+
+    // 心跳
+    rpc Heartbeat(HeartbeatRequest) returns (HeartbeatResponse);
+
+    // 获取会话历史
+    rpc GetSessionHistory(DialogueContext) returns (stream SkillResponse);
+
+    // 清除会话
+    rpc ClearSession(DialogueContext) returns (SkillResponse);
+}
+
+// ============================================================
+// MCP 工具调用服务
+// ============================================================
+
+// MCP工具调用请求
+message MCPToolCallRequest {
+    string tool_name = 1;
+    map<string, string> parameters = 2;
+    float timeout = 3;
+}
+
+// MCP工具调用响应
+message MCPToolCallResponse {
+    bool success = 1;
+    string data = 2;      // JSON格式的响应数据
+    string error = 3;
+    float execution_time = 4;
+    string server_id = 5;
+}
+
+// MCP工具服务
+service MCPToolService {
+    // 调用MCP工具
+    rpc CallTool(MCPToolCallRequest) returns (MCPToolCallResponse);
+
+    // 批量调用工具
+    rpc CallTools(stream MCPToolCallRequest) returns (stream MCPToolCallResponse);
+
+    // 获取可用工具列表
+    rpc ListTools(HealthCheckRequest) returns (stream MCPToolCallResponse);
+
+    // 订阅工具更新
+    rpc SubscribeTools(MCPToolCallRequest) returns (stream MCPToolCallResponse);
+}

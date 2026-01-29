@@ -1,0 +1,387 @@
+# 医疗智能助手 Agent 配置文件
+
+# ========== Agent 基础配置 ==========
+agent:
+  name: "medical_ai_assistant"
+  version: "1.0.0"
+  description: "医疗场景智能对话助手"
+
+  # 意图识别配置
+  intent:
+    model: "medical_bert_v1"
+    threshold: 0.75
+    enable_fallback: true
+    max_candidates: 3
+
+  # 实体抽取配置
+  entity:
+    model: "medical_ner_v2"
+    threshold: 0.70
+    enable_correction: true
+
+  # 槽位填充配置
+  slot:
+    max_turns: 5
+    fill_strategy: "auto_first_then_manual"
+    confirmation_mode: "implicit"
+
+# ========== 意图定义 ==========
+intents:
+  # 症状咨询
+  SYMPTOM_INQUIRY:
+    description: "用户咨询症状相关问题"
+    priority: 1
+    confidence_threshold: 0.75
+    skill: "symptom_analyzer"
+    examples:
+      - "我头疼好几天了"
+      - "最近总是咳嗽"
+      - "肚子疼是怎么回事"
+      - "感觉胸闷气短"
+
+  # 科室查询
+  DEPARTMENT_QUERY:
+    description: "用户询问应该挂哪个科室"
+    priority: 2
+    confidence_threshold: 0.75
+    skill: "department_recommender"
+    examples:
+      - "头疼应该挂什么科"
+      - "看皮肤病去哪个科室"
+      - "骨科在哪里"
+
+  # 用药咨询
+  MEDICATION_CONSULT:
+    description: "用户咨询用药相关问题"
+    priority: 3
+    confidence_threshold: 0.70
+    skill: "medication_advisor"
+    examples:
+      - "阿莫西林怎么吃"
+      - "这个药有什么副作用"
+      - "感冒了吃什么药好"
+
+  # 挂号预约
+  APPOINTMENT_BOOK:
+    description: "用户要挂号或预约"
+    priority: 4
+    confidence_threshold: 0.80
+    skill: "appointment_service"
+    examples:
+      - "我想挂个号"
+      - "预约明天的门诊"
+      - "帮我挂号"
+
+  # 报告解读
+  REPORT_INTERPRET:
+    description: "用户要求解读检查报告"
+    priority: 5
+    confidence_threshold: 0.70
+    skill: "report_interpreter"
+    examples:
+      - "帮我看看这个报告"
+      - "血常规结果正常吗"
+      - "这个指标偏高是什么意思"
+
+  # 健康教育
+  HEALTH_EDU:
+    description: "健康知识科普"
+    priority: 6
+    confidence_threshold: 0.65
+    skill: "health_qa"
+    examples:
+      - "怎么预防高血压"
+      - "糖尿病不能吃什么"
+      - "怎么保持健康"
+
+  # 闲聊
+  CHITCHAT:
+    description: "日常闲聊"
+    priority: 99
+    confidence_threshold: 0.60
+    skill: "chitchat_handler"
+    examples:
+      - "你好"
+      - "谢谢"
+      - "今天天气怎么样"
+      - "你是谁"
+
+  # 未知意图
+  UNKNOWN:
+    description: "无法识别的意图"
+    default_action: "clarification"
+    response: "抱歉，我没有完全理解您的意思，可以换个说法吗？"
+
+# ========== 实体类型定义 ==========
+entities:
+  # 身体部位
+  BODY_PART:
+    description: "身体部位"
+    extraction_method: "ner"
+    values:
+      - 头部、头、脑袋
+      - 颈部、脖子
+      - 胸部、胸口
+      - 腹部、肚子、胃
+      - 背部、腰
+      - 四肢、手臂、腿部、手、脚
+      - 眼睛、耳朵、鼻子、喉咙、嘴巴
+
+  # 症状
+  SYMPTOM:
+    description: "症状描述"
+    extraction_method: "ner"
+    values:
+      - 疼痛、疼、痛
+      - 发热、发烧
+      - 咳嗽、咳
+      - 恶心、呕吐
+      - 头晕、眩晕
+      - 乏力、疲倦
+      - 失眠、睡不着
+      - 食欲不振
+
+  # 疾病
+  DISEASE:
+    description: "疾病名称"
+    extraction_method: "ner + knowledge_base"
+    source: "medical_knowledge"
+
+  # 药物
+  MEDICINE:
+    description: "药物名称"
+    extraction_method: "ner + drug_database"
+    source: "drug_database"
+
+  # 时间时长
+  TIME_DURATION:
+    description: "时间时长"
+    extraction_method: "rule + regex"
+    patterns:
+      - "(?<!约)(\\d+)(天|日)"
+      - "(\\d+)(周|星期)"
+      - "(\\d+)个月"
+      - "从(.+?)开始"
+      - "持续(.+?)"
+
+  # 严重程度
+  SEVERITY:
+    description: "严重程度"
+    extraction_method: "classification"
+    mapping:
+      mild: ["轻微", "有点", "稍微", "不太"]
+      moderate: ["比较", "挺", "相当"]
+      severe: ["非常", "特别", "剧烈", "受不了", "难以忍受"]
+
+  # 生命体征
+  VITAL_SIGN:
+    description: "生命体征"
+    extraction_method: "regex"
+    patterns:
+      temperature: "体温\\s*[:：]?\\s*(\\d+(\\.\\d+)?)°?(C|F)?"
+      blood_pressure: "(血压|BP)\\s*[:：]?\\s*(\\d+)/(\\d+)"
+      heart_rate: "(心率|脉搏)\\s*[:：]?\\s*(\\d+)"
+
+# ========== 槽位模板 ==========
+slot_templates:
+  # 症状咨询槽位
+  symptom_inquiry:
+    required:
+      body_part:
+        type: "BODY_PART"
+        description: "不适部位"
+        prompt: "请问您哪里不舒服？"
+      symptom:
+        type: "SYMPTOM"
+        description: "具体症状"
+        prompt: "请问具体是什么感觉？比如疼痛、发热等？"
+    optional:
+      duration:
+        type: "TIME_DURATION"
+        description: "持续时间"
+        prompt: "请问这种情况持续多久了？"
+      severity:
+        type: "SEVERITY"
+        description: "严重程度"
+        prompt: "请问严重程度如何？轻微/中等/严重？"
+      accompanying:
+        type: "list[SYMPTOM]"
+        description: "伴随症状"
+        prompt: "还有其他不适吗？"
+
+  # 科室查询槽位
+  department_query:
+    required:
+      symptom_or_disease:
+        type: "str"
+        description: "症状或疾病"
+        prompt: "请问您有什么不适或想看什么病？"
+    optional:
+      preferred_hospital:
+        type: "str"
+        description: "偏好医院"
+        prompt: "有偏好的医院吗？"
+      time_preference:
+        type: "TIME"
+        description: "时间偏好"
+        prompt: "希望什么时间就诊？"
+
+  # 用药咨询槽位
+  medication_consult:
+    required:
+      medicine:
+        type: "MEDICINE"
+        description: "药物名称"
+        prompt: "请问您咨询哪种药物？"
+    optional:
+      consult_type:
+        type: "enum"
+        values: ["dosage", "side_effect", "interaction", "contraindication"]
+        description: "咨询类型"
+        prompt: "您想了解用药方法、副作用还是其他？"
+      patient_age:
+        type: "int"
+        description: "患者年龄"
+        prompt: "患者年龄是多少？"
+
+  # 挂号预约槽位
+  appointment_book:
+    required:
+      department:
+        type: "str"
+        description: "挂号科室"
+        prompt: "请问想挂哪个科室？"
+      appointment_time:
+        type: "TIME"
+        description: "预约时间"
+        prompt: "请问想预约什么时间？"
+    optional:
+      doctor:
+        type: "str"
+        description: "指定医生"
+        prompt: "有指定医生吗？"
+      patient_name:
+        type: "str"
+        description: "患者姓名"
+        prompt: "请提供患者姓名"
+
+# ========== Hooks 配置 ==========
+hooks:
+  # 启用的Hook列表
+  enabled:
+    - sensitive_word_filter
+    - intent_history_corrector
+    - entity_normalizer
+    - safety_validator
+    - response_formatter
+    - audit_logger
+
+  # Hook 定义
+  sensitive_word_filter:
+    stage: "before_preprocess"
+    priority: 1
+    config:
+      words: ["爆炸", "暴力", "自杀"]
+      action: "block"
+
+  intent_history_corrector:
+    stage: "after_intent"
+    priority: 2
+    config:
+      enabled_intents: ["SYMPTOM_INQUIRY", "MEDICATION_CONSULT"]
+      max_history_turns: 3
+
+  entity_normalizer:
+    stage: "entity_normalize"
+    priority: 1
+    config:
+      body_part_mapping:
+        "头": "头部"
+        "肚子": "腹部"
+        "腰": "腰部"
+
+  safety_validator:
+    stage: "before_execute"
+    priority: 1
+    config:
+      block_self_prescription: true
+      require_disclaimer: true
+
+  response_formatter:
+    stage: "format_response"
+    priority: 1
+    config:
+      auto_append_disclaimer: true
+      format: "markdown"
+
+  audit_logger:
+    stage: "after_response"
+    priority: 99
+    config:
+      log_all_turns: true
+      log_fields: ["user_id", "intent", "slots", "response"]
+
+# ========== MCP 服务器配置 ==========
+mcp_servers:
+  medical_knowledge:
+    enabled: true
+    endpoint: "http://localhost:3001"
+    timeout: 30
+    retry: 3
+    tools:
+      - query_symptom
+      - get_triage_suggestion
+      - check_red_flags
+      - search_knowledge
+      - get_reference_range
+
+  hospital_system:
+    enabled: true
+    endpoint: "http://localhost:3002"
+    timeout: 30
+    retry: 3
+    tools:
+      - get_departments
+      - get_doctors_by_department
+      - check_availability
+      - create_booking
+
+  drug_database:
+    enabled: true
+    endpoint: "http://localhost:3003"
+    timeout: 30
+    retry: 3
+    tools:
+      - get_medicine_info
+      - check_dosage
+      - check_interactions
+      - get_contraindications
+
+# ========== 安全配置 ==========
+security:
+  # 隐私保护
+  privacy:
+    encrypt_transmission: true
+    anonymize_data: true
+    retention_days: 30
+
+  # 内容安全
+  content:
+    enable_filter: true
+    sensitive_words: ["爆炸", "暴力", "自杀"]
+    max_response_length: 2000
+
+  # 访问控制
+  access:
+    enable_auth: true
+    rate_limit: 100  # 每分钟请求数
+    audit_log: true
+
+# ========== 免责声明 ==========
+disclaimer: |
+  ⚠️ **重要声明**
+
+  1. 本助手提供的健康信息仅供参考，不能替代专业医疗建议
+  2. 如有以下情况，请立即就医：剧烈疼痛或突发严重症状、呼吸困难、意识模糊、持续高烧不退、严重外伤
+  3. 药物使用请遵医嘱，本助手不提供处方药推荐
+  4. 紧急情况请拨打120急救电话
