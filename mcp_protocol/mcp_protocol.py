@@ -222,10 +222,10 @@ class MCPHost:
         self._running = True
 
         # 启动心跳检查
-        self._heartbeat_task = asyncio.create_task(self._heartbeat_loop())
+        self._heartbeat_task = asyncio.ensure_future(self._heartbeat_loop())
 
         # 启动消息处理
-        asyncio.create_task(self._message_loop())
+        asyncio.ensure_future(self._message_loop())
 
         logger.info(f"[MCP Host] {self.host_id} started")
 
@@ -354,7 +354,12 @@ class MCPHost:
                 dead_servers = []
 
                 for server_id, server_info in self.servers.items():
-                    last_hb = datetime.fromisoformat(server_info.last_heartbeat)
+                    # Python 3.6 兼容：使用 strptime 替代 fromisoformat
+                    try:
+                        last_hb = datetime.strptime(server_info.last_heartbeat, "%Y-%m-%dT%H:%M:%S.%f")
+                    except ValueError:
+                        # 如果没有微秒部分，尝试不带 %f 的格式
+                        last_hb = datetime.strptime(server_info.last_heartbeat, "%Y-%m-%dT%H:%M:%S")
                     if (now - last_hb).total_seconds() > 30:  # 30秒无心跳
                         logger.warning(f"[MCP Host] Server {server_id} heartbeat timeout")
                         dead_servers.append(server_id)
@@ -435,7 +440,7 @@ class MCPServer:
         self._running = True
 
         # 启动心跳
-        self._heartbeat_task = asyncio.create_task(self._heartbeat_loop())
+        self._heartbeat_task = asyncio.ensure_future(self._heartbeat_loop())
 
         logger.info(f"[MCP Server {self.server_id}] Started with {len(self.tool_definitions)} tools")
 

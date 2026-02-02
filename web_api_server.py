@@ -27,7 +27,17 @@ from mcp_protocol.mcp_protocol import MCPFactory
 from mcp_tools.medical_tools import create_medical_mcp_server
 from agent.medical_agent import MedicalAgent
 from mcp_protocol.mcp_protocol import MCPClient
-from agent.llm_service import init_llm_service, shutdown_llm_service, get_llm_service
+from database.db_manager_sqlite import get_db
+try:
+    from agent.llm_service import init_llm_service, shutdown_llm_service, get_llm_service
+    LLM_AVAILABLE = True
+except ImportError:
+    LLM_AVAILABLE = False
+    print("[WARNING] LLM service not available, running in local mode only")
+
+# 初始化数据库
+db = get_db()
+print("[INFO] Database initialized")
 
 
 # ============================================================
@@ -85,7 +95,8 @@ class SystemStatus(BaseModel):
 app = FastAPI(
     title="医疗智能助手 API",
     description="基于MLP意图识别的医疗健康咨询助手",
-    version="1.0.0"
+    version="1.0.0",
+    root_path="/medical"
 )
 
 # 配置CORS
@@ -154,18 +165,22 @@ async def startup_event():
     await state.agent.start()
 
     # 初始化LLM服务
-    try:
-        state.llm_service = await init_llm_service(
-            api_key=DASHSCOPE_API_KEY,
-            base_url=DASHSCOPE_BASE_URL,
-            model=DASHSCOPE_MODEL
-        )
-        state.llm_enabled = True
-        print(f"[LLM] qwen-plus 大模型已启用")
-    except Exception as e:
-        print(f"[LLM] 初始化失败: {e}")
-        print(f"[LLM] 将使用本地规则响应")
+    if LLM_AVAILABLE:
+        try:
+            state.llm_service = await init_llm_service(
+                api_key=DASHSCOPE_API_KEY,
+                base_url=DASHSCOPE_BASE_URL,
+                model=DASHSCOPE_MODEL
+            )
+            state.llm_enabled = True
+            print(f"[LLM] qwen-plus 大模型已启用")
+        except Exception as e:
+            print(f"[LLM] 初始化失败: {e}")
+            print(f"[LLM] 将使用本地规则响应")
+            state.llm_enabled = False
+    else:
         state.llm_enabled = False
+        print(f"[LLM] LLM服务不可用，使用本地规则响应")
 
     # 挂载静态文件目录
     static_dir = os.path.join(os.path.dirname(__file__), "frontend", "static")
@@ -183,7 +198,8 @@ async def shutdown_event():
     print("\n[Medical AI Assistant] Shutting down...")
 
     # 关闭LLM服务
-    await shutdown_llm_service()
+    if LLM_AVAILABLE:
+        await shutdown_llm_service()
 
     if state.agent:
         await state.agent.stop()
@@ -318,9 +334,29 @@ async def chat_stream(request: ChatRequest):
 
     async def generate():
         try:
-            # 1. 发送意图识别过程
             context = state.agent.get_or_create_context(request.session_id, request.user_id)
-            intent_result = await state.agent.classifier.classify(request.message, context)
+
+            # 0. Query Rewrite - 查询重写
+            rewrite_result = await state.agent.query_rewriter.rewrite(
+                request.message,
+                request.session_id,
+                context
+            )
+
+            # 发送重写结果（如果发生了改变）
+            if rewrite_result["changed"]:
+                yield {
+                    "type": "query_rewrite",
+                    "original": rewrite_result["original"],
+                    "rewritten": rewrite_result["rewritten"],
+                    "reason": rewrite_result["reason"]
+                }
+
+            # 使用重写后的消息进行后续处理
+            user_message = rewrite_result["rewritten"]
+
+            # 1. 发送意图识别过程
+            intent_result = await state.agent.classifier.classify(user_message, context)
 
             # 发送意图识别结果
             yield {
@@ -329,7 +365,8 @@ async def chat_stream(request: ChatRequest):
                 "confidence": intent_result.confidence,
                 "confidence_percent": round(intent_result.confidence * 100, 2),
                 "skill": intent_result.target_skill,
-                "entities": intent_result.entities
+                "entities": intent_result.entities,
+                "query_rewritten": rewrite_result["changed"]  # 标记是否重写
             }
 
             # 2. 如果使用MCP工具，发送工具调用信息
@@ -341,18 +378,18 @@ async def chat_stream(request: ChatRequest):
                 }
 
             # 3. 生成响应
-            if request.use_llm and state.llm_enabled and state.llm_service:
+            if request.use_llm and state.llm_enabled and state.llm_service and LLM_AVAILABLE:
                 # 使用LLM流式生成
                 async for event in state.llm_service.generate_response_stream(
-                    user_message=request.message,
+                    user_message=user_message,
                     intent=intent_result.intent.value,
                     session_id=request.session_id
                 ):
                     yield event
             else:
-                # 使用本地Agent
+                # 使用本地Agent（传递原始用户消息以保持上下文）
                 response = await state.agent.process(
-                    request.message,
+                    request.message,  # 使用原始消息保持对话连贯性
                     request.session_id,
                     request.user_id
                 )
@@ -384,15 +421,27 @@ async def chat_stream(request: ChatRequest):
 @app.post("/api/chat", response_model=ChatResponse)
 async def chat(request: ChatRequest):
     """处理聊天请求"""
+    import time
+    start_time = time.time()
     state.increment_request()
 
     try:
+        # 创建/获取会话
+        db.create_session(request.session_id, request.user_id)
+
+        # 记录用户消息
+        db.add_message(
+            session_id=request.session_id,
+            message_type='user',
+            content=request.message
+        )
+
         # 获取意图信息（先用本地分类器）
         context = state.agent.get_or_create_context(request.session_id, request.user_id)
         intent_result = await state.agent.classifier.classify(request.message, context)
 
         # 根据请求决定是否使用LLM
-        if request.use_llm and state.llm_enabled and state.llm_service:
+        if request.use_llm and state.llm_enabled and state.llm_service and LLM_AVAILABLE:
             # 使用LLM生成响应
             response = await state.llm_service.generate_response(
                 user_message=request.message,
@@ -409,6 +458,24 @@ async def chat(request: ChatRequest):
             )
             response_source = "local"
 
+        # 记录助手响应
+        processing_time = int((time.time() - start_time) * 1000)
+        db.add_message(
+            session_id=request.session_id,
+            message_type='assistant',
+            content=response,
+            intent=intent_result.intent.value if intent_result else None,
+            confidence=float(intent_result.confidence) if intent_result else None,
+            skill_invoked=intent_result.target_skill if intent_result else None,
+            processing_time_ms=processing_time
+        )
+
+        # 更新会话状态
+        db.update_session(
+            request.session_id,
+            last_intent=intent_result.intent.value if intent_result else None
+        )
+
         return ChatResponse(
             response=response,
             intent=intent_result.intent.value if intent_result else None,
@@ -420,31 +487,57 @@ async def chat(request: ChatRequest):
     except Exception as e:
         import traceback
         traceback.print_exc()
+
+        # 记录错误
+        db.add_message(
+            session_id=request.session_id,
+            message_type='system',
+            content=f"Error: {str(e)}",
+            intent='error'
+        )
+
         raise HTTPException(status_code=500, detail=str(e))
 
 
 @app.post("/api/session/clear")
 async def clear_session(session_id: str = "default"):
     """清除会话"""
+    # 清除内存中的上下文
     if state.agent:
         state.agent.clear_context(session_id)
         if session_id in state.sessions:
             del state.sessions[session_id]
+
+    # 同时清除数据库中的会话
+    db.delete_session(session_id)
+
     return {"success": True, "message": "会话已清除"}
 
 
 @app.get("/api/sessions")
 async def get_sessions():
-    """获取所有会话"""
-    sessions = []
-    for session_id, session_data in state.sessions.items():
-        sessions.append({
-            "session_id": session_id,
-            "user_id": session_data.get("user_id", ""),
-            "created_at": session_data.get("created_at", ""),
-            "message_count": session_data.get("message_count", 0)
-        })
-    return {"sessions": sessions}
+    """获取所有会话（从数据库）"""
+    try:
+        # 查询所有会话
+        import sqlite3
+        conn = sqlite3.connect('/root/medical_agent/data/medical_agent.db')
+        conn.row_factory = sqlite3.Row
+        cursor = conn.cursor()
+
+        cursor.execute("""
+            SELECT session_id, user_id, status, last_intent,
+                   message_count, created_at, updated_at
+            FROM sessions
+            ORDER BY updated_at DESC
+            LIMIT 100
+        """)
+        rows = cursor.fetchall()
+        conn.close()
+
+        sessions = [dict(row) for row in rows]
+        return {"sessions": sessions}
+    except Exception as e:
+        return {"sessions": [], "error": str(e)}
 
 
 # ============================================================

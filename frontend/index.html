@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>医疗智能助手 - AI健康咨询</title>
-    <link rel="icon" type="image/svg+xml" href="/favicon.ico">
+    <link rel="icon" type="image/svg+xml" href="/medical/static/favicon.svg">
     <style>
         * {
             margin: 0;
@@ -1988,7 +1988,8 @@
     </div>
 
     <script>
-        const API_BASE = window.location.protocol + '//' + window.location.host + '/api';
+        // 修复API路径，确保指向 /medical/api
+        const API_BASE = window.location.protocol + '//' + window.location.host + '/medical/api';
         let currentStep = 1;
         let appointmentData = {};
 
@@ -2040,6 +2041,7 @@
             contentDiv.innerHTML = '<p style="color:#888;">正在处理...</p>';
 
             let fullContent = '';
+            let statusInfo = null;
 
             try {
                 const response = await fetch(API_BASE + '/chat/stream', {
@@ -2052,6 +2054,10 @@
                         use_llm: true
                     })
                 });
+
+                if (!response.ok) {
+                    throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+                }
 
                 const reader = response.body.getReader();
                 const decoder = new TextDecoder();
@@ -2066,21 +2072,91 @@
                     buffer = lines.pop();
 
                     for (const line of lines) {
-                        if (line.startsWith('data: ')) {
-                            const data = JSON.parse(line.slice(6));
-                            if (data.type === 'content') {
-                                fullContent += data.content;
-                                contentDiv.innerHTML = formatContent(fullContent);
-                            } else if (data.type === 'done') {
-                                break;
-                            } else if (data.type === 'error') {
-                                contentDiv.innerHTML = '<p style="color:red;">错误: ' + data.content + '</p>';
+                        if (line.trim() && line.startsWith('data: ')) {
+                            try {
+                                const data = JSON.parse(line.slice(6));
+
+                                // 处理不同类型的事件
+                                if (data.type === 'query_rewrite') {
+                                    // 查询重写 - 显示提示
+                                    if (data.changed && !statusInfo) {
+                                        statusInfo = document.createElement('div');
+                                        statusInfo.style.cssText = 'margin: 8px 0; padding: 8px 12px; background: rgba(255,193,7,0.1); border-left: 3px solid #ffc107; border-radius: 4px; font-size: 0.85rem;';
+                                        statusInfo.innerHTML = `
+                                            <div style="color: #f57c00; font-weight: 600; margin-bottom: 4px;">
+                                                <span style="font-size: 1.1em;">✏️</span> 输入已优化
+                                            </div>
+                                            <div style="color: #666;">
+                                                <span style="text-decoration: line-through; opacity: 0.7;">"${data.original}"</span>
+                                                <span style="margin: 0 6px;">→</span>
+                                                <span style="color: #10b981; font-weight: 600;">"${data.rewritten}"</span>
+                                            </div>
+                                        `;
+                                        contentDiv.innerHTML = '';
+                                        contentDiv.appendChild(statusInfo);
+                                    }
+                                } else if (data.type === 'intent_recognition') {
+                                    // 意图识别 - 显示状态
+                                    if (!statusInfo) {
+                                        statusInfo = document.createElement('div');
+                                        statusInfo.style.cssText = 'margin: 8px 0; padding: 8px 12px; background: #f8f9fa; border-radius: 6px; font-size: 0.85rem; color: #666;';
+                                        contentDiv.innerHTML = '';
+                                        contentDiv.appendChild(statusInfo);
+                                    }
+                                    const intentNames = {
+                                        'symptom_inquiry': '症状咨询',
+                                        'department_query': '科室查询',
+                                        'medication_consult': '用药咨询',
+                                        'appointment': '预约挂号',
+                                        'health_education': '健康教育',
+                                        'greeting': '问候',
+                                        'unknown': '未知'
+                                    };
+                                    statusInfo.innerHTML = `🎯 识别意图: ${intentNames[data.intent] || data.intent} (置信度: ${data.confidence_percent}%)`;
+                                } else if (data.type === 'tool_call') {
+                                    // 工具调用
+                                    if (statusInfo) {
+                                        const toolNames = {
+                                            'symptom-analyzer': '🩺 症状分析器',
+                                            'department-recommender': '🏥 科室推荐器',
+                                            'medication-advisor': '💊 用药顾问',
+                                            'health-educator': '📚 健康教育师',
+                                            'greeting-handler': '👋 问候处理',
+                                            'appointment-service': '📅 预约服务'
+                                        };
+                                        statusInfo.innerHTML += `<br>⚙️ 调用工具: ${toolNames[data.tool] || data.tool}`;
+                                    }
+                                } else if (data.type === 'thinking') {
+                                    // AI思考过程
+                                    if (statusInfo) {
+                                        statusInfo.innerHTML += `<br>💭 ${data.content}`;
+                                    }
+                                } else if (data.type === 'content') {
+                                    // 内容生成
+                                    fullContent += data.content;
+                                    // 移除状态信息，显示实际内容
+                                    if (statusInfo && statusInfo.parentNode) {
+                                        statusInfo.parentNode.removeChild(statusInfo);
+                                        statusInfo = null;
+                                    }
+                                    contentDiv.innerHTML = formatContent(fullContent);
+                                } else if (data.type === 'done') {
+                                    // 完成
+                                    break;
+                                } else if (data.type === 'error') {
+                                    // 错误
+                                    contentDiv.innerHTML = '<p style="color:red;">错误: ' + data.content + '</p>';
+                                    break;
+                                }
+                            } catch (e) {
+                                console.error('Parse error:', e, line);
                             }
                         }
                     }
                 }
             } catch (error) {
-                contentDiv.innerHTML = '<p style="color:red;">网络错误: ' + error + '</p>';
+                console.error('Stream request error:', error);
+                contentDiv.innerHTML = '<p style="color:red;">网络错误: ' + error.message + '</p>';
             }
         }
 

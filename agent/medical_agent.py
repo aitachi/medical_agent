@@ -4,6 +4,7 @@
 """
 
 import asyncio
+from agent.query_rewriter import QueryRewriter
 import json
 import logging
 import re
@@ -735,6 +736,7 @@ class IntentClassifier:
     async def _classify_with_rules(self, text: str, context: DialogueContext) -> IntentResult:
         """使用规则分类（后备方案）"""
         scores = {}  # intent -> score
+        text_lower = text.lower()  # 转换为小写用于匹配
 
         # 1. 规则匹配
         for intent_type, rules in self.intent_rules.items():
@@ -1634,6 +1636,9 @@ class MedicalAgent:
         self.skill_invoker = SkillInvoker(mcp_client)
         self.sessions: Dict[str, DialogueContext] = {}
         self._running = False
+
+        # 查询重写器
+        self.query_rewriter = QueryRewriter(llm_client=None)
 
     async def start(self):
         """启动Agent"""
