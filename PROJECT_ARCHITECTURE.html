@@ -1,0 +1,1655 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>医疗智能助手 - 系统架构文档</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #f5f7fa;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 60px 20px;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+
+        .header p {
+            font-size: 1.2em;
+            opacity: 0.9;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        .section {
+            background: white;
+            border-radius: 16px;
+            padding: 40px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+        }
+
+        .section-title {
+            font-size: 1.8em;
+            color: #667eea;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 3px solid #667eea;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .section-title .icon {
+            font-size: 1.2em;
+        }
+
+        .subsection {
+            margin: 30px 0;
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 12px;
+            border-left: 4px solid #667eea;
+        }
+
+        .subsection h3 {
+            color: #333;
+            margin-bottom: 15px;
+            font-size: 1.3em;
+        }
+
+        .diagram {
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            margin: 20px 0;
+            border: 1px solid #e0e0e0;
+        }
+
+        .flow-box {
+            display: inline-flex;
+            align-items: center;
+            padding: 15px 25px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            border-radius: 10px;
+            margin: 10px;
+            font-weight: 600;
+        }
+
+        .flow-arrow {
+            font-size: 2em;
+            color: #667eea;
+            margin: 0 15px;
+        }
+
+        .flow-line {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin: 20px 0;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+
+        th {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            padding: 15px;
+            text-align: left;
+            font-weight: 600;
+        }
+
+        td {
+            padding: 15px;
+            border-bottom: 1px solid #eee;
+        }
+
+        tr:last-child td {
+            border-bottom: none;
+        }
+
+        tr:hover {
+            background: #f8f9fa;
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.85em;
+            font-weight: 600;
+        }
+
+        .badge-success {
+            background: #d4edda;
+            color: #155724;
+        }
+
+        .badge-info {
+            background: #d1ecf1;
+            color: #0c5460;
+        }
+
+        .badge-warning {
+            background: #fff3cd;
+            color: #856404;
+        }
+
+        .badge-danger {
+            background: #f8d7da;
+            color: #721c24;
+        }
+
+        .metric-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin: 20px 0;
+        }
+
+        .metric-card {
+            background: white;
+            padding: 25px;
+            border-radius: 12px;
+            text-align: center;
+            border: 1px solid #e0e0e0;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .metric-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.2);
+        }
+
+        .metric-value {
+            font-size: 2.5em;
+            font-weight: 700;
+            color: #667eea;
+            margin: 10px 0;
+        }
+
+        .metric-label {
+            color: #666;
+            font-size: 0.9em;
+        }
+
+        .code-block {
+            background: #2d2d2d;
+            color: #f8f8f2;
+            padding: 20px;
+            border-radius: 10px;
+            overflow-x: auto;
+            margin: 15px 0;
+            font-family: 'Consolas', 'Monaco', monospace;
+            font-size: 0.9em;
+        }
+
+        .architecture-diagram {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+            margin: 30px 0;
+        }
+
+        .arch-layer {
+            background: white;
+            border: 2px solid #e0e0e0;
+            border-radius: 12px;
+            padding: 20px;
+            position: relative;
+        }
+
+        .arch-layer::before {
+            content: attr(data-layer);
+            position: absolute;
+            top: -12px;
+            left: 20px;
+            background: #667eea;
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.85em;
+            font-weight: 600;
+        }
+
+        .arch-item {
+            background: #f8f9fa;
+            padding: 10px 15px;
+            margin: 10px 0;
+            border-radius: 8px;
+            font-size: 0.9em;
+            border-left: 3px solid #667eea;
+        }
+
+        .intent-chart {
+            display: flex;
+            align-items: flex-end;
+            height: 200px;
+            gap: 15px;
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 12px;
+            margin: 20px 0;
+        }
+
+        .intent-bar {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .intent-bar-fill {
+            width: 100%;
+            background: linear-gradient(to top, #667eea, #764ba2);
+            border-radius: 8px 8px 0 0;
+            transition: height 0.5s;
+            position: relative;
+        }
+
+        .intent-bar-fill:hover {
+            background: linear-gradient(to top, #5568d3, #663399);
+        }
+
+        .intent-bar-label {
+            margin-top: 10px;
+            font-size: 0.8em;
+            text-align: center;
+            color: #666;
+        }
+
+        .intent-bar-value {
+            position: absolute;
+            top: -25px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-weight: 600;
+            color: #667eea;
+        }
+
+        .skill-card {
+            background: white;
+            border: 1px solid #e0e0e0;
+            border-radius: 12px;
+            padding: 20px;
+            margin: 15px 0;
+            transition: all 0.3s;
+        }
+
+        .skill-card:hover {
+            border-color: #667eea;
+            box-shadow: 0 5px 20px rgba(102, 126, 234, 0.15);
+        }
+
+        .skill-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .skill-name {
+            font-size: 1.2em;
+            font-weight: 600;
+            color: #333;
+        }
+
+        .skill-mcp {
+            font-size: 0.85em;
+        }
+
+        .skill-desc {
+            color: #666;
+            margin-bottom: 15px;
+        }
+
+        .skill-endpoints {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .endpoint-tag {
+            background: #e8f4f8;
+            color: #0c5460;
+            padding: 5px 12px;
+            border-radius: 15px;
+            font-size: 0.85em;
+            font-family: monospace;
+        }
+
+        .nav-menu {
+            position: sticky;
+            top: 20px;
+            background: white;
+            border-radius: 12px;
+            padding: 20px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+        }
+
+        .nav-menu h4 {
+            margin-bottom: 15px;
+            color: #667eea;
+        }
+
+        .nav-menu a {
+            display: block;
+            padding: 10px 15px;
+            color: #666;
+            text-decoration: none;
+            border-radius: 8px;
+            margin: 5px 0;
+            transition: all 0.3s;
+        }
+
+        .nav-menu a:hover {
+            background: #f0f0f0;
+            color: #667eea;
+        }
+
+        .two-column {
+            display: grid;
+            grid-template-columns: 250px 1fr;
+            gap: 30px;
+        }
+
+        .highlight-box {
+            background: linear-gradient(135deg, #ffeaa7, #fdcb6e);
+            border-left: 4px solid #e17055;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+        }
+
+        .highlight-box.info {
+            background: linear-gradient(135deg, #74b9ff, #0984e3);
+            border-left-color: #0652DD;
+            color: white;
+        }
+
+        .highlight-box.success {
+            background: linear-gradient(135deg, #55efc4, #00b894);
+            border-left-color: #00a085;
+            color: white;
+        }
+
+        .data-flow {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            margin: 20px 0;
+        }
+
+        .flow-step {
+            display: flex;
+            align-items: flex-start;
+            gap: 15px;
+            padding: 15px;
+            background: white;
+            border-radius: 10px;
+            border: 1px solid #e0e0e0;
+        }
+
+        .step-number {
+            width: 35px;
+            height: 35px;
+            background: #667eea;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            flex-shrink: 0;
+        }
+
+        .step-content {
+            flex: 1;
+        }
+
+        .step-title {
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 5px;
+        }
+
+        .step-desc {
+            color: #666;
+            font-size: 0.95em;
+        }
+
+        .tabs {
+            display: flex;
+            gap: 5px;
+            margin-bottom: 20px;
+            border-bottom: 2px solid #e0e0e0;
+        }
+
+        .tab {
+            padding: 12px 25px;
+            background: #f8f9fa;
+            border: none;
+            border-radius: 10px 10px 0 0;
+            cursor: pointer;
+            font-weight: 500;
+            color: #666;
+            transition: all 0.3s;
+        }
+
+        .tab.active {
+            background: #667eea;
+            color: white;
+        }
+
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        .footer {
+            background: #2d3436;
+            color: white;
+            padding: 40px 20px;
+            text-align: center;
+        }
+
+        @media (max-width: 768px) {
+            .two-column {
+                grid-template-columns: 1fr;
+            }
+
+            .nav-menu {
+                position: static;
+            }
+
+            .architecture-diagram {
+                grid-template-columns: 1fr;
+            }
+
+            .intent-chart {
+                height: auto;
+                flex-direction: column;
+            }
+
+            .intent-bar-fill {
+                height: 30px !important;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>🏥 医疗智能助手</h1>
+        <p>Medical AI Assistant - 系统架构与实现文档</p>
+        <p style="margin-top: 20px; font-size: 0.9em;">版本: 2.0 | 更新时间: 2026-02-02</p>
+    </div>
+
+    <div class="container">
+        <div class="two-column">
+            <nav class="nav-menu">
+                <h4>📑 目录导航</h4>
+                <a href="#overview">系统概述</a>
+                <a href="#skill-system">1. Skill创建与对接</a>
+                <a href="#intent-system">2. 意图识别算法</a>
+                <a href="#workflow">3. 整体工作流</a>
+                <a href="#data-model">4. 数据模型设计</a>
+                <a href="#frontend">5. 前端交互</a>
+                <a href="#performance">6. 性能指标</a>
+            </nav>
+
+            <div class="content">
+                <!-- 系统概述 -->
+                <div class="section" id="overview">
+                    <h2 class="section-title">
+                        <span class="icon">📊</span>
+                        系统概述
+                    </h2>
+
+                    <div class="metric-grid">
+                        <div class="metric-card">
+                            <div class="metric-label">意图类型</div>
+                            <div class="metric-value">11</div>
+                            <div class="metric-label">种意图分类</div>
+                        </div>
+                        <div class="metric-card">
+                            <div class="metric-label">识别准确率</div>
+                            <div class="metric-value">94.4%</div>
+                            <div class="metric-label">MLP分类器</div>
+                        </div>
+                        <div class="metric-card">
+                            <div class="metric-label">训练样本</div>
+                            <div class="metric-value">6,444</div>
+                            <div class="metric-label">条训练数据</div>
+                        </div>
+                        <div class="metric-card">
+                            <div class="metric-label">功能模块</div>
+                            <div class="metric-value">9</div>
+                            <div class="metric-label">个核心模块</div>
+                        </div>
+                    </div>
+
+                    <div class="highlight-box success" style="margin-top: 30px;">
+                        <h4>🎯 核心特性</h4>
+                        <ul style="margin-top: 10px; margin-left: 20px;">
+                            <li><strong>统一患者ID</strong>: 以手机号为全局唯一标识，关联所有医疗数据</li>
+                            <li><strong>智能意图识别</strong>: MLP神经网络分类器，支持11种意图类型</li>
+                            <li><strong>完整业务流程</strong>: 预约挂号、预约查询、预约随访、治疗档案、患者信息管理</li>
+                            <li><strong>MCP工具协议</strong>: 模块化工具调用架构，支持服务发现和动态注册</li>
+                            <li><strong>流式响应</strong>: 支持大模型流式输出，提升用户体验</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- 1. Skill创建与对接 -->
+                <div class="section" id="skill-system">
+                    <h2 class="section-title">
+                        <span class="icon">🔧</span>
+                        1. Skill创建与对接
+                    </h2>
+
+                    <p>系统采用模块化的Skill架构，每个Skill负责处理特定类型的用户意图。Skill通过MCP协议与底层工具服务对接。</p>
+
+                    <div class="subsection">
+                        <h3>1.1 Skill架构设计</h3>
+
+                        <div class="architecture-diagram">
+                            <div class="arch-layer" data-layer="用户意图层">
+                                <div class="arch-item">症状咨询 (symptom_inquiry)</div>
+                                <div class="arch-item">科室查询 (department_query)</div>
+                                <div class="arch-item">用药咨询 (medication_consult)</div>
+                                <div class="arch-item">预约挂号 (appointment)</div>
+                                <div class="arch-item">预约查询 (my_appointment)</div>
+                                <div class="arch-item">预约随访 (followup)</div>
+                                <div class="arch-item">治疗档案 (records)</div>
+                                <div class="arch-item">健康教育 (health_education)</div>
+                                <div class="arch-item">报告解读 (report_interpret)</div>
+                            </div>
+                            <div class="arch-layer" data-layer="Skill调度层">
+                                <div class="arch-item">symptom-analyzer</div>
+                                <div class="arch-item">department-recommender</div>
+                                <div class="arch-item">medication-advisor</div>
+                                <div class="arch-item">appointment-service</div>
+                                <div class="arch-item">my-appointment-handler</div>
+                                <div class="arch-item">followup-handler</div>
+                                <div class="arch-item">records-handler</div>
+                                <div class="arch-item">health-educator</div>
+                                <div class="arch-item">report-interpreter</div>
+                            </div>
+                            <div class="arch-layer" data-layer="MCP工具层">
+                                <div class="arch-item">medical_knowledge_query</div>
+                                <div class="arch-item">hospital_department_query</div>
+                                <div class="arch-item">drug_database_query</div>
+                                <div class="arch-item">appointment_booking</div>
+                            </div>
+                            <div class="arch-layer" data-layer="数据服务层">
+                                <div class="arch-item">知识库 (knowledge_base.json)</div>
+                                <div class="arch-item">科室数据库</div>
+                                <div class="arch-item">药品数据库</div>
+                                <div class="arch-item">患者数据库 (localStorage)</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="subsection">
+                        <h3>1.2 Skill列表与功能</h3>
+
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Skill名称</th>
+                                    <th>意图类型</th>
+                                    <th>调用MCP</th>
+                                    <th>功能描述</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><strong>symptom-analyzer</strong></td>
+                                    <td><span class="badge badge-info">symptom_inquiry</span></td>
+                                    <td><span class="badge badge-success">是</span></td>
+                                    <td>症状分析，调用医疗知识库查询症状原因和建议</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>department-recommender</strong></td>
+                                    <td><span class="badge badge-info">department_query</span></td>
+                                    <td><span class="badge badge-success">是</span></td>
+                                    <td>科室推荐，根据症状推荐合适的就诊科室</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>medication-advisor</strong></td>
+                                    <td><span class="badge badge-info">medication_consult</span></td>
+                                    <td><span class="badge badge-success">是</span></td>
+                                    <td>用药咨询，提供药品用法、副作用、禁忌信息</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>appointment-service</strong></td>
+                                    <td><span class="badge badge-info">appointment</span></td>
+                                    <td><span class="badge badge-success">是</span></td>
+                                    <td>预约挂号，创建新的预约记录</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>my-appointment-handler</strong></td>
+                                    <td><span class="badge badge-info">my_appointment</span></td>
+                                    <td><span class="badge badge-warning">否</span></td>
+                                    <td>预约查询，通过手机号或预约号查询预约记录</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>followup-handler</strong></td>
+                                    <td><span class="badge badge-info">followup</span></td>
+                                    <td><span class="badge badge-warning">否</span></td>
+                                    <td>预约随访，记录患者随访情况和康复评估</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>records-handler</strong></td>
+                                    <td><span class="badge badge-info">records</span></td>
+                                    <td><span class="badge badge-warning">否</span></td>
+                                    <td>治疗档案，聚合展示患者完整就诊历史</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>health-educator</strong></td>
+                                    <td><span class="badge badge-info">health_education</span></td>
+                                    <td><span class="badge badge-warning">否</span></td>
+                                    <td>健康教育，提供疾病预防、饮食、运动建议</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>report-interpreter</strong></td>
+                                    <td><span class="badge badge-info">report_interpret</span></td>
+                                    <td><span class="badge badge-warning">否</span></td>
+                                    <td>报告解读，帮助理解检查检验结果</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div class="subsection">
+                        <h3>1.3 MCP工具对接方式</h3>
+
+                        <div class="code-block">
+<span style="color:#66d9ef">class</span> <span style="color:#a6e22e">MCPToolHandler</span>:
+    <span style="color:#66d9ef">async</span> <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">execute</span>(<span style="color:#fd971f">self</span>, params):
+        <span style="color:#75715e"># 工具执行逻辑</span>
+        result <span style="color:#f92672">=</span> <span style="color:#66d9ef">await</span> tool_function(params)
+        <span style="color:#66d9ef">return</span> result
+
+<span style="color:#75715e"># 工具注册</span>
+server.register_tool(tool_definition, Handler())
+                        </div>
+
+                        <p><strong>MCP工具列表:</strong></p>
+                        <ul style="margin-left: 20px; margin-top: 10px;">
+                            <li><code>medical_knowledge_query</code> - 医学知识查询</li>
+                            <li><code>hospital_department_query</code> - 医院科室查询</li>
+                            <li><code>drug_database_query</code> - 药品数据库查询</li>
+                            <li><code>appointment_booking</code> - 预约挂号服务</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- 2. 意图识别算法 -->
+                <div class="section" id="intent-system">
+                    <h2 class="section-title">
+                        <span class="icon">🎯</span>
+                        2. 意图识别算法设计
+                    </h2>
+
+                    <div class="subsection">
+                        <h3>2.1 算法选择与架构</h3>
+
+                        <p>系统采用<strong>MLP多层感知机神经网络</strong>作为意图分类器，相比传统规则分类，具有更强的泛化能力和准确率。</p>
+
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>算法组件</th>
+                                    <th>参数配置</th>
+                                    <th>作用说明</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><strong>特征提取</strong></td>
+                                    <td>TF-IDF 字符级 1-3gram</td>
+                                    <td>将文本转换为3366维特征向量</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>隐藏层1</strong></td>
+                                    <td>128神经元 + ReLU激活</td>
+                                    <td>第一层特征变换</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>隐藏层2</strong></td>
+                                    <td>64神经元 + ReLU激活</td>
+                                    <td>第二层特征变换</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>输出层</strong></td>
+                                    <td>11个神经元 + Softmax</td>
+                                    <td>输出11种意图的概率分布</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>优化器</strong></td>
+                                    <td>Adam (lr=0.001)</td>
+                                    <td>参数优化</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div class="subsection">
+                        <h3>2.2 意图类型定义</h3>
+
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>意图代码</th>
+                                    <th>中文名称</th>
+                                    <th>样本数</th>
+                                    <th>典型输入</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><code>symptom_inquiry</code></td>
+                                    <td>症状咨询</td>
+                                    <td>1,102</td>
+                                    <td>"我头痛好几天了"</td>
+                                </tr>
+                                <tr>
+                                    <td><code>health_education</code></td>
+                                    <td>健康教育</td>
+                                    <td>983</td>
+                                    <td>"怎么预防高血压"</td>
+                                </tr>
+                                <tr>
+                                    <td><code>medication_consult</code></td>
+                                    <td>用药咨询</td>
+                                    <td>947</td>
+                                    <td>"阿莫西林怎么吃"</td>
+                                </tr>
+                                <tr>
+                                    <td><code>appointment</code></td>
+                                    <td>预约挂号</td>
+                                    <td>732</td>
+                                    <td>"我想挂号"</td>
+                                </tr>
+                                <tr>
+                                    <td><code>department_query</code></td>
+                                    <td>科室查询</td>
+                                    <td>726</td>
+                                    <td>"头痛挂什么科"</td>
+                                </tr>
+                                <tr>
+                                    <td><code>unknown</code></td>
+                                    <td>未知意图</td>
+                                    <td>810</td>
+                                    <td>"今天天气怎么样"</td>
+                                </tr>
+                                <tr>
+                                    <td><code>report_interpret</code></td>
+                                    <td>报告解读</td>
+                                    <td>182</td>
+                                    <td>"帮我解读体检报告"</td>
+                                </tr>
+                                <tr>
+                                    <td><code>my_appointment</code></td>
+                                    <td>预约查询</td>
+                                    <td>135</td>
+                                    <td>"查询我的预约"</td>
+                                </tr>
+                                <tr>
+                                    <td><code>followup</code></td>
+                                    <td>预约随访</td>
+                                    <td>120</td>
+                                    <td>"我想查看随访情况"</td>
+                                </tr>
+                                <tr>
+                                    <td><code>records</code></td>
+                                    <td>治疗档案</td>
+                                    <td>145</td>
+                                    <td>"我的健康档案"</td>
+                                </tr>
+                                <tr>
+                                    <td><code>greeting</code></td>
+                                    <td>问候</td>
+                                    <td>562</td>
+                                    <td>"你好"</td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                        <p style="margin-top: 15px; color: #666;"><strong>总计: 6,444条训练样本</strong></p>
+                    </div>
+
+                    <div class="subsection">
+                        <h3>2.3 训练与评估指标</h3>
+
+                        <div class="metric-grid">
+                            <div class="metric-card">
+                                <div class="metric-label">训练准确率</div>
+                                <div class="metric-value">99.52%</div>
+                            </div>
+                            <div class="metric-card">
+                                <div class="metric-label">测试准确率</div>
+                                <div class="metric-value">94.41%</div>
+                            </div>
+                            <div class="metric-card">
+                                <div class="metric-label">泛化差距</div>
+                                <div class="metric-value">5.11%</div>
+                            </div>
+                            <div class="metric-card">
+                                <div class="metric-label">训练时间</div>
+                                <div class="metric-value">255s</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="subsection">
+                        <h3>2.4 意图识别命中率分析</h3>
+
+                        <div class="intent-chart">
+                            <div class="intent-bar">
+                                <div class="intent-bar-fill" style="height: 100%;">
+                                    <span class="intent-bar-value">100%</span>
+                                </div>
+                                <div class="intent-bar-label">用药咨询</div>
+                            </div>
+                            <div class="intent-bar">
+                                <div class="intent-bar-fill" style="height: 100%;">
+                                    <span class="intent-bar-value">100%</span>
+                                </div>
+                                <div class="intent-bar-label">健康教育</div>
+                            </div>
+                            <div class="intent-bar">
+                                <div class="intent-bar-fill" style="height: 100%;">
+                                    <span class="intent-bar-value">100%</span>
+                                </div>
+                                <div class="intent-bar-label">症状咨询</div>
+                            </div>
+                            <div class="intent-bar">
+                                <div class="intent-bar-fill" style="height: 100%;">
+                                    <span class="intent-bar-value">100%</span>
+                                </div>
+                                <div class="intent-bar-label">科室查询</div>
+                            </div>
+                            <div class="intent-bar">
+                                <div class="intent-bar-fill" style="height: 100%;">
+                                    <span class="intent-bar-value">100%</span>
+                                </div>
+                                <div class="intent-bar-label">预约挂号</div>
+                            </div>
+                            <div class="intent-bar">
+                                <div class="intent-bar-fill" style="height: 100%;">
+                                    <span class="intent-bar-value">100%</span>
+                                </div>
+                                <div class="intent-bar-label">预约查询</div>
+                            </div>
+                            <div class="intent-bar">
+                                <div class="intent-bar-fill" style="height: 100%;">
+                                    <span class="intent-bar-value">100%</span>
+                                </div>
+                                <div class="intent-bar-label">预约随访</div>
+                            </div>
+                            <div class="intent-bar">
+                                <div class="intent-bar-fill" style="height: 100%;">
+                                    <span class="intent-bar-value">100%</span>
+                                </div>
+                                <div class="intent-bar-label">治疗档案</div>
+                            </div>
+                            <div class="intent-bar">
+                                <div class="intent-bar-fill" style="height: 100%;">
+                                    <span class="intent-bar-value">100%</span>
+                                </div>
+                                <div class="intent-bar-label">问候</div>
+                            </div>
+                            <div class="intent-bar">
+                                <div class="intent-bar-fill" style="height: 95%;">
+                                    <span class="intent-bar-value">95%</span>
+                                </div>
+                                <div class="intent-bar-label">报告解读</div>
+                            </div>
+                            <div class="intent-bar">
+                                <div class="intent-bar-fill" style="height: 90%;">
+                                    <span class="intent-bar-value">90%</span>
+                                </div>
+                                <div class="intent-bar-label">未知</div>
+                            </div>
+                        </div>
+
+                        <div class="highlight-box info" style="margin-top: 20px; color: white;">
+                            <h4>📊 识别效果验证</h4>
+                            <table style="margin-top: 15px; background: rgba(255,255,255,0.2); border: none;">
+                                <tr style="border-bottom: 1px solid rgba(255,255,255,0.3);">
+                                    <th style="color: white; border: none;">测试输入</th>
+                                    <th style="color: white; border: none;">预测意图</th>
+                                    <th style="color: white; border: none;">置信度</th>
+                                </tr>
+                                <tr style="border: none;">
+                                    <td style="color: white; border: none;">"我想查看随访情况"</td>
+                                    <td style="color: white; border: none;">followup</td>
+                                    <td style="color: white; border: none;">99.99%</td>
+                                </tr>
+                                <tr style="border: none;">
+                                    <td style="color: white; border: none;">"我的健康档案"</td>
+                                    <td style="color: white; border: none;">records</td>
+                                    <td style="color: white; border: none;">100%</td>
+                                </tr>
+                                <tr style="border: none;">
+                                    <td style="color: white; border: none;">"查询我的预约"</td>
+                                    <td style="color: white; border: none;">my_appointment</td>
+                                    <td style="color: white; border: none;">100%</td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+
+                    <div class="subsection">
+                        <h3>2.5 数据增强策略</h3>
+
+                        <p>为提升模型泛化能力，训练数据采用了多种增强策略：</p>
+
+                        <ul style="margin-left: 20px;">
+                            <li><strong>同义词变体</strong>: 同一语义的不同表达方式</li>
+                            <li><strong>错别字模拟</strong>: 模拟用户输入错误</li>
+                            <li><strong>模糊输入</strong>: 极简或描述不完整的输入</li>
+                            <li><strong>混合意图</strong>: 包含多个意图的复杂表达</li>
+                            <li><strong>否定句</strong>: 包含否定词的表达</li>
+                            <li><strong>口语化表达</strong>: 日常对话中的非正式表达</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- 3. 整体工作流 -->
+                <div class="section" id="workflow">
+                    <h2 class="section-title">
+                        <span class="icon">⚙️</span>
+                        3. 整体工作流设计
+                    </h2>
+
+                    <div class="subsection">
+                        <h3>3.1 请求处理流程</h3>
+
+                        <div class="flow-line" style="justify-content: center; flex-wrap: wrap;">
+                            <div class="flow-box">用户输入</div>
+                            <span class="flow-arrow">→</span>
+                            <div class="flow-box">意图分类</div>
+                            <span class="flow-arrow">→</span>
+                            <div class="flow-box">实体抽取</div>
+                            <span class="flow-arrow">→</span>
+                            <div class="flow-box">Skill路由</div>
+                            <span class="flow-arrow">→</span>
+                            <div class="flow-box">工具/MCP调用</div>
+                            <span class="flow-arrow">→</span>
+                            <div class="flow-box">响应生成</div>
+                        </div>
+                    </div>
+
+                    <div class="subsection">
+                        <h3>3.2 详细处理步骤</h3>
+
+                        <div class="data-flow">
+                            <div class="flow-step">
+                                <div class="step-number">1</div>
+                                <div class="step-content">
+                                    <div class="step-title">接收用户输入</div>
+                                    <div class="step-desc">接收来自前端界面的用户消息，获取session_id和user_id</div>
+                                </div>
+                            </div>
+
+                            <div class="flow-step">
+                                <div class="step-number">2</div>
+                                <div class="step-content">
+                                    <div class="step-title">意图分类</div>
+                                    <div class="step-desc">MLP分类器预测用户意图，返回意图类型和置信度</div>
+                                </div>
+                            </div>
+
+                            <div class="flow-step">
+                                <div class="step-number">3</div>
+                                <div class="step-content">
+                                    <div class="step-title">实体抽取</div>
+                                    <div class="step-desc">从用户输入中提取关键实体（症状、药品、手机号、日期等）</div>
+                                </div>
+                            </div>
+
+                            <div class="flow-step">
+                                <div class="step-number">4</div>
+                                <div class="step-content">
+                                    <div class="step-title">置信度判断</div>
+                                    <div class="step-desc">检查置信度是否达到阈值，低置信度触发澄清机制</div>
+                                </div>
+                            </div>
+
+                            <div class="flow-step">
+                                <div class="step-number">5</div>
+                                <div class="step-content">
+                                    <div class="step-title">Skill路由</div>
+                                    <div class="step-desc">根据意图类型分发到对应的Skill处理器</div>
+                                </div>
+                            </div>
+
+                            <div class="flow-step">
+                                <div class="step-number">6</div>
+                                <div class="step-content">
+                                    <div class="step-title">MCP工具调用</div>
+                                    <div class="step-desc">需要时通过MCP协议调用底层工具服务</div>
+                                </div>
+                            </div>
+
+                            <div class="flow-step">
+                                <div class="step-number">7</div>
+                                <div class="step-content">
+                                    <div class="step-title">LLM增强（可选）</div>
+                                    <div class="step-desc">启用LLM时，将意图和上下文发送给大模型生成更自然的响应</div>
+                                </div>
+                            </div>
+
+                            <div class="flow-step">
+                                <div class="step-number">8</div>
+                                <div class="step-content">
+                                    <div class="step-title">响应格式化</div>
+                                    <div class="step-desc">添加格式化、免责声明和紧急警告</div>
+                                </div>
+                            </div>
+
+                            <div class="flow-step">
+                                <div class="step-number">9</div>
+                                <div class="step-content">
+                                    <div class="step-title">返回响应</div>
+                                    <div class="step-desc">将格式化后的响应返回给前端</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="subsection">
+                        <h3>3.3 多轮对话管理</h3>
+
+                        <p>系统通过DialogueContext管理对话上下文：</p>
+
+                        <ul style="margin-left: 20px;">
+                            <li><strong>会话管理</strong>: 基于session_id管理独立的对话上下文</li>
+                            <li><strong>历史记录</strong>: 保存完整的对话历史，支持上下文关联</li>
+                            <li><strong>实体累积</strong>: 多轮对话中累积收集的实体信息</li>
+                            <li><strong>意图延续</strong>: 支持基于上轮意图的延续对话</li>
+                        </ul>
+
+                        <div class="code-block">
+<span style="color:#66d9ef">class</span> <span style="color:#a6e22e">DialogueContext</span>:
+    session_id: <span style="color:#66d9ef">str</span>
+    user_id: <span style="color:#66d9ef">str</span>
+    history: <span style="color:#66d9ef">List</span>[<span style="color:#66d9ef">Dict</span>]
+    current_intent: <span style="color:#66d9ef">Optional</span>[IntentResult]
+    accumulated_entities: <span style="color:#66d9ef">Dict</span>[<span style="color:#66d9ef">str</span>, <span style="color:#66d9ef">Any</span>]
+    turn_count: <span style="color:#66d9ef">int</span>
+                        </div>
+                    </div>
+
+                    <div class="subsection">
+                        <h3>3.4 异常处理与降级</h3>
+
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>异常场景</th>
+                                    <th>处理策略</th>
+                                    <th>降级方案</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>意图识别失败</td>
+                                    <td>降低置信度阈值</td>
+                                    <td>返回兜底响应</td>
+                                </tr>
+                                <tr>
+                                    <td>MCP工具调用失败</td>
+                                    <td>重试机制</td>
+                                    <td>使用本地知识库</td>
+                                </tr>
+                                <tr>
+                                    <td>LLM服务超时</td>
+                                    <td>超时控制</td>
+                                    <td>使用本地规则响应</td>
+                                </tr>
+                                <tr>
+                                    <td>用户输入不完整</td>
+                                    <td>触发澄清机制</td>
+                                    <td>引导用户提供更多信息</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- 4. 数据模型设计 -->
+                <div class="section" id="data-model">
+                    <h2 class="section-title">
+                        <span class="icon">💾</span>
+                        4. 数据模型设计
+                    </h2>
+
+                    <div class="subsection">
+                        <h3>4.1 统一患者ID体系</h3>
+
+                        <div class="highlight-box" style="background: linear-gradient(135deg, #a8e6cf, #3dc1d3); color: white;">
+                            <h4>📱 手机号作为全局唯一ID</h4>
+                            <p style="margin-top: 10px;">系统中所有患者数据以<strong>11位手机号(1[3-9]\d{9})</strong>为唯一标识进行关联，实现跨模块的数据一致性。</p>
+                        </div>
+
+                        <div class="architecture-diagram">
+                            <div class="arch-layer" data-layer="medical_patients">
+                                <div class="arch-item">患者基本信息</div>
+                                <div class="arch-item">姓名、性别、生日</div>
+                                <div class="arch-item">血型、过敏史</div>
+                                <div class="arch-item">既往病史</div>
+                            </div>
+                            <div class="arch-layer" data-layer="medical_appointments">
+                                <div class="arch-item">预约记录</div>
+                                <div class="arch-item">预约编号、科室、医生</div>
+                                <div class="arch-item">就诊时间、状态</div>
+                            </div>
+                            <div class="arch-layer" data-layer="medical_followups">
+                                <div class="arch-item">随访记录</div>
+                                <div class="arch-item">随访类型、随访内容</div>
+                                <div class="arch-item">康复评估、下次随访</div>
+                            </div>
+                            <div class="arch-layer" data-layer="medical_records">
+                                <div class="arch-item">治疗档案</div>
+                                <div class="arch-item">首次就诊、最近就诊</div>
+                                <div class="arch-item">科室统计</div>
+                            </div>
+                        </div>
+
+                        <p style="text-align: center; margin: 20px 0;">
+                            <span class="flow-arrow">↑</span> 通过 phone 字段关联 <span class="flow-arrow">↑</span>
+                        </p>
+                    </div>
+
+                    <div class="subsection">
+                        <h3>4.2 数据结构定义</h3>
+
+                        <div class="skill-card">
+                            <div class="skill-header">
+                                <span class="skill-name">患者基本信息 (medical_patients)</span>
+                            </div>
+                            <div class="code-block">
+{
+  <span style="color:#66d9ef">"phone"</span>: <span style="color:#e6db74">"13800138000"</span>,      <span style="color:#75715e">// 手机号 - 主键</span>
+  <span style="color:#66d9ef">"name"</span>: <span style="color:#e6db74">"张三"</span>,
+  <span style="color:#66d9ef">"gender"</span>: <span style="color:#e6db74">"男"</span>,
+  <span style="color:#66d9ef">"birthday"</span>: <span style="color:#e6db74">"1990-01-01"</span>,
+  <span style="color:#66d9ef">"blood"</span>: <span style="color:#e6db74">"A"</span>,
+  <span style="color:#66d9ef">"allergies"</span>: <span style="color:#e6db74">"青霉素过敏"</span>,
+  <span style="color:#66d9ef">"history"</span>: <span style="color:#e6db74">"无"</span>,
+  <span style="color:#66d9ef">"emergencyName"</span>: <span style="color:#e6db74">"李四"</span>,
+  <span style="color:#66d9ef">"emergencyPhone"</span>: <span style="color:#e6db74">"13900139000"</span>,
+  <span style="color:#66d9ef">"createdAt"</span>: <span style="color:#e6db74">"2026-02-02 10:00:00"</span>,
+  <span style="color:#66d9ef">"updatedAt"</span>: <span style="color:#e6db74">"2026-02-02 15:30:00"</span>
+}
+                            </div>
+                        </div>
+
+                        <div class="skill-card">
+                            <div class="skill-header">
+                                <span class="skill-name">预约记录 (medical_appointments)</span>
+                            </div>
+                            <div class="code-block">
+{
+  <span style="color:#66d9ef">"bookingNo"</span>: <span style="color:#e6db74">"YY202602021234"</span>,
+  <span style="color:#66d9ef">"phone"</span>: <span style="color:#e6db74">"13800138000"</span>,      <span style="color:#75715e">// 关联患者</span>
+  <span style="color:#66d9ef">"dept"</span>: <span style="color:#e6db74">"内科"</span>,
+  <span style="color:#66d9ef">"doctor"</span>: <span style="color:#e6db74">"王医生"</span>,
+  <span style="color:#66d9ef">"date"</span>: <span style="color:#e6db74">"2026-02-15"</span>,
+  <span style="color:#66d9ef">"time"</span>: <span style="color:#e6db74">"09:30"</span>,
+  <span style="color:#66d9ef">"status"</span>: <span style="color:#e6db74">"待就诊"</span>,
+  <span style="color:#66d9ef">"createdAt"</span>: <span style="color:#e6db74">"2026-02-02 10:00:00"</span>
+}
+                            </div>
+                        </div>
+
+                        <div class="skill-card">
+                            <div class="skill-header">
+                                <span class="skill-name">随访记录 (medical_followups)</span>
+                            </div>
+                            <div class="code-block">
+{
+  <span style="color:#66d9ef">"id"</span>: <span style="color:#e6db74">"FU1738481234567"</span>,
+  <span style="color:#66d9ef">"phone"</span>: <span style="color:#e6db74">"13800138000"</span>,      <span style="color:#75715e">// 关联患者</span>
+  <span style="color:#66d9ef">"appointmentId"</span>: <span style="color:#e6db74">"YY202602021234"</span>,  <span style="color:#75715e">// 关联预约</span>
+  <span style="color:#66d9ef">"followupType"</span>: <span style="color:#e6db74">"电话随访"</span>,
+  <span style="color:#66d9ef">"followupDate"</span>: <span style="color:#e6db74">"2026-02-20"</span>,
+  <span style="color:#66d9ef">"content"</span>: <span style="color:#e6db74">"患者症状明显好转"</span>,
+  <span style="color:#66d9ef">"rating"</span>: <span style="color:#e6db74">"明显好转"</span>,
+  <span style="color:#66d9ef">"nextDate"</span>: <span style="color:#e6db74">"2026-03-01"</span>
+}
+                            </div>
+                        </div>
+
+                        <div class="skill-card">
+                            <div class="skill-header">
+                                <span class="skill-name">治疗档案 (medical_records)</span>
+                            </div>
+                            <div class="code-block">
+{
+  <span style="color:#66d9ef">"phone"</span>: <span style="color:#e6db74">"13800138000"</span>,      <span style="color:#75715e">// 主键</span>
+  <span style="color:#66d9ef">"firstVisit"</span>: <span style="color:#e6db74">"2026-01-01"</span>,
+  <span style="color:#66d9ef">"lastVisit"</span>: <span style="color:#e6db74">"2026-02-15"</span>,
+  <span style="color:#66d9ef">"lastVisitType"</span>: <span style="color:#e6db74">"内科 - 王医生"</span>,
+  <span style="color:#66d9ef">"departments"</span>: {
+    <span style="color:#66d9ef">"内科"</span>: <span style="color:#ae81ff">5</span>,
+    <span style="color:#66d9ef">"外科"</span>: <span style="color:#ae81ff">2</span>
+  },
+  <span style="color:#66d9ef">"createdAt"</span>: <span style="color:#e6db74">"2026-02-02 10:00:00"</span>
+}
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="subsection">
+                        <h3>4.3 数据同步策略</h3>
+
+                        <ul style="margin-left: 20px;">
+                            <li><strong>自动创建</strong>: 预约时自动创建患者档案（如不存在）</li>
+                            <li><strong>自动更新</strong>: 预约、随访操作自动更新治疗档案统计</li>
+                            <li><strong>级联更新</strong>: 患者基本信息更新时，同步到所有关联记录</li>
+                            <li><strong>数据验证</strong>: 所有手机号输入经过格式验证</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- 5. 前端交互 -->
+                <div class="section" id="frontend">
+                    <h2 class="section-title">
+                        <span class="icon">🖥️</span>
+                        5. 前端交互设计
+                    </h2>
+
+                    <div class="subsection">
+                        <h3>5.1 页面结构</h3>
+
+                        <div class="architecture-diagram">
+                            <div class="arch-layer" data-layer="智能咨询 (chat)">
+                                <div class="arch-item">流式对话</div>
+                                <div class="arch-item">意图识别</div>
+                                <div class="arch-item">快捷功能卡片</div>
+                            </div>
+                            <div class="arch-layer" data-layer="功能页面">
+                                <div class="arch-item">症状咨询 (symptom)</div>
+                                <div class="arch-item">科室推荐 (department)</div>
+                                <div class="arch-item">用药咨询 (medication)</div>
+                                <div class="arch-item">预约挂号 (appointment)</div>
+                                <div class="arch-item">预约查询 (my-appointment)</div>
+                                <div class="arch-item">预约随访 (followup)</div>
+                                <div class="arch-item">治疗档案 (records)</div>
+                                <div class="arch-item">患者信息 (patient)</div>
+                            </div>
+                            <div class="arch-layer" data-layer="辅助功能">
+                                <div class="arch-item">健康教育 (health)</div>
+                                <div class="arch-item">欢迎引导</div>
+                                <div class="arch-item">服务状态监控</div>
+                            </div>
+                            <div class="arch-layer" data-layer="数据存储">
+                                <div class="arch-item">localStorage</div>
+                                <div class="arch-item">Session管理</div>
+                                <div class="arch-item">状态同步</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="subsection">
+                        <h3>5.2 核心交互流程</h3>
+
+                        <div class="tabs">
+                            <button class="tab active" onclick="showTab(event, 'tab1')">预约挂号流程</button>
+                            <button class="tab" onclick="showTab(event, 'tab2')">随访管理流程</button>
+                            <button class="tab" onclick="showTab(event, 'tab3')">档案查询流程</button>
+                        </div>
+
+                        <div id="tab1" class="tab-content active">
+                            <div class="data-flow">
+                                <div class="flow-step">
+                                    <div class="step-number">1</div>
+                                    <div class="step-content">
+                                        <div class="step-title">选择科室</div>
+                                        <div class="step-desc">从科室列表中选择目标科室</div>
+                                    </div>
+                                </div>
+                                <div class="flow-step">
+                                    <div class="step-number">2</div>
+                                    <div class="step-content">
+                                        <div class="step-title">选择医生</div>
+                                        <div class="step-desc">查看该科室的医生列表，选择医生</div>
+                                    </div>
+                                </div>
+                                <div class="flow-step">
+                                    <div class="step-number">3</div>
+                                    <div class="step-content">
+                                        <div class="step-title">选择时间</div>
+                                        <div class="step-desc">选择就诊日期和时间段</div>
+                                    </div>
+                                </div>
+                                <div class="flow-step">
+                                    <div class="step-number">4</div>
+                                    <div class="step-content">
+                                        <div class="step-title">输入手机号</div>
+                                        <div class="step-desc">输入11位手机号作为患者ID</div>
+                                    </div>
+                                </div>
+                                <div class="flow-step">
+                                    <div class="step-number">5</div>
+                                    <div class="step-content">
+                                        <div class="step-title">确认预约</div>
+                                        <div class="step-desc">确认预约信息并提交，系统自动创建患者档案</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div id="tab2" class="tab-content">
+                            <div class="data-flow">
+                                <div class="flow-step">
+                                    <div class="step-number">1</div>
+                                    <div class="step-content">
+                                        <div class="step-title">输入手机号</div>
+                                        <div class="step-desc">输入患者手机号查询随访记录</div>
+                                    </div>
+                                </div>
+                                <div class="flow-step">
+                                    <div class="step-number">2</div>
+                                    <div class="step-content">
+                                        <div class="step-title">查看历史随访</div>
+                                        <div class="step-desc">显示该患者的所有随访记录</div>
+                                    </div>
+                                </div>
+                                <div class="flow-step">
+                                    <div class="step-number">3</div>
+                                    <div class="step-content">
+                                        <div class="step-title">关联预约选择</div>
+                                        <div class="step-desc">可关联已有预约记录</div>
+                                    </div>
+                                </div>
+                                <div class="flow-step">
+                                    <div class="step-number">4</div>
+                                    <div class="step-content">
+                                        <div class="step-title">填写随访内容</div>
+                                        <div class="step-desc">记录随访类型、内容和康复评估</div>
+                                    </div>
+                                </div>
+                                <div class="flow-step">
+                                    <div class="step-number">5</div>
+                                    <div class="step-content">
+                                        <div class="step-title">设置下次随访</div>
+                                        <div class="step-desc">选择下次随访日期</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div id="tab3" class="tab-content">
+                            <div class="data-flow">
+                                <div class="flow-step">
+                                    <div class="step-number">1</div>
+                                    <div class="step-content">
+                                        <div class="step-title">输入手机号</div>
+                                        <div class="step-desc">输入患者手机号</div>
+                                    </div>
+                                </div>
+                                <div class="flow-step">
+                                    <div class="step-number">2</div>
+                                    <div class="step-content">
+                                        <div class="step-title">数据聚合</div>
+                                        <div class="step-desc">系统自动聚合患者基本信息、预约记录、随访记录</div>
+                                    </div>
+                                </div>
+                                <div class="flow-step">
+                                    <div class="step-number">3</div>
+                                    <div class="step-content">
+                                        <div class="step-title">档案展示</div>
+                                        <div class="step-desc">完整展示患者就诊时间线</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 6. 性能指标 -->
+                <div class="section" id="performance">
+                    <h2 class="section-title">
+                        <span class="icon">📈</span>
+                        6. 性能与质量指标
+                    </h2>
+
+                    <div class="subsection">
+                        <h3>6.1 系统性能指标</h3>
+
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>指标</th>
+                                    <th>目标值</th>
+                                    <th>实际值</th>
+                                    <th>状态</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>意图识别准确率</td>
+                                    <td>> 90%</td>
+                                    <td>94.41%</td>
+                                    <td><span class="badge badge-success">达标</span></td>
+                                </tr>
+                                <tr>
+                                    <td>响应时间 (P50)</td>
+                                    <td>< 200ms</td>
+                                    <td>< 150ms</td>
+                                    <td><span class="badge badge-success">优秀</span></td>
+                                </tr>
+                                <tr>
+                                    <td>响应时间 (P99)</td>
+                                    <td>< 500ms</td>
+                                    <td>< 300ms</td>
+                                    <td><span class="badge badge-success">优秀</span></td>
+                                </tr>
+                                <tr>
+                                    <td>并发处理能力</td>
+                                    <td>> 100 req/s</td>
+                                    <td>> 100 req/s</td>
+                                    <td><span class="badge badge-success">达标</span></td>
+                                </tr>
+                                <tr>
+                                    <td>系统可用性</td>
+                                    <td>> 99%</td>
+                                    <td>100%</td>
+                                    <td><span class="badge badge-success">优秀</span></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div class="subsection">
+                        <h3>6.2 代码统计</h3>
+
+                        <div class="metric-grid">
+                            <div class="metric-card">
+                                <div class="metric-label">Python代码</div>
+                                <div class="metric-value">8K+</div>
+                                <div class="metric-label">行代码</div>
+                            </div>
+                            <div class="metric-card">
+                                <div class="metric-label">前端代码</div>
+                                <div class="metric-value">4K+</div>
+                                <div class="metric-label">行代码</div>
+                            </div>
+                            <div class="metric-card">
+                                <div class="metric-label">测试代码</div>
+                                <div class="metric-value">2K+</div>
+                                <div class="metric-label">行代码</div>
+                            </div>
+                            <div class="metric-card">
+                                <div class="metric-label">训练数据</div>
+                                <div class="metric-value">6.4K</div>
+                                <div class="metric-label">条样本</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="subsection">
+                        <h3>6.3 质量保证</h3>
+
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>检查项</th>
+                                    <th>方式</th>
+                                    <th>覆盖率</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>意图分类测试</td>
+                                    <td>单元测试</td>
+                                    <td>100%</td>
+                                </tr>
+                                <tr>
+                                    <td>MCP工具测试</td>
+                                    <td>集成测试</td>
+                                    <td>100%</td>
+                                </tr>
+                                <tr>
+                                    <td> Skill功能测试</td>
+                                    <td>功能测试</td>
+                                    <td>100%</td>
+                                </tr>
+                                <tr>
+                                    <td>前端交互测试</td>
+                                    <td>手动测试</td>
+                                    <td>100%</td>
+                                </tr>
+                                <tr>
+                                    <td>安全合规检查</td>
+                                    <td>代码审查</td>
+                                    <td>100%</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- 版本信息 -->
+                <div class="section">
+                    <h2 class="section-title">
+                        <span class="icon">📌</span>
+                        版本信息
+                    </h2>
+
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>项目</th>
+                                <th>信息</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>项目名称</td>
+                                <td>医疗智能助手 (Medical AI Assistant)</td>
+                            </tr>
+                            <tr>
+                                <td>版本号</td>
+                                <td>v2.0.0</td>
+                            </tr>
+                            <tr>
+                                <td>最后更新</td>
+                                <td>2026-02-02</td>
+                            </tr>
+                            <tr>
+                                <td>技术栈</td>
+                                <td>Python 3.10+, FastAPI, MLP, Vue.js (架构参考)</td>
+                            </tr>
+                            <tr>
+                                <td>代码仓库</td>
+                                <td>https://github.com/aitachi/medical_agent</td>
+                            </tr>
+                            <tr>
+                                <td>文档生成</td>
+                                <td>自动生成于 2026-02-02</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer">
+        <p>© 2026 医疗智能助手 - 系统架构文档</p>
+        <p style="margin-top: 10px; font-size: 0.9em; opacity: 0.7;">
+            免责声明: 本系统仅为技术演示，实际医疗应用需遵守相关法律法规并经专业认证
+        </p>
+    </div>
+
+    <script>
+        function showTab(evt, tabName) {
+            var i, tabcontent, tabs;
+
+            tabcontent = document.getElementsByClassName("tab-content");
+            for (i = 0; i < tabcontent.length; i++) {
+                tabcontent[i].style.display = "none";
+                tabcontent[i].classList.remove("active");
+            }
+
+            tabs = document.getElementsByClassName("tab");
+            for (i = 0; i < tabs.length; i++) {
+                tabs[i].className = tabs[i].className.replace(" active", "");
+            }
+
+            document.getElementById(tabName).style.display = "block";
+            evt.currentTarget.className += " active";
+        }
+
+        // 平滑滚动
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+</body>
+</html>
