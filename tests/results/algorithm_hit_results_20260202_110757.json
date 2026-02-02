@@ -1,0 +1,954 @@
+{
+  "test_time": "2026-02-02T11:07:57.366178",
+  "statistics": {
+    "total_tests": 83,
+    "intent_accuracy": 87.95180722891565,
+    "skill_accuracy": 87.95180722891565,
+    "avg_confidence": 0.5372489959839362
+  },
+  "results_by_intent": {
+    "symptom_inquiry": {
+      "total": 16,
+      "intent_accuracy": 68.75,
+      "skill_accuracy": 68.75,
+      "avg_confidence": 0.19375000000000003,
+      "details": [
+        {
+          "text": "我头痛",
+          "predicted_intent": "unknown",
+          "expected_intent": "symptom_inquiry",
+          "predicted_skill": "fallback-handler",
+          "expected_skill": "symptom-analyzer",
+          "confidence": 0.0,
+          "intent_correct": false,
+          "skill_correct": false
+        },
+        {
+          "text": "我头痛好几天了",
+          "predicted_intent": "symptom_inquiry",
+          "expected_intent": "symptom_inquiry",
+          "predicted_skill": "symptom-analyzer",
+          "expected_skill": "symptom-analyzer",
+          "confidence": 0.45,
+          "intent_correct": true,
+          "skill_correct": true
+        },
+        {
+          "text": "最近一直头晕",
+          "predicted_intent": "symptom_inquiry",
+          "expected_intent": "symptom_inquiry",
+          "predicted_skill": "symptom-analyzer",
+          "expected_skill": "symptom-analyzer",
+          "confidence": 0.2,
+          "intent_correct": true,
+          "skill_correct": true
+        },
+        {
+          "text": "我发烧了",
+          "predicted_intent": "symptom_inquiry",
+          "expected_intent": "symptom_inquiry",
+          "predicted_skill": "symptom-analyzer",
+          "expected_skill": "symptom-analyzer",
+          "confidence": 0.2,
+          "intent_correct": true,
+          "skill_correct": true
+        },
+        {
+          "text": "咳嗽厉害",
+          "predicted_intent": "symptom_inquiry",
+          "expected_intent": "symptom_inquiry",
+          "predicted_skill": "symptom-analyzer",
+          "expected_skill": "symptom-analyzer",
+          "confidence": 0.2,
+          "intent_correct": true,
+          "skill_correct": true
+        },
+        {
+          "text": "肚子疼",
+          "predicted_intent": "unknown",
+          "expected_intent": "symptom_inquiry",
+          "predicted_skill": "fallback-handler",
+          "expected_skill": "symptom-analyzer",
+          "confidence": 0.0,
+          "intent_correct": false,
+          "skill_correct": false
+        },
+        {
+          "text": "胸闷气短",
+          "predicted_intent": "unknown",
+          "expected_intent": "symptom_inquiry",
+          "predicted_skill": "fallback-handler",
+          "expected_skill": "symptom-analyzer",
+          "confidence": 0.0,
+          "intent_correct": false,
+          "skill_correct": false
+        },
+        {
+          "text": "恶心想吐",
+          "predicted_intent": "symptom_inquiry",
+          "expected_intent": "symptom_inquiry",
+          "predicted_skill": "symptom-analyzer",
+          "expected_skill": "symptom-analyzer",
+          "confidence": 0.2,
+          "intent_correct": true,
+          "skill_correct": true
+        },
+        {
+          "text": "拉肚子",
+          "predicted_intent": "unknown",
+          "expected_intent": "symptom_inquiry",
+          "predicted_skill": "fallback-handler",
+          "expected_skill": "symptom-analyzer",
+          "confidence": 0.0,
+          "intent_correct": false,
+          "skill_correct": false
+        },
+        {
+          "text": "失眠睡不着",
+          "predicted_intent": "symptom_inquiry",
+          "expected_intent": "symptom_inquiry",
+          "predicted_skill": "symptom-analyzer",
+          "expected_skill": "symptom-analyzer",
+          "confidence": 0.2,
+          "intent_correct": true,
+          "skill_correct": true
+        },
+        {
+          "text": "头痛怎么回事",
+          "predicted_intent": "symptom_inquiry",
+          "expected_intent": "symptom_inquiry",
+          "predicted_skill": "symptom-analyzer",
+          "expected_skill": "symptom-analyzer",
+          "confidence": 0.45,
+          "intent_correct": true,
+          "skill_correct": true
+        },
+        {
+          "text": "发烧是什么症状",
+          "predicted_intent": "symptom_inquiry",
+          "expected_intent": "symptom_inquiry",
+          "predicted_skill": "symptom-analyzer",
+          "expected_skill": "symptom-analyzer",
+          "confidence": 0.42500000000000004,
+          "intent_correct": true,
+          "skill_correct": true
+        },
+        {
+          "text": "咳嗽怎么办",
+          "predicted_intent": "symptom_inquiry",
+          "expected_intent": "symptom_inquiry",
+          "predicted_skill": "symptom-analyzer",
+          "expected_skill": "symptom-analyzer",
+          "confidence": 0.375,
+          "intent_correct": true,
+          "skill_correct": true
+        },
+        {
+          "text": "头痛剧烈",
+          "predicted_intent": "symptom_inquiry",
+          "expected_intent": "symptom_inquiry",
+          "predicted_skill": "symptom-analyzer",
+          "expected_skill": "symptom-analyzer",
+          "confidence": 0.2,
+          "intent_correct": true,
+          "skill_correct": true
+        },
+        {
+          "text": "有点头疼",
+          "predicted_intent": "unknown",
+          "expected_intent": "symptom_inquiry",
+          "predicted_skill": "fallback-handler",
+          "expected_skill": "symptom-analyzer",
+          "confidence": 0.0,
+          "intent_correct": false,
+          "skill_correct": false
+        },
+        {
+          "text": "非常难受",
+          "predicted_intent": "symptom_inquiry",
+          "expected_intent": "symptom_inquiry",
+          "predicted_skill": "symptom-analyzer",
+          "expected_skill": "symptom-analyzer",
+          "confidence": 0.2,
+          "intent_correct": true,
+          "skill_correct": true
+        }
+      ]
+    },
+    "department_query": {
+      "total": 10,
+      "intent_accuracy": 90.0,
+      "skill_accuracy": 90.0,
+      "avg_confidence": 0.5166666666666667,
+      "details": [
+        {
+          "text": "头痛挂什么科",
+          "predicted_intent": "department_query",
+          "expected_intent": "department_query",
+          "predicted_skill": "department-recommender",
+          "expected_skill": "department-recommender",
+          "confidence": 0.5333333333333333,
+          "intent_correct": true,
+          "skill_correct": true
+        },
+        {
+          "text": "头痛去哪个科",
+          "predicted_intent": "department_query",
+          "expected_intent": "department_query",
+          "predicted_skill": "department-recommender",
+          "expected_skill": "department-recommender",
+          "confidence": 0.8666666666666667,
+          "intent_correct": true,
+          "skill_correct": true
+        },
+        {
+          "text": "头痛看什么科",
+          "predicted_intent": "department_query",
+          "expected_intent": "department_query",
+          "predicted_skill": "department-recommender",
+          "expected_skill": "department-recommender",
+          "confidence": 0.5333333333333333,
+          "intent_correct": true,
+          "skill_correct": true
+        },
+        {
+          "text": "头晕应该挂哪个科",
+          "predicted_intent": "department_query",
+          "expected_intent": "department_query",
+          "predicted_skill": "department-recommender",
+          "expected_skill": "department-recommender",
+          "confidence": 0.8,
+          "intent_correct": true,
+          "skill_correct": true
+        },
+        {
+          "text": "发烧挂哪个科",
+          "predicted_intent": "department_query",
+          "expected_intent": "department_query",
+          "predicted_skill": "department-recommender",
+          "expected_skill": "department-recommender",
+          "confidence": 0.5333333333333333,
+          "intent_correct": true,
+          "skill_correct": true
+        },
+        {
+          "text": "肚子疼看什么科",
+          "predicted_intent": "department_query",
+          "expected_intent": "department_query",
+          "predicted_skill": "department-recommender",
+          "expected_skill": "department-recommender",
+          "confidence": 0.5333333333333333,
+          "intent_correct": true,
+          "skill_correct": true
+        },
+        {
+          "text": "头痛是神经内科吗",
+          "predicted_intent": "department_query",
+          "expected_intent": "department_query",
+          "predicted_skill": "department-recommender",
+          "expected_skill": "department-recommender",
+          "confidence": 0.4666666666666667,
+          "intent_correct": true,
+          "skill_correct": true
+        },
+        {
+          "text": "有没有头痛科",
+          "predicted_intent": "symptom_inquiry",
+          "expected_intent": "department_query",
+          "predicted_skill": "symptom-analyzer",
+          "expected_skill": "department-recommender",
+          "confidence": 0.2,
+          "intent_correct": false,
+          "skill_correct": false
+        },
+        {
+          "text": "哪个科看头痛",
+          "predicted_intent": "department_query",
+          "expected_intent": "department_query",
+          "predicted_skill": "department-recommender",
+          "expected_skill": "department-recommender",
+          "confidence": 0.5,
+          "intent_correct": true,
+          "skill_correct": true
+        },
+        {
+          "text": "什么科看心脏病",
+          "predicted_intent": "department_query",
+          "expected_intent": "department_query",
+          "predicted_skill": "department-recommender",
+          "expected_skill": "department-recommender",
+          "confidence": 0.2,
+          "intent_correct": true,
+          "skill_correct": true
+        }
+      ]
+    },
+    "medication_consult": {
+      "total": 13,
+      "intent_accuracy": 100.0,
+      "skill_accuracy": 100.0,
+      "avg_confidence": 0.6102564102564101,
+      "details": [
+        {
+          "text": "阿莫西林怎么吃",
+          "predicted_intent": "medication_consult",
+          "expected_intent": "medication_consult",
+          "predicted_skill": "medication-advisor",
+          "expected_skill": "medication-advisor",
+          "confidence": 0.3,
+          "intent_correct": true,
+          "skill_correct": true
+        },
+        {
+          "text": "布洛芬怎么用",
+          "predicted_intent": "medication_consult",
+          "expected_intent": "medication_consult",
+          "predicted_skill": "medication-advisor",
+          "expected_skill": "medication-advisor",
+          "confidence": 0.3,
+          "intent_correct": true,
+          "skill_correct": true
+        },
+        {
+          "text": "感冒药用法用量",
+          "predicted_intent": "medication_consult",
+          "expected_intent": "medication_consult",
+          "predicted_skill": "medication-advisor",
+          "expected_skill": "medication-advisor",
+          "confidence": 0.9333333333333333,
+          "intent_correct": true,
+          "skill_correct": true
+        },
+        {
+          "text": "退烧药吃多少",
+          "predicted_intent": "medication_consult",
+          "expected_intent": "medication_consult",
+          "predicted_skill": "medication-advisor",
+          "expected_skill": "medication-advisor",
+          "confidence": 0.6,
+          "intent_correct": true,
+          "skill_correct": true
+        },
+        {
+          "text": "阿莫西林有什么副作用",
+          "predicted_intent": "medication_consult",
+          "expected_intent": "medication_consult",
+          "predicted_skill": "medication-advisor",
+          "expected_skill": "medication-advisor",
+          "confidence": 0.9666666666666666,
+          "intent_correct": true,
+          "skill_correct": true
+        },
+        {
+          "text": "布洛芬副作用",
+          "predicted_intent": "medication_consult",
+          "expected_intent": "medication_consult",
+          "predicted_skill": "medication-advisor",
+          "expected_skill": "medication-advisor",
+          "confidence": 0.6333333333333333,
+          "intent_correct": true,
+          "skill_correct": true
+        },
+        {
+          "text": "对乙酰氨基酚不良反应",
+          "predicted_intent": "medication_consult",
+          "expected_intent": "medication_consult",
+          "predicted_skill": "medication-advisor",
+          "expected_skill": "medication-advisor",
+          "confidence": 0.3,
+          "intent_correct": true,
+          "skill_correct": true
+        },
+        {
+          "text": "阿莫西林禁忌",
+          "predicted_intent": "medication_consult",
+          "expected_intent": "medication_consult",
+          "predicted_skill": "medication-advisor",
+          "expected_skill": "medication-advisor",
+          "confidence": 0.6333333333333333,
+          "intent_correct": true,
+          "skill_correct": true
+        },
+        {
+          "text": "感冒药有什么禁忌",
+          "predicted_intent": "medication_consult",
+          "expected_intent": "medication_consult",
+          "predicted_skill": "medication-advisor",
+          "expected_skill": "medication-advisor",
+          "confidence": 0.9333333333333333,
+          "intent_correct": true,
+          "skill_correct": true
+        },
+        {
+          "text": "阿莫西林能一起吃吗",
+          "predicted_intent": "medication_consult",
+          "expected_intent": "medication_consult",
+          "predicted_skill": "medication-advisor",
+          "expected_skill": "medication-advisor",
+          "confidence": 0.6333333333333333,
+          "intent_correct": true,
+          "skill_correct": true
+        },
+        {
+          "text": "吃药相互作用",
+          "predicted_intent": "medication_consult",
+          "expected_intent": "medication_consult",
+          "predicted_skill": "medication-advisor",
+          "expected_skill": "medication-advisor",
+          "confidence": 0.8,
+          "intent_correct": true,
+          "skill_correct": true
+        },
+        {
+          "text": "阿莫西林是什么药",
+          "predicted_intent": "medication_consult",
+          "expected_intent": "medication_consult",
+          "predicted_skill": "medication-advisor",
+          "expected_skill": "medication-advisor",
+          "confidence": 0.6,
+          "intent_correct": true,
+          "skill_correct": true
+        },
+        {
+          "text": "这个药安全吗",
+          "predicted_intent": "medication_consult",
+          "expected_intent": "medication_consult",
+          "predicted_skill": "medication-advisor",
+          "expected_skill": "medication-advisor",
+          "confidence": 0.3,
+          "intent_correct": true,
+          "skill_correct": true
+        }
+      ]
+    },
+    "appointment": {
+      "total": 9,
+      "intent_accuracy": 66.66666666666666,
+      "skill_accuracy": 66.66666666666666,
+      "avg_confidence": 0.5833333333333335,
+      "details": [
+        {
+          "text": "我想挂号",
+          "predicted_intent": "appointment",
+          "expected_intent": "appointment",
+          "predicted_skill": "appointment-service",
+          "expected_skill": "appointment-service",
+          "confidence": 0.5,
+          "intent_correct": true,
+          "skill_correct": true
+        },
+        {
+          "text": "我要挂号",
+          "predicted_intent": "appointment",
+          "expected_intent": "appointment",
+          "predicted_skill": "appointment-service",
+          "expected_skill": "appointment-service",
+          "confidence": 1.0,
+          "intent_correct": true,
+          "skill_correct": true
+        },
+        {
+          "text": "帮我挂号",
+          "predicted_intent": "appointment",
+          "expected_intent": "appointment",
+          "predicted_skill": "appointment-service",
+          "expected_skill": "appointment-service",
+          "confidence": 1.0,
+          "intent_correct": true,
+          "skill_correct": true
+        },
+        {
+          "text": "预约挂号",
+          "predicted_intent": "appointment",
+          "expected_intent": "appointment",
+          "predicted_skill": "appointment-service",
+          "expected_skill": "appointment-service",
+          "confidence": 1.0,
+          "intent_correct": true,
+          "skill_correct": true
+        },
+        {
+          "text": "预约个号",
+          "predicted_intent": "appointment",
+          "expected_intent": "appointment",
+          "predicted_skill": "appointment-service",
+          "expected_skill": "appointment-service",
+          "confidence": 0.5,
+          "intent_correct": true,
+          "skill_correct": true
+        },
+        {
+          "text": "想预约门诊",
+          "predicted_intent": "department_query",
+          "expected_intent": "appointment",
+          "predicted_skill": "department-recommender",
+          "expected_skill": "appointment-service",
+          "confidence": 0.4,
+          "intent_correct": false,
+          "skill_correct": false
+        },
+        {
+          "text": "预约医生",
+          "predicted_intent": "department_query",
+          "expected_intent": "appointment",
+          "predicted_skill": "department-recommender",
+          "expected_skill": "appointment-service",
+          "confidence": 0.4,
+          "intent_correct": false,
+          "skill_correct": false
+        },
+        {
+          "text": "排号",
+          "predicted_intent": "unknown",
+          "expected_intent": "appointment",
+          "predicted_skill": "fallback-handler",
+          "expected_skill": "appointment-service",
+          "confidence": 0.0,
+          "intent_correct": false,
+          "skill_correct": false
+        },
+        {
+          "text": "想看医生",
+          "predicted_intent": "appointment",
+          "expected_intent": "appointment",
+          "predicted_skill": "appointment-service",
+          "expected_skill": "appointment-service",
+          "confidence": 0.45,
+          "intent_correct": true,
+          "skill_correct": true
+        }
+      ]
+    },
+    "health_education": {
+      "total": 16,
+      "intent_accuracy": 100.0,
+      "skill_accuracy": 100.0,
+      "avg_confidence": 0.7229166666666667,
+      "details": [
+        {
+          "text": "怎么预防高血压",
+          "predicted_intent": "health_education",
+          "expected_intent": "health_education",
+          "predicted_skill": "health-educator",
+          "expected_skill": "health-educator",
+          "confidence": 0.9333333333333333,
+          "intent_correct": true,
+          "skill_correct": true
+        },
+        {
+          "text": "如何预防糖尿病",
+          "predicted_intent": "health_education",
+          "expected_intent": "health_education",
+          "predicted_skill": "health-educator",
+          "expected_skill": "health-educator",
+          "confidence": 0.9333333333333333,
+          "intent_correct": true,
+          "skill_correct": true
+        },
+        {
+          "text": "感冒怎么预防",
+          "predicted_intent": "health_education",
+          "expected_intent": "health_education",
+          "predicted_skill": "health-educator",
+          "expected_skill": "health-educator",
+          "confidence": 0.9333333333333333,
+          "intent_correct": true,
+          "skill_correct": true
+        },
+        {
+          "text": "怎么预防心血管疾病",
+          "predicted_intent": "health_education",
+          "expected_intent": "health_education",
+          "predicted_skill": "health-educator",
+          "expected_skill": "health-educator",
+          "confidence": 0.9333333333333333,
+          "intent_correct": true,
+          "skill_correct": true
+        },
+        {
+          "text": "高血压如何预防",
+          "predicted_intent": "health_education",
+          "expected_intent": "health_education",
+          "predicted_skill": "health-educator",
+          "expected_skill": "health-educator",
+          "confidence": 0.6,
+          "intent_correct": true,
+          "skill_correct": true
+        },
+        {
+          "text": "预防感冒的方法",
+          "predicted_intent": "health_education",
+          "expected_intent": "health_education",
+          "predicted_skill": "health-educator",
+          "expected_skill": "health-educator",
+          "confidence": 0.3,
+          "intent_correct": true,
+          "skill_correct": true
+        },
+        {
+          "text": "如何保持健康",
+          "predicted_intent": "health_education",
+          "expected_intent": "health_education",
+          "predicted_skill": "health-educator",
+          "expected_skill": "health-educator",
+          "confidence": 0.9333333333333333,
+          "intent_correct": true,
+          "skill_correct": true
+        },
+        {
+          "text": "怎么保持身体健康",
+          "predicted_intent": "health_education",
+          "expected_intent": "health_education",
+          "predicted_skill": "health-educator",
+          "expected_skill": "health-educator",
+          "confidence": 0.6,
+          "intent_correct": true,
+          "skill_correct": true
+        },
+        {
+          "text": "保持健康的方法",
+          "predicted_intent": "health_education",
+          "expected_intent": "health_education",
+          "predicted_skill": "health-educator",
+          "expected_skill": "health-educator",
+          "confidence": 0.3,
+          "intent_correct": true,
+          "skill_correct": true
+        },
+        {
+          "text": "高血压不能吃什么",
+          "predicted_intent": "health_education",
+          "expected_intent": "health_education",
+          "predicted_skill": "health-educator",
+          "expected_skill": "health-educator",
+          "confidence": 0.5666666666666667,
+          "intent_correct": true,
+          "skill_correct": true
+        },
+        {
+          "text": "糖尿病饮食注意什么",
+          "predicted_intent": "health_education",
+          "expected_intent": "health_education",
+          "predicted_skill": "health-educator",
+          "expected_skill": "health-educator",
+          "confidence": 0.5333333333333333,
+          "intent_correct": true,
+          "skill_correct": true
+        },
+        {
+          "text": "痛风饮食禁忌",
+          "predicted_intent": "health_education",
+          "expected_intent": "health_education",
+          "predicted_skill": "health-educator",
+          "expected_skill": "health-educator",
+          "confidence": 0.8333333333333333,
+          "intent_correct": true,
+          "skill_correct": true
+        },
+        {
+          "text": "有什么运动建议",
+          "predicted_intent": "health_education",
+          "expected_intent": "health_education",
+          "predicted_skill": "health-educator",
+          "expected_skill": "health-educator",
+          "confidence": 1.4000000000000001,
+          "intent_correct": true,
+          "skill_correct": true
+        },
+        {
+          "text": "锻炼建议",
+          "predicted_intent": "health_education",
+          "expected_intent": "health_education",
+          "predicted_skill": "health-educator",
+          "expected_skill": "health-educator",
+          "confidence": 0.8666666666666667,
+          "intent_correct": true,
+          "skill_correct": true
+        },
+        {
+          "text": "健康生活方式",
+          "predicted_intent": "health_education",
+          "expected_intent": "health_education",
+          "predicted_skill": "health-educator",
+          "expected_skill": "health-educator",
+          "confidence": 0.3,
+          "intent_correct": true,
+          "skill_correct": true
+        },
+        {
+          "text": "养生建议",
+          "predicted_intent": "health_education",
+          "expected_intent": "health_education",
+          "predicted_skill": "health-educator",
+          "expected_skill": "health-educator",
+          "confidence": 0.6,
+          "intent_correct": true,
+          "skill_correct": true
+        }
+      ]
+    },
+    "greeting": {
+      "total": 12,
+      "intent_accuracy": 100.0,
+      "skill_accuracy": 100.0,
+      "avg_confidence": 0.9499999999999998,
+      "details": [
+        {
+          "text": "你好",
+          "predicted_intent": "greeting",
+          "expected_intent": "greeting",
+          "predicted_skill": "greeting-handler",
+          "expected_skill": "greeting-handler",
+          "confidence": 0.95,
+          "intent_correct": true,
+          "skill_correct": true
+        },
+        {
+          "text": "您好",
+          "predicted_intent": "greeting",
+          "expected_intent": "greeting",
+          "predicted_skill": "greeting-handler",
+          "expected_skill": "greeting-handler",
+          "confidence": 0.95,
+          "intent_correct": true,
+          "skill_correct": true
+        },
+        {
+          "text": "嗨",
+          "predicted_intent": "greeting",
+          "expected_intent": "greeting",
+          "predicted_skill": "greeting-handler",
+          "expected_skill": "greeting-handler",
+          "confidence": 0.95,
+          "intent_correct": true,
+          "skill_correct": true
+        },
+        {
+          "text": "hello",
+          "predicted_intent": "greeting",
+          "expected_intent": "greeting",
+          "predicted_skill": "greeting-handler",
+          "expected_skill": "greeting-handler",
+          "confidence": 0.95,
+          "intent_correct": true,
+          "skill_correct": true
+        },
+        {
+          "text": "hi",
+          "predicted_intent": "greeting",
+          "expected_intent": "greeting",
+          "predicted_skill": "greeting-handler",
+          "expected_skill": "greeting-handler",
+          "confidence": 0.95,
+          "intent_correct": true,
+          "skill_correct": true
+        },
+        {
+          "text": "早上好",
+          "predicted_intent": "greeting",
+          "expected_intent": "greeting",
+          "predicted_skill": "greeting-handler",
+          "expected_skill": "greeting-handler",
+          "confidence": 0.95,
+          "intent_correct": true,
+          "skill_correct": true
+        },
+        {
+          "text": "下午好",
+          "predicted_intent": "greeting",
+          "expected_intent": "greeting",
+          "predicted_skill": "greeting-handler",
+          "expected_skill": "greeting-handler",
+          "confidence": 0.95,
+          "intent_correct": true,
+          "skill_correct": true
+        },
+        {
+          "text": "晚上好",
+          "predicted_intent": "greeting",
+          "expected_intent": "greeting",
+          "predicted_skill": "greeting-handler",
+          "expected_skill": "greeting-handler",
+          "confidence": 0.95,
+          "intent_correct": true,
+          "skill_correct": true
+        },
+        {
+          "text": "谢谢",
+          "predicted_intent": "greeting",
+          "expected_intent": "greeting",
+          "predicted_skill": "greeting-handler",
+          "expected_skill": "greeting-handler",
+          "confidence": 0.95,
+          "intent_correct": true,
+          "skill_correct": true
+        },
+        {
+          "text": "感谢",
+          "predicted_intent": "greeting",
+          "expected_intent": "greeting",
+          "predicted_skill": "greeting-handler",
+          "expected_skill": "greeting-handler",
+          "confidence": 0.95,
+          "intent_correct": true,
+          "skill_correct": true
+        },
+        {
+          "text": "再见",
+          "predicted_intent": "greeting",
+          "expected_intent": "greeting",
+          "predicted_skill": "greeting-handler",
+          "expected_skill": "greeting-handler",
+          "confidence": 0.95,
+          "intent_correct": true,
+          "skill_correct": true
+        },
+        {
+          "text": "拜拜",
+          "predicted_intent": "greeting",
+          "expected_intent": "greeting",
+          "predicted_skill": "greeting-handler",
+          "expected_skill": "greeting-handler",
+          "confidence": 0.95,
+          "intent_correct": true,
+          "skill_correct": true
+        }
+      ]
+    },
+    "unknown": {
+      "total": 7,
+      "intent_accuracy": 85.71428571428571,
+      "skill_accuracy": 85.71428571428571,
+      "avg_confidence": 0.024999999999999998,
+      "details": [
+        {
+          "text": "不痛",
+          "predicted_intent": "unknown",
+          "expected_intent": "unknown",
+          "predicted_skill": "fallback-handler",
+          "expected_skill": "fallback-handler",
+          "confidence": 0.0,
+          "intent_correct": true,
+          "skill_correct": true
+        },
+        {
+          "text": "没病",
+          "predicted_intent": "unknown",
+          "expected_intent": "unknown",
+          "predicted_skill": "fallback-handler",
+          "expected_skill": "fallback-handler",
+          "confidence": 0.0,
+          "intent_correct": true,
+          "skill_correct": true
+        },
+        {
+          "text": "没有不舒服",
+          "predicted_intent": "unknown",
+          "expected_intent": "unknown",
+          "predicted_skill": "fallback-handler",
+          "expected_skill": "fallback-handler",
+          "confidence": 0.0,
+          "intent_correct": true,
+          "skill_correct": true
+        },
+        {
+          "text": "啊啊啊",
+          "predicted_intent": "unknown",
+          "expected_intent": "unknown",
+          "predicted_skill": "fallback-handler",
+          "expected_skill": "fallback-handler",
+          "confidence": 0.0,
+          "intent_correct": true,
+          "skill_correct": true
+        },
+        {
+          "text": "痛痛痛",
+          "predicted_intent": "unknown",
+          "expected_intent": "unknown",
+          "predicted_skill": "fallback-handler",
+          "expected_skill": "fallback-handler",
+          "confidence": 0.0,
+          "intent_correct": true,
+          "skill_correct": true
+        },
+        {
+          "text": "今天天气怎么样",
+          "predicted_intent": "symptom_inquiry",
+          "expected_intent": "unknown",
+          "predicted_skill": "symptom-analyzer",
+          "expected_skill": "fallback-handler",
+          "confidence": 0.175,
+          "intent_correct": false,
+          "skill_correct": false
+        },
+        {
+          "text": "股票行情",
+          "predicted_intent": "unknown",
+          "expected_intent": "unknown",
+          "predicted_skill": "fallback-handler",
+          "expected_skill": "fallback-handler",
+          "confidence": 0.0,
+          "intent_correct": true,
+          "skill_correct": true
+        }
+      ]
+    },
+    "edge_cases": {
+      "total": 7,
+      "intent_accuracy": 0.0,
+      "skill_accuracy": 0.0,
+      "avg_confidence": 0,
+      "details": [
+        {
+          "text": "不舒服",
+          "predicted_intent": "unknown",
+          "predicted_skill": "fallback-handler",
+          "confidence": 0.0,
+          "requires_clarification": false
+        },
+        {
+          "text": "难受",
+          "predicted_intent": "unknown",
+          "predicted_skill": "fallback-handler",
+          "confidence": 0.0,
+          "requires_clarification": false
+        },
+        {
+          "text": "有点痛",
+          "predicted_intent": "unknown",
+          "predicted_skill": "fallback-handler",
+          "confidence": 0.0,
+          "requires_clarification": false
+        },
+        {
+          "text": "头痛发烧应该挂什么科",
+          "predicted_intent": "department_query",
+          "predicted_skill": "department-recommender",
+          "confidence": 0.8,
+          "requires_clarification": false
+        },
+        {
+          "text": "吃阿莫西林可以治头痛吗",
+          "predicted_intent": "medication_consult",
+          "predicted_skill": "medication-advisor",
+          "confidence": 0.3,
+          "requires_clarification": false
+        },
+        {
+          "text": "是的",
+          "predicted_intent": "unknown",
+          "predicted_skill": "fallback-handler",
+          "confidence": 0.0,
+          "requires_clarification": false
+        },
+        {
+          "text": "不是",
+          "predicted_intent": "unknown",
+          "predicted_skill": "fallback-handler",
+          "confidence": 0.0,
+          "requires_clarification": false
+        }
+      ]
+    }
+  }
+}

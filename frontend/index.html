@@ -1,0 +1,3935 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>医疗智能助手 - AI健康咨询</title>
+    <link rel="icon" type="image/svg+xml" href="/favicon.ico">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+        }
+
+        /* 侧边栏 */
+        .sidebar {
+            width: 260px;
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(10px);
+            display: flex;
+            flex-direction: column;
+            border-right: 1px solid rgba(0,0,0,0.1);
+            box-shadow: 2px 0 20px rgba(0,0,0,0.1);
+        }
+
+        .sidebar-header {
+            padding: 25px 20px;
+            border-bottom: 1px solid #eee;
+            text-align: center;
+        }
+
+        .sidebar-header .logo {
+            font-size: 42px;
+            margin-bottom: 10px;
+        }
+
+        .sidebar-header h1 {
+            font-size: 18px;
+            color: #333;
+            font-weight: 700;
+        }
+
+        .sidebar-header .subtitle {
+            font-size: 12px;
+            color: #888;
+            margin-top: 5px;
+        }
+
+        .sidebar-menu {
+            flex: 1;
+            padding: 20px 10px;
+            overflow-y: auto;
+        }
+
+        .menu-item {
+            display: flex;
+            align-items: center;
+            padding: 14px 16px;
+            margin-bottom: 8px;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            color: #555;
+            font-size: 14px;
+        }
+
+        .menu-item:hover {
+            background: #f0f0ff;
+            color: #667eea;
+        }
+
+        .menu-item.active {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+        }
+
+        .menu-item .icon {
+            font-size: 22px;
+            margin-right: 12px;
+            width: 32px;
+            text-align: center;
+        }
+
+        .menu-item .text {
+            flex: 1;
+            font-weight: 500;
+        }
+
+        .menu-item .arrow {
+            font-size: 12px;
+            opacity: 0.5;
+        }
+
+        .menu-item.active .arrow {
+            opacity: 1;
+        }
+
+        .sidebar-footer {
+            padding: 20px;
+            border-top: 1px solid #eee;
+        }
+
+        .status-card {
+            background: #f8f9fa;
+            border-radius: 12px;
+            padding: 12px;
+            font-size: 12px;
+        }
+
+        .status-card .status-row {
+            display: flex;
+            align-items: center;
+            margin-bottom: 8px;
+        }
+
+        .status-card .status-row:last-child {
+            margin-bottom: 0;
+        }
+
+        .status-indicator {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: #4ade80;
+            margin-right: 8px;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+
+        .llm-badge {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 2px 8px;
+            border-radius: 10px;
+            font-size: 10px;
+            font-weight: 600;
+        }
+
+        /* 主内容区 */
+        .main-content {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+
+        .content-header {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 15px 30px;
+            border-bottom: 1px solid #eee;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .content-header h2 {
+            font-size: 18px;
+            color: #333;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .content-header .page-icon {
+            font-size: 24px;
+        }
+
+        .content-body {
+            flex: 1;
+            overflow-y: auto;
+            padding: 20px;
+        }
+
+        /* 页面容器 */
+        .page {
+            display: none;
+            height: 100%;
+        }
+
+        .page.active {
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* 聊天页面 */
+        .chat-page {
+            max-width: 900px;
+            margin: 0 auto;
+            width: 100%;
+        }
+
+        .chat-container {
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+            display: flex;
+            flex-direction: column;
+            height: calc(100vh - 140px);
+            overflow: hidden;
+        }
+
+        .chat-messages {
+            flex: 1;
+            padding: 20px;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .message {
+            max-width: 80%;
+            padding: 12px 16px;
+            border-radius: 18px;
+            line-height: 1.5;
+            animation: fadeIn 0.3s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .message.user {
+            align-self: flex-end;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border-bottom-right-radius: 4px;
+        }
+
+        .message.assistant {
+            align-self: flex-start;
+            background: #f1f3f5;
+            color: #333;
+            border-bottom-left-radius: 4px;
+        }
+
+        .process-container {
+            background: #f8f9fa;
+            border-radius: 12px;
+            padding: 12px;
+            margin-bottom: 12px;
+            font-size: 12px;
+            border: 1px solid #e9ecef;
+            transition: all 0.3s ease;
+        }
+
+        .process-container.collapsed {
+            max-height: 45px;
+            overflow: hidden;
+            cursor: pointer;
+        }
+
+        .process-container.collapsed .process-title::after {
+            content: '▼';
+            float: right;
+            font-size: 10px;
+            color: #999;
+        }
+
+        .process-title {
+            font-weight: 600;
+            color: #495057;
+            margin-bottom: 10px;
+            font-size: 13px;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .process-container.collapsed .process-title {
+            margin-bottom: 0;
+        }
+
+        .process-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 6px 0;
+            border-bottom: 1px solid #dee2e6;
+            animation: slideIn 0.3s ease;
+        }
+
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateX(-10px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+
+        .process-item:last-child {
+            border-bottom: none;
+        }
+
+        .process-icon {
+            font-size: 14px;
+        }
+
+        .process-text {
+            flex: 1;
+            color: #495057;
+        }
+
+        .process-badge {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 2px 8px;
+            border-radius: 10px;
+            font-size: 10px;
+            font-weight: 600;
+        }
+
+        .process-status {
+            color: #28a745;
+            font-size: 11px;
+            font-weight: 600;
+        }
+
+        /* 消息内容样式 */
+        .message-content table {
+            font-size: 13px;
+        }
+
+        .message-content .checked-item {
+            padding: 8px 12px;
+            background: #d4edda;
+            border-radius: 6px;
+            margin: 5px 0;
+            color: #155724;
+        }
+
+        .message-content .unchecked-item {
+            padding: 8px 12px;
+            background: #f8f9fa;
+            border-radius: 6px;
+            margin: 5px 0;
+            color: #666;
+        }
+
+        .message-content .warning-box {
+            padding: 12px 16px;
+            background: #fff3cd;
+            border-left: 4px solid #ffc107;
+            border-radius: 6px;
+            margin: 10px 0;
+            color: #856404;
+        }
+
+        .message-content .success-item {
+            padding: 8px 12px;
+            background: #d4edda;
+            border-radius: 6px;
+            margin: 5px 0;
+            color: #155724;
+        }
+
+        /* 欢迎消息样式 */
+        .welcome-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 15px;
+        }
+
+        .welcome-avatar {
+            width: 45px;
+            height: 45px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+        }
+
+        .welcome-text {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .welcome-text strong {
+            font-size: 16px;
+            color: #333;
+        }
+
+        .welcome-badge {
+            display: inline-block;
+            padding: 2px 10px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border-radius: 12px;
+            font-size: 11px;
+            width: fit-content;
+        }
+
+        .welcome-divider {
+            height: 1px;
+            background: linear-gradient(90deg, transparent, #e0e0e0, transparent);
+            margin: 15px 0;
+        }
+
+        .welcome-services {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 8px;
+            margin-bottom: 15px;
+        }
+
+        .service-item {
+            padding: 10px 12px;
+            background: #f8f9ff;
+            border-radius: 8px;
+            font-size: 13px;
+            color: #555;
+            border: 1px solid #e0e0ff;
+            transition: all 0.2s;
+        }
+
+        .service-item:hover {
+            background: #e8e8ff;
+            border-color: #667eea;
+        }
+
+        .welcome-tip {
+            padding: 10px 15px;
+            background: linear-gradient(135deg, #fff9e6 0%, #fff3cd 100%);
+            border-radius: 8px;
+            font-size: 13px;
+            color: #856404;
+            text-align: center;
+            border: 1px solid #ffc107;
+        }
+
+        .chat-input-area {
+            padding: 15px 20px;
+            border-top: 1px solid #eee;
+            display: flex;
+            gap: 10px;
+            background: #f8f9fa;
+        }
+
+        .chat-input-area input {
+            flex: 1;
+            padding: 12px 20px;
+            border: 2px solid #e0e0e0;
+            border-radius: 25px;
+            font-size: 15px;
+            outline: none;
+        }
+
+        .chat-input-area input:focus {
+            border-color: #667eea;
+        }
+
+        .chat-input-area button {
+            padding: 12px 30px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            border-radius: 25px;
+            font-size: 15px;
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+        .quick-actions {
+            padding: 10px 20px;
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            background: #f8f9fa;
+            border-top: 1px solid #eee;
+        }
+
+        .quick-btn {
+            padding: 8px 16px;
+            background: white;
+            border: 1px solid #ddd;
+            border-radius: 20px;
+            font-size: 13px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .quick-btn:hover {
+            background: #667eea;
+            color: white;
+            border-color: #667eea;
+        }
+
+        /* 功能卡片区域 */
+        .feature-cards-section {
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.15);
+            padding: 25px;
+            margin-bottom: 20px;
+            max-width: 900px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .section-title {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 18px;
+            font-weight: 700;
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        .section-icon {
+            font-size: 24px;
+        }
+
+        .feature-cards-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 12px;
+        }
+
+        .feature-card {
+            display: flex;
+            align-items: center;
+            padding: 18px 20px;
+            background: linear-gradient(135deg, #f8f9ff 0%, #f0f0ff 100%);
+            border: 2px solid #e0e0ff;
+            border-radius: 16px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .feature-card:hover {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-color: #667eea;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.3);
+        }
+
+        .feature-card:hover .feature-icon,
+        .feature-card:hover .feature-name,
+        .feature-card:hover .feature-desc,
+        .feature-card:hover .feature-arrow {
+            color: white;
+        }
+
+        .feature-icon {
+            font-size: 36px;
+            margin-right: 15px;
+        }
+
+        .feature-info {
+            flex: 1;
+        }
+
+        .feature-name {
+            font-weight: 600;
+            color: #333;
+            font-size: 15px;
+            margin-bottom: 4px;
+        }
+
+        .feature-desc {
+            color: #888;
+            font-size: 12px;
+        }
+
+        .feature-arrow {
+            font-size: 20px;
+            color: #667eea;
+            font-weight: bold;
+        }
+
+        /* 症状咨询页面 */
+        .symptom-page {
+            max-width: 800px;
+            margin: 0 auto;
+            width: 100%;
+        }
+
+        .form-card {
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.15);
+            padding: 30px;
+            margin-bottom: 20px;
+        }
+
+        .form-card h3 {
+            font-size: 22px;
+            color: #333;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-label {
+            font-weight: 600;
+            color: #495057;
+            margin-bottom: 8px;
+            display: block;
+        }
+
+        .form-input, .form-textarea, .form-select {
+            width: 100%;
+            padding: 12px 16px;
+            border: 2px solid #e0e0e0;
+            border-radius: 12px;
+            font-size: 15px;
+            outline: none;
+            transition: border-color 0.3s;
+        }
+
+        .form-input:focus, .form-textarea:focus, .form-select:focus {
+            border-color: #667eea;
+        }
+
+        .form-textarea {
+            min-height: 100px;
+            resize: vertical;
+        }
+
+        .symptom-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 10px;
+        }
+
+        .symptom-tag {
+            padding: 8px 16px;
+            background: #f0f0ff;
+            border: 1px solid #d0d0ff;
+            border-radius: 20px;
+            font-size: 13px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .symptom-tag:hover, .symptom-tag.selected {
+            background: #667eea;
+            color: white;
+            border-color: #667eea;
+        }
+
+        .btn-primary {
+            width: 100%;
+            padding: 14px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            border-radius: 12px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+        }
+
+        .result-box {
+            background: #f8f9fa;
+            border-radius: 12px;
+            padding: 20px;
+            display: none;
+        }
+
+        .result-box.show {
+            display: block;
+        }
+
+        /* 科室推荐页面 */
+        .department-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .dept-card {
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 15px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s;
+            border: 2px solid transparent;
+        }
+
+        .dept-card:hover {
+            border-color: #667eea;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.2);
+        }
+
+        .dept-card.selected {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+
+        .dept-icon {
+            font-size: 36px;
+            margin-bottom: 10px;
+        }
+
+        .dept-name {
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+
+        .dept-desc {
+            font-size: 11px;
+            color: #666;
+        }
+
+        .dept-card.selected .dept-desc {
+            color: rgba(255,255,255,0.8);
+        }
+
+        /* 用药咨询页面 */
+        .medication-search {
+            position: relative;
+        }
+
+        .medication-search input {
+            padding-left: 45px;
+        }
+
+        .medication-search .search-icon {
+            position: absolute;
+            left: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 18px;
+            color: #999;
+        }
+
+        .query-options {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .query-option {
+            padding: 15px;
+            background: #f8f9fa;
+            border: 2px solid #e0e0e0;
+            border-radius: 12px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .query-option:hover, .query-option.selected {
+            background: #667eea;
+            color: white;
+            border-color: #667eea;
+        }
+
+        /* 预约挂号页面 */
+        .appointment-steps {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 30px;
+            position: relative;
+        }
+
+        .step {
+            flex: 1;
+            text-align: center;
+            padding: 15px 10px;
+            position: relative;
+        }
+
+        .step-number {
+            width: 36px;
+            height: 36px;
+            background: #e0e0e0;
+            color: #666;
+            border-radius: 50%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+
+        .step.active .step-number {
+            background: #667eea;
+            color: white;
+        }
+
+        .step.completed .step-number {
+            background: #4ade80;
+            color: white;
+        }
+
+        .step-title {
+            font-size: 13px;
+            font-weight: 600;
+            color: #333;
+        }
+
+        .step-desc {
+            font-size: 11px;
+            color: #888;
+        }
+
+        .step::after {
+            content: '';
+            position: absolute;
+            top: 33px;
+            left: 50%;
+            width: 100%;
+            height: 2px;
+            background: #e0e0e0;
+            z-index: 1;
+        }
+
+        .step:last-child::after {
+            display: none;
+        }
+
+        .step.completed::after {
+            background: #4ade80;
+        }
+
+        .step-content {
+            display: none;
+        }
+
+        .step-content.active {
+            display: block;
+        }
+
+        .time-slots {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 10px;
+            margin-top: 15px;
+        }
+
+        .time-slot {
+            padding: 12px;
+            background: #f8f9fa;
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            text-align: center;
+            cursor: pointer;
+            font-size: 14px;
+            transition: all 0.2s;
+        }
+
+        .time-slot:hover, .time-slot.selected {
+            background: #667eea;
+            color: white;
+            border-color: #667eea;
+        }
+
+        .time-slot.disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            background: #eee;
+        }
+
+        .doctor-list {
+            display: grid;
+            gap: 15px;
+        }
+
+        .doctor-card {
+            display: flex;
+            padding: 15px;
+            background: #f8f9fa;
+            border: 2px solid #e0e0e0;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .doctor-card:hover, .doctor-card.selected {
+            border-color: #667eea;
+            background: #f0f0ff;
+        }
+
+        .doctor-avatar {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            margin-right: 15px;
+        }
+
+        .doctor-info {
+            flex: 1;
+        }
+
+        .doctor-name {
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 5px;
+        }
+
+        .doctor-title {
+            font-size: 13px;
+            color: #666;
+            margin-bottom: 5px;
+        }
+
+        .doctor-tags {
+            display: flex;
+            gap: 5px;
+        }
+
+        .doctor-tag {
+            padding: 2px 8px;
+            background: #e0e0ff;
+            color: #667eea;
+            border-radius: 10px;
+            font-size: 11px;
+        }
+
+        /* 健康教育页面 */
+        .health-categories {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+
+        .health-category {
+            padding: 20px;
+            background: white;
+            border-radius: 15px;
+            cursor: pointer;
+            transition: all 0.3s;
+            border: 2px solid #eee;
+            text-align: center;
+        }
+
+        .health-category:hover {
+            border-color: #667eea;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.2);
+        }
+
+        .health-category-icon {
+            font-size: 40px;
+            margin-bottom: 10px;
+        }
+
+        .health-category-name {
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 5px;
+        }
+
+        .health-category-desc {
+            font-size: 12px;
+            color: #888;
+        }
+
+        .health-tips {
+            background: #e7f3ff;
+            border: 1px solid #b3d9ff;
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 30px;
+        }
+
+        .health-tips h3 {
+            color: #0056b3;
+            margin-bottom: 15px;
+            font-size: 16px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .health-tips ul {
+            list-style: none;
+        }
+
+        .health-tips li {
+            padding: 8px 0;
+            border-bottom: 1px solid #cce5ff;
+        }
+
+        .health-tips li:last-child {
+            border-bottom: none;
+        }
+
+        .health-tips li::before {
+            content: '✓ ';
+            color: #00a86b;
+            margin-right: 8px;
+        }
+
+        /* 随访页面样式 */
+        .followup-rating {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .followup-rating label {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            padding: 8px 16px;
+            background: #f8f9fa;
+            border: 2px solid #e0e0e0;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: all 0.2s;
+            font-size: 14px;
+        }
+
+        .followup-rating label:hover {
+            background: #e8e8ff;
+            border-color: #667eea;
+        }
+
+        .followup-rating input[type="radio"] {
+            margin: 0;
+        }
+
+        .followup-rating input[type="radio"]:checked + span {
+            color: #667eea;
+            font-weight: 600;
+        }
+
+        /* 档案样式 */
+        .record-timeline {
+            position: relative;
+            padding-left: 30px;
+        }
+
+        .record-timeline::before {
+            content: '';
+            position: absolute;
+            left: 10px;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: #e0e0e0;
+        }
+
+        .record-timeline-item {
+            position: relative;
+            padding: 15px 20px;
+            background: white;
+            border-radius: 12px;
+            margin-bottom: 20px;
+            border-left: 4px solid #667eea;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .record-timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -36px;
+            top: 20px;
+            width: 12px;
+            height: 12px;
+            background: #667eea;
+            border-radius: 50%;
+            border: 3px solid white;
+            box-shadow: 0 0 0 2px #667eea;
+        }
+
+        .record-date {
+            font-size: 12px;
+            color: #888;
+            margin-bottom: 8px;
+        }
+
+        .record-title {
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        .record-detail {
+            font-size: 13px;
+            color: #666;
+            line-height: 1.6;
+        }
+
+        /* 患者基本信息卡片 */
+        .patient-info-card {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border-radius: 16px;
+            padding: 25px;
+            margin-bottom: 20px;
+        }
+
+        .patient-info-card h4 {
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .patient-info-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+        }
+
+        .patient-info-item {
+            background: rgba(255,255,255,0.15);
+            padding: 12px 15px;
+            border-radius: 10px;
+        }
+
+        .patient-info-item label {
+            font-size: 12px;
+            opacity: 0.8;
+            display: block;
+            margin-bottom: 4px;
+        }
+
+        .patient-info-item span {
+            font-size: 16px;
+            font-weight: 600;
+        }
+
+        /* 响应式 */
+        @media (max-width: 768px) {
+            .sidebar {
+                width: 70px;
+            }
+
+            .sidebar-header .logo,
+            .menu-item .text,
+            .menu-item .arrow,
+            .sidebar-header h1,
+            .sidebar-header .subtitle,
+            .sidebar-footer {
+                display: none;
+            }
+
+            .menu-item {
+                justify-content: center;
+                padding: 15px;
+            }
+
+            .menu-item .icon {
+                margin-right: 0;
+                font-size: 24px;
+            }
+
+            .time-slots {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        .cursor {
+            display: inline-block;
+            animation: blink 1s infinite;
+            color: #667eea;
+            font-weight: bold;
+        }
+
+        @keyframes blink {
+            0%, 50% { opacity: 1; }
+            51%, 100% { opacity: 0; }
+        }
+    </style>
+</head>
+<body>
+    <!-- 侧边栏 -->
+    <div class="sidebar">
+        <div class="sidebar-header">
+            <div class="logo">🏥</div>
+            <h1>医疗智能助手</h1>
+            <div class="subtitle">AI健康咨询平台</div>
+        </div>
+
+        <div class="sidebar-menu">
+            <div class="menu-item active" data-page="chat">
+                <span class="icon">💬</span>
+                <span class="text">智能咨询</span>
+                <span class="arrow">›</span>
+            </div>
+            <div class="menu-item" data-page="symptom">
+                <span class="icon">🩺</span>
+                <span class="text">症状咨询</span>
+                <span class="arrow">›</span>
+            </div>
+            <div class="menu-item" data-page="department">
+                <span class="icon">🏥</span>
+                <span class="text">科室推荐</span>
+                <span class="arrow">›</span>
+            </div>
+            <div class="menu-item" data-page="medication">
+                <span class="icon">💊</span>
+                <span class="text">用药咨询</span>
+                <span class="arrow">›</span>
+            </div>
+            <div class="menu-item" data-page="appointment">
+                <span class="icon">📅</span>
+                <span class="text">预约挂号</span>
+                <span class="arrow">›</span>
+            </div>
+            <div class="menu-item" data-page="my-appointment">
+                <span class="icon">📋</span>
+                <span class="text">预约查询</span>
+                <span class="arrow">›</span>
+            </div>
+            <div class="menu-item" data-page="followup">
+                <span class="icon">🔔</span>
+                <span class="text">预约随访</span>
+                <span class="arrow">›</span>
+            </div>
+            <div class="menu-item" data-page="records">
+                <span class="icon">📂</span>
+                <span class="text">治疗档案</span>
+                <span class="arrow">›</span>
+            </div>
+            <div class="menu-item" data-page="patient">
+                <span class="icon">👤</span>
+                <span class="text">患者信息</span>
+                <span class="arrow">›</span>
+            </div>
+            <div class="menu-item" data-page="health">
+                <span class="icon">📚</span>
+                <span class="text">健康教育</span>
+                <span class="arrow">›</span>
+            </div>
+        </div>
+
+        <div class="sidebar-footer">
+            <div class="status-card">
+                <div class="status-row">
+                    <div class="status-indicator"></div>
+                    <span id="status-text">服务正常</span>
+                </div>
+                <div class="status-row">
+                    <span class="llm-badge">🤖 qwen-plus</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 主内容区 -->
+    <div class="main-content">
+        <div class="content-header">
+            <h2><span class="page-icon">💬</span><span id="page-title">智能咨询</span></h2>
+        </div>
+
+        <div class="content-body">
+            <!-- 智能咨询页面 (主页) -->
+            <div class="page active" id="page-chat">
+                <div class="chat-page">
+                    <!-- 功能卡片区域 -->
+                    <div class="feature-cards-section">
+                        <div class="section-title">
+                            <span class="section-icon">✨</span>
+                            <span>快捷服务</span>
+                        </div>
+                        <div class="feature-cards-grid">
+                            <div class="feature-card" onclick="triggerFeature('symptom')">
+                                <div class="feature-icon">🩺</div>
+                                <div class="feature-info">
+                                    <div class="feature-name">症状咨询</div>
+                                    <div class="feature-desc">智能分析症状，给出健康建议</div>
+                                </div>
+                                <div class="feature-arrow">→</div>
+                            </div>
+                            <div class="feature-card" onclick="triggerFeature('department')">
+                                <div class="feature-icon">🏥</div>
+                                <div class="feature-info">
+                                    <div class="feature-name">科室推荐</div>
+                                    <div class="feature-desc">不知道挂什么科？智能推荐</div>
+                                </div>
+                                <div class="feature-arrow">→</div>
+                            </div>
+                            <div class="feature-card" onclick="triggerFeature('medication')">
+                                <div class="feature-icon">💊</div>
+                                <div class="feature-info">
+                                    <div class="feature-name">用药咨询</div>
+                                    <div class="feature-desc">药品用法、副作用、禁忌</div>
+                                </div>
+                                <div class="feature-arrow">→</div>
+                            </div>
+                            <div class="feature-card" onclick="triggerFeature('appointment')">
+                                <div class="feature-icon">📅</div>
+                                <div class="feature-info">
+                                    <div class="feature-name">预约挂号</div>
+                                    <div class="feature-desc">在线预约医生，便捷就诊</div>
+                                </div>
+                                <div class="feature-arrow">→</div>
+                            </div>
+                            <div class="feature-card" onclick="triggerFeature('my-appointment')">
+                                <div class="feature-icon">📋</div>
+                                <div class="feature-info">
+                                    <div class="feature-name">预约查询</div>
+                                    <div class="feature-desc">查询预约记录，管理就诊</div>
+                                </div>
+                                <div class="feature-arrow">→</div>
+                            </div>
+                            <div class="feature-card" onclick="triggerFeature('followup')">
+                                <div class="feature-icon">🔔</div>
+                                <div class="feature-info">
+                                    <div class="feature-name">预约随访</div>
+                                    <div class="feature-desc">记录随访情况，跟踪康复</div>
+                                </div>
+                                <div class="feature-arrow">→</div>
+                            </div>
+                            <div class="feature-card" onclick="triggerFeature('records')">
+                                <div class="feature-icon">📂</div>
+                                <div class="feature-info">
+                                    <div class="feature-name">治疗档案</div>
+                                    <div class="feature-desc">查看就诊历史，健康档案</div>
+                                </div>
+                                <div class="feature-arrow">→</div>
+                            </div>
+                            <div class="feature-card" onclick="triggerFeature('patient')">
+                                <div class="feature-icon">👤</div>
+                                <div class="feature-info">
+                                    <div class="feature-name">患者信息</div>
+                                    <div class="feature-desc">管理个人健康档案</div>
+                                </div>
+                                <div class="feature-arrow">→</div>
+                            </div>
+                            <div class="feature-card" onclick="triggerFeature('health')">
+                                <div class="feature-icon">📚</div>
+                                <div class="feature-info">
+                                    <div class="feature-name">健康教育</div>
+                                    <div class="feature-desc">健康知识、养生指南</div>
+                                </div>
+                                <div class="feature-arrow">→</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 聊天区域 -->
+                    <div class="chat-container">
+                        <div class="chat-messages" id="chat-messages">
+                            <div class="message assistant">
+                                <div class="message-content">
+                                    <div class="welcome-header">
+                                        <div class="welcome-avatar">🤖</div>
+                                        <div class="welcome-text">
+                                            <strong>医小助</strong>
+                                            <span class="welcome-badge">AI健康助手</span>
+                                        </div>
+                                    </div>
+                                    <div class="welcome-divider"></div>
+                                    <div class="welcome-services">
+                                        <div class="service-item">🩺 <strong>症状咨询</strong> - 智能分析症状</div>
+                                        <div class="service-item">🏥 <strong>科室推荐</strong> - 找对就诊科室</div>
+                                        <div class="service-item">💊 <strong>用药咨询</strong> - 药品使用指导</div>
+                                        <div class="service-item">📅 <strong>预约挂号</strong> - 在线预约医生</div>
+                                        <div class="service-item">📋 <strong>预约查询</strong> - 管理您的预约</div>
+                                        <div class="service-item">🔔 <strong>预约随访</strong> - 跟踪康复情况</div>
+                                        <div class="service-item">📂 <strong>治疗档案</strong> - 查看病历记录</div>
+                                        <div class="service-item">📚 <strong>健康教育</strong> - 健康知识普及</div>
+                                    </div>
+                                    <div class="welcome-tip">💡 点击上方快捷卡片或直接输入您的问题</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="quick-actions">
+                            <button class="quick-btn" onclick="sendQuickMessage('我头痛怎么办')">🩺 我头痛怎么办</button>
+                            <button class="quick-btn" onclick="sendQuickMessage('头痛挂什么科')">🏥 头痛挂什么科</button>
+                            <button class="quick-btn" onclick="sendQuickMessage('阿莫西林怎么吃')">💊 阿莫西林怎么吃</button>
+                            <button class="quick-btn" onclick="sendQuickMessage('我想挂号')">📅 我想挂号</button>
+                        </div>
+                        <div class="chat-input-area">
+                            <input type="text" id="chat-input" placeholder="输入您的健康问题，如：我头痛怎么办..." onkeypress="handleKeyPress(event)">
+                            <button onclick="sendChatMessage()">发送</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 症状咨询页面 -->
+            <div class="page" id="page-symptom">
+                <div class="symptom-page">
+                    <div class="form-card">
+                        <h3>🩺 症状智能分析</h3>
+                        <div class="form-group">
+                            <label class="form-label">您有哪些不适？</label>
+                            <textarea class="form-textarea" id="symptom-desc" placeholder="请详细描述您的症状，如：头痛、发热、咳嗽的持续时间、严重程度等..."></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">常见症状（可多选）</label>
+                            <div class="symptom-tags">
+                                <span class="symptom-tag" onclick="toggleSymptom(this)">头痛</span>
+                                <span class="symptom-tag" onclick="toggleSymptom(this)">发热</span>
+                                <span class="symptom-tag" onclick="toggleSymptom(this)">咳嗽</span>
+                                <span class="symptom-tag" onclick="toggleSymptom(this)">恶心</span>
+                                <span class="symptom-tag" onclick="toggleSymptom(this)">呕吐</span>
+                                <span class="symptom-tag" onclick="toggleSymptom(this)">腹泻</span>
+                                <span class="symptom-tag" onclick="toggleSymptom(this)">胸闷</span>
+                                <span class="symptom-tag" onclick="toggleSymptom(this)">气短</span>
+                                <span class="symptom-tag" onclick="toggleSymptom(this)">腹痛</span>
+                                <span class="symptom-tag" onclick="toggleSymptom(this)">失眠</span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">症状持续时间</label>
+                            <select class="form-select" id="symptom-duration">
+                                <option value="">请选择</option>
+                                <option value="today">今天刚开始</option>
+                                <option value="days">1-3天</option>
+                                <option value="week">约一周</option>
+                                <option value="weeks">超过一周</option>
+                                <option value="month">持续一个月以上</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">疼痛/不适程度</label>
+                            <select class="form-select" id="symptom-severity">
+                                <option value="">请选择</option>
+                                <option value="mild">轻微 - 可以忍受</option>
+                                <option value="moderate">中度 - 有些影响生活</option>
+                                <option value="severe">严重 - 难以忍受</option>
+                            </select>
+                        </div>
+                        <button class="btn-primary" onclick="analyzeSymptom()">🔍 开始分析症状</button>
+                    </div>
+                    <div class="result-box" id="symptom-result">
+                        <div id="symptom-result-content"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 科室推荐页面 -->
+            <div class="page" id="page-department">
+                <div class="symptom-page">
+                    <div class="form-card">
+                        <h3>🏥 智能科室推荐</h3>
+                        <p style="color:#666;margin-bottom:20px;">不知道挂什么科？告诉我您的症状，我来帮您推荐</p>
+
+                        <div class="form-group">
+                            <label class="form-label">常见科室快速选择</label>
+                            <div class="department-grid">
+                                <div class="dept-card" onclick="selectDepartment(this, '神经内科', '头痛、头晕、失眠、癫痫')">
+                                    <div class="dept-icon">🧠</div>
+                                    <div class="dept-name">神经内科</div>
+                                    <div class="dept-desc">头痛、头晕、失眠</div>
+                                </div>
+                                <div class="dept-card" onclick="selectDepartment(this, '心血管内科', '胸痛、心悸、高血压')">
+                                    <div class="dept-icon">❤️</div>
+                                    <div class="dept-name">心血管内科</div>
+                                    <div class="dept-desc">胸痛、心悸、高血压</div>
+                                </div>
+                                <div class="dept-card" onclick="selectDepartment(this, '呼吸内科', '咳嗽、气促、发热')">
+                                    <div class="dept-icon">🫁</div>
+                                    <div class="dept-name">呼吸内科</div>
+                                    <div class="dept-desc">咳嗽、气促、发热</div>
+                                </div>
+                                <div class="dept-card" onclick="selectDepartment(this, '消化内科', '腹痛、恶心、呕吐')">
+                                    <div class="dept-icon">🥗</div>
+                                    <div class="dept-name">消化内科</div>
+                                    <div class="dept-desc">腹痛、恶心、呕吐</div>
+                                </div>
+                                <div class="dept-card" onclick="selectDepartment(this, '内分泌科', '糖尿病、甲状腺')">
+                                    <div class="dept-icon">🔬</div>
+                                    <div class="dept-name">内分泌科</div>
+                                    <div class="dept-desc">糖尿病、甲状腺</div>
+                                </div>
+                                <div class="dept-card" onclick="selectDepartment(this, '骨科', '关节痛、腰痛、骨折')">
+                                    <div class="dept-icon">🦴</div>
+                                    <div class="dept-name">骨科</div>
+                                    <div class="dept-desc">关节痛、腰痛、骨折</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label">或描述您的症状</label>
+                            <textarea class="form-textarea" id="dept-symptom" placeholder="例如：我最近经常头痛，还有点恶心..."></textarea>
+                        </div>
+                        <button class="btn-primary" onclick="recommendDepartment()">🏥 推荐科室</button>
+                    </div>
+                    <div class="result-box" id="dept-result">
+                        <div id="dept-result-content"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 用药咨询页面 -->
+            <div class="page" id="page-medication">
+                <div class="symptom-page">
+                    <div class="form-card">
+                        <h3>💊 药品咨询</h3>
+                        <div class="drug-warning" style="background:#fff3cd;border:1px solid #ffc107;border-radius:10px;padding:15px;margin-bottom:20px;font-size:13px;">
+                            ⚠️ <strong>重要提示</strong>：本咨询仅供参考，不能替代医生或药师的指导。用药请遵医嘱。
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label">药品名称</label>
+                            <div class="medication-search">
+                                <span class="search-icon">🔍</span>
+                                <input type="text" class="form-input" id="medication-name" placeholder="请输入药品名称，如：阿莫西林、布洛芬">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label">您想了解什么？</label>
+                            <div class="query-options">
+                                <div class="query-option" onclick="selectQueryOption(this, '怎么吃')">
+                                    📋 怎么吃/用法用量
+                                </div>
+                                <div class="query-option" onclick="selectQueryOption(this, '副作用')">
+                                    ⚠️ 副作用
+                                </div>
+                                <div class="query-option" onclick="selectQueryOption(this, '禁忌')">
+                                    🚫 禁忌症
+                                </div>
+                                <div class="query-option" onclick="selectQueryOption(this, '相互作用')">
+                                    💊 药物相互作用
+                                </div>
+                            </div>
+                        </div>
+
+                        <button class="btn-primary" onclick="consultMedication()">💊 咨询药品</button>
+                    </div>
+                    <div class="result-box" id="medication-result">
+                        <div id="medication-result-content"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 预约挂号页面 -->
+            <div class="page" id="page-appointment">
+                <div class="symptom-page">
+                    <div class="form-card">
+                        <h3>📅 预约挂号</h3>
+
+                        <div class="appointment-steps">
+                            <div class="step active" id="step1-indicator">
+                                <div class="step-number">1</div>
+                                <div class="step-title">选择科室</div>
+                            </div>
+                            <div class="step" id="step2-indicator">
+                                <div class="step-number">2</div>
+                                <div class="step-title">选择医生</div>
+                            </div>
+                            <div class="step" id="step3-indicator">
+                                <div class="step-number">3</div>
+                                <div class="step-title">选择时间</div>
+                            </div>
+                            <div class="step" id="step4-indicator">
+                                <div class="step-number">4</div>
+                                <div class="step-title">确认预约</div>
+                            </div>
+                        </div>
+
+                        <!-- 步骤1: 选择科室 -->
+                        <div class="step-content active" id="step1">
+                            <div class="form-group">
+                                <label class="form-label">选择挂号科室</label>
+                                <select class="form-select" id="appoint-dept" onchange="updateDoctorList()">
+                                    <option value="">请选择科室</option>
+                                    <option value="内科">内科</option>
+                                    <option value="外科">外科</option>
+                                    <option value="妇科">妇科</option>
+                                    <option value="儿科">儿科</option>
+                                    <option value="骨科">骨科</option>
+                                    <option value="眼科">眼科</option>
+                                    <option value="耳鼻喉科">耳鼻喉科</option>
+                                    <option value="神经内科">神经内科</option>
+                                    <option value="心血管内科">心血管内科</option>
+                                    <option value="呼吸内科">呼吸内科</option>
+                                    <option value="消化内科">消化内科</option>
+                                    <option value="内分泌科">内分泌科</option>
+                                    <option value="皮肤科">皮肤科</option>
+                                    <option value="中医科">中医科</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">医生类型</label>
+                                <select class="form-select" id="appoint-type" onchange="updateDoctorList()">
+                                    <option value="普通">普通门诊</option>
+                                    <option value="专家">专家门诊</option>
+                                </select>
+                            </div>
+                            <div style="background:#f0f0ff;border-radius:10px;padding:15px;margin-top:15px;font-size:13px;color:#666;">
+                                💡 <strong>提示</strong>：专家门诊由主任医师/副主任医师坐诊，需提前预约；普通门诊由主治医师坐诊，当天可挂号。
+                            </div>
+                            <button class="btn-primary" onclick="nextStep(2)" style="margin-top:20px;">下一步 →</button>
+                        </div>
+
+                        <!-- 步骤2: 选择医生 -->
+                        <div class="step-content" id="step2">
+                            <div class="form-group">
+                                <label class="form-label">选择医生</label>
+                                <div id="doctor-list-container">
+                                    <div style="text-align:center;padding:30px;color:#999;">
+                                        请先选择科室和门诊类型
+                                    </div>
+                                </div>
+                            </div>
+                            <div style="display:flex;gap:10px;margin-top:20px;">
+                                <button class="btn-primary" style="background:#999;" onclick="prevStep(1)">← 上一步</button>
+                                <button class="btn-primary" onclick="nextStep(3)">下一步 →</button>
+                            </div>
+                        </div>
+
+                        <!-- 步骤3: 选择时间 -->
+                        <div class="step-content" id="step3">
+                            <div class="form-group">
+                                <label class="form-label">选择就诊日期</label>
+                                <input type="date" class="form-input" id="appoint-date">
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">选择就诊时间</label>
+                                <div class="time-slots">
+                                    <div class="time-slot" onclick="selectTime(this, '08:00')">08:00</div>
+                                    <div class="time-slot" onclick="selectTime(this, '09:00')">09:00</div>
+                                    <div class="time-slot" onclick="selectTime(this, '10:00')">10:00</div>
+                                    <div class="time-slot" onclick="selectTime(this, '11:00')">11:00</div>
+                                    <div class="time-slot" onclick="selectTime(this, '14:00')">14:00</div>
+                                    <div class="time-slot" onclick="selectTime(this, '15:00')">15:00</div>
+                                    <div class="time-slot" onclick="selectTime(this, '16:00')">16:00</div>
+                                    <div class="time-slot disabled">17:00</div>
+                                </div>
+                            </div>
+                            <div style="display:flex;gap:10px;margin-top:20px;">
+                                <button class="btn-primary" style="background:#999;" onclick="prevStep(2)">← 上一步</button>
+                                <button class="btn-primary" onclick="nextStep(4)">下一步 →</button>
+                            </div>
+                        </div>
+
+                        <!-- 步骤4: 确认预约 -->
+                        <div class="step-content" id="step4">
+                            <div style="background:#f8f9fa;border-radius:12px;padding:20px;">
+                                <h4 style="margin-bottom:15px;color:#333;">📋 预约信息确认</h4>
+                                <div style="line-height:2;color:#555;">
+                                    <p><strong>就诊科室：</strong><span id="confirm-dept">-</span></p>
+                                    <p><strong>医生：</strong><span id="confirm-doctor">-</span> <span id="confirm-title" style="color:#666;font-size:13px;"></span></p>
+                                    <p><strong>门诊类型：</strong><span id="confirm-type">-</span></p>
+                                    <p><strong>就诊日期：</strong><span id="confirm-date">-</span></p>
+                                    <p><strong>就诊时间：</strong><span id="confirm-time">-</span></p>
+                                    <p style="margin-top:10px;padding-top:10px;border-top:1px solid #ddd;"><strong>挂号费：</strong><span id="confirm-price" style="color:#ff6b35;font-size:18px;font-weight:700;">-</span></p>
+                                </div>
+                            </div>
+
+                            <div class="form-group" style="margin-top:20px;">
+                                <label class="form-label">📱 联系手机号 <span style="color:red;">*</span></label>
+                                <input type="tel" class="form-input" id="appoint-phone" placeholder="请输入11位手机号码，用于接收预约通知和查询预约" maxlength="11" oninput="validatePhone(this)">
+                                <small style="color:#888;font-size:12px;">请输入真实手机号，用于预约查询和接收就诊提醒</small>
+                            </div>
+
+                            <div style="background:#fff3cd;border-radius:10px;padding:15px;margin-top:15px;font-size:13px;color:#856404;">
+                                ⚠️ <strong>就诊须知</strong>：请按预约时间提前15分钟到达医院，携带身份证和相关病历资料。如需改期或取消，请至少提前24小时联系医院。
+                            </div>
+                            <div style="display:flex;gap:10px;margin-top:20px;">
+                                <button class="btn-primary" style="background:#999;" onclick="prevStep(3)">← 上一步</button>
+                                <button class="btn-primary" onclick="submitAppointment()">✅ 确认预约</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="result-box" id="appointment-result">
+                        <div id="appointment-result-content"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 预约查询页面 -->
+            <div class="page" id="page-my-appointment">
+                <div class="symptom-page">
+                    <div class="form-card">
+                        <h3>📋 我的预约</h3>
+
+                        <div class="form-group">
+                            <label class="form-label">输入预约编号或手机号查询</label>
+                            <div style="display:flex;gap:10px;">
+                                <input type="text" class="form-input" id="query-input" placeholder="请输入预约编号或手机号">
+                                <button class="btn-primary" style="width:auto;min-width:120px;" onclick="queryAppointment()">🔍 查询</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="appointment-list">
+                        <!-- 预约列表将在这里显示 -->
+                    </div>
+
+                    <div id="appointment-detail" style="display:none;">
+                        <!-- 预约详情将在这里显示 -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- 健康教育页面 -->
+            <div class="page" id="page-health">
+                <div class="symptom-page">
+                    <div class="health-tips">
+                        <h3>💡 每日健康小贴士</h3>
+                        <ul>
+                            <li>每天喝足8杯水（约2000ml）</li>
+                            <li>每周运动至少150分钟</li>
+                            <li>保证7-8小时优质睡眠</li>
+                            <li>每天吃5份蔬菜水果</li>
+                            <li>减少盐和糖的摄入</li>
+                        </ul>
+                    </div>
+
+                    <div class="form-card">
+                        <h3>📚 健康知识库</h3>
+                        <div class="health-categories">
+                            <div class="health-category" onclick="getHealthInfo('高血压预防')">
+                                <div class="health-category-icon">💉</div>
+                                <div class="health-category-name">高血压预防</div>
+                                <div class="health-category-desc">低盐饮食·规律运动·控制体重</div>
+                            </div>
+                            <div class="health-category" onclick="getHealthInfo('糖尿病饮食')">
+                                <div class="health-category-icon">🥗</div>
+                                <div class="health-category-name">糖尿病饮食</div>
+                                <div class="health-category-desc">控糖·低GI·少量多餐</div>
+                            </div>
+                            <div class="health-category" onclick="getHealthInfo('运动建议')">
+                                <div class="health-category-icon">🏃</div>
+                                <div class="health-category-name">运动建议</div>
+                                <div class="health-category-desc">有氧运动·力量训练·柔韧性</div>
+                            </div>
+                            <div class="health-category" onclick="getHealthInfo('睡眠健康')">
+                                <div class="health-category-icon">😴</div>
+                                <div class="health-category-name">睡眠健康</div>
+                                <div class="health-category-desc">规律作息·睡眠环境·放松技巧</div>
+                            </div>
+                            <div class="health-category" onclick="getHealthInfo('心理健康')">
+                                <div class="health-category-icon">🧘</div>
+                                <div class="health-category-name">心理健康</div>
+                                <div class="health-category-desc">压力管理·情绪调节·冥想放松</div>
+                            </div>
+                            <div class="health-category" onclick="getHealthInfo('营养膳食')">
+                                <div class="health-category-icon">🥕</div>
+                                <div class="health-category-name">营养膳食</div>
+                                <div class="health-category-desc">均衡饮食·维生素补充·健康烹饪</div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label">或直接搜索健康问题</label>
+                            <input type="text" class="form-input" id="health-query" placeholder="例如：怎么预防感冒、减肥建议...">
+                        </div>
+                        <button class="btn-primary" onclick="searchHealth()">📚 获取健康建议</button>
+                    </div>
+                    <div class="result-box" id="health-result">
+                        <div id="health-result-content"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 预约随访页面 -->
+            <div class="page" id="page-followup">
+                <div class="symptom-page">
+                    <div class="form-card">
+                        <h3>🔔 预约随访</h3>
+                        <p style="color:#666;margin-bottom:20px;">记录就诊后的随访情况，跟踪康复进展</p>
+
+                        <!-- 手机号输入 -->
+                        <div class="form-group">
+                            <label class="form-label">📱 手机号（查询ID）</label>
+                            <input type="tel" class="form-input" id="followup-phone" placeholder="请输入11位手机号码" maxlength="11" oninput="validatePhone(this)">
+                        </div>
+
+                        <!-- 随访列表 -->
+                        <div id="followup-list-container">
+                            <div style="text-align:center;padding:30px;color:#999;background:#f8f9fa;border-radius:12px;">
+                                <div style="font-size:48px;margin-bottom:10px;">🔔</div>
+                                <p>请输入手机号查看随访记录</p>
+                            </div>
+                        </div>
+
+                        <button class="btn-primary" onclick="loadFollowups()">🔍 查询随访记录</button>
+                    </div>
+
+                    <!-- 添加随访记录 -->
+                    <div class="form-card">
+                        <h4>📝 添加随访记录</h4>
+
+                        <div class="form-group">
+                            <label class="form-label">关联预约</label>
+                            <select class="form-select" id="followup-appointment">
+                                <option value="">请先查询预约记录</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label">随访日期</label>
+                            <input type="date" class="form-input" id="followup-date">
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label">随访类型</label>
+                            <select class="form-select" id="followup-type">
+                                <option value="">请选择</option>
+                                <option value="电话随访">电话随访</option>
+                                <option value="线上随访">线上随访</option>
+                                <option value="门诊随访">门诊随访</option>
+                                <option value="上门随访">上门随访</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label">随访内容</label>
+                            <textarea class="form-textarea" id="followup-content" placeholder="记录患者的症状改善情况、用药反应、注意事项等..." rows="4"></textarea>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label">康复评估</label>
+                            <div class="followup-rating">
+                                <label><input type="radio" name="rating" value="明显好转"> 明显好转</label>
+                                <label><input type="radio" name="rating" value="有所改善"> 有所改善</label>
+                                <label><input type="radio" name="rating" value="维持现状"> 维持现状</label>
+                                <label><input type="radio" name="rating" value="有所加重"> 有所加重</label>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label">下次随访时间</label>
+                            <input type="date" class="form-input" id="followup-next-date">
+                        </div>
+
+                        <button class="btn-primary" onclick="addFollowup()">✅ 保存随访记录</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 治疗档案页面 -->
+            <div class="page" id="page-records">
+                <div class="symptom-page">
+                    <div class="form-card">
+                        <h3>📂 治疗档案</h3>
+                        <p style="color:#666;margin-bottom:20px;">查看完整的就诊历史和健康档案</p>
+
+                        <!-- 手机号输入 -->
+                        <div class="form-group">
+                            <label class="form-label">📱 手机号（查询ID）</label>
+                            <input type="tel" class="form-input" id="record-phone" placeholder="请输入11位手机号码" maxlength="11" oninput="validatePhone(this)">
+                        </div>
+
+                        <button class="btn-primary" onclick="loadMedicalRecords()">🔍 查询健康档案</button>
+                    </div>
+
+                    <!-- 档案展示区域 -->
+                    <div id="record-display-area">
+                        <div style="text-align:center;padding:40px;color:#999;background:#f8f9fa;border-radius:12px;">
+                            <div style="font-size:48px;margin-bottom:10px;">📂</div>
+                            <p>请输入手机号查询健康档案</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 患者信息管理页面 -->
+            <div class="page" id="page-patient">
+                <div class="symptom-page">
+                    <div class="form-card">
+                        <h3>👤 患者信息管理</h3>
+                        <p style="color:#666;margin-bottom:20px;">以手机号为唯一ID管理患者基本信息</p>
+
+                        <!-- 搜索/创建患者 -->
+                        <div class="form-group">
+                            <label class="form-label">📱 患者手机号（唯一ID）</label>
+                            <div style="display:flex;gap:10px;">
+                                <input type="tel" class="form-input" id="patient-search-phone" placeholder="请输入11位手机号码" maxlength="11" oninput="validatePhone(this)">
+                                <button class="btn-primary" style="width:auto;min-width:100px;" onclick="searchPatient()">🔍 搜索</button>
+                                <button class="btn-primary" style="width:auto;min-width:100px;background:#28a745;" onclick="showNewPatientForm()">➕ 新建</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 患者信息展示/编辑区域 -->
+                    <div id="patient-display-area">
+                        <div style="text-align:center;padding:40px;color:#999;background:#f8f9fa;border-radius:12px;">
+                            <div style="font-size:48px;margin-bottom:10px;">👤</div>
+                            <p>请输入手机号搜索或新建患者档案</p>
+                        </div>
+                    </div>
+
+                    <!-- 患者信息表单（默认隐藏） -->
+                    <div id="patient-form-area" style="display:none;">
+                        <div class="form-card">
+                            <h4>📝 患者基本信息</h4>
+
+                            <div class="form-group">
+                                <label class="form-label">📱 手机号（唯一标识）</label>
+                                <input type="tel" class="form-input" id="patient-phone" placeholder="请输入11位手机号码" maxlength="11" oninput="validatePhone(this)" readonly style="background:#f5f5f5;">
+                                <small style="color:#888;">手机号是患者唯一标识，所有医疗记录都将关联此手机号</small>
+                            </div>
+
+                            <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:15px;">
+                                <div class="form-group">
+                                    <label class="form-label">👤 患者姓名</label>
+                                    <input type="text" class="form-input" id="patient-name" placeholder="请输入真实姓名">
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label">🆔 身份证号</label>
+                                    <input type="text" class="form-input" id="patient-idcard" placeholder="选填，18位身份证号" maxlength="18">
+                                </div>
+                            </div>
+
+                            <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:15px;">
+                                <div class="form-group">
+                                    <label class="form-label">🎂 出生日期</label>
+                                    <input type="date" class="form-input" id="patient-birthday">
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label">⚧️ 性别</label>
+                                    <select class="form-input" id="patient-gender">
+                                        <option value="">请选择</option>
+                                        <option value="男">男</option>
+                                        <option value="女">女</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label">🩸 血型</label>
+                                    <select class="form-input" id="patient-blood">
+                                        <option value="">未知</option>
+                                        <option value="A">A型</option>
+                                        <option value="B">B型</option>
+                                        <option value="AB">AB型</option>
+                                        <option value="O">O型</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="form-label">🏠 联系地址</label>
+                                <input type="text" class="form-input" id="patient-address" placeholder="请输入详细地址">
+                            </div>
+
+                            <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:15px;">
+                                <div class="form-group">
+                                    <label class="form-label">👨‍👩‍👧‍👦 紧急联系人</label>
+                                    <input type="text" class="form-input" id="patient-emergency-name" placeholder="紧急联系人姓名">
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label">📞 紧急联系电话</label>
+                                    <input type="tel" class="form-input" id="patient-emergency-phone" placeholder="紧急联系人电话" maxlength="11">
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="form-label">📋 过敏史</label>
+                                <textarea class="form-input" id="patient-allergies" rows="2" placeholder="请填写药物或食物过敏史，无则填'无'"></textarea>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="form-label">🏥 既往病史</label>
+                                <textarea class="form-input" id="patient-history" rows="2" placeholder="请填写既往重大疾病史，无则填'无'"></textarea>
+                            </div>
+
+                            <div style="display:flex;gap:10px;margin-top:20px;">
+                                <button class="btn-primary" onclick="savePatientInfo()">💾 保存患者信息</button>
+                                <button class="btn-primary" style="background:#999;" onclick="cancelPatientEdit()">取消</button>
+                                <button class="btn-primary" style="background:#dc3545;" onclick="deletePatientInfo()">🗑️ 删除患者</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const API_BASE = window.location.protocol + '//' + window.location.host + '/api';
+        let currentStep = 1;
+        let appointmentData = {};
+
+        // 页面切换
+        document.querySelectorAll('.menu-item').forEach(item => {
+            item.addEventListener('click', function() {
+                const page = this.dataset.page;
+                switchPage(page);
+            });
+        });
+
+        const pageInfo = {
+            'chat': { icon: '💬', title: '智能咨询' },
+            'symptom': { icon: '🩺', title: '症状咨询' },
+            'department': { icon: '🏥', title: '科室推荐' },
+            'medication': { icon: '💊', title: '用药咨询' },
+            'appointment': { icon: '📅', title: '预约挂号' },
+            'my-appointment': { icon: '📋', title: '预约查询' },
+            'followup': { icon: '🔔', title: '预约随访' },
+            'records': { icon: '📂', title: '治疗档案' },
+            'patient': { icon: '👤', title: '患者信息' },
+            'health': { icon: '📚', title: '健康教育' }
+        };
+
+        function switchPage(pageName) {
+            // 更新菜单状态
+            document.querySelectorAll('.menu-item').forEach(item => {
+                item.classList.remove('active');
+                if (item.dataset.page === pageName) {
+                    item.classList.add('active');
+                }
+            });
+
+            // 更新页面显示
+            document.querySelectorAll('.page').forEach(page => {
+                page.classList.remove('active');
+            });
+            document.getElementById('page-' + pageName).classList.add('active');
+
+            // 更新标题
+            document.querySelector('.page-icon').textContent = pageInfo[pageName].icon;
+            document.getElementById('page-title').textContent = pageInfo[pageName].title;
+        }
+
+        // 通用流式请求函数
+        async function streamRequest(message, sessionId, contentDiv) {
+            const resultBox = contentDiv.closest('.result-box') || contentDiv;
+            resultBox.classList.add('show');
+            contentDiv.innerHTML = '<p style="color:#888;">正在处理...</p>';
+
+            let fullContent = '';
+
+            try {
+                const response = await fetch(API_BASE + '/chat/stream', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        message: message,
+                        session_id: sessionId,
+                        user_id: 'web_user',
+                        use_llm: true
+                    })
+                });
+
+                const reader = response.body.getReader();
+                const decoder = new TextDecoder();
+                let buffer = '';
+
+                while (true) {
+                    const { done, value } = await reader.read();
+                    if (done) break;
+
+                    buffer += decoder.decode(value, { stream: true });
+                    const lines = buffer.split('\n');
+                    buffer = lines.pop();
+
+                    for (const line of lines) {
+                        if (line.startsWith('data: ')) {
+                            const data = JSON.parse(line.slice(6));
+                            if (data.type === 'content') {
+                                fullContent += data.content;
+                                contentDiv.innerHTML = formatContent(fullContent);
+                            } else if (data.type === 'done') {
+                                break;
+                            } else if (data.type === 'error') {
+                                contentDiv.innerHTML = '<p style="color:red;">错误: ' + data.content + '</p>';
+                            }
+                        }
+                    }
+                }
+            } catch (error) {
+                contentDiv.innerHTML = '<p style="color:red;">网络错误: ' + error + '</p>';
+            }
+        }
+
+        function formatContent(text) {
+            // 处理表格 - 转换markdown表格为HTML表格
+            text = text.replace(/(\|.+?\|\n)+/g, function(match) {
+                const rows = match.trim().split('\n');
+                if (rows.length < 2) return match;
+
+                // 跳过分隔行
+                const dataRows = rows.filter((row, i) => i !== 1 || !row.includes('---'));
+
+                let tableHtml = '<table style="width:100%;border-collapse:collapse;margin:15px 0;background:white;border-radius:8px;overflow:hidden;">';
+
+                dataRows.forEach((row, index) => {
+                    const cells = row.split('|').filter(cell => cell.trim() !== '');
+                    const isHeader = index === 0 || (index === 1 && rows[1].includes('---'));
+
+                    tableHtml += '<tr>';
+                    cells.forEach(cell => {
+                        const tag = isHeader ? 'th' : 'td';
+                        const style = isHeader
+                            ? 'background:linear-gradient(135deg,#667eea 0%,#764ba2 100%);color:white;padding:12px;text-align:left;font-weight:600;'
+                            : 'padding:12px;border-bottom:1px solid #eee;';
+                        tableHtml += `<${tag} style="${style}">${cell.trim()}</${tag}>`;
+                    });
+                    tableHtml += '</tr>';
+                });
+
+                tableHtml += '</table>';
+                return tableHtml;
+            });
+
+            // 处理复选框列表
+            text = text.replace(/^- \[x\] (.+)$/gmi, '<div class="checked-item">✅ $1</div>');
+            text = text.replace(/^- \[ \] (.+)$/gmi, '<div class="unchecked-item">⬜ $1</div>');
+
+            // 处理警告框
+            text = text.replace(/⚠️\s*(.+?)(?:\n|$)/g, '<div class="warning-box">⚠️ $1</div>');
+
+            // 处理成功提示
+            text = text.replace(/✅\s*(.+?)(?:\n|$)/g, '<div class="success-item">✅ $1</div>');
+
+            // 处理标题
+            text = text.replace(/^###\s+(.+)$/gm, '<h4 style="color:#667eea;margin-top:20px;margin-bottom:10px;">$1</h4>');
+            text = text.replace(/^##\s+(.+)$/gm, '<h3 style="color:#333;margin-top:20px;margin-bottom:10px;">$1</h3>');
+            text = text.replace(/^#\s+(.+)$/gm, '<h2 style="color:#333;margin-top:25px;margin-bottom:15px;">$1</h2>');
+
+            // 处理粗体
+            text = text.replace(/\*\*(.+?)\*\*/g, '<strong style="color:#333;">$1</strong>');
+
+            // 处理普通列表
+            text = text.replace(/^- (.+)$/gm, '<li style="margin:8px 0;padding-left:10px;">$1</li>');
+            text = text.replace(/(<li[^>]*>.*<\/li>)/s, '<ul style="list-style:none;padding-left:10px;">$1</ul>');
+
+            // 处理引用块
+            text = text.replace(/^> (.+)$/gm, '<blockquote style="border-left:4px solid #667eea;padding-left:15px;margin:15px 0;color:#666;font-style:italic;">$1</blockquote>');
+
+            // 处理分隔线
+            text = text.replace(/^---$/gm, '<hr style="border:none;border-top:2px solid #eee;margin:20px 0;">');
+
+            // 处理换行
+            text = text.replace(/\n/g, '<br>');
+
+            return text;
+        }
+
+        // ============ 聊天页面 ============
+        // 触发功能卡片 - 点击卡片时跳转到对应页面或触发对话
+        function triggerFeature(feature) {
+            // 隐藏快捷服务卡片，专注于功能使用
+            const featureCardsSection = document.querySelector('.feature-cards-section');
+
+            const featureMessages = {
+                'symptom': '我想咨询症状问题',
+                'department': '我想知道挂什么科',
+                'medication': '我想咨询用药问题',
+                'appointment': '我想挂号',
+                'my-appointment': '我想查询我的预约',
+                'followup': '我想查看随访情况',
+                'records': '我想查看我的健康档案',
+                'patient': '我想管理患者信息',
+                'health': '我想了解健康知识'
+            };
+
+            const message = featureMessages[feature] || feature;
+            document.getElementById('chat-input').value = message;
+            sendChatMessage();
+        }
+
+        // 手机号验证
+        function validatePhone(input) {
+            // 只允许输入数字
+            input.value = input.value.replace(/\D/g, '');
+
+            // 限制最多11位
+            if (input.value.length > 11) {
+                input.value = input.value.slice(0, 11);
+            }
+        }
+
+        // 验证手机号格式
+        function isValidPhone(phone) {
+            return /^1[3-9]\d{9}$/.test(phone);
+        }
+
+        // 会话预约状态跟踪
+        let appointmentChatState = {
+            active: false,
+            step: 0, // 0=未开始, 1=问科室, 2=问时间, 3=问医生类型, 4=完成
+            dept: null,
+            date: null,
+            time: null,
+            doctorType: null,
+            phone: null,  // 新增手机号
+            sessionId: null
+        };
+
+        function sendChatMessage() {
+            const input = document.getElementById('chat-input');
+            const message = input.value.trim();
+            if (!message) return;
+
+            addMessage('user', message);
+            input.value = '';
+
+            // 检查是否是预约会话中的回复
+            if (appointmentChatState.active && appointmentChatState.step > 0) {
+                handleAppointmentChatResponse(message);
+                return;
+            }
+
+            // 检查是否触发预约会话
+            const appointmentKeywords = ['我想挂号', '我要挂号', '想挂号', '挂号', '预约', '我想预约', '我要预约', '预约医生', '预约挂号'];
+            if (appointmentKeywords.some(kw => message.includes(kw))) {
+                startAppointmentChat(message);
+                return;
+            }
+
+            const messagesDiv = document.getElementById('chat-messages');
+            const assistantMsg = document.createElement('div');
+            assistantMsg.className = 'message assistant';
+            assistantMsg.innerHTML = '<div class="process-container"><div class="process-title">🧠 AI思考过程</div><div class="process-item"><span class="process-icon">⏳</span><span class="process-text">正在分析...</span></div></div><div class="message-content"></div>';
+            messagesDiv.appendChild(assistantMsg);
+
+            const contentDiv = assistantMsg.querySelector('.message-content');
+            const processDiv = assistantMsg.querySelector('.process-container');
+
+            streamRequestWithProcess(message, 'chat_session', contentDiv, processDiv);
+            messagesDiv.scrollTop = messagesDiv.scrollHeight;
+        }
+
+        // 开始预约会话
+        function startAppointmentChat(message) {
+            // 初始化预约会话状态
+            appointmentChatState = {
+                active: true,
+                step: 1,
+                dept: null,
+                date: null,
+                time: null,
+                doctorType: null,
+                sessionId: 'appointment_chat_' + Date.now()
+            };
+
+            // 如果用户消息中包含科室信息，尝试提取
+            const deptKeywords = {
+                '内科': ['内科', '心脏', '心血管', '消化', '呼吸', '内分泌'],
+                '外科': ['外科', '手术', '骨折', '扭伤'],
+                '妇科': ['妇科', '产科', '女性'],
+                '儿科': ['儿科', '儿童', '小孩', '婴儿'],
+                '骨科': ['骨科', '骨', '关节', '脊柱'],
+                '眼科': ['眼科', '眼睛', '视力'],
+                '耳鼻喉科': ['耳鼻喉', '耳朵', '鼻子', '喉咙'],
+                '神经内科': ['神经', '头痛', '头晕', '失眠'],
+                '皮肤科': ['皮肤', '湿疹', '痤疮', '皮炎'],
+                '中医科': ['中医', '中药', '针灸']
+            };
+
+            for (const [dept, keywords] of Object.entries(deptKeywords)) {
+                if (keywords.some(kw => message.includes(kw))) {
+                    appointmentChatState.dept = dept;
+                    break;
+                }
+            }
+
+            // 显示AI响应
+            const messagesDiv = document.getElementById('chat-messages');
+            const assistantMsg = document.createElement('div');
+            assistantMsg.className = 'message assistant';
+            assistantMsg.innerHTML = `
+                <div class="process-container">
+                    <div class="process-title">🧠 AI思考过程</div>
+                </div>
+                <div class="message-content"></div>
+            `;
+            messagesDiv.appendChild(assistantMsg);
+
+            const contentDiv = assistantMsg.querySelector('.message-content');
+            const processDiv = assistantMsg.querySelector('.process-container');
+
+            // 添加意图识别
+            addProcessItem(processDiv, '🎯', '意图识别: 预约挂号', '99%', 'process-badge');
+            addProcessItem(processDiv, '📅', '启动预约引导流程', '', 'process-status');
+
+            // 生成欢迎消息
+            let welcomeMsg = `好的！很高兴为您服务 👍<br><br>为了帮您快速、准确地完成预约，我需要了解几个关键信息：`;
+            welcomeMsg += `<br><br><strong>第1步：请问您想挂哪个科室？</strong>`;
+            welcomeMsg += `<br><br>可选科室包括：内科、外科、妇科、儿科、骨科、眼科、耳鼻喉科、神经内科、心血管内科、呼吸内科、消化内科、内分泌科、皮肤科、中医科`;
+
+            if (appointmentChatState.dept) {
+                welcomeMsg += `<br><br><em>我注意到您可能想挂【${appointmentChatState.dept}】，请确认或告诉我其他科室。</em>`;
+            }
+
+            contentDiv.innerHTML = welcomeMsg;
+            messagesDiv.scrollTop = messagesDiv.scrollHeight;
+
+            setTimeout(() => {
+                processDiv.classList.add('collapsed');
+                processDiv.onclick = () => processDiv.classList.toggle('collapsed');
+            }, 3000);
+        }
+
+        // 处理预约会话中的用户回复
+        async function handleAppointmentChatResponse(message) {
+            const messagesDiv = document.getElementById('chat-messages');
+
+            // 根据当前步骤处理用户输入
+            switch (appointmentChatState.step) {
+                case 1: // 询问科室
+                    // 提取科室
+                    const deptMap = {
+                        '内科': ['内科'],
+                        '外科': ['外科'],
+                        '妇科': ['妇科'],
+                        '儿科': ['儿科'],
+                        '骨科': ['骨科'],
+                        '眼科': ['眼科'],
+                        '耳鼻喉科': ['耳鼻喉', '耳鼻喉科'],
+                        '神经内科': ['神经'],
+                        '心血管内科': ['心血管', '心脏'],
+                        '呼吸内科': ['呼吸'],
+                        '消化内科': ['消化'],
+                        '内分泌科': ['内分泌'],
+                        '皮肤科': ['皮肤'],
+                        '中医科': ['中医']
+                    };
+
+                    let foundDept = null;
+                    for (const [dept, keywords] of Object.entries(deptMap)) {
+                        if (keywords.some(kw => message.includes(kw))) {
+                            foundDept = dept;
+                            break;
+                        }
+                    }
+
+                    if (foundDept) {
+                        appointmentChatState.dept = foundDept;
+                        appointmentChatState.step = 2;
+
+                        addAssistantMessage(`
+                            ✅ 已选择：<strong>${foundDept}</strong><br><br>
+                            <strong>第2步：请问您希望什么时间就诊？</strong><br><br>
+                            请告诉我您方便的日期（如：明天、本周五、12月10日）
+                        `);
+                    } else {
+                        addAssistantMessage(`
+                            ⚠️ 抱歉，我没有识别到科室信息。<br><br>
+                            请从以下科室中选择：<br>
+                            内科、外科、妇科、儿科、骨科、眼科、耳鼻喉科、神经内科、心血管内科、呼吸内科、消化内科、内分泌科、皮肤科、中医科
+                        `);
+                    }
+                    break;
+
+                case 2: // 询问时间
+                    // 简单提取日期信息
+                    const dateMatch = message.match(/(\d{1,2})[月-](\d{1,2})/) ||
+                                     message.match(/(\d{4})[年-](\d{1,2})[月-](\d{1,2})/);
+                    const today = new Date();
+                    let targetDate = new Date();
+
+                    if (message.includes('明天')) {
+                        targetDate.setDate(today.getDate() + 1);
+                    } else if (message.includes('后天')) {
+                        targetDate.setDate(today.getDate() + 2);
+                    } else if (message.includes('大后天')) {
+                        targetDate.setDate(today.getDate() + 3);
+                    } else if (message.includes('下周一') || message.includes('下周一')) {
+                        targetDate.setDate(today.getDate() + (1 + 7 - today.getDay()) % 7 + 7);
+                    } else if (message.includes('下周五') || message.includes('下周五')) {
+                        targetDate.setDate(today.getDate() + (5 + 7 - today.getDay()) % 7 + 7);
+                    } else if (message.includes('周一') || message.includes('星期一')) {
+                        targetDate.setDate(today.getDate() + (1 + 7 - today.getDay()) % 7);
+                    } else if (message.includes('周二') || message.includes('星期二')) {
+                        targetDate.setDate(today.getDate() + (2 + 7 - today.getDay()) % 7);
+                    } else if (message.includes('周三') || message.includes('星期三')) {
+                        targetDate.setDate(today.getDate() + (3 + 7 - today.getDay()) % 7);
+                    } else if (message.includes('周四') || message.includes('星期四')) {
+                        targetDate.setDate(today.getDate() + (4 + 7 - today.getDay()) % 7);
+                    } else if (message.includes('周五') || message.includes('星期五')) {
+                        targetDate.setDate(today.getDate() + (5 + 7 - today.getDay()) % 7);
+                    } else if (message.includes('周六') || message.includes('星期六')) {
+                        targetDate.setDate(today.getDate() + (6 + 7 - today.getDay()) % 7);
+                    } else if (message.includes('周日') || message.includes('星期日')) {
+                        targetDate.setDate(today.getDate() + (7 + 7 - today.getDay()) % 7);
+                    } else if (dateMatch) {
+                        const month = parseInt(dateMatch[1]);
+                        const day = parseInt(dateMatch[2]);
+                        targetDate = new Date(today.getFullYear(), month - 1, day);
+                    }
+
+                    // 如果日期在过去，加一年
+                    if (targetDate < today && !message.includes('今天')) {
+                        targetDate.setFullYear(targetDate.getFullYear() + 1);
+                    }
+
+                    appointmentChatState.date = targetDate.toISOString().split('T')[0];
+                    appointmentChatState.step = 3;
+
+                    const formattedDate = `${targetDate.getMonth() + 1}月${targetDate.getDate()}日`;
+
+                    addAssistantMessage(`
+                        ✅ 已选择：<strong>${formattedDate}</strong><br><br>
+                        <strong>第3步：请问您对医生有偏好吗？</strong><br><br>
+                        <span style="padding:4px 12px;background:#667eea;color:white;border-radius:15px;margin-right:10px;cursor:pointer;" onclick="quickSelectDoctorType('普通')">普通门诊</span>
+                        <span style="padding:4px 12px;background:#764ba2;color:white;border-radius:15px;cursor:pointer;" onclick="quickSelectDoctorType('专家')">专家门诊</span><br><br>
+                        <small>💡 普通门诊由主治医师坐诊，挂号费15-25元；专家门诊由主任医师/副主任医师坐诊，挂号费40-60元</small>
+                    `);
+                    break;
+
+                case 3: // 询问医生类型，完成后跳转到预约页面
+                    if (message.includes('普通') || message.includes('专家')) {
+                        appointmentChatState.doctorType = message.includes('专家') ? '专家' : '普通';
+                    } else {
+                        appointmentChatState.doctorType = '普通'; // 默认普通
+                    }
+
+                    appointmentChatState.step = 4;
+
+                    addAssistantMessage(`
+                        ✅ 信息收集完成！<br><br>
+                        📋 <strong>预约信息汇总：</strong><br>
+                        • 科室：${appointmentChatState.dept}<br>
+                        • 日期：${appointmentChatState.date}<br>
+                        • 类型：${appointmentChatState.doctorType}门诊<br><br>
+                        <span style="color:#667eea;">正在跳转到预约页面...</span>
+                    `);
+
+                    // 延迟后跳转并预填充表单
+                    setTimeout(() => {
+                        goToAppointmentWithPreFill();
+                    }, 1500);
+                    break;
+            }
+
+            messagesDiv.scrollTop = messagesDiv.scrollHeight;
+        }
+
+        // 快速选择医生类型
+        function quickSelectDoctorType(type) {
+            const input = document.getElementById('chat-input');
+            input.value = type + '门诊';
+            sendChatMessage();
+        }
+
+        // 添加助手消息
+        function addAssistantMessage(content) {
+            const messagesDiv = document.getElementById('chat-messages');
+            const assistantMsg = document.createElement('div');
+            assistantMsg.className = 'message assistant';
+            assistantMsg.innerHTML = `<div class="message-content">${content}</div>`;
+            messagesDiv.appendChild(assistantMsg);
+            messagesDiv.scrollTop = messagesDiv.scrollHeight;
+        }
+
+        // 跳转到预约页面并预填充
+        function goToAppointmentWithPreFill() {
+            // 切换到预约页面
+            switchPage('appointment');
+
+            // 预填充表单
+            if (appointmentChatState.dept) {
+                document.getElementById('appoint-dept').value = appointmentChatState.dept;
+            }
+            if (appointmentChatState.doctorType) {
+                document.getElementById('appoint-type').value = appointmentChatState.doctorType;
+            }
+
+            // 更新预约数据
+            appointmentData.dept = appointmentChatState.dept;
+            appointmentData.type = appointmentChatState.doctorType;
+
+            // 更新医生列表
+            updateDoctorList();
+
+            // 如果有日期，也填充
+            if (appointmentChatState.date) {
+                document.getElementById('appoint-date').value = appointmentChatState.date;
+            }
+
+            // 自动进入下一步
+            setTimeout(() => {
+                nextStep(2);
+            }, 500);
+
+            // 重置会话状态
+            appointmentChatState.active = false;
+            appointmentChatState.step = 0;
+
+            // 在聊天中添加提示消息
+            addAssistantMessage(`
+                ✅ <strong>已为您跳转到预约页面！</strong><br><br>
+                表单已预填充您提供的信息，请：<br>
+                1. 选择您心仪的医生<br>
+                2. 确认或调整就诊时间<br>
+                3. 完成预约提交
+            `);
+        }
+
+        async function streamRequestWithProcess(message, sessionId, contentDiv, processDiv) {
+            let fullContent = '';
+            let processItems = [];
+
+            // 工具名称映射
+            const toolNames = {
+                'symptom-analyzer': '🩺 症状分析器',
+                'department-recommender': '🏥 科室推荐器',
+                'medication-advisor': '💊 用药顾问',
+                'health-educator': '📚 健康教育师',
+                'greeting-handler': '👋 问候处理',
+                'appointment-service': '📅 预约服务'
+            };
+
+            try {
+                const response = await fetch(API_BASE + '/chat/stream', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        message: message,
+                        session_id: sessionId,
+                        user_id: 'web_user',
+                        use_llm: true
+                    })
+                });
+
+                const reader = response.body.getReader();
+                const decoder = new TextDecoder();
+                let buffer = '';
+
+                while (true) {
+                    const { done, value } = await reader.read();
+                    if (done) break;
+
+                    buffer += decoder.decode(value, { stream: true });
+                    const lines = buffer.split('\n');
+                    buffer = lines.pop();
+
+                    for (const line of lines) {
+                        if (line.startsWith('data: ')) {
+                            const data = JSON.parse(line.slice(6));
+
+                            // 意图识别
+                            if (data.type === 'intent_recognition') {
+                                const intentNames = {
+                                    'symptom_inquiry': '症状咨询',
+                                    'department_query': '科室查询',
+                                    'medication_consult': '用药咨询',
+                                    'appointment': '预约挂号',
+                                    'health_education': '健康教育',
+                                    'greeting': '问候',
+                                    'unknown': '未知'
+                                };
+                                addProcessItem(processDiv, '🎯', `意图识别: ${intentNames[data.intent] || data.intent}`, `${data.confidence_percent}%`, 'process-badge');
+                            }
+                            // 工具调用
+                            else if (data.type === 'tool_call') {
+                                addProcessItem(processDiv, '⚙️', `调用工具: ${toolNames[data.tool] || data.tool}`, '进行中...', 'process-status');
+                            }
+                            // 思考过程
+                            else if (data.type === 'thinking') {
+                                addProcessItem(processDiv, '💭', data.content, '', '');
+                            }
+                            // 内容流
+                            else if (data.type === 'content') {
+                                fullContent += data.content;
+                                contentDiv.innerHTML = formatContent(fullContent);
+                                document.getElementById('chat-messages').scrollTop = document.getElementById('chat-messages').scrollHeight;
+                            }
+                            // 完成
+                            else if (data.type === 'done') {
+                                addProcessItem(processDiv, '✅', '响应生成完成', '', 'process-status');
+                            }
+                        }
+                    }
+                }
+
+                // 稍后隐藏思考过程
+                setTimeout(() => {
+                    processDiv.classList.add('collapsed');
+                    processDiv.onclick = () => {
+                        processDiv.classList.toggle('collapsed');
+                    };
+                }, 3000);
+
+            } catch (error) {
+                contentDiv.innerHTML = '<p style="color:red;">网络错误</p>';
+            }
+        }
+
+        // 添加过程项到思考容器
+        function addProcessItem(container, icon, text, badge, extraClass) {
+            const badgeHtml = badge ? `<span class="process-badge">${badge}</span>` : '';
+            const extraClassHtml = extraClass ? ` class="${extraClass}"` : '';
+            container.innerHTML += `
+                <div class="process-item">
+                    <span class="process-icon">${icon}</span>
+                    <span class="process-text">${text}</span>${badgeHtml}
+                    ${extraClass ? '<span class="process-status">✓</span>' : ''}
+                </div>
+            `;
+        }
+
+        function addMessage(type, content) {
+            const messagesDiv = document.getElementById('chat-messages');
+            const msg = document.createElement('div');
+            msg.className = 'message ' + type;
+            msg.innerHTML = '<div class="message-content">' + content + '</div>';
+            messagesDiv.appendChild(msg);
+            messagesDiv.scrollTop = messagesDiv.scrollHeight;
+        }
+
+        function sendQuickMessage(msg) {
+            document.getElementById('chat-input').value = msg;
+            sendChatMessage();
+        }
+
+        function handleKeyPress(e) {
+            if (e.key === 'Enter') sendChatMessage();
+        }
+
+        // ============ 症状咨询 ============
+        function toggleSymptom(el) {
+            el.classList.toggle('selected');
+        }
+
+        function analyzeSymptom() {
+            const desc = document.getElementById('symptom-desc').value.trim();
+            const tags = Array.from(document.querySelectorAll('.symptom-tag.selected')).map(el => el.textContent);
+            const duration = document.getElementById('symptom-duration').value;
+            const severity = document.getElementById('symptom-severity').value;
+
+            let message = '';
+            if (tags.length > 0) {
+                message += '我有以下症状：' + tags.join('、');
+            }
+            if (desc) {
+                message += (message ? '，' : '') + desc;
+            }
+            if (duration) {
+                const durationMap = { today: '今天刚开始', days: '1-3天', week: '约一周', weeks: '超过一周', month: '持续一个月以上' };
+                message += '，持续时间：' + durationMap[duration];
+            }
+            if (severity) {
+                const severityMap = { mild: '轻微', moderate: '中度', severe: '严重' };
+                message += '，程度：' + severityMap[severity];
+            }
+
+            if (!message) {
+                alert('请描述您的症状');
+                return;
+            }
+
+            streamRequest(message, 'symptom_page', document.getElementById('symptom-result-content'));
+        }
+
+        // ============ 科室推荐 ============
+        function selectDepartment(el, dept, symptoms) {
+            document.querySelectorAll('.dept-card').forEach(c => c.classList.remove('selected'));
+            el.classList.add('selected');
+            document.getElementById('dept-symptom').value = `我想挂${dept}，因为${symptoms}`;
+        }
+
+        function recommendDepartment() {
+            const symptom = document.getElementById('dept-symptom').value.trim();
+            if (!symptom) {
+                alert('请选择科室或描述症状');
+                return;
+            }
+            streamRequest(symptom, 'dept_page', document.getElementById('dept-result-content'));
+        }
+
+        // ============ 用药咨询 ============
+        let selectedQueryType = '';
+        function selectQueryOption(el, type) {
+            document.querySelectorAll('.query-option').forEach(o => o.classList.remove('selected'));
+            el.classList.add('selected');
+            selectedQueryType = type;
+        }
+
+        function consultMedication() {
+            const drug = document.getElementById('medication-name').value.trim();
+            if (!drug) {
+                alert('请输入药品名称');
+                return;
+            }
+
+            let message = drug;
+            if (selectedQueryType) {
+                const typeMap = {
+                    '怎么吃': '怎么吃',
+                    '副作用': '副作用',
+                    '禁忌': '禁忌症',
+                    '相互作用': '药物相互作用'
+                };
+                message = drug + typeMap[selectedQueryType];
+            }
+
+            streamRequest(message, 'medication_page', document.getElementById('medication-result-content'));
+        }
+
+        // ============ 预约挂号 ============
+        // 医生数据库
+        const doctorDatabase = {
+            '专家': {
+                '内科': [
+                    { name: '张建国', title: '主任医师', experience: '35年', tags: ['心血管', '高血压', '冠心病'], price: '50元', avatar: '👨‍⚕️' },
+                    { name: '李淑芬', title: '主任医师', experience: '30年', tags: ['内分泌', '糖尿病', '甲状腺'], price: '50元', avatar: '👩‍⚕️' },
+                    { name: '王明远', title: '副主任医师', experience: '25年', tags: ['呼吸内科', '慢阻肺', '哮喘'], price: '40元', avatar: '👨‍⚕️' }
+                ],
+                '心血管内科': [
+                    { name: '张建国', title: '主任医师', experience: '35年', tags: ['冠心病', '心律失常', '心衰'], price: '60元', avatar: '👨‍⚕️' },
+                    { name: '刘心怡', title: '主任医师', experience: '28年', tags: ['高血压', '冠心病'], price: '60元', avatar: '👩‍⚕️' }
+                ],
+                '神经内科': [
+                    { name: '赵志强', title: '主任医师', experience: '32年', tags: ['头痛', '失眠', '癫痫'], price: '60元', avatar: '👨‍⚕️' },
+                    { name: '孙丽娟', title: '副主任医师', experience: '20年', tags: ['脑血管病', '头晕'], price: '50元', avatar: '👩‍⚕️' }
+                ],
+                '消化内科': [
+                    { name: '陈海波', title: '主任医师', experience: '30年', tags: ['胃炎', '溃疡', '肝病'], price: '60元', avatar: '👨‍⚕️' },
+                    { name: '周美玲', title: '副主任医师', experience: '22年', tags: ['肠炎', '消化不良'], price: '50元', avatar: '👩‍⚕️' }
+                ],
+                '呼吸内科': [
+                    { name: '王明远', title: '主任医师', experience: '25年', tags: ['慢阻肺', '哮喘', '肺炎'], price: '60元', avatar: '👨‍⚕️' },
+                    { name: '吴芳', title: '副主任医师', experience: '18年', tags: ['支气管炎', '咳嗽'], price: '50元', avatar: '👩‍⚕️' }
+                ],
+                '内分泌科': [
+                    { name: '李淑芬', title: '主任医师', experience: '30年', tags: ['糖尿病', '甲状腺', '痛风'], price: '60元', avatar: '👩‍⚕️' },
+                    { name: '郑伟', title: '副主任医师', experience: '20年', tags: ['糖尿病', '代谢综合征'], price: '50元', avatar: '👨‍⚕️' }
+                ],
+                '外科': [
+                    { name: '黄志刚', title: '主任医师', experience: '28年', tags: ['普外', '胆囊', '阑尾'], price: '60元', avatar: '👨‍⚕️' },
+                    { name: '林晓华', title: '副主任医师', experience: '20年', tags: ['甲状腺手术', '乳腺'], price: '50元', avatar: '👩‍⚕️' }
+                ],
+                '骨科': [
+                    { name: '马强', title: '主任医师', experience: '32年', tags: ['脊柱', '关节', '骨折'], price: '60元', avatar: '👨‍⚕️' },
+                    { name: '姜小燕', title: '副主任医师', experience: '18年', tags: ['运动损伤', '关节镜'], price: '50元', avatar: '👩‍⚕️' }
+                ],
+                '妇科': [
+                    { name: '杨丽梅', title: '主任医师', experience: '28年', tags: ['妇产科', '不孕不育'], price: '50元', avatar: '👩‍⚕️' },
+                    { name: '赵雅君', title: '副主任医师', experience: '18年', tags: ['妇科炎症', '月经不调'], price: '40元', avatar: '👩‍⚕️' }
+                ],
+                '儿科': [
+                    { name: '钱多多', title: '主任医师', experience: '30年', tags: ['小儿呼吸', '小儿消化'], price: '60元', avatar: '👩‍⚕️' },
+                    { name: '孙浩然', title: '副主任医师', experience: '15年', tags: ['小儿发热', '生长发育'], price: '50元', avatar: '👨‍⚕️' }
+                ],
+                '眼科': [
+                    { name: '郭明亮', title: '主任医师', experience: '25年', tags: ['近视', '白内障', '青光眼'], price: '50元', avatar: '👨‍⚕️' },
+                    { name: '范小丽', title: '副主任医师', experience: '15年', tags: ['结膜炎', '干眼症'], price: '40元', avatar: '👩‍⚕️' }
+                ],
+                '耳鼻喉科': [
+                    { name: '梁伟', title: '主任医师', experience: '22年', tags: ['鼻炎', '中耳炎'], price: '50元', avatar: '👨‍⚕️' },
+                    { name: '方芳', title: '副主任医师', experience: '12年', tags: ['咽炎', '扁桃体'], price: '40元', avatar: '👩‍⚕️' }
+                ],
+                '皮肤科': [
+                    { name: '许慧', title: '主任医师', experience: '20年', tags: ['湿疹', '痤疮', '皮炎'], price: '50元', avatar: '👩‍⚕️' },
+                    { name: '袁波', title: '副主任医师', experience: '12年', tags: ['银屑病', '荨麻疹'], price: '40元', avatar: '👨‍⚕️' }
+                ],
+                '中医科': [
+                    { name: '白云飞', title: '主任医师', experience: '40年', tags: ['中医内科', '针灸', '推拿'], price: '40元', avatar: '👨‍⚕️' },
+                    { name: '陈小雨', title: '副主任医师', experience: '20年', tags: ['中医妇科', '中药调理'], price: '30元', avatar: '👩‍⚕️' }
+                ]
+            },
+            '普通': {
+                '内科': [
+                    { name: '周伟', title: '主治医师', experience: '8年', tags: ['常见内科', '感冒'], price: '20元', avatar: '👨‍⚕️' },
+                    { name: '吴敏', title: '主治医师', experience: '6年', tags: ['消化', '呼吸'], price: '20元', avatar: '👩‍⚕️' },
+                    { name: '郑强', title: '住院医师', experience: '3年', tags: ['初诊', '体检'], price: '15元', avatar: '👨‍⚕️' }
+                ],
+                '心血管内科': [
+                    { name: '周伟', title: '主治医师', experience: '8年', tags: ['高血压', '冠心病'], price: '25元', avatar: '👨‍⚕️' },
+                    { name: '王芳', title: '主治医师', experience: '5年', tags: ['心律失常'], price: '25元', avatar: '👩‍⚕️' }
+                ],
+                '神经内科': [
+                    { name: '李明', title: '主治医师', experience: '7年', tags: ['头痛', '失眠'], price: '25元', avatar: '👨‍⚕️' },
+                    { name: '赵静', title: '主治医师', experience: '5年', tags: ['脑血管'], price: '25元', avatar: '👩‍⚕️' }
+                ],
+                '消化内科': [
+                    { name: '吴敏', title: '主治医师', experience: '6年', tags: ['胃炎', '肠炎'], price: '25元', avatar: '👩‍⚕️' },
+                    { name: '孙杰', title: '住院医师', experience: '2年', tags: ['消化不良'], price: '20元', avatar: '👨‍⚕️' }
+                ],
+                '呼吸内科': [
+                    { name: '郑强', title: '主治医师', experience: '6年', tags: ['支气管炎', '感冒'], price: '25元', avatar: '👨‍⚕️' },
+                    { name: '钱丽', title: '主治医师', experience: '4年', tags: ['哮喘'], price: '25元', avatar: '👩‍⚕️' }
+                ],
+                '内分泌科': [
+                    { name: '黄小红', title: '主治医师', experience: '7年', tags: ['糖尿病', '甲状腺'], price: '25元', avatar: '👩‍⚕️' },
+                    { name: '林涛', title: '住院医师', experience: '3年', tags: ['代谢'], price: '20元', avatar: '👨‍⚕️' }
+                ],
+                '外科': [
+                    { name: '张勇', title: '主治医师', experience: '8年', tags: ['普外', '外伤'], price: '25元', avatar: '👨‍⚕️' },
+                    { name: '刘海燕', title: '主治医师', experience: '5年', tags: ['门诊小手术'], price: '25元', avatar: '👩‍⚕️' }
+                ],
+                '骨科': [
+                    { name: '王大力', title: '主治医师', experience: '7年', tags: ['骨折', '扭伤'], price: '25元', avatar: '👨‍⚕️' },
+                    { name: '赵丽', title: '住院医师', experience: '3年', tags: ['运动损伤'], price: '20元', avatar: '👩‍⚕️' }
+                ],
+                '妇科': [
+                    { name: '田雪', title: '主治医师', experience: '6年', tags: ['妇科炎症', '月经不调'], price: '25元', avatar: '👩‍⚕️' },
+                    { name: '周丽娜', title: '住院医师', experience: '2年', tags: ['孕产咨询'], price: '20元', avatar: '👩‍⚕️' }
+                ],
+                '儿科': [
+                    { name: '李小波', title: '主治医师', experience: '8年', tags: ['小儿感冒', '发育'], price: '25元', avatar: '👨‍⚕️' },
+                    { name: '陈小雨', title: '住院医师', experience: '3年', tags: ['疫苗接种'], price: '20元', avatar: '👩‍⚕️' }
+                ],
+                '眼科': [
+                    { name: '赵明', title: '主治医师', experience: '5年', tags: ['结膜炎', '近视'], price: '25元', avatar: '👨‍⚕️' },
+                    { name: '孙婷', title: '住院医师', experience: '2年', tags: ['干眼症'], price: '20元', avatar: '👩‍⚕️' }
+                ],
+                '耳鼻喉科': [
+                    { name: '杨帆', title: '主治医师', experience: '6年', tags: ['鼻炎', '咽炎'], price: '25元', avatar: '👨‍⚕️' },
+                    { name: '范丽', title: '住院医师', experience: '2年', tags: ['中耳炎'], price: '20元', avatar: '👩‍⚕️' }
+                ],
+                '皮肤科': [
+                    { name: '周洁', title: '主治医师', experience: '5年', tags: ['湿疹', '皮炎'], price: '25元', avatar: '👩‍⚕️' },
+                    { name: '吴涛', title: '住院医师', experience: '2年', tags: ['痤疮'], price: '20元', avatar: '👨‍⚕️' }
+                ],
+                '中医科': [
+                    { name: '刘大夫', title: '主治医师', experience: '10年', tags: ['中医调理'], price: '20元', avatar: '👨‍⚕️' },
+                    { name: '陈医师', title: '住院医师', experience: '3年', tags: ['针灸'], price: '15元', avatar: '👩‍⚕️' }
+                ]
+            }
+        };
+
+        // 更新医生列表
+        function updateDoctorList() {
+            const dept = document.getElementById('appoint-dept').value;
+            const type = document.getElementById('appoint-type').value;
+            const container = document.getElementById('doctor-list-container');
+
+            if (!dept || !type) {
+                container.innerHTML = '<div style="text-align:center;padding:30px;color:#999;">请先选择科室和门诊类型</div>';
+                return;
+            }
+
+            const doctors = doctorDatabase[type][dept] || [];
+
+            if (doctors.length === 0) {
+                container.innerHTML = '<div style="text-align:center;padding:30px;color:#999;">该科室暂无' + type + '医生，请选择其他科室</div>';
+                return;
+            }
+
+            let html = '<div class="doctor-list">';
+            doctors.forEach(doc => {
+                html += `
+                    <div class="doctor-card" onclick="selectDoctor(this, '${doc.name}', '${doc.title}', '${doc.tags.join('、')}', '${doc.price}')">
+                        <div class="doctor-avatar">${doc.avatar}</div>
+                        <div class="doctor-info">
+                            <div class="doctor-name">${doc.name}</div>
+                            <div class="doctor-title">${doc.title} · ${doc.experience}</div>
+                            <div class="doctor-tags">
+                                ${doc.tags.map(tag => `<span class="doctor-tag">${tag}</span>`).join('')}
+                            </div>
+                            <div style="margin-top:5px;color:#ff6b35;font-weight:600;">${doc.price}</div>
+                        </div>
+                    </div>
+                `;
+            });
+            html += '</div>';
+            container.innerHTML = html;
+        }
+
+        function nextStep(step) {
+            if (step === 2) {
+                const dept = document.getElementById('appoint-dept').value;
+                const type = document.getElementById('appoint-type').value;
+                if (!dept) {
+                    alert('请选择科室');
+                    return;
+                }
+                appointmentData.dept = dept;
+                appointmentData.type = type;
+            } else if (step === 3) {
+                if (!appointmentData.doctor) {
+                    alert('请选择医生');
+                    return;
+                }
+            } else if (step === 4) {
+                const date = document.getElementById('appoint-date').value;
+                if (!date) {
+                    alert('请选择日期');
+                    return;
+                }
+                if (!appointmentData.time) {
+                    alert('请选择时间');
+                    return;
+                }
+                appointmentData.date = date;
+
+                // 显示确认信息
+                document.getElementById('confirm-dept').textContent = appointmentData.dept;
+                document.getElementById('confirm-doctor').textContent = appointmentData.doctor;
+                document.getElementById('confirm-title').textContent = '(' + appointmentData.doctorTitle + ')';
+                document.getElementById('confirm-type').textContent = appointmentData.type + '门诊';
+                document.getElementById('confirm-date').textContent = appointmentData.date;
+                document.getElementById('confirm-time').textContent = appointmentData.time;
+                document.getElementById('confirm-price').textContent = appointmentData.price || '待定';
+            }
+
+            document.querySelectorAll('.step-content').forEach(s => s.classList.remove('active'));
+            document.getElementById('step' + step).classList.add('active');
+
+            document.querySelectorAll('.step').forEach((s, i) => {
+                s.classList.remove('active', 'completed');
+                if (i + 1 < step) s.classList.add('completed');
+                if (i + 1 === step) s.classList.add('active');
+            });
+
+            currentStep = step;
+        }
+
+        function prevStep(step) {
+            document.querySelectorAll('.step-content').forEach(s => s.classList.remove('active'));
+            document.getElementById('step' + step).classList.add('active');
+
+            document.querySelectorAll('.step').forEach((s, i) => {
+                s.classList.remove('active', 'completed');
+                if (i + 1 < step) s.classList.add('completed');
+                if (i + 1 === step) s.classList.add('active');
+            });
+
+            currentStep = step;
+        }
+
+        function selectDoctor(el, name, title, specialty, price) {
+            document.querySelectorAll('.doctor-card').forEach(c => c.classList.remove('selected'));
+            el.classList.add('selected');
+            appointmentData.doctor = name;
+            appointmentData.doctorTitle = title;
+            appointmentData.price = price;
+        }
+
+        function selectTime(el, time) {
+            if (el.classList.contains('disabled')) return;
+            document.querySelectorAll('.time-slot').forEach(t => t.classList.remove('selected'));
+            el.classList.add('selected');
+            appointmentData.time = time;
+        }
+
+        function submitAppointment() {
+            // 获取并验证手机号
+            const phoneInput = document.getElementById('appoint-phone');
+            const phone = phoneInput.value.trim();
+
+            if (!phone) {
+                alert('请输入联系手机号');
+                phoneInput.focus();
+                return;
+            }
+
+            if (!isValidPhone(phone)) {
+                alert('请输入正确的11位手机号码');
+                phoneInput.focus();
+                return;
+            }
+
+            // 保存手机号到预约数据
+            appointmentData.phone = phone;
+
+            // 生成预约编号
+            const today = new Date();
+            const dateStr = today.getFullYear().toString() +
+                          String(today.getMonth() + 1).padStart(2, '0') +
+                          String(today.getDate()).padStart(2, '0');
+            const randomNum = String(Math.floor(Math.random() * 10000)).padStart(4, '0');
+            const bookingNo = 'YY' + dateStr + randomNum;
+
+            // 先保存预约数据
+            saveNewAppointment(bookingNo);
+
+            const message = `我想预约${appointmentData.dept}${appointmentData.type}门诊，医生：${appointmentData.doctor}，时间：${appointmentData.date} ${appointmentData.time}`;
+            streamRequest(message, 'appointment_page', document.getElementById('appointment-result-content'));
+
+            // 显示成功卡片
+            setTimeout(() => {
+                const resultDiv = document.getElementById('appointment-result-content');
+                const successHtml = `
+                    <div style="background:#d4edda;border:1px solid #c3e6cb;border-radius:12px;padding:25px;text-align:center;margin-top:20px;">
+                        <div style="font-size:48px;margin-bottom:10px;">✅</div>
+                        <h3 style="color:#155724;margin-bottom:15px;">预约成功</h3>
+                        <div style="background:white;border-radius:10px;padding:15px;margin:15px 0;text-align:left;">
+                            <div style="display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid #eee;">
+                                <span style="color:#666;">预约编号</span>
+                                <strong style="color:#333;">${bookingNo}</strong>
+                            </div>
+                            <div style="display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid #eee;">
+                                <span style="color:#666;">就诊科室</span>
+                                <strong style="color:#333;">${appointmentData.dept}</strong>
+                            </div>
+                            <div style="display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid #eee;">
+                                <span style="color:#666;">医生</span>
+                                <strong style="color:#333;">${appointmentData.doctor} (${appointmentData.doctorTitle})</strong>
+                            </div>
+                            <div style="display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid #eee;">
+                                <span style="color:#666;">门诊类型</span>
+                                <strong style="color:#333;">${appointmentData.type}门诊</strong>
+                            </div>
+                            <div style="display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid #eee;">
+                                <span style="color:#666;">就诊时间</span>
+                                <strong style="color:#333;">${appointmentData.date} ${appointmentData.time}</strong>
+                            </div>
+                            <div style="display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid #eee;">
+                                <span style="color:#666;">联系电话</span>
+                                <strong style="color:#333;">${phone}</strong>
+                            </div>
+                            <div style="display:flex;justify-content:space-between;padding:8px 0;">
+                                <span style="color:#666;">挂号费</span>
+                                <strong style="color:#ff6b35;font-size:16px;">${appointmentData.price}</strong>
+                            </div>
+                        </div>
+                        <p style="margin-top:15px;color:#155724;font-size:13px;">📱 请截图保存预约信息，就诊时请出示预约编号</p>
+                        <p style="margin-top:10px;color:#666;font-size:12px;">💡 您可以在"预约查询"页面通过手机号查询和管理您的预约</p>
+                    </div>
+                `;
+                resultDiv.innerHTML = successHtml;
+
+                // 清空手机号输入框，方便下次预约
+                phoneInput.value = '';
+            }, 2000);
+        }
+
+        // ============ 预约查询 ============
+        // 从localStorage加载预约
+        function loadAppointments() {
+            const stored = localStorage.getItem('medical_appointments');
+            return stored ? JSON.parse(stored) : [];
+        }
+
+        // 保存预约到localStorage
+        function saveAppointment(appointment) {
+            const appointments = loadAppointments();
+            appointments.push(appointment);
+            localStorage.setItem('medical_appointments', JSON.stringify(appointments));
+        }
+
+        // 查询预约
+        function queryAppointment() {
+            const query = document.getElementById('query-input').value.trim();
+            if (!query) {
+                alert('请输入预约编号或手机号');
+                return;
+            }
+
+            const appointments = loadAppointments();
+            const results = appointments.filter(apt => {
+                return apt.bookingNo.includes(query) || apt.phone.includes(query);
+            });
+
+            const listDiv = document.getElementById('appointment-list');
+            const detailDiv = document.getElementById('appointment-detail');
+
+            if (results.length === 0) {
+                listDiv.innerHTML = `
+                    <div style="text-align:center;padding:40px;color:#999;">
+                        <div style="font-size:48px;margin-bottom:15px;">📭</div>
+                        <p>未找到预约记录</p>
+                        <p style="font-size:13px;margin-top:10px;">请检查预约编号或手机号是否正确</p>
+                    </div>
+                `;
+                detailDiv.style.display = 'none';
+            } else {
+                let html = '<h4 style="margin:20px 0;">查询结果 (' + results.length + '条)</h4>';
+                results.forEach((apt, index) => {
+                    const statusClass = apt.status === '已就诊' ? 'completed' : (apt.status === '已取消' ? 'cancelled' : 'pending');
+                    const statusStyle = {
+                        'pending': 'background:#fff3cd;color:#856404;',
+                        'completed': 'background:#d4edda;color:#155724;',
+                        'cancelled': 'background:#f8d7da;color:#721c24;'
+                    };
+                    html += `
+                        <div class="appointment-item" onclick="showAppointmentDetail('${apt.bookingNo}')" style="background:white;border:1px solid #eee;border-radius:12px;padding:15px;margin-bottom:15px;cursor:pointer;transition:all 0.2s;display:flex;justify-content:space-between;align-items:center;">
+                            <div>
+                                <div style="font-weight:600;color:#333;margin-bottom:5px;">${apt.dept} - ${apt.doctor}</div>
+                                <div style="color:#666;font-size:13px;">${apt.date} ${apt.time}</div>
+                                <div style="font-size:12px;color:#999;">预约编号：${apt.bookingNo}</div>
+                            </div>
+                            <div style="text-align:right;">
+                                <div style="padding:4px 12px;border-radius:20px;font-size:12px;font-weight:600;${statusStyle[statusClass]}">${apt.status}</div>
+                                <div style="color:#ff6b35;font-weight:600;margin-top:5px;">${apt.price}</div>
+                            </div>
+                        </div>
+                    `;
+                });
+                listDiv.innerHTML = html;
+                detailDiv.style.display = 'none';
+            }
+        }
+
+        // 显示预约详情
+        function showAppointmentDetail(bookingNo) {
+            const appointments = loadAppointments();
+            const apt = appointments.find(a => a.bookingNo === bookingNo);
+
+            if (!apt) return;
+
+            const detailDiv = document.getElementById('appointment-detail');
+            const statusClass = apt.status === '已就诊' ? 'completed' : (apt.status === '已取消' ? 'cancelled' : 'pending');
+            const statusStyle = {
+                'pending': 'background:#fff3cd;color:#856404;',
+                'completed': 'background:#d4edda;color:#155724;',
+                'cancelled': 'background:#f8d7da;color:#721c24;'
+            };
+
+            detailDiv.innerHTML = `
+                <div style="background:white;border-radius:12px;padding:20px;margin-top:20px;">
+                    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:20px;">
+                        <h4>预约详情</h4>
+                        <span style="padding:6px 16px;border-radius:20px;font-size:13px;font-weight:600;${statusStyle[statusClass]}">${apt.status}</span>
+                    </div>
+                    <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:15px;">
+                        <div><span style="color:#999;">预约编号</span><br><strong>${apt.bookingNo}</strong></div>
+                        <div><span style="color:#999;">就诊科室</span><br><strong>${apt.dept}</strong></div>
+                        <div><span style="color:#999;">医生</span><br><strong>${apt.doctor}</strong></div>
+                        <div><span style="color:#999;">医生职称</span><br><strong>${apt.doctorTitle}</strong></div>
+                        <div><span style="color:#999;">门诊类型</span><br><strong>${apt.type}门诊</strong></div>
+                        <div><span style="color:#999;">挂号费</span><br><strong style="color:#ff6b35;">${apt.price}</strong></div>
+                        <div><span style="color:#999;">就诊日期</span><br><strong>${apt.date}</strong></div>
+                        <div><span style="color:#999;">就诊时间</span><br><strong>${apt.time}</strong></div>
+                        <div style="grid-column:1/span 2;"><span style="color:#999;">预约时间</span><br><strong>${apt.createdAt}</strong></div>
+                    </div>
+                    ${apt.status === '待就诊' ? `
+                        <div style="margin-top:20px;display:flex;gap:10px;">
+                            <button class="btn-primary" style="background:#28a745;" onclick="cancelAppointment('${apt.bookingNo}')">取消预约</button>
+                            <button class="btn-primary" style="background:#17a2b8;" onclick="rescheduleAppointment('${apt.bookingNo}')">改期预约</button>
+                        </div>
+                    ` : ''}
+                    <button class="btn-primary" style="background:#999;margin-top:15px;" onclick="document.getElementById('appointment-detail').style.display='none'">返回列表</button>
+                </div>
+            `;
+            detailDiv.style.display = 'block';
+        }
+
+        // 取消预约
+        function cancelAppointment(bookingNo) {
+            if (!confirm('确定要取消预约吗？')) return;
+
+            const appointments = loadAppointments();
+            const index = appointments.findIndex(a => a.bookingNo === bookingNo);
+            if (index !== -1) {
+                appointments[index].status = '已取消';
+                localStorage.setItem('medical_appointments', JSON.stringify(appointments));
+                alert('预约已取消');
+                queryAppointment(); // 刷新列表
+            }
+        }
+
+        // ============ 预约数据存储和提交 ============
+        function saveNewAppointment(bookingNo) {
+            const appointment = {
+                bookingNo: bookingNo,
+                dept: appointmentData.dept,
+                doctor: appointmentData.doctor,
+                doctorTitle: appointmentData.doctorTitle,
+                type: appointmentData.type,
+                date: appointmentData.date,
+                time: appointmentData.time,
+                price: appointmentData.price,
+                status: '待就诊',
+                createdAt: new Date().toLocaleString('zh-CN'),
+                phone: appointmentData.phone || '138****' + Math.floor(Math.random() * 10000) // 使用真实手机号
+            };
+            saveAppointment(appointment);
+
+            // 同时创建或更新患者基本信息档案
+            getOrCreatePatient(appointment.phone);
+
+            // 同时创建或更新患者健康档案
+            const records = loadMedicalRecordsFromStorage();
+            const existingIndex = records.findIndex(r => r.phone === appointment.phone);
+
+            const medicalRecord = existingIndex !== -1 ? records[existingIndex] : {
+                phone: appointment.phone,
+                createdAt: new Date().toLocaleString('zh-CN')
+            };
+
+            // 更新首次就诊时间
+            if (!medicalRecord.firstVisit) {
+                medicalRecord.firstVisit = appointment.date;
+            }
+
+            // 更新最近就诊时间
+            medicalRecord.lastVisit = appointment.date;
+            medicalRecord.lastVisitType = `${appointment.dept} - ${appointment.doctor}`;
+
+            // 更新就诊科室统计
+            if (!medicalRecord.departments) {
+                medicalRecord.departments = {};
+            }
+            const deptKey = appointment.dept;
+            if (!medicalRecord.departments[deptKey]) {
+                medicalRecord.departments[deptKey] = 0;
+            }
+            medicalRecord.departments[deptKey]++;
+
+            if (existingIndex !== -1) {
+                records[existingIndex] = medicalRecord;
+            } else {
+                records.push(medicalRecord);
+            }
+            localStorage.setItem('medical_records', JSON.stringify(records));
+        }
+
+        // ============ 健康教育 ============
+        function getHealthInfo(topic) {
+            document.getElementById('health-query').value = `请告诉我关于${topic}的建议`;
+            searchHealth();
+        }
+
+        function searchHealth() {
+            const query = document.getElementById('health-query').value.trim();
+            if (!query) {
+                alert('请输入健康问题');
+                return;
+            }
+            streamRequest(query, 'health_page', document.getElementById('health-result-content'));
+        }
+
+        // ============ 预约随访功能 ============
+        // 从localStorage加载随访记录
+        function loadFollowupsFromStorage() {
+            const stored = localStorage.getItem('medical_followups');
+            return stored ? JSON.parse(stored) : [];
+        }
+
+        // 保存随访记录到localStorage
+        function saveFollowupToStorage(followup) {
+            const followups = loadFollowupsFromStorage();
+            followups.push(followup);
+            localStorage.setItem('medical_followups', JSON.stringify(followups));
+        }
+
+        // 根据手机号加载随访记录
+        function loadFollowups() {
+            const phone = document.getElementById('followup-phone').value.trim();
+            if (!phone) {
+                alert('请输入手机号');
+                return;
+            }
+
+            if (!isValidPhone(phone)) {
+                alert('请输入正确的11位手机号码');
+                return;
+            }
+
+            const followups = loadFollowupsFromStorage();
+            const userFollowups = followups.filter(f => f.phone === phone);
+
+            const container = document.getElementById('followup-list-container');
+
+            if (userFollowups.length === 0) {
+                container.innerHTML = `
+                    <div style="text-align:center;padding:30px;color:#999;background:#f8f9fa;border-radius:12px;">
+                        <div style="font-size:48px;margin-bottom:10px;">🔔</div>
+                        <p>暂无随访记录</p>
+                        <p style="font-size:13px;margin-top:10px;">添加随访记录后可在此查看</p>
+                    </div>
+                `;
+            } else {
+                let html = '<h4 style="margin:20px 0;">随访记录 (' + userFollowups.length + '条)</h4>';
+                userFollowups.forEach(f => {
+                    const ratingColors = {
+                        '明显好转': '#28a745',
+                        '有所改善': '#82c91e',
+                        '维持现状': '#ffc107',
+                        '有所加重': '#dc3545'
+                    };
+                    html += `
+                        <div style="background:white;border:1px solid #eee;border-radius:12px;padding:15px;margin-bottom:15px;">
+                            <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;">
+                                <div>
+                                    <div style="font-weight:600;color:#333;">${f.followupType}</div>
+                                    <div style="font-size:12px;color:#888;">${f.followupDate}</div>
+                                </div>
+                                <div style="padding:4px 12px;border-radius:15px;font-size:12px;font-weight:600;background:${ratingColors[f.rating]||'#999'};color:white;">${f.rating}</div>
+                            </div>
+                            <div style="font-size:13px;color:#666;line-height:1.6;">${f.content}</div>
+                            ${f.nextDate ? `<div style="font-size:12px;color:#667eea;margin-top:10px;">📅 下次随访：${f.nextDate}</div>` : ''}
+                        </div>
+                    `;
+                });
+                container.innerHTML = html;
+
+                // 同时加载预约记录到下拉框
+                updateFollowupAppointmentSelect(phone);
+            }
+        }
+
+        // 更新随访关联预约下拉框
+        function updateFollowupAppointmentSelect(phone) {
+            const appointments = loadAppointments();
+            const userAppointments = appointments.filter(a => a.phone === phone && a.status === '待就诊');
+            const select = document.getElementById('followup-appointment');
+
+            select.innerHTML = '<option value="">请选择关联预约</option>';
+            userAppointments.forEach(apt => {
+                select.innerHTML += `<option value="${apt.bookingNo}">${apt.dept} - ${apt.doctor} - ${apt.date}</option>`;
+            });
+        }
+
+        // 添加随访记录
+        function addFollowup() {
+            const phone = document.getElementById('followup-phone').value.trim();
+            const appointmentId = document.getElementById('followup-appointment').value;
+            const followupDate = document.getElementById('followup-date').value;
+            const followupType = document.getElementById('followup-type').value;
+            const content = document.getElementById('followup-content').value.trim();
+            const ratingInput = document.querySelector('input[name="rating"]:checked');
+            const nextDate = document.getElementById('followup-next-date').value;
+
+            if (!phone) {
+                alert('请输入手机号');
+                return;
+            }
+            if (!isValidPhone(phone)) {
+                alert('请输入正确的11位手机号码');
+                return;
+            }
+            if (!followupDate) {
+                alert('请选择随访日期');
+                return;
+            }
+            if (!followupType) {
+                alert('请选择随访类型');
+                return;
+            }
+            if (!content) {
+                alert('请填写随访内容');
+                return;
+            }
+            if (!ratingInput) {
+                alert('请选择康复评估');
+                return;
+            }
+
+            // 确保患者档案存在
+            getOrCreatePatient(phone);
+
+            const followup = {
+                id: 'FU' + Date.now(),
+                phone: phone,
+                appointmentId: appointmentId,
+                followupDate: followupDate,
+                followupType: followupType,
+                content: content,
+                rating: ratingInput.value,
+                nextDate: nextDate,
+                createdAt: new Date().toLocaleString('zh-CN')
+            };
+
+            saveFollowupToStorage(followup);
+
+            // 清空表单
+            document.getElementById('followup-content').value = '';
+            document.querySelector('input[name="rating"]:checked').checked = false;
+            document.getElementById('followup-next-date').value = '';
+
+            alert('随访记录已保存');
+            loadFollowups(); // 重新加载列表
+        }
+
+        // ============ 患者信息管理功能 ============
+        // 从localStorage加载患者数据
+        function loadPatientsFromStorage() {
+            const stored = localStorage.getItem('medical_patients');
+            return stored ? JSON.parse(stored) : [];
+        }
+
+        // 保存患者数据到localStorage
+        function savePatientsToStorage(patients) {
+            localStorage.setItem('medical_patients', JSON.stringify(patients));
+        }
+
+        // 根据手机号获取患者信息
+        function getPatientByPhone(phone) {
+            const patients = loadPatientsFromStorage();
+            return patients.find(p => p.phone === phone);
+        }
+
+        // 保存或更新患者信息
+        function savePatientData(patient) {
+            const patients = loadPatientsFromStorage();
+            const existingIndex = patients.findIndex(p => p.phone === patient.phone);
+            patient.updatedAt = new Date().toLocaleString('zh-CN');
+            if (existingIndex !== -1) {
+                patients[existingIndex] = { ...patients[existingIndex], ...patient };
+            } else {
+                patient.createdAt = new Date().toLocaleString('zh-CN');
+                patients.push(patient);
+            }
+            savePatientsToStorage(patients);
+            return patient;
+        }
+
+        // 搜索患者
+        function searchPatient() {
+            const phone = document.getElementById('patient-search-phone').value.trim();
+            if (!phone) {
+                alert('请输入手机号');
+                return;
+            }
+            if (!isValidPhone(phone)) {
+                alert('请输入正确的11位手机号码');
+                return;
+            }
+
+            const patient = getPatientByPhone(phone);
+            const displayArea = document.getElementById('patient-display-area');
+            const formArea = document.getElementById('patient-form-area');
+
+            if (!patient) {
+                // 患者不存在，显示新建提示
+                displayArea.innerHTML = `
+                    <div class="form-card">
+                        <div style="text-align:center;padding:30px;background:#fff3cd;border-radius:12px;">
+                            <div style="font-size:48px;margin-bottom:10px;">👤</div>
+                            <h4 style="color:#856404;margin-bottom:10px;">未找到该患者</h4>
+                            <p style="color:#856404;">手机号 ${phone} 对应的患者档案不存在</p>
+                            <button class="btn-primary" style="background:#28a745;margin-top:15px;" onclick="createNewPatient('${phone}')">
+                                ➕ 创建患者档案
+                            </button>
+                        </div>
+                    </div>
+                `;
+                formArea.style.display = 'none';
+            } else {
+                // 显示患者信息
+                displayPatientInfo(patient);
+                formArea.style.display = 'none';
+            }
+        }
+
+        // 显示患者信息
+        function displayPatientInfo(patient) {
+            const displayArea = document.getElementById('patient-display-area');
+
+            // 获取关联数据
+            const appointments = loadAppointments().filter(a => a.phone === patient.phone);
+            const followups = loadFollowupsFromStorage().filter(f => f.phone === patient.phone);
+            const records = loadMedicalRecordsFromStorage().find(r => r.phone === patient.phone);
+
+            // 计算年龄
+            let age = '未知';
+            if (patient.birthday) {
+                const birthDate = new Date(patient.birthday);
+                const today = new Date();
+                age = today.getFullYear() - birthDate.getFullYear();
+                const monthDiff = today.getMonth() - birthDate.getMonth();
+                if (monthDiff < 0 || (monthDiff === 0 && today.getDate() < birthDate.getDate())) {
+                    age--;
+                }
+                age += '岁';
+            }
+
+            displayArea.innerHTML = `
+                <div class="patient-info-card">
+                    <div style="display:flex;justify-content:space-between;align-items:center;">
+                        <h4>👤 患者档案</h4>
+                        <button class="btn-primary" style="background:white;color:#667eea;padding:8px 20px;" onclick="editPatient('${patient.phone}')">
+                            ✏️ 编辑
+                        </button>
+                    </div>
+                    <div class="patient-info-grid">
+                        <div class="patient-info-item">
+                            <label>手机号（唯一ID）</label>
+                            <span>${patient.phone}</span>
+                        </div>
+                        <div class="patient-info-item">
+                            <label>姓名</label>
+                            <span>${patient.name || '未填写'}</span>
+                        </div>
+                        <div class="patient-info-item">
+                            <label>性别</label>
+                            <span>${patient.gender || '未知'}</span>
+                        </div>
+                        <div class="patient-info-item">
+                            <label>年龄</label>
+                            <span>${age}</span>
+                        </div>
+                        <div class="patient-info-item">
+                            <label>血型</label>
+                            <span>${patient.blood || '未知'}</span>
+                        </div>
+                        <div class="patient-info-item">
+                            <label>身份证号</label>
+                            <span>${patient.idcard || '未填写'}</span>
+                        </div>
+                    </div>
+                    ${patient.allergies && patient.allergies !== '无' ? `
+                        <div style="margin-top:15px;padding:12px;background:rgba(255,255,255,0.2);border-radius:10px;">
+                            <label style="font-size:12px;">⚠️ 过敏史</label>
+                            <div style="font-weight:600;margin-top:5px;">${patient.allergies}</div>
+                        </div>
+                    ` : ''}
+                    ${patient.history && patient.history !== '无' ? `
+                        <div style="margin-top:15px;padding:12px;background:rgba(255,255,255,0.2);border-radius:10px;">
+                            <label style="font-size:12px;">🏥 既往病史</label>
+                            <div style="font-weight:600;margin-top:5px;">${patient.history}</div>
+                        </div>
+                    ` : ''}
+                </div>
+
+                <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:15px;margin-bottom:20px;">
+                    <div class="form-card" style="text-align:center;padding:20px;">
+                        <div style="font-size:36px;margin-bottom:10px;">📅</div>
+                        <div style="font-size:24px;font-weight:600;color:#667eea;">${appointments.length}</div>
+                        <div style="color:#666;">预约次数</div>
+                    </div>
+                    <div class="form-card" style="text-align:center;padding:20px;">
+                        <div style="font-size:36px;margin-bottom:10px;">🔔</div>
+                        <div style="font-size:24px;font-weight:600;color:#667eea;">${followups.length}</div>
+                        <div style="color:#666;">随访次数</div>
+                    </div>
+                    <div class="form-card" style="text-align:center;padding:20px;">
+                        <div style="font-size:36px;margin-bottom:10px;">🏥</div>
+                        <div style="font-size:24px;font-weight:600;color:#667eea;">${records && records.departments ? Object.keys(records.departments).length : 0}</div>
+                        <div style="color:#666;">就诊科室</div>
+                    </div>
+                </div>
+
+                <div class="form-card">
+                    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:15px;">
+                        <h4>📱 联系信息</h4>
+                    </div>
+                    <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:15px;">
+                        <div style="padding:15px;background:#f8f9fa;border-radius:10px;">
+                            <label style="color:#888;font-size:12px;">🏠 联系地址</label>
+                            <div style="font-weight:600;margin-top:5px;">${patient.address || '未填写'}</div>
+                        </div>
+                        <div style="padding:15px;background:#f8f9fa;border-radius:10px;">
+                            <label style="color:#888;font-size:12px;">👨‍👩‍👧‍👦 紧急联系人</label>
+                            <div style="font-weight:600;margin-top:5px;">${patient.emergencyName || '未填写'} ${patient.emergencyPhone ? '(' + patient.emergencyPhone + ')' : ''}</div>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
+        // 新建患者
+        function showNewPatientForm() {
+            const phone = document.getElementById('patient-search-phone').value.trim();
+            if (!phone) {
+                alert('请先输入手机号');
+                return;
+            }
+            if (!isValidPhone(phone)) {
+                alert('请输入正确的11位手机号码');
+                return;
+            }
+            createNewPatient(phone);
+        }
+
+        function createNewPatient(phone) {
+            const displayArea = document.getElementById('patient-display-area');
+            const formArea = document.getElementById('patient-form-area');
+
+            // 清空表单
+            document.getElementById('patient-phone').value = phone;
+            document.getElementById('patient-name').value = '';
+            document.getElementById('patient-idcard').value = '';
+            document.getElementById('patient-birthday').value = '';
+            document.getElementById('patient-gender').value = '';
+            document.getElementById('patient-blood').value = '';
+            document.getElementById('patient-address').value = '';
+            document.getElementById('patient-emergency-name').value = '';
+            document.getElementById('patient-emergency-phone').value = '';
+            document.getElementById('patient-allergies').value = '';
+            document.getElementById('patient-history').value = '';
+
+            displayArea.innerHTML = '';
+            formArea.style.display = 'block';
+        }
+
+        // 编辑患者
+        function editPatient(phone) {
+            const patient = getPatientByPhone(phone);
+            if (!patient) {
+                alert('患者不存在');
+                return;
+            }
+
+            // 填充表单
+            document.getElementById('patient-phone').value = patient.phone || '';
+            document.getElementById('patient-name').value = patient.name || '';
+            document.getElementById('patient-idcard').value = patient.idcard || '';
+            document.getElementById('patient-birthday').value = patient.birthday || '';
+            document.getElementById('patient-gender').value = patient.gender || '';
+            document.getElementById('patient-blood').value = patient.blood || '';
+            document.getElementById('patient-address').value = patient.address || '';
+            document.getElementById('patient-emergency-name').value = patient.emergencyName || '';
+            document.getElementById('patient-emergency-phone').value = patient.emergencyPhone || '';
+            document.getElementById('patient-allergies').value = patient.allergies || '';
+            document.getElementById('patient-history').value = patient.history || '';
+
+            document.getElementById('patient-display-area').innerHTML = '';
+            document.getElementById('patient-form-area').style.display = 'block';
+        }
+
+        // 保存患者信息
+        function savePatientInfo() {
+            const phone = document.getElementById('patient-phone').value.trim();
+            const name = document.getElementById('patient-name').value.trim();
+
+            if (!phone) {
+                alert('手机号不能为空');
+                return;
+            }
+            if (!isValidPhone(phone)) {
+                alert('请输入正确的11位手机号码');
+                return;
+            }
+            if (!name) {
+                alert('请输入患者姓名');
+                return;
+            }
+
+            const patient = {
+                phone: phone,
+                name: name,
+                idcard: document.getElementById('patient-idcard').value.trim(),
+                birthday: document.getElementById('patient-birthday').value,
+                gender: document.getElementById('patient-gender').value,
+                blood: document.getElementById('patient-blood').value,
+                address: document.getElementById('patient-address').value.trim(),
+                emergencyName: document.getElementById('patient-emergency-name').value.trim(),
+                emergencyPhone: document.getElementById('patient-emergency-phone').value.trim(),
+                allergies: document.getElementById('patient-allergies').value.trim() || '无',
+                history: document.getElementById('patient-history').value.trim() || '无'
+            };
+
+            savePatientData(patient);
+            alert('患者信息已保存');
+            searchPatient(); // 刷新显示
+        }
+
+        // 取消编辑
+        function cancelPatientEdit() {
+            document.getElementById('patient-form-area').style.display = 'none';
+            const phone = document.getElementById('patient-phone').value;
+            if (phone) {
+                document.getElementById('patient-search-phone').value = phone;
+                searchPatient();
+            }
+        }
+
+        // 删除患者信息
+        function deletePatientInfo() {
+            const phone = document.getElementById('patient-phone').value;
+            if (!confirm('确定要删除该患者档案吗？\n\n注意：删除后，该手机号的所有预约、随访和档案记录将失去患者基本信息关联。')) {
+                return;
+            }
+
+            const patients = loadPatientsFromStorage();
+            const index = patients.findIndex(p => p.phone === phone);
+            if (index !== -1) {
+                patients.splice(index, 1);
+                savePatientsToStorage(patients);
+            }
+
+            alert('患者档案已删除');
+            document.getElementById('patient-form-area').style.display = 'none';
+            document.getElementById('patient-search-phone').value = '';
+            document.getElementById('patient-display-area').innerHTML = `
+                <div style="text-align:center;padding:40px;color:#999;background:#f8f9fa;border-radius:12px;">
+                    <div style="font-size:48px;margin-bottom:10px;">👤</div>
+                    <p>请输入手机号搜索或新建患者档案</p>
+                </div>
+            `;
+        }
+
+        // 获取或创建患者（用于预约时自动创建）
+        function getOrCreatePatient(phone) {
+            let patient = getPatientByPhone(phone);
+            if (!patient) {
+                // 自动创建基础患者档案
+                patient = {
+                    phone: phone,
+                    name: '',
+                    idcard: '',
+                    birthday: '',
+                    gender: '',
+                    blood: '',
+                    address: '',
+                    emergencyName: '',
+                    emergencyPhone: '',
+                    allergies: '无',
+                    history: '无',
+                    createdAt: new Date().toLocaleString('zh-CN'),
+                    updatedAt: new Date().toLocaleString('zh-CN')
+                };
+                savePatientData(patient);
+            }
+            return patient;
+        }
+
+        // ============ 治疗档案功能 ============
+        // 从localStorage加载治疗档案
+        function loadMedicalRecordsFromStorage() {
+            const stored = localStorage.getItem('medical_records');
+            return stored ? JSON.parse(stored) : [];
+        }
+
+        // 保存治疗档案到localStorage
+        function saveMedicalRecordToStorage(record) {
+            const records = loadMedicalRecordsFromStorage();
+            // 查找是否已存在该手机号的记录
+            const existingIndex = records.findIndex(r => r.phone === record.phone);
+            if (existingIndex !== -1) {
+                // 更新现有记录
+                records[existingIndex] = { ...records[existingIndex], ...record, updatedAt: new Date().toLocaleString('zh-CN') };
+            } else {
+                // 添加新记录
+                records.push(record);
+            }
+            localStorage.setItem('medical_records', JSON.stringify(records));
+        }
+
+        // 根据手机号加载健康档案
+        function loadMedicalRecords() {
+            const phone = document.getElementById('record-phone').value.trim();
+            if (!phone) {
+                alert('请输入手机号');
+                return;
+            }
+
+            if (!isValidPhone(phone)) {
+                alert('请输入正确的11位手机号码');
+                return;
+            }
+
+            const records = loadMedicalRecordsFromStorage();
+            const userRecord = records.find(r => r.phone === phone);
+            const patient = getPatientByPhone(phone);
+            const displayArea = document.getElementById('record-display-area');
+
+            // 同时加载该患者的预约和随访记录
+            const appointments = loadAppointments();
+            const userAppointments = appointments.filter(a => a.phone === phone);
+            const followups = loadFollowupsFromStorage();
+            const userFollowups = followups.filter(f => f.phone === phone);
+
+            if (!userRecord && !patient) {
+                displayArea.innerHTML = `
+                    <div class="form-card">
+                        <div style="text-align:center;padding:30px;color:#999;">
+                            <div style="font-size:48px;margin-bottom:10px;">📂</div>
+                            <p>未找到该手机号的健康档案</p>
+                            <p style="font-size:13px;margin-top:10px;">您可以先进行预约挂号，系统会自动建立档案</p>
+                        </div>
+                    </div>
+                `;
+                return;
+            }
+
+            // 计算年龄
+            let age = '未知';
+            if (patient && patient.birthday) {
+                const birthDate = new Date(patient.birthday);
+                const today = new Date();
+                age = today.getFullYear() - birthDate.getFullYear();
+                const monthDiff = today.getMonth() - birthDate.getMonth();
+                if (monthDiff < 0 || (monthDiff === 0 && today.getDate() < birthDate.getDate())) {
+                    age--;
+                }
+                age += '岁';
+            }
+
+            // 显示患者基本信息（整合患者档案和就诊记录）
+            let html = `
+                <div class="patient-info-card">
+                    <div style="display:flex;justify-content:space-between;align-items:center;">
+                        <h4>👤 患者信息</h4>
+                        ${patient ? `<button class="btn-primary" style="background:white;color:#667eea;padding:6px 15px;font-size:13px;" onclick="document.getElementById('patient-search-phone').value='${phone}';document.querySelector('[data-page=\"patient\"]').click();searchPatient();">查看完整档案</button>` : '<button class="btn-primary" style="background:white;color:#667eea;padding:6px 15px;font-size:13px;" onclick="document.getElementById(\'patient-search-phone\').value=\''+phone+'\';document.querySelector(\'[data-page=\"patient\"]\').click();createNewPatient(\''+phone+'\');">完善患者信息</button>'}
+                    </div>
+                    <div class="patient-info-grid">
+                        <div class="patient-info-item">
+                            <label>手机号（唯一ID）</label>
+                            <span>${phone}</span>
+                        </div>
+                        <div class="patient-info-item">
+                            <label>姓名</label>
+                            <span>${patient ? (patient.name || '未填写') : '未填写'}</span>
+                        </div>
+                        <div class="patient-info-item">
+                            <label>性别</label>
+                            <span>${patient ? (patient.gender || '未知') : '未知'}</span>
+                        </div>
+                        <div class="patient-info-item">
+                            <label>年龄</label>
+                            <span>${age}</span>
+                        </div>
+                        <div class="patient-info-item">
+                            <label>首次就诊</label>
+                            <span>${userRecord ? (userRecord.firstVisit || '最近') : '无记录'}</span>
+                        </div>
+                        <div class="patient-info-item">
+                            <label>最近就诊</label>
+                            <span>${userRecord ? (userRecord.lastVisit || '无') : '无记录'}</span>
+                        </div>
+                        <div class="patient-info-item">
+                            <label>预约次数</label>
+                            <span>${userAppointments.length}次</span>
+                        </div>
+                        <div class="patient-info-item">
+                            <label>随访次数</label>
+                            <span>${userFollowups.length}次</span>
+                        </div>
+                    </div>
+                    ${patient && patient.allergies && patient.allergies !== '无' ? `
+                        <div style="margin-top:15px;padding:12px;background:rgba(255,255,255,0.2);border-radius:10px;">
+                            <label style="font-size:12px;">⚠️ 过敏史</label>
+                            <div style="font-weight:600;margin-top:5px;">${patient.allergies}</div>
+                        </div>
+                    ` : ''}
+                </div>
+
+                <div class="form-card">
+                    <h4>📋 预约记录</h4>
+            `;
+
+            if (userAppointments.length === 0) {
+                html += `<p style="color:#999;padding:20px 0;">暂无预约记录</p>`;
+            } else {
+                userAppointments.forEach(apt => {
+                    const statusClass = apt.status === '已就诊' ? 'completed' : (apt.status === '已取消' ? 'cancelled' : 'pending');
+                    const statusStyle = {
+                        'pending': 'background:#fff3cd;color:#856404;',
+                        'completed': 'background:#d4edda;color:#155724;',
+                        'cancelled': 'background:#f8d7da;color:#721c24;'
+                    };
+                    html += `
+                        <div style="background:white;border:1px solid #eee;border-radius:10px;padding:12px;margin-bottom:10px;">
+                            <div style="display:flex;justify-content:space-between;align-items:center;">
+                                <div>
+                                    <div style="font-weight:600;color:#333;">${apt.dept} - ${apt.doctor}</div>
+                                    <div style="font-size:12px;color:#888;">${apt.date} ${apt.time}</div>
+                                </div>
+                                <span style="padding:4px 12px;border-radius:15px;font-size:12px;font-weight:600;${statusStyle[statusClass]}">${apt.status}</span>
+                            </div>
+                        </div>
+                    `;
+                });
+            }
+
+            html += `</div><div class="form-card"><h4>🔔 随访记录</h4>`;
+
+            if (userFollowups.length === 0) {
+                html += `<p style="color:#999;padding:20px 0;">暂无随访记录</p>`;
+            } else {
+                userFollowups.forEach(f => {
+                    const ratingColors = {
+                        '明显好转': '#28a745',
+                        '有所改善': '#82c91e',
+                        '维持现状': '#ffc107',
+                        '有所加重': '#dc3545'
+                    };
+                    html += `
+                        <div style="background:white;border:1px solid #eee;border-radius:10px;padding:12px;margin-bottom:10px;">
+                            <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;">
+                                <div>
+                                    <div style="font-weight:600;color:#333;">${f.followupType}</div>
+                                    <div style="font-size:12px;color:#888;">${f.followupDate}</div>
+                                </div>
+                                <span style="padding:4px 12px;border-radius:15px;font-size:12px;font-weight:600;background:${ratingColors[f.rating]||'#999'};color:white;">${f.rating}</span>
+                            </div>
+                            <div style="font-size:13px;color:#666;">${f.content}</div>
+                        </div>
+                    `;
+                });
+            }
+
+            html += `</div>`;
+            displayArea.innerHTML = html;
+        }
+
+        // 设置日期范围和加载预约
+        document.addEventListener('DOMContentLoaded', () => {
+            // 设置预约日期范围（今天起30天内）
+            const today = new Date();
+            const maxDate = new Date();
+            maxDate.setDate(today.getDate() + 30);
+
+            const todayStr = today.toISOString().split('T')[0];
+            const maxDateStr = maxDate.toISOString().split('T')[0];
+
+            const dateInput = document.getElementById('appoint-date');
+            if (dateInput) {
+                dateInput.min = todayStr;
+                dateInput.max = maxDateStr;
+            }
+
+            // 页面切换时加载预约列表
+            document.querySelector('[data-page="my-appointment"]').addEventListener('click', () => {
+                const appointments = loadAppointments();
+                const listDiv = document.getElementById('appointment-list');
+                if (appointments.length === 0) {
+                    listDiv.innerHTML = `
+                        <div style="text-align:center;padding:40px;color:#999;">
+                            <div style="font-size:48px;margin-bottom:15px;">📋</div>
+                            <p>暂无预约记录</p>
+                            <p style="font-size:13px;margin-top:10px;">您可以通过"预约挂号"功能进行预约</p>
+                        </div>
+                    `;
+                } else {
+                    // 显示最近的预约
+                    let html = '<h4 style="margin:20px 0;">我的预约 (' + appointments.length + '条)</h4>';
+                    appointments.forEach(apt => {
+                        const statusClass = apt.status === '已就诊' ? 'completed' : (apt.status === '已取消' ? 'cancelled' : 'pending');
+                        const statusStyle = {
+                            'pending': 'background:#fff3cd;color:#856404;',
+                            'completed': 'background:#d4edda;color:#155724;',
+                            'cancelled': 'background:#f8d7da;color:#721c24;'
+                        };
+                        html += `
+                            <div class="appointment-item" onclick="showAppointmentDetail('${apt.bookingNo}')" style="background:white;border:1px solid #eee;border-radius:12px;padding:15px;margin-bottom:15px;cursor:pointer;transition:all 0.2s;display:flex;justify-content:space-between;align-items:center;">
+                                <div>
+                                    <div style="font-weight:600;color:#333;margin-bottom:5px;">${apt.dept} - ${apt.doctor}</div>
+                                    <div style="color:#666;font-size:13px;">${apt.date} ${apt.time}</div>
+                                    <div style="font-size:12px;color:#999;">预约编号：${apt.bookingNo}</div>
+                                </div>
+                                <div style="text-align:right;">
+                                    <div style="padding:4px 12px;border-radius:20px;font-size:12px;font-weight:600;${statusStyle[statusClass]}">${apt.status}</div>
+                                    <div style="color:#ff6b35;font-weight:600;margin-top:5px;">${apt.price}</div>
+                                </div>
+                            </div>
+                        `;
+                    });
+                    listDiv.innerHTML = html;
+                }
+            });
+        });
+    </script>
+</body>
+</html>
