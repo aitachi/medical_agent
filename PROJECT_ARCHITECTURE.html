@@ -528,6 +528,7 @@
                 <a href="#data-model">4. 数据模型设计</a>
                 <a href="#frontend">5. 前端交互</a>
                 <a href="#performance">6. 性能指标</a>
+                <a href="#detailed-workflow">7. 详细工作流与节点</a>
             </nav>
 
             <div class="content">
@@ -1566,6 +1567,564 @@ server.register_tool(tool_definition, Handler())
                                 </tr>
                             </tbody>
                         </table>
+                    </div>
+                </div>
+
+                <!-- 7. 详细工作流与节点 -->
+                <div class="section" id="detailed-workflow">
+                    <h2 class="section-title">
+                        <span class="icon">🔬</span>
+                        7. 详细工作流与处理节点
+                    </h2>
+
+                    <div class="subsection">
+                        <h3>7.1 完整请求处理链路</h3>
+
+                        <div class="diagram">
+                            <div style="display: flex; flex-direction: column; gap: 10px;">
+                                <div class="flow-box" style="width: 100%; justify-content: center;">前端用户输入 (Frontend)</div>
+                                <div style="text-align: center; font-size: 24px; color: #667eea;">↓</div>
+                                <div class="flow-box" style="width: 100%; justify-content: center;">FastAPI SSE 端点 (/api/chat/stream)</div>
+                                <div style="text-align: center; font-size: 24px; color: #667eea;">↓</div>
+                                <div class="flow-box" style="width: 100%; justify-content: center;">MedicalAgent.process_message()</div>
+                                <div style="text-align: center; font-size: 24px; color: #667eea;">↓</div>
+                                <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 10px;">
+                                    <div class="flow-box" style="width: 100%; font-size: 0.9em;">意图分类 (MLP)</div>
+                                    <div class="flow-box" style="width: 100%; font-size: 0.9em;">实体抽取 (Regex)</div>
+                                    <div class="flow-box" style="width: 100%; font-size: 0.9em;">上下文管理</div>
+                                </div>
+                                <div style="text-align: center; font-size: 24px; color: #667eea;">↓</div>
+                                <div class="flow-box" style="width: 100%; justify-content: center;">SkillInvoker.route()</div>
+                                <div style="text-align: center; font-size: 24px; color: #667eea;">↓</div>
+                                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
+                                    <div class="flow-box" style="width: 100%; font-size: 0.9em; background: linear-gradient(135deg, #667eea, #764ba2);">MCP工具调用</div>
+                                    <div class="flow-box" style="width: 100%; font-size: 0.9em; background: linear-gradient(135deg, #00b894, #55efc4);">LLM大模型生成</div>
+                                </div>
+                                <div style="text-align: center; font-size: 24px; color: #667eea;">↓</div>
+                                <div class="flow-box" style="width: 100%; justify-content: center;">ResponseFormatter.format()</div>
+                                <div style="text-align: center; font-size: 24px; color: #667eea;">↓</div>
+                                <div class="flow-box" style="width: 100%; justify-content: center;">SSE流式响应返回</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="subsection">
+                        <h3>7.2 MCP协议三层架构详解</h3>
+
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>层级</th>
+                                    <th>组件</th>
+                                    <th>职责</th>
+                                    <th>消息类型</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td rowspan="3"><strong>Host层</strong><br>(注册中心)</td>
+                                    <td>MCPHost</td>
+                                    <td>管理Server注册、发现、健康检查</td>
+                                    <td>REGISTER, DEREGISTER, DISCOVER</td>
+                                </tr>
+                                <tr>
+                                    <td>工具注册表</td>
+                                    <td>维护工具名称→Server映射</td>
+                                    <td>LIST_TOOLS, SUBSCRIBE</td>
+                                </tr>
+                                <tr>
+                                    <td>心跳检测</td>
+                                    <td>30秒超时自动注销</td>
+                                    <td>HEARTBEAT (10s间隔)</td>
+                                </tr>
+                                <tr>
+                                    <td rowspan="2"><strong>Server层</strong><br>(服务提供)</td>
+                                    <td>MCPServer</td>
+                                    <td>提供具体工具实现</td>
+                                    <td>CALL_TOOL_RESPONSE</td>
+                                </tr>
+                                <tr>
+                                    <td>MCPToolHandler</td>
+                                    <td>工具执行逻辑抽象</td>
+                                    <td>execute(params) → Any</td>
+                                </tr>
+                                <tr>
+                                    <td rowspan="2"><strong>Client层</strong><br>(服务消费)</td>
+                                    <td>MCPClient</td>
+                                    <td>调用工具、订阅更新</td>
+                                    <td>CALL_TOOL, SUBSCRIBE</td>
+                                </tr>
+                                <tr>
+                                    <td>MCPServerProxy</td>
+                                    <td>远程Server代理</td>
+                                    <td>execute_tool() → Result</td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                        <h4 style="margin-top: 25px; color: #667eea;">MCP工具注册流程</h4>
+                        <div class="code-block">
+<span style="color:#75715e"># 1. 创建Host (注册中心)</span>
+host = MCPFactory.create_host(<span style="color:#e6db74">"medical-mcp-host"</span>)
+<span style="color:#66d9ef">await</span> host.start()
+
+<span style="color:#75715e"># 2. 创建Server (服务提供方)</span>
+server = MCPFactory.create_server(
+    server_id=<span style="color:#e6db74">"medical-mcp-server"</span>,
+    name=<span style="color:#e6db74">"Medical Tools Server"</span>,
+    host=<span style="color:#e6db74">"localhost"</span>,
+    port=<span style="color:#ae81ff">50051</span>,
+    mcp_host=host
+)
+
+<span style="color:#75715e"># 3. 注册工具处理器</span>
+server.register_tool(
+    tool_definition=MCPTool(
+        name=<span style="color:#e6db74">"medical_knowledge_query"</span>,
+        description=<span style="color:#e6db74">"查询医疗知识库"</span>,
+        category=<span style="color:#e6db74">"medical"</span>,
+        input_schema={<span style="color:#e6db74">"query"</span>: <span style="color:#e6db74">"str"</span>},
+        output_schema={<span style="color:#e6db74">"result"</span>: <span style="color:#e6db74">"dict"</span>}
+    ),
+    handler=KnowledgeQueryHandler()
+)
+
+<span style="color:#75715e"># 4. 启动Server (自动注册到Host)</span>
+<span style="color:#66d9ef">await</span> server.start()
+                        </div>
+                    </div>
+
+                    <div class="subsection">
+                        <h3>7.3 MLP意图分类算法详解</h3>
+
+                        <div class="architecture-diagram" style="grid-template-columns: repeat(3, 1fr);">
+                            <div class="arch-layer" data-layer="输入处理">
+                                <div class="arch-item">原始文本输入</div>
+                                <div class="arch-item">字符级分词</div>
+                                <div class="arch-item">1-3gram滑窗</div>
+                                <div class="arch-item">TF-IDF向量化</div>
+                                <div class="arch-item">3366维稀疏向量</div>
+                            </div>
+                            <div class="arch-layer" data-layer="神经网络">
+                                <div class="arch-item">输入层: 3366维</div>
+                                <div class="arch-item">全连接 + ReLU</div>
+                                <div class="arch-item">隐藏层1: 128神经元</div>
+                                <div class="arch-item">全连接 + ReLU</div>
+                                <div class="arch-item">隐藏层2: 64神经元</div>
+                                <div class="arch-item">输出层: 11维Softmax</div>
+                            </div>
+                            <div class="arch-layer" data-layer="输出处理">
+                                <div class="arch-item">概率分布计算</div>
+                                <div class="arch-item">Argmax取最大值</div>
+                                <div class="arch-item">标签解码</div>
+                                <div class="arch-item">置信度输出</div>
+                                <div class="arch-item">意图类型返回</div>
+                            </div>
+                        </div>
+
+                        <h4 style="margin-top: 25px; color: #667eea;">特征提取参数</h4>
+                        <div class="code-block">
+TfidfVectorizer(
+    analyzer=<span style="color:#e6db74">'char'</span>,           <span style="color:#75715e"># 字符级别分析</span>
+    ngram_range=(<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">3</span>),          <span style="color:#75715e"># 1-3字符序列</span>
+    min_df=<span style="color:#ae81ff">2</span>,                   <span style="color:#75715e"># 最小文档频率</span>
+    max_df=<span style="color:#ae81ff">0.95</span>,                 <span style="color:#75715e"># 最大文档频率</span>
+    max_features=<span style="color:#ae81ff">3366</span>             <span style="color:#75715e"># 最大特征数</span>
+)
+
+<span style="color:#75715e"># 神经网络配置</span>
+MLPClassifier(
+    hidden_layer_sizes=(<span style="color:#ae81ff">128</span>, <span style="color:#ae81ff">64</span>),  <span style="color:#75715e"># 两层隐藏</span>
+    activation=<span style="color:#e6db74">'relu'</span>,           <span style="color:#75715e"># ReLU激活</span>
+    solver=<span style="color:#e6db74">'adam'</span>,               <span style="color:#75715e"># Adam优化器</span>
+    alpha=<span style="color:#ae81ff">0.0001</span>,                 <span style="color:#75715e"># L2正则化</span>
+    batch_size=<span style="color:#ae81ff">32</span>,                <span style="color:#75715e"># 批次大小</span>
+    learning_rate_init=<span style="color:#ae81ff">0.001</span>,     <span style="color:#75715e"># 初始学习率</span>
+    max_iter=<span style="color:#ae81ff">500</span>,                 <span style="color:#75715e"># 最大迭代</span>
+    early_stopping=<span style="color:#66d9ef">False</span>          <span style="color:#75715e"># 禁用早停</span>
+)
+                        </div>
+                    </div>
+
+                    <div class="subsection">
+                        <h3>7.4 Skill路由与调用流程</h3>
+
+                        <div class="tabs">
+                            <button class="tab active" onclick="showTab(event, 'skill-tab1')">症状咨询Skill</button>
+                            <button class="tab" onclick="showTab(event, 'skill-tab2')">预约挂号Skill</button>
+                            <button class="tab" onclick="showTab(event, 'skill-tab3')">随访管理Skill</button>
+                        </div>
+
+                        <div id="skill-tab1" class="tab-content active">
+                            <h4>SymptomAnalyzer Skill处理流程</h4>
+                            <div class="data-flow">
+                                <div class="flow-step">
+                                    <div class="step-number">1</div>
+                                    <div class="step-content">
+                                        <div class="step-title">接收输入</div>
+                                        <div class="step-desc">用户消息: "我头痛好几天了"</div>
+                                    </div>
+                                </div>
+                                <div class="flow-step">
+                                    <div class="step-number">2</div>
+                                    <div class="step-content">
+                                        <div class="step-title">症状实体抽取</div>
+                                        <div class="step-desc">使用正则表达式提取症状关键词: ["头痛"]</div>
+                                    </div>
+                                </div>
+                                <div class="flow-step">
+                                    <div class="step-number">3</div>
+                                    <div class="step-content">
+                                        <div class="step-title">调用MCP工具</div>
+                                        <div class="step-desc">tool: medical_knowledge_query, params: {"symptom": "头痛"}</div>
+                                    </div>
+                                </div>
+                                <div class="flow-step">
+                                    <div class="step-number">4</div>
+                                    <div class="step-content">
+                                        <div class="step-title">知识库查询</div>
+                                        <div class="step-desc">从knowledge_base.json匹配症状相关条目</div>
+                                    </div>
+                                </div>
+                                <div class="flow-step">
+                                    <div class="step-number">5</div>
+                                    <div class="step-content">
+                                        <div class="step-title">LLM增强 (可选)</div>
+                                        <div class="step-desc">将查询结果发送给LLM生成自然语言响应</div>
+                                    </div>
+                                </div>
+                                <div class="flow-step">
+                                    <div class="step-number">6</div>
+                                    <div class="step-content">
+                                        <div class="step-title">响应格式化</div>
+                                        <div class="step-desc">添加免责声明、格式化输出</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div id="skill-tab2" class="tab-content">
+                            <h4>AppointmentService Skill处理流程</h4>
+                            <div class="data-flow">
+                                <div class="flow-step">
+                                    <div class="step-number">1</div>
+                                    <div class="step-content">
+                                        <div class="step-title">接收预约请求</div>
+                                        <div class="step-desc">用户消息: "我想预约内科"</div>
+                                    </div>
+                                </div>
+                                <div class="flow-step">
+                                    <div class="step-number">2</div>
+                                    <div class="step-content">
+                                        <div class="step-title">参数收集</div>
+                                        <div class="step-desc">多轮对话收集: 科室、医生、日期、时间、手机号</div>
+                                    </div>
+                                </div>
+                                <div class="flow-step">
+                                    <div class="step-number">3</div>
+                                    <div class="step-content">
+                                        <div class="step-title">数据验证</div>
+                                        <div class="step-desc">手机号格式验证: 1[3-9]\d{9}</div>
+                                    </div>
+                                </div>
+                                <div class="flow-step">
+                                    <div class="step-number">4</div>
+                                    <div class="step-content">
+                                        <div class="step-title">生成预约号</div>
+                                        <div class="step-desc">格式: YY + YYYYMMDD + 4位序号</div>
+                                    </div>
+                                </div>
+                                <div class="flow-step">
+                                    <div class="step-number">5</div>
+                                    <div class="step-content">
+                                        <div class="step-title">存储预约记录</div>
+                                        <div class="step-desc">写入localStorage: medical_appointments</div>
+                                    </div>
+                                </div>
+                                <div class="flow-step">
+                                    <div class="step-number">6</div>
+                                    <div class="step-content">
+                                        <div class="step-title">自动创建患者档案</div>
+                                        <div class="step-desc">如不存在则创建medical_patients记录</div>
+                                    </div>
+                                </div>
+                                <div class="flow-step">
+                                    <div class="step-number">7</div>
+                                    <div class="step-content">
+                                        <div class="step-title">更新治疗档案</div>
+                                        <div class="step-desc">更新medical_records统计信息</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div id="skill-tab3" class="tab-content">
+                            <h4>FollowupHandler Skill处理流程</h4>
+                            <div class="data-flow">
+                                <div class="flow-step">
+                                    <div class="step-number">1</div>
+                                    <div class="step-content">
+                                        <div class="step-title">接收随访请求</div>
+                                        <div class="step-desc">用户消息: "我想查看随访情况"</div>
+                                    </div>
+                                </div>
+                                <div class="flow-step">
+                                    <div class="step-number">2</div>
+                                    <div class="step-content">
+                                        <div class="step-title">手机号验证</div>
+                                        <div class="step-desc">验证并提取11位手机号</div>
+                                    </div>
+                                </div>
+                                <div class="flow-step">
+                                    <div class="step-number">3</div>
+                                    <div class="step-content">
+                                        <div class="step-title">查询随访记录</div>
+                                        <div class="step-desc">从localStorage读取medical_followups</div>
+                                    </div>
+                                </div>
+                                <div class="flow-step">
+                                    <div class="step-number">4</div>
+                                    <div class="step-content">
+                                        <div class="step-title">关联预约查询</div>
+                                        <div class="step-desc">通过appointmentId关联预约信息</div>
+                                    </div>
+                                </div>
+                                <div class="flow-step">
+                                    <div class="step-number">5</div>
+                                    <div class="step-content">
+                                        <div class="step-title">新建随访记录</div>
+                                        <div class="step-desc">填写: 随访类型、内容、康复评估、下次随访日期</div>
+                                    </div>
+                                </div>
+                                <div class="flow-step">
+                                    <div class="step-number">6</div>
+                                    <div class="step-content">
+                                        <div class="step-title">生成随访ID</div>
+                                        <div class="step-desc">格式: FU + Unix时间戳(毫秒)</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="subsection">
+                        <h3>7.5 LLM流式响应流程</h3>
+
+                        <div class="code-block">
+<span style="color:#75715e"># LLM流式调用链路</span>
+<span style="color:#66d9ef">async def</span> <span style="color:#a6e22e">generate_response_stream</span>(user_message, intent, session_id):
+    <span style="color:#75715e"># 1. 发送思考事件</span>
+    <span style="color:#66d9ef">yield</span> {<span style="color:#e6db74">"type"</span>: <span style="color:#e6db74">"thinking"</span>, <span style="color:#e6db74">"content"</span>: <span style="color:#e6db74">"正在分析您的请求..."</span>}
+
+    <span style="color:#75715e"># 2. 发送意图识别事件</span>
+    <span style="color:#66d9ef">yield</span> {<span style="color:#e6db74">"type"</span>: <span style="color:#e6db74">"thinking"</span>, <span style="color:#e6db74">"content"</span>: <span style="color:#e6db74">f"识别到意图: {intent}"</span>}
+
+    <span style="color:#75715e"># 3. 发送LLM调用提示</span>
+    <span style="color:#66d9ef">yield</span> {<span style="color:#e6db74">"type"</span>: <span style="color:#e6db74">"thinking"</span>, <span style="color:#e6db74">"content"</span>: <span style="color:#e6db74">"调用qwen-plus大模型生成回复..."</span>}
+
+    <span style="color:#75715e"># 4. 构建消息列表</span>
+    messages = [
+        {<span style="color:#e6db74">"role"</span>: <span style="color:#e6db74">"system"</span>, <span style="color:#e6db74">"content"</span>: intent_specific_prompt},
+        ...history,  <span style="color:#75715e"># 对话历史</span>
+        {<span style="color:#e6db74">"role"</span>: <span style="color:#e6db74">"user"</span>, <span style="color:#e6db74">"content"</span>: user_message}
+    ]
+
+    <span style="color:#75715e"># 5. 流式调用LLM</span>
+    <span style="color:#66d9ef">async for</span> chunk <span style="color:#66d9ef">in</span> llm.chat(messages, stream=<span style="color:#66d9ef">True</span>):
+        <span style="color:#66d9ef">yield</span> {<span style="color:#e6db74">"type"</span>: <span style="color:#e6db74">"content"</span>, <span style="color:#e6db74">"content"</span>: chunk}
+
+    <span style="color:#75715e"># 6. 发送完成事件</span>
+    <span style="color:#66d9ef">yield</span> {<span style="color:#e6db74">"type"</span>: <span style="color:#e6db74">"done"</span>, <span style="color:#e6db74">"content"</span>: <span style="color:#e6db74">""</span>}
+                        </div>
+
+                        <h4 style="margin-top: 25px; color: #667eea;">SSE事件类型定义</h4>
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>事件类型</th>
+                                    <th>说明</th>
+                                    <th>前端处理</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><code>thinking</code></td>
+                                    <td>思考状态提示</td>
+                                    <td>显示加载动画/提示文本</td>
+                                </tr>
+                                <tr>
+                                    <td><code>tool_call</code></td>
+                                    <td>MCP工具调用通知</td>
+                                    <td>显示工具调用信息</td>
+                                </tr>
+                                <tr>
+                                    <td><code>content</code></td>
+                                    <td>LLM生成的内容片段</td>
+                                    <td>追加到对话显示区域</td>
+                                </tr>
+                                <tr>
+                                    <td><code>done</code></td>
+                                    <td>响应完成</td>
+                                    <td>隐藏加载动画</td>
+                                </tr>
+                                <tr>
+                                    <td><code>error</code></td>
+                                    <td>错误信息</td>
+                                    <td>显示错误提示</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div class="subsection">
+                        <h3>7.6 对话上下文管理机制</h3>
+
+                        <div class="code-block">
+<span style="color:#66d9ef">class</span> <span style="color:#a6e22e">DialogueContext</span>:
+    <span style="color:#e6db74">"""对话上下文管理器"""</span>
+
+    session_id: <span style="color:#66d9ef">str</span>              <span style="color:#75715e"># 会话唯一标识</span>
+    user_id: <span style="color:#66d9ef">str</span>                 <span style="color:#75715e"># 用户ID</span>
+    history: <span style="color:#66d9ef">List</span>[<span style="color:#66d9ef">Dict</span>]           <span style="color:#75715e"># 完整对话历史</span>
+    current_intent: <span style="color:#66d9ef">IntentResult</span>  <span style="color:#75715e"># 当前意图识别结果</span>
+    accumulated_entities: <span style="color:#66d9ef">Dict</span>     <span style="color:#75715e"># 累积收集的实体</span>
+    turn_count: <span style="color:#66d9ef">int</span>                <span style="color:#75715e"># 对话轮次计数</span>
+    last_turn_time: <span style="color:#66d9ef">str</span>           <span style="color:#75715e"># 上次对话时间</span>
+
+    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">add_entity</span>(self, key, value):
+        <span style="color:#75715e"># 添加/更新实体</span>
+        self.accumulated_entities[key] = value
+
+    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">get_missing_entities</span>(self, required_keys):
+        <span style="color:#75715e"># 返回缺失的必填实体</span>
+        <span style="color:#66d9ef">return</span> [k <span style="color:#66d9ef">for</span> k <span style="color:#66d9ef">in</span> required_keys <span style="color:#66d9ef">if</span> k <span style="color:#66d9ef">not in</span> self.accumulated_entities]
+
+    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">should_clear</span>(self):
+        <span style="color:#75715e"># 判断是否应清空上下文</span>
+        <span style="color:#66d9ef">return</span> (
+            self.turn_count > <span style="color:#ae81ff">20</span> <span style="color:#66d9ef">or</span>
+            self.current_intent.intent == <span style="color:#e6db74">"greeting"</span>
+        )
+                        </div>
+                    </div>
+
+                    <div class="subsection">
+                        <h3>7.7 数据同步与一致性</h3>
+
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>同步场景</th>
+                                    <th>触发条件</th>
+                                    <th>同步操作</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>预约创建</td>
+                                    <td>新增medical_appointments记录</td>
+                                    <td>
+                                        1. 创建/更新medical_patients<br>
+                                        2. 更新medical_records统计
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>随访创建</td>
+                                    <td>新增medical_followups记录</td>
+                                    <td>
+                                        1. 更新medical_records的lastVisit<br>
+                                        2. 关联appointmentId到预约
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>患者信息更新</td>
+                                    <td>修改medical_patients记录</td>
+                                    <td>
+                                        1. 更新updatedAt时间戳<br>
+                                        2. 同步到所有关联记录的显示
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>治疗档案查询</td>
+                                    <td>请求medical_records</td>
+                                    <td>
+                                        1. 实时聚合所有表数据<br>
+                                        2. 计算科室统计
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                        <div class="highlight-box success" style="margin-top: 20px;">
+                            <h4>🔗 跨表关联规则</h4>
+                            <ul style="margin-top: 10px;">
+                                <li><strong>主键关联</strong>: 所有表通过phone字段关联患者</li>
+                                <li><strong>预约-随访关联</strong>: followup.appointmentId → appointments.bookingNo</li>
+                                <li><strong>级联创建</strong>: 新增预约时自动创建患者档案</li>
+                                <li><strong>实时聚合</strong>: records查询时实时计算统计信息</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="subsection">
+                        <h3>7.8 错误处理与重试机制</h3>
+
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>错误类型</th>
+                                    <th>检测方式</th>
+                                    <th>处理策略</th>
+                                    <th>兜底方案</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>意图识别失败</td>
+                                    <td>置信度 < 0.5 或 异常</td>
+                                    <td>降低阈值重试一次</td>
+                                    <td>返回unknown意图兜底响应</td>
+                                </tr>
+                                <tr>
+                                    <td>MCP工具超时</td>
+                                    <td>asyncio.wait_for超时</td>
+                                    <td>3次指数退避重试</td>
+                                    <td>使用本地知识库数据</td>
+                                </tr>
+                                <tr>
+                                    <td>LLM服务异常</td>
+                                    <td>HTTP错误/超时</td>
+                                    <td>捕获异常，记录日志</td>
+                                    <td>使用预定义模板响应</td>
+                                </tr>
+                                <tr>
+                                    <td>参数缺失</td>
+                                    <td>实体抽取为空</td>
+                                    <td>触发澄清对话</td>
+                                    <td>引导用户输入缺失信息</td>
+                                </tr>
+                                <tr>
+                                    <td>数据验证失败</td>
+                                    <td>手机号格式错误</td>
+                                    <td>返回具体错误提示</td>
+                                    <td>要求重新输入</td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                        <div class="code-block" style="margin-top: 20px;">
+<span style="color:#75715e"># 重试机制示例</span>
+<span style="color:#66d9ef">async def</span> <span style="color:#a6e22e">call_tool_with_retry</span>(tool_name, params, max_retries=<span style="color:#ae81ff">3</span>):
+    <span style="color:#66d9ef">for</span> attempt <span style="color:#66d9ef">in</span> range(max_retries):
+        <span style="color:#66d9ef">try</span>:
+            result = <span style="color:#66d9ef">await</span> mcp_client.call_tool(tool_name, params, timeout=<span style="color:#ae81ff">30</span>)
+            <span style="color:#66d9ef">if</span> result.success:
+                <span style="color:#66d9ef">return</span> result
+        <span style="color:#66d9ef">except</span> asyncio.TimeoutError:
+            <span style="color:#66d9ef">if</span> attempt == max_retries - <span style="color:#ae81ff">1</span>:
+                <span style="color:#66d9ef">return</span> get_fallback_result(tool_name, params)
+            <span style="color:#66d9ef">await</span> asyncio.sleep(<span style="color:#ae81ff">2</span> ** attempt)  <span style="color:#75715e"># 指数退避</span>
+                        </div>
                     </div>
                 </div>
 
