@@ -2702,34 +2702,170 @@
             el.classList.toggle('selected');
         }
 
+        // ============ 症状分析流式请求函数 ============
+        async function streamSymptomAnalysis(symptomData, contentDiv) {
+            const resultBox = contentDiv.closest('.result-box') || contentDiv;
+            resultBox.classList.add('show');
+            contentDiv.innerHTML = '<p style="color:#888;">🔍 正在分析您的症状...</p>';
+
+            let fullContent = '';
+            let processDiv = null;
+            let intentDisplayed = false;
+
+            try {
+                const response = await fetch(API_BASE + '/symptom/analyze/stream', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        symptoms: symptomData.symptoms,
+                        description: symptomData.description,
+                        duration: symptomData.duration,
+                        severity: symptomData.severity,
+                        session_id: 'symptom_page',
+                        user_id: 'web_user'
+                    })
+                });
+
+                if (!response.ok) {
+                    throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+                }
+
+                // 创建处理进度显示
+                processDiv = document.createElement('div');
+                processDiv.className = 'process-indicator';
+                processDiv.style.cssText = 'margin-bottom:15px;padding:12px;background:#f8f9fa;border-radius:8px;font-size:0.85rem;';
+                contentDiv.innerHTML = '';
+                contentDiv.appendChild(processDiv);
+
+                const reader = response.body.getReader();
+                const decoder = new TextDecoder();
+                let buffer = '';
+
+                while (true) {
+                    const { done, value } = await reader.read();
+                    if (done) break;
+
+                    buffer += decoder.decode(value, { stream: true });
+                    const lines = buffer.split('\n');
+                    buffer = lines.pop();
+
+                    for (const line of lines) {
+                        if (line.trim() && line.startsWith('data: ')) {
+                            try {
+                                const data = JSON.parse(line.slice(6));
+
+                                // 查询重写事件
+                                if (data.type === 'query_rewrite') {
+                                    addProcessStep(processDiv, '✏️', '查询优化', `${data.original} → ${data.rewritten}`, 'warning');
+                                }
+                                // 意图识别事件
+                                else if (data.type === 'intent_recognition') {
+                                    if (!intentDisplayed) {
+                                        const intentNames = {
+                                            'symptom_inquiry': '症状咨询',
+                                            'department_query': '科室查询',
+                                            'medication_consult': '用药咨询',
+                                            'appointment': '预约挂号',
+                                            'health_education': '健康教育',
+                                            'greeting': '问候',
+                                            'unknown': '未知'
+                                        };
+                                        addProcessStep(processDiv, '🎯', '意图识别', `${intentNames[data.intent] || data.intent} (置信度: ${data.confidence_percent}%)`, 'success');
+                                        intentDisplayed = true;
+                                    }
+                                }
+                                // 工具调用事件
+                                else if (data.type === 'tool_call') {
+                                    const toolNames = {
+                                        'symptom-analyzer': '🩺 症状分析器',
+                                        'department-recommender': '🏥 科室推荐器',
+                                        'medication-advisor': '💊 用药顾问',
+                                        'health-educator': '📚 健康教育师'
+                                    };
+                                    addProcessStep(processDiv, '⚙️', '工具调用', toolNames[data.tool] || data.tool, 'info');
+                                }
+                                // 思考过程
+                                else if (data.type === 'thinking') {
+                                    addProcessStep(processDiv, '💭', 'AI分析', data.content, 'info');
+                                }
+                                // 内容生成
+                                else if (data.type === 'content') {
+                                    fullContent += data.content;
+                                    // 显示内容预览
+                                    const previewDiv = document.getElementById('symptom-content-preview');
+                                    if (!previewDiv) {
+                                        const contentPreview = document.createElement('div');
+                                        contentPreview.id = 'symptom-content-preview';
+                                        contentPreview.style.cssText = 'margin-top:15px;';
+                                        contentDiv.appendChild(contentPreview);
+                                    }
+                                    document.getElementById('symptom-content-preview').innerHTML = formatContent(fullContent);
+                                }
+                                // 完成
+                                else if (data.type === 'done') {
+                                    // 移除进度指示器，只保留内容
+                                    if (processDiv && processDiv.parentNode) {
+                                        processDiv.innerHTML = '<div style="color:#10b981;font-weight:600;">✅ 分析完成</div>' + processDiv.innerHTML;
+                                    }
+                                    break;
+                                }
+                                // 错误
+                                else if (data.type === 'error') {
+                                    contentDiv.innerHTML = '<p style="color:red;">❌ 错误: ' + data.content + '</p>';
+                                    break;
+                                }
+                            } catch (e) {
+                                console.error('Parse error:', e, line);
+                            }
+                        }
+                    }
+                }
+            } catch (error) {
+                console.error('Symptom analysis error:', error);
+                contentDiv.innerHTML = '<p style="color:red;">❌ 网络错误: ' + error.message + '</p>';
+            }
+        }
+
+        // 添加处理步骤
+        function addProcessStep(container, icon, title, content, type) {
+            const colors = {
+                success: '#10b981',
+                warning: '#f59e0b',
+                info: '#3b82f6',
+                error: '#ef4444'
+            };
+            const color = colors[type] || colors.info;
+            const step = document.createElement('div');
+            step.style.cssText = `display:flex;align-items:center;padding:6px 0;border-bottom:1px solid #e5e7eb;`;
+            step.innerHTML = `
+                <span style="font-size:1.2em;margin-right:8px;">${icon}</span>
+                <span style="font-weight:600;color:#374151;margin-right:8px;">${title}:</span>
+                <span style="color:${color};">${content}</span>
+            `;
+            container.appendChild(step);
+        }
+
         function analyzeSymptom() {
             const desc = document.getElementById('symptom-desc').value.trim();
             const tags = Array.from(document.querySelectorAll('.symptom-tag.selected')).map(el => el.textContent);
             const duration = document.getElementById('symptom-duration').value;
             const severity = document.getElementById('symptom-severity').value;
 
-            let message = '';
-            if (tags.length > 0) {
-                message += '我有以下症状：' + tags.join('、');
-            }
-            if (desc) {
-                message += (message ? '，' : '') + desc;
-            }
-            if (duration) {
-                const durationMap = { today: '今天刚开始', days: '1-3天', week: '约一周', weeks: '超过一周', month: '持续一个月以上' };
-                message += '，持续时间：' + durationMap[duration];
-            }
-            if (severity) {
-                const severityMap = { mild: '轻微', moderate: '中度', severe: '严重' };
-                message += '，程度：' + severityMap[severity];
-            }
+            // 构建结构化的症状数据
+            const symptomData = {
+                symptoms: tags,
+                description: desc,
+                duration: duration,
+                severity: severity
+            };
 
-            if (!message) {
-                alert('请描述您的症状');
+            if (tags.length === 0 && !desc) {
+                alert('请选择症状标签或描述您的症状');
                 return;
             }
 
-            streamRequest(message, 'symptom_page', document.getElementById('symptom-result-content'));
+            // 使用专门的症状分析流式请求
+            streamSymptomAnalysis(symptomData, document.getElementById('symptom-result-content'));
         }
 
         // ============ 科室推荐 ============

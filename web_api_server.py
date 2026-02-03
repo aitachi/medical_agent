@@ -61,6 +61,16 @@ class ChatRequest(BaseModel):
     use_llm: Optional[bool] = True  # 是否使用LLM增强响应
 
 
+class SymptomAnalysisRequest(BaseModel):
+    """症状分析请求"""
+    symptoms: List[str] = []  # 症状标签列表
+    description: str = ""  # 症状详细描述
+    duration: str = ""  # 持续时间
+    severity: str = ""  # 严重程度
+    session_id: Optional[str] = "symptom_page"
+    user_id: Optional[str] = "anonymous"
+
+
 class ChatResponse(BaseModel):
     """聊天响应"""
     response: str
@@ -390,6 +400,193 @@ async def chat_stream(request: ChatRequest):
                 # 使用本地Agent（传递原始用户消息以保持上下文）
                 response = await state.agent.process(
                     request.message,  # 使用原始消息保持对话连贯性
+                    request.session_id,
+                    request.user_id
+                )
+                yield {
+                    "type": "content",
+                    "content": response
+                }
+                yield {"type": "done", "content": ""}
+
+        except Exception as e:
+            import traceback
+            traceback.print_exc()
+            yield {
+                "type": "error",
+                "content": str(e)
+            }
+
+    return StreamingResponse(
+        stream_events(generate()),
+        media_type="text/event-stream",
+        headers={
+            "Cache-Control": "no-cache",
+            "Connection": "keep-alive",
+            "Access-Control-Allow-Origin": "*"
+        }
+    )
+
+
+@app.post("/api/symptom/analyze")
+async def analyze_symptom(request: SymptomAnalysisRequest):
+    """
+    症状分析专用端点（非流式）
+    接收结构化的症状数据（标签、描述、持续时间、严重程度）
+    生成针对性的医疗分析
+    """
+    state.increment_request()
+
+    try:
+        # 构建包含所有症状信息的详细消息
+        symptom_info_parts = []
+
+        if request.symptoms:
+            symptom_info_parts.append(f"症状标签：{', '.join(request.symptoms)}")
+
+        if request.description:
+            symptom_info_parts.append(f"详细描述：{request.description}")
+
+        if request.duration:
+            duration_map = {
+                "today": "今天刚开始",
+                "days": "1-3天",
+                "week": "约一周",
+                "weeks": "超过一周",
+                "month": "持续一个月以上"
+            }
+            duration_text = duration_map.get(request.duration, request.duration)
+            symptom_info_parts.append(f"持续时间：{duration_text}")
+
+        if request.severity:
+            severity_map = {
+                "mild": "轻微 - 可以忍受",
+                "moderate": "中度 - 有些影响生活",
+                "severe": "严重 - 难以忍受"
+            }
+            severity_text = severity_map.get(request.severity, request.severity)
+            symptom_info_parts.append(f"严重程度：{severity_text}")
+
+        # 组合所有信息
+        detailed_message = " | ".join(symptom_info_parts)
+
+        # 使用聊天端点处理
+        chat_req = ChatRequest(
+            message=f"请分析我的症状：{detailed_message}",
+            session_id=request.session_id,
+            user_id=request.user_id,
+            use_llm=True
+        )
+
+        # 调用聊天端点
+        return await chat(chat_req)
+
+    except Exception as e:
+        import traceback
+        traceback.print_exc()
+        raise HTTPException(status_code=500, detail=str(e))
+
+
+@app.post("/api/symptom/analyze/stream")
+async def analyze_symptom_stream(request: SymptomAnalysisRequest):
+    """
+    症状分析专用端点（流式）
+    接收结构化的症状数据（标签、描述、持续时间、严重程度）
+    生成针对性的医疗分析
+    """
+    state.increment_request()
+
+    async def generate():
+        try:
+            # 构建包含所有症状信息的详细消息
+            symptom_info_parts = []
+
+            if request.symptoms:
+                symptom_info_parts.append(f"症状标签：{', '.join(request.symptoms)}")
+
+            if request.description:
+                symptom_info_parts.append(f"详细描述：{request.description}")
+
+            if request.duration:
+                duration_map = {
+                    "today": "今天刚开始",
+                    "days": "1-3天",
+                    "week": "约一周",
+                    "weeks": "超过一周",
+                    "month": "持续一个月以上"
+                }
+                duration_text = duration_map.get(request.duration, request.duration)
+                symptom_info_parts.append(f"持续时间：{duration_text}")
+
+            if request.severity:
+                severity_map = {
+                    "mild": "轻微 - 可以忍受",
+                    "moderate": "中度 - 有些影响生活",
+                    "severe": "严重 - 难以忍受"
+                }
+                severity_text = severity_map.get(request.severity, request.severity)
+                symptom_info_parts.append(f"严重程度：{severity_text}")
+
+            # 组合所有信息
+            detailed_message = " | ".join(symptom_info_parts)
+
+            context = state.agent.get_or_create_context(request.session_id, request.user_id)
+
+            # 0. Query Rewrite - 查询重写
+            user_message = f"请分析我的症状：{detailed_message}"
+            rewrite_result = await state.agent.query_rewriter.rewrite(
+                user_message,
+                request.session_id,
+                context
+            )
+
+            # 发送重写结果（如果发生了改变）
+            if rewrite_result["changed"]:
+                yield {
+                    "type": "query_rewrite",
+                    "original": rewrite_result["original"],
+                    "rewritten": rewrite_result["rewritten"],
+                    "reason": rewrite_result["reason"]
+                }
+
+            # 使用重写后的消息进行后续处理
+            user_message = rewrite_result["rewritten"]
+
+            # 1. 发送意图识别过程
+            intent_result = await state.agent.classifier.classify(user_message, context)
+
+            # 发送意图识别结果
+            yield {
+                "type": "intent_recognition",
+                "intent": intent_result.intent.value,
+                "confidence": intent_result.confidence,
+                "confidence_percent": round(intent_result.confidence * 100, 2),
+                "skill": intent_result.target_skill,
+                "entities": intent_result.entities,
+                "query_rewritten": rewrite_result["changed"]
+            }
+
+            # 2. 如果使用MCP工具，发送工具调用信息
+            if intent_result.target_skill in ["symptom-analyzer", "department-recommender", "medication-advisor"]:
+                yield {
+                    "type": "tool_call",
+                    "tool": intent_result.target_skill,
+                    "message": f"正在调用医疗知识库..."
+                }
+
+            # 3. 生成响应
+            if state.llm_enabled and state.llm_service and LLM_AVAILABLE:
+                # 使用LLM流式生成
+                async for event in state.llm_service.generate_response_stream(
+                    user_message=user_message,
+                    intent=intent_result.intent.value,
+                    session_id=request.session_id
+                ):
+                    yield event
+            else:
+                # 使用本地Agent
+                response = await state.agent.process(
+                    user_message,
                     request.session_id,
                     request.user_id
                 )
