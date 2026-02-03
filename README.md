@@ -5,7 +5,7 @@
 ## 作者信息
 
 **作者:** Aitachi
-**微信:** 18116011230
+**微信:** 17521168494
 **邮箱:** 44158892@qq.com
 **GitHub:** https://github.com/aitachi/medical_agent
 
