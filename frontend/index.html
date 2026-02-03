@@ -2706,14 +2706,21 @@
         async function streamSymptomAnalysis(symptomData, contentDiv) {
             const resultBox = contentDiv.closest('.result-box') || contentDiv;
             resultBox.classList.add('show');
-            contentDiv.innerHTML = '<p style="color:#888;">🔍 正在分析您的症状...</p>';
+            contentDiv.innerHTML = '<p style="color:#888;">正在分析您的症状，请稍候...</p>';
 
             let fullContent = '';
             let processDiv = null;
             let intentDisplayed = false;
+            let timeoutId = null;
 
             try {
-                const response = await fetch(API_BASE + '/symptom/analyze/stream', {
+                // 设置超时定时器（3分钟）
+                const timeoutPromise = new Promise((_, reject) => {
+                    timeoutId = setTimeout(() => reject(new Error('请求超时，请稍后重试')), 180000);
+                });
+
+                // 创建请求Promise
+                const requestPromise = fetch(API_BASE + '/symptom/analyze/stream', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({
@@ -2726,8 +2733,13 @@
                     })
                 });
 
+                // 等待请求完成或超时
+                const response = await Promise.race([requestPromise, timeoutPromise]);
+
+                if (timeoutId) clearTimeout(timeoutId);
+
                 if (!response.ok) {
-                    throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+                    throw new Error('HTTP ' + response.status + ': ' + response.statusText);
                 }
 
                 // 创建处理进度显示
@@ -2756,7 +2768,7 @@
 
                                 // 查询重写事件
                                 if (data.type === 'query_rewrite') {
-                                    addProcessStep(processDiv, '✏️', '查询优化', `${data.original} → ${data.rewritten}`, 'warning');
+                                    addProcessStep(processDiv, '✏', '查询优化', data.original + ' → ' + data.rewritten, 'warning');
                                 }
                                 // 意图识别事件
                                 else if (data.type === 'intent_recognition') {
@@ -2770,19 +2782,19 @@
                                             'greeting': '问候',
                                             'unknown': '未知'
                                         };
-                                        addProcessStep(processDiv, '🎯', '意图识别', `${intentNames[data.intent] || data.intent} (置信度: ${data.confidence_percent}%)`, 'success');
+                                        addProcessStep(processDiv, '🎯', '意图识别', (intentNames[data.intent] || data.intent) + ' (置信度: ' + data.confidence_percent + '%)', 'success');
                                         intentDisplayed = true;
                                     }
                                 }
                                 // 工具调用事件
                                 else if (data.type === 'tool_call') {
                                     const toolNames = {
-                                        'symptom-analyzer': '🩺 症状分析器',
-                                        'department-recommender': '🏥 科室推荐器',
-                                        'medication-advisor': '💊 用药顾问',
-                                        'health-educator': '📚 健康教育师'
+                                        'symptom-analyzer': '症状分析器',
+                                        'department-recommender': '科室推荐器',
+                                        'medication-advisor': '用药顾问',
+                                        'health-educator': '健康教育师'
                                     };
-                                    addProcessStep(processDiv, '⚙️', '工具调用', toolNames[data.tool] || data.tool, 'info');
+                                    addProcessStep(processDiv, '⚙', '工具调用', toolNames[data.tool] || data.tool, 'info');
                                 }
                                 // 思考过程
                                 else if (data.type === 'thinking') {
@@ -2803,15 +2815,14 @@
                                 }
                                 // 完成
                                 else if (data.type === 'done') {
-                                    // 移除进度指示器，只保留内容
                                     if (processDiv && processDiv.parentNode) {
-                                        processDiv.innerHTML = '<div style="color:#10b981;font-weight:600;">✅ 分析完成</div>' + processDiv.innerHTML;
+                                        processDiv.innerHTML = '<div style="color:#10b981;font-weight:600;">✓ 分析完成</div>' + processDiv.innerHTML;
                                     }
                                     break;
                                 }
                                 // 错误
                                 else if (data.type === 'error') {
-                                    contentDiv.innerHTML = '<p style="color:red;">❌ 错误: ' + data.content + '</p>';
+                                    contentDiv.innerHTML = '<p style="color:red;">错误: ' + data.content + '</p>';
                                     break;
                                 }
                             } catch (e) {
@@ -2821,8 +2832,13 @@
                     }
                 }
             } catch (error) {
+                if (timeoutId) clearTimeout(timeoutId);
                 console.error('Symptom analysis error:', error);
-                contentDiv.innerHTML = '<p style="color:red;">❌ 网络错误: ' + error.message + '</p>';
+                if (error.message === '请求超时，请稍后重试') {
+                    contentDiv.innerHTML = '<p style="color:orange;">请求超时，请检查网络后重试</p>';
+                } else {
+                    contentDiv.innerHTML = '<p style="color:red;">网络错误: ' + error.message + '</p>';
+                }
             }
         }
 
@@ -2836,12 +2852,8 @@
             };
             const color = colors[type] || colors.info;
             const step = document.createElement('div');
-            step.style.cssText = `display:flex;align-items:center;padding:6px 0;border-bottom:1px solid #e5e7eb;`;
-            step.innerHTML = `
-                <span style="font-size:1.2em;margin-right:8px;">${icon}</span>
-                <span style="font-weight:600;color:#374151;margin-right:8px;">${title}:</span>
-                <span style="color:${color};">${content}</span>
-            `;
+            step.style.cssText = 'display:flex;align-items:center;padding:6px 0;border-bottom:1px solid #e5e7eb;';
+            step.innerHTML = '<span style="font-size:1.2em;margin-right:8px;">' + icon + '</span><span style="font-weight:600;color:#374151;margin-right:8px;">' + title + ':</span><span style="color:' + color + ';">' + content + '</span>';
             container.appendChild(step);
         }
 

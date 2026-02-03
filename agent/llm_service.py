@@ -24,7 +24,7 @@ class DashScopeLLM:
         api_key: str,
         base_url: str = "https://dashscope.aliyuncs.com/compatible-mode/v1",
         model: str = "qwen-plus",
-        timeout: int = 30
+        timeout: int = 120
     ):
         self.api_key = api_key
         self.base_url = base_url
