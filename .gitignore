@@ -49,3 +49,7 @@ tests/knowledge_base_concise.json
 # OS
 .DS_Store
 Thumbs.db
+
+# Claude Code
+.claude/
+.claude*
