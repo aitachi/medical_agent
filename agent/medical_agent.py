@@ -572,14 +572,38 @@ class IntentClassifier:
             "恶心", "呕吐", "腹泻", "失眠", "乏力", "疼痛", "痒",
             "不适", "难受", "不舒服",
             # 扩展症状词
-            "好痛", "很痛", "特痛", "剧痛", "酸痛", "胀痛"
+            "好痛", "很痛", "特痛", "剧痛", "酸痛", "胀痛",
+            # 呼吸系统症状
+            "胸闷", "气短", "呼吸困难", "喘不过气", "气促", "气喘",
+            "呼吸不畅", "上气不接下气", "憋气", "窒息",
+            # 心血管症状
+            "心慌", "心悸", "心跳", "心累", "心口",
+            # 消化系统症状
+            "胃痛", "腹胀", "反酸", "烧心", "便秘",
+            # 神经系统症状
+            "麻木", "抽筋", "震颤", "晕厥",
+            # 其他症状
+            "出虚汗", "盗汗", "畏寒", "发冷"
         ]
 
         # 药品关键词库
         self.drug_keywords = [
             "药", "胶囊", "片", "颗粒", "口服液", "注射",
             "阿莫西林", "布洛芬", "对乙酰氨基酚", "二甲双胍", "硝苯地平",
-            "奥美拉唑", "头孢", "青霉素", "感冒药", "退烧药"
+            "奥美拉唑", "头孢", "青霉素", "感冒药", "退烧药",
+            # 用法相关关键词
+            "怎么吃", "怎么用", "用量", "用法", "服用", "吃多少",
+            "副作用", "不良反应", "禁忌", "注意事项",
+            # 药品剂型
+            "丸", "膏", "贴", "栓剂", "滴剂", "糖浆", "喷雾"
+        ]
+
+        # 报告解读关键词库
+        self.report_keywords = [
+            "报告", "检查报告", "化验", "体检", "结果", "正常", "异常",
+            "指标", "偏高", "偏低", "超标", "参考值", "范围", "阴性", "阳性",
+            "血常规", "尿常规", "肝功能", "肾功能", "血糖", "血压", "血脂",
+            "心电图", "B超", "CT", "X光", "MRI", "解读", "分析"
         ]
 
         # 科室关键词库
@@ -621,8 +645,8 @@ class IntentClassifier:
                 {"patterns": [r"吃(.+?)(可以|行)吗"], "weight": 0.8},
             ],
             IntentType.APPOINTMENT: [
-                {"patterns": [r"想?挂(个)?号", r"预约(.+?)(号|门诊)", r"帮我挂号", r"我要挂号"], "weight": 1.0},
-                {"patterns": [r"排号", r"想看医生"], "weight": 0.9},
+                {"patterns": [r"想?挂(.+?)号", r"想?挂(个)?(.+?)号", r"预约(.+?)(号|门诊)", r"帮我挂号", r"我要挂号"], "weight": 1.0},
+                {"patterns": [r"排号", r"想看医生", r"取消预约", r"取消(我的)?挂号"], "weight": 0.9},
             ],
             IntentType.REPORT_INTERPRET: [
                 {"patterns": [r"看看(.+?)报告", r"(.+?)报告(怎么|如何)", r"(.+?)结果(.+?)(正常|异常)"], "weight": 1.0},
@@ -751,7 +775,11 @@ class IntentClassifier:
                 # 归一化分数
                 scores[intent_type] = min(intent_score / len(rules), 1.0)
 
-        # 2. 关键词加分
+        # 2. 关键词加分（添加优先级检测）
+        # 预约挂号优先级最高 - 检测"挂号"关键词
+        if re.search(r'挂(.+?)号|预约|取消(预约|挂号)', text):
+            scores[IntentType.APPOINTMENT] = scores.get(IntentType.APPOINTMENT, 0) + 1.5
+
         for keyword in self.symptom_keywords:
             if keyword in text:
                 scores[IntentType.SYMPTOM_INQUIRY] = scores.get(IntentType.SYMPTOM_INQUIRY, 0) + 0.2
@@ -759,6 +787,12 @@ class IntentClassifier:
         for keyword in self.drug_keywords:
             if keyword in text:
                 scores[IntentType.MEDICATION_CONSULT] = scores.get(IntentType.MEDICATION_CONSULT, 0) + 0.3
+
+        # 报告解读关键词（新增）
+        if hasattr(self, 'report_keywords'):
+            for keyword in self.report_keywords:
+                if keyword in text:
+                    scores[IntentType.REPORT_INTERPRET] = scores.get(IntentType.REPORT_INTERPRET, 0) + 0.3
 
         # 特殊模式：吃了X天药
         if re.search(r'吃.*?药|服用.*?|.*?药.*?[天次]', text):

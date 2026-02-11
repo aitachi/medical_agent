@@ -1192,6 +1192,178 @@
             0%, 50% { opacity: 1; }
             51%, 100% { opacity: 0; }
         }
+
+        /* 页面跳转提示卡片样式 */
+        .page-suggestion-card {
+            margin: 15px 0;
+            padding: 16px;
+            background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+            border: 2px solid #0ea5e9;
+            border-radius: 12px;
+            animation: slideIn 0.3s ease-out;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .page-suggestion-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 12px;
+        }
+
+        .page-suggestion-icon {
+            font-size: 28px;
+            margin-right: 10px;
+        }
+
+        .page-suggestion-title {
+            font-weight: 600;
+            color: #0369a1;
+            font-size: 15px;
+        }
+
+        .page-suggestion-desc {
+            color: #555;
+            font-size: 13px;
+            margin-bottom: 12px;
+            line-height: 1.4;
+        }
+
+        .page-suggestion-actions {
+            display: flex;
+            gap: 10px;
+        }
+
+        .page-suggestion-btn {
+            flex: 1;
+            padding: 10px 16px;
+            border: none;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .page-suggestion-btn.primary {
+            background: linear-gradient(135deg, #0ea5e9 0%, #0284c7 100%);
+            color: white;
+        }
+
+        .page-suggestion-btn.primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(14, 165, 233, 0.3);
+        }
+
+        .page-suggestion-btn.secondary {
+            background: white;
+            color: #555;
+            border: 1px solid #ddd;
+        }
+
+        .page-suggestion-btn.secondary:hover {
+            background: #f5f5f5;
+        }
+
+        /* 候选页面选择卡片样式 */
+        .candidate-pages-card {
+            margin: 15px 0;
+            padding: 16px;
+            background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+            border: 2px solid #f59e0b;
+            border-radius: 12px;
+            animation: slideIn 0.3s ease-out;
+        }
+
+        .candidate-pages-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 12px;
+        }
+
+        .candidate-pages-title {
+            font-weight: 600;
+            color: #92400e;
+            font-size: 15px;
+        }
+
+        .candidate-pages-list {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .candidate-page-item {
+            display: flex;
+            align-items: center;
+            padding: 12px;
+            background: white;
+            border: 2px solid #e5e7eb;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .candidate-page-item:hover {
+            border-color: #f59e0b;
+            background: #fffbeb;
+            transform: translateX(5px);
+        }
+
+        .candidate-page-icon {
+            font-size: 24px;
+            margin-right: 12px;
+        }
+
+        .candidate-page-info {
+            flex: 1;
+        }
+
+        .candidate-page-name {
+            font-weight: 600;
+            color: #333;
+            font-size: 14px;
+            margin-bottom: 2px;
+        }
+
+        .candidate-page-desc {
+            color: #666;
+            font-size: 12px;
+        }
+
+        .candidate-page-confidence {
+            font-size: 12px;
+            color: #f59e0b;
+            font-weight: 500;
+            background: #fef3c7;
+            padding: 2px 8px;
+            border-radius: 10px;
+        }
+
+        .candidate-pages-dismiss {
+            margin-top: 12px;
+            text-align: center;
+        }
+
+        .candidate-pages-dismiss-btn {
+            color: #92400e;
+            font-size: 13px;
+            cursor: pointer;
+            text-decoration: underline;
+        }
+
+        .candidate-pages-dismiss-btn:hover {
+            color: #78350f;
+        }
     </style>
 </head>
 <body>
@@ -2034,6 +2206,109 @@
             document.getElementById('page-title').textContent = pageInfo[pageName].title;
         }
 
+        // ============ 页面跳转提示功能 ============
+
+        /**
+         * 显示页面跳转提示卡片
+         * @param {Object} pageInfo - 页面信息对象
+         * @param {string} pageInfo.page_id - 页面ID
+         * @param {string} pageInfo.page_name - 页面名称
+         * @param {string} pageInfo.page_icon - 页面图标
+         * @param {string} pageInfo.description - 页面描述
+         */
+        function showPageSuggestion(pageInfo) {
+            const messagesDiv = document.getElementById('chat-messages');
+
+            const suggestionCard = document.createElement('div');
+            suggestionCard.className = 'message assistant';
+            suggestionCard.innerHTML = `
+                <div class="page-suggestion-card">
+                    <div class="page-suggestion-header">
+                        <span class="page-suggestion-icon">${pageInfo.page_icon}</span>
+                        <span class="page-suggestion-title">为您推荐：${pageInfo.page_name}</span>
+                    </div>
+                    <div class="page-suggestion-desc">${pageInfo.description}</div>
+                    <div class="page-suggestion-actions">
+                        <button class="page-suggestion-btn primary" onclick="navigateToPage('${pageInfo.page_id}')">
+                            ✨ 前往${pageInfo.page_name}
+                        </button>
+                        <button class="page-suggestion-btn secondary" onclick="dismissSuggestion(this)">
+                            留在聊天
+                        </button>
+                    </div>
+                </div>
+            `;
+
+            messagesDiv.appendChild(suggestionCard);
+            messagesDiv.scrollTop = messagesDiv.scrollHeight;
+        }
+
+        /**
+         * 跳转到指定页面
+         * @param {string} pageId - 页面ID (如 page-symptom)
+         */
+        function navigateToPage(pageId) {
+            // 从 pageId 提取页面名称 (page-symptom -> symptom)
+            const pageName = pageId.replace('page-', '');
+
+            // 使用已有的 switchPage 函数
+            switchPage(pageName);
+        }
+
+        /**
+         * 关闭页面跳转提示
+         * @param {HTMLElement} btn - 关闭按钮元素
+         */
+        function dismissSuggestion(btn) {
+            const card = btn.closest('.message');
+            if (card) {
+                card.style.opacity = '0';
+                card.style.transform = 'translateY(-10px)';
+                card.style.transition = 'all 0.3s ease-out';
+                setTimeout(() => card.remove(), 300);
+            }
+        }
+
+        /**
+         * 显示候选页面选择卡片
+         * @param {Array} pages - 候选页面列表
+         * @param {string} message - 提示消息
+         */
+        function showCandidatePages(pages, message) {
+            const messagesDiv = document.getElementById('chat-messages');
+
+            // 生成候选页面列表 HTML
+            let pagesHtml = pages.map(page => `
+                <div class="candidate-page-item" onclick="navigateToPage('${page.page_id}')">
+                    <span class="candidate-page-icon">${page.page_icon}</span>
+                    <div class="candidate-page-info">
+                        <div class="candidate-page-name">${page.page_name}</div>
+                        <div class="candidate-page-desc">${page.description}</div>
+                    </div>
+                    ${page.confidence ? `<span class="candidate-page-confidence">${page.confidence}%</span>` : ''}
+                </div>
+            `).join('');
+
+            const candidateCard = document.createElement('div');
+            candidateCard.className = 'message assistant';
+            candidateCard.innerHTML = `
+                <div class="candidate-pages-card">
+                    <div class="candidate-pages-header">
+                        <span class="candidate-pages-title">🤔 ${message || '请选择您需要的功能：'}</span>
+                    </div>
+                    <div class="candidate-pages-list">
+                        ${pagesHtml}
+                    </div>
+                    <div class="candidate-pages-dismiss">
+                        <span class="candidate-pages-dismiss-btn" onclick="dismissSuggestion(this)">继续聊天</span>
+                    </div>
+                </div>
+            `;
+
+            messagesDiv.appendChild(candidateCard);
+            messagesDiv.scrollTop = messagesDiv.scrollHeight;
+        }
+
         // 通用流式请求函数
         async function streamRequest(message, sessionId, contentDiv) {
             const resultBox = contentDiv.closest('.result-box') || contentDiv;
@@ -2579,6 +2854,9 @@
         async function streamRequestWithProcess(message, sessionId, contentDiv, processDiv) {
             let fullContent = '';
             let processItems = [];
+            let suggestedPage = null; // 存储推荐页面信息
+            let candidatePages = null; // 存储候选页面列表
+            let candidatePagesMessage = null; // 候选页面提示消息
 
             // 工具名称映射
             const toolNames = {
@@ -2649,6 +2927,15 @@
                             else if (data.type === 'done') {
                                 addProcessItem(processDiv, '✅', '响应生成完成', '', 'process-status');
                             }
+                            // 页面推荐 (新增)
+                            else if (data.type === 'page_suggestion') {
+                                suggestedPage = data.page_info;
+                            }
+                            // 候选页面列表 (意图不明确时)
+                            else if (data.type === 'candidate_pages') {
+                                candidatePages = data.pages;
+                                candidatePagesMessage = data.message;
+                            }
                         }
                     }
                 }
@@ -2660,6 +2947,20 @@
                         processDiv.classList.toggle('collapsed');
                     };
                 }, 3000);
+
+                // 显示页面跳转提示 (新增)
+                if (suggestedPage) {
+                    setTimeout(() => {
+                        showPageSuggestion(suggestedPage);
+                    }, 800);
+                }
+
+                // 显示候选页面选择 (意图不明确时)
+                if (candidatePages && candidatePages.length >= 2) {
+                    setTimeout(() => {
+                        showCandidatePages(candidatePages, candidatePagesMessage);
+                    }, 800);
+                }
 
             } catch (error) {
                 contentDiv.innerHTML = '<p style="color:red;">网络错误</p>';

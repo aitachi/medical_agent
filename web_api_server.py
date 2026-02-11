@@ -78,6 +78,8 @@ class ChatResponse(BaseModel):
     confidence: Optional[float] = None
     skill_invoked: Optional[str] = None
     timestamp: str
+    suggested_page: Optional[Dict[str, str]] = None  # 页面跳转推荐
+    candidate_pages: Optional[List[Dict[str, str]]] = None  # 候选页面列表（意图不明确时）
 
 
 class SessionInfo(BaseModel):
@@ -96,6 +98,221 @@ class SystemStatus(BaseModel):
     active_sessions: int
     total_requests: int
     classifier_type: str
+
+
+# ============================================================
+# 页面推荐映射
+# ============================================================
+
+def get_suggested_page(intent: str, confidence: float, message: str = "") -> Optional[Dict[str, str]]:
+    """
+    根据意图和置信度返回推荐页面
+
+    Args:
+        intent: 意图类型
+        confidence: 置信度
+        message: 用户原始消息（用于智能匹配）
+
+    Returns:
+        页面信息字典或None
+    """
+    # 置信度过低时不推荐跳转（降低阈值到0.3）
+    if confidence < 0.3:
+        return None
+
+    # 不推荐跳转的意图
+    if intent in ["greeting", "unknown", "chitchat"]:
+        return None
+
+    # 智能匹配：根据消息内容覆盖意图推荐
+    message_lower = message.lower()
+
+    # 预约查询相关关键词 -> my_appointment
+    if any(kw in message_lower for kw in ["查询我的预约", "查看预约", "我的预约状态", "挂号记录", "我的挂号"]):
+        return {
+            "page_id": "page-myappointment",
+            "page_name": "预约查询",
+            "page_icon": "📋",
+            "description": "查看和管理您的预约记录"
+        }
+
+    # 随访管理相关关键词 -> followup
+    if any(kw in message_lower for kw in ["添加随访", "随访记录", "随访情况", "查看随访"]):
+        return {
+            "page_id": "page-followup",
+            "page_name": "随访管理",
+            "page_icon": "📝",
+            "description": "管理患者随访记录和康复评估"
+        }
+
+    # 治疗档案相关关键词 -> records
+    if any(kw in message_lower for kw in ["查看我的病历", "治疗档案", "我的档案", "就诊记录", "病历"]):
+        return {
+            "page_id": "page-records",
+            "page_name": "治疗档案",
+            "page_icon": "📂",
+            "description": "查看完整的就诊历史和健康档案"
+        }
+
+    page_mapping = {
+        "symptom_inquiry": {
+            "page_id": "page-symptom",
+            "page_name": "症状咨询",
+            "page_icon": "🔍",
+            "description": "使用专业的症状分析工具，获取详细健康建议"
+        },
+        "department_query": {
+            "page_id": "page-department",
+            "page_name": "科室推荐",
+            "page_icon": "🏥",
+            "description": "智能匹配最合适的科室，快速找到对口的医生"
+        },
+        "medication_consult": {
+            "page_id": "page-medication",
+            "page_name": "用药咨询",
+            "page_icon": "💊",
+            "description": "查询药品用法、副作用和注意事项"
+        },
+        "appointment": {
+            "page_id": "page-appointment",
+            "page_name": "预约挂号",
+            "page_icon": "📅",
+            "description": "在线预约医生门诊，选择合适的时间段"
+        },
+        "health_education": {
+            "page_id": "page-health",
+            "page_name": "健康教育",
+            "page_icon": "📚",
+            "description": "获取健康知识科普和疾病预防建议"
+        },
+        "report_interpret": {
+            "page_id": "page-report",
+            "page_name": "报告解读",
+            "page_icon": "📋",
+            "description": "专业解读检查报告，了解各项指标含义"
+        },
+        "my_appointment": {
+            "page_id": "page-myappointment",
+            "page_name": "我的预约",
+            "page_icon": "📋",
+            "description": "查看和管理您的预约记录"
+        },
+        "followup": {
+            "page_id": "page-followup",
+            "page_name": "随访管理",
+            "page_icon": "📝",
+            "description": "管理患者随访记录和康复评估"
+        },
+        "records": {
+            "page_id": "page-records",
+            "page_name": "治疗档案",
+            "page_icon": "📂",
+            "description": "查看完整的就诊历史和健康档案"
+        }
+    }
+
+    return page_mapping.get(intent)
+
+
+def get_candidate_pages(alternatives: List[Dict], message: str = "") -> List[Dict[str, str]]:
+    """
+    根据候选意图列表返回候选页面列表
+
+    Args:
+        alternatives: 候选意图列表 [{"intent": "xxx", "confidence": 0.5}, ...]
+        message: 用户原始消息
+
+    Returns:
+        候选页面列表，最多3个
+    """
+    # 不推荐跳转的意图
+    excluded_intents = ["greeting", "unknown", "chitchat"]
+
+    # 页面映射
+    page_mapping = {
+        "symptom_inquiry": {
+            "page_id": "page-symptom",
+            "page_name": "症状咨询",
+            "page_icon": "🔍",
+            "description": "使用专业的症状分析工具，获取详细健康建议"
+        },
+        "department_query": {
+            "page_id": "page-department",
+            "page_name": "科室推荐",
+            "page_icon": "🏥",
+            "description": "智能匹配最合适的科室，快速找到对口的医生"
+        },
+        "medication_consult": {
+            "page_id": "page-medication",
+            "page_name": "用药咨询",
+            "page_icon": "💊",
+            "description": "查询药品用法、副作用和注意事项"
+        },
+        "appointment": {
+            "page_id": "page-appointment",
+            "page_name": "预约挂号",
+            "page_icon": "📅",
+            "description": "在线预约医生门诊，选择合适的时间段"
+        },
+        "health_education": {
+            "page_id": "page-health",
+            "page_name": "健康教育",
+            "page_icon": "📚",
+            "description": "获取健康知识科普和疾病预防建议"
+        },
+        "report_interpret": {
+            "page_id": "page-report",
+            "page_name": "报告解读",
+            "page_icon": "📋",
+            "description": "专业解读检查报告，了解各项指标含义"
+        },
+        "my_appointment": {
+            "page_id": "page-myappointment",
+            "page_name": "我的预约",
+            "page_icon": "📋",
+            "description": "查看和管理您的预约记录"
+        },
+        "followup": {
+            "page_id": "page-followup",
+            "page_name": "随访管理",
+            "page_icon": "📝",
+            "description": "管理患者随访记录和康复评估"
+        },
+        "records": {
+            "page_id": "page-records",
+            "page_name": "治疗档案",
+            "page_icon": "📂",
+            "description": "查看完整的就诊历史和健康档案"
+        }
+    }
+
+    candidate_pages = []
+    seen_intents = set()
+
+    for alt in alternatives[:5]:  # 最多看前5个
+        intent = alt.get("intent", "")
+        confidence = alt.get("confidence", 0)
+
+        # 跳过排除的意图和低置信度
+        if intent in excluded_intents or confidence < 0.2:
+            continue
+
+        # 跳过已添加的意图
+        if intent in seen_intents:
+            continue
+
+        # 获取页面信息
+        page_info = page_mapping.get(intent)
+        if page_info:
+            page_info["confidence"] = round(confidence * 100, 1)  # 添加置信度百分比
+            candidate_pages.append(page_info)
+            seen_intents.add(intent)
+
+        # 最多返回3个
+        if len(candidate_pages) >= 3:
+            break
+
+    return candidate_pages
 
 
 # ============================================================
@@ -409,6 +626,41 @@ async def chat_stream(request: ChatRequest):
                 }
                 yield {"type": "done", "content": ""}
 
+            # 4. 检查是否需要推荐页面跳转
+            confidence = intent_result.confidence
+
+            # 高置信度 (>= 0.6): 直接推荐单个页面
+            if confidence >= 0.6:
+                suggested_page = get_suggested_page(
+                    intent_result.intent.value,
+                    confidence,
+                    request.message
+                )
+                if suggested_page:
+                    yield {
+                        "type": "page_suggestion",
+                        "page_info": suggested_page
+                    }
+            # 中等置信度 (0.3-0.6): 返回候选页面列表让用户选择
+            elif confidence >= 0.3 and hasattr(intent_result, 'alternatives') and intent_result.alternatives:
+                # 构建候选意图列表（包含主意图）
+                all_alternatives = [{"intent": intent_result.intent.value, "confidence": confidence}]
+                all_alternatives.extend(intent_result.alternatives)
+
+                candidate_pages = get_candidate_pages(all_alternatives, request.message)
+                if len(candidate_pages) >= 2:
+                    yield {
+                        "type": "candidate_pages",
+                        "pages": candidate_pages,
+                        "message": "我不太确定您的需求，请选择您想要的功能："
+                    }
+                elif len(candidate_pages) == 1:
+                    # 只有一个候选时，直接推荐
+                    yield {
+                        "type": "page_suggestion",
+                        "page_info": candidate_pages[0]
+                    }
+
         except Exception as e:
             import traceback
             traceback.print_exc()
@@ -475,7 +727,7 @@ async def analyze_symptom(request: SymptomAnalysisRequest):
             message=f"请分析我的症状：{detailed_message}",
             session_id=request.session_id,
             user_id=request.user_id,
-            use_llm=True
+            use_llm=False  # 使用本地模式避免超时
         )
 
         # 调用聊天端点
@@ -596,6 +848,41 @@ async def analyze_symptom_stream(request: SymptomAnalysisRequest):
                 }
                 yield {"type": "done", "content": ""}
 
+            # 4. 检查是否需要推荐页面跳转
+            confidence = intent_result.confidence
+
+            # 高置信度 (>= 0.6): 直接推荐单个页面
+            if confidence >= 0.6:
+                suggested_page = get_suggested_page(
+                    intent_result.intent.value,
+                    confidence,
+                    request.message
+                )
+                if suggested_page:
+                    yield {
+                        "type": "page_suggestion",
+                        "page_info": suggested_page
+                    }
+            # 中等置信度 (0.3-0.6): 返回候选页面列表让用户选择
+            elif confidence >= 0.3 and hasattr(intent_result, 'alternatives') and intent_result.alternatives:
+                # 构建候选意图列表（包含主意图）
+                all_alternatives = [{"intent": intent_result.intent.value, "confidence": confidence}]
+                all_alternatives.extend(intent_result.alternatives)
+
+                candidate_pages = get_candidate_pages(all_alternatives, request.message)
+                if len(candidate_pages) >= 2:
+                    yield {
+                        "type": "candidate_pages",
+                        "pages": candidate_pages,
+                        "message": "我不太确定您的需求，请选择您想要的功能："
+                    }
+                elif len(candidate_pages) == 1:
+                    # 只有一个候选时，直接推荐
+                    yield {
+                        "type": "page_suggestion",
+                        "page_info": candidate_pages[0]
+                    }
+
         except Exception as e:
             import traceback
             traceback.print_exc()
@@ -673,12 +960,46 @@ async def chat(request: ChatRequest):
             last_intent=intent_result.intent.value if intent_result else None
         )
 
+        # 获取推荐页面或候选页面
+        suggested_page = None
+        candidate_pages = None
+        confidence = intent_result.confidence if intent_result else 0
+
+        # 高置信度 (>= 0.6): 直接推荐单个页面
+        if confidence >= 0.6:
+            suggested_page = get_suggested_page(
+                intent_result.intent.value,
+                confidence,
+                request.message
+            )
+        # 中等置信度 (0.3-0.6): 返回候选页面列表
+        elif confidence >= 0.3 and hasattr(intent_result, 'alternatives') and intent_result.alternatives:
+            # 构建候选意图列表（包含主意图）
+            all_alternatives = [{"intent": intent_result.intent.value, "confidence": confidence}]
+            all_alternatives.extend(intent_result.alternatives)
+
+            candidate_pages = get_candidate_pages(all_alternatives, request.message)
+
+            # 如果只有一个候选，直接推荐
+            if len(candidate_pages) == 1:
+                suggested_page = candidate_pages[0]
+                candidate_pages = None
+        # 低置信度但有智能匹配
+        elif confidence >= 0.3:
+            suggested_page = get_suggested_page(
+                intent_result.intent.value,
+                confidence,
+                request.message
+            )
+
         return ChatResponse(
             response=response,
             intent=intent_result.intent.value if intent_result else None,
             confidence=intent_result.confidence if intent_result else None,
             skill_invoked=intent_result.target_skill if intent_result else None,
-            timestamp=datetime.now().isoformat()
+            timestamp=datetime.now().isoformat(),
+            suggested_page=suggested_page,
+            candidate_pages=candidate_pages
         )
 
     except Exception as e:
