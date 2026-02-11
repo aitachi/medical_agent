@@ -116,16 +116,21 @@ def get_suggested_page(intent: str, confidence: float, message: str = "") -> Opt
     Returns:
         页面信息字典或None
     """
-    # 置信度过低时不推荐跳转（降低阈值到0.3）
-    if confidence < 0.3:
-        return None
-
     # 不推荐跳转的意图
-    if intent in ["greeting", "unknown", "chitchat"]:
+    if intent in ["greeting", "chitchat"]:
         return None
 
     # 智能匹配：根据消息内容覆盖意图推荐
     message_lower = message.lower()
+
+    # 血糖/血压相关 -> 健康教育或症状咨询
+    if any(kw in message_lower for kw in ["血糖升高", "血糖高", "血压升高", "血压高", "血糖突然", "血压突然"]):
+        return {
+            "page_id": "page-health",
+            "page_name": "健康教育",
+            "page_icon": "📚",
+            "description": "获取健康知识科普和疾病预防建议"
+        }
 
     # 预约查询相关关键词 -> my_appointment
     if any(kw in message_lower for kw in ["查询我的预约", "查看预约", "我的预约状态", "挂号记录", "我的挂号"]):
@@ -153,6 +158,10 @@ def get_suggested_page(intent: str, confidence: float, message: str = "") -> Opt
             "page_icon": "📂",
             "description": "查看完整的就诊历史和健康档案"
         }
+
+    # 置信度过低时不推荐跳转
+    if confidence < 0.3:
+        return None
 
     page_mapping = {
         "symptom_inquiry": {
@@ -313,6 +322,66 @@ def get_candidate_pages(alternatives: List[Dict], message: str = "") -> List[Dic
             break
 
     return candidate_pages
+
+
+def get_default_candidate_pages(existing_pages: List[Dict] = None) -> List[Dict[str, str]]:
+    """
+    获取默认的候选页面列表（当候选页面不足时使用）
+
+    Args:
+        existing_pages: 已有的候选页面列表
+
+    Returns:
+        默认候选页面列表
+    """
+    # 获取已有页面的 ID
+    existing_ids = set()
+    if existing_pages:
+        existing_ids = {p.get("page_id") for p in existing_pages}
+
+    # 默认页面列表（按常用程度排序）
+    default_pages = [
+        {
+            "page_id": "page-symptom",
+            "page_name": "症状咨询",
+            "page_icon": "🔍",
+            "description": "使用专业的症状分析工具，获取详细健康建议",
+            "confidence": "推荐"
+        },
+        {
+            "page_id": "page-health",
+            "page_name": "健康教育",
+            "page_icon": "📚",
+            "description": "获取健康知识科普和疾病预防建议",
+            "confidence": "推荐"
+        },
+        {
+            "page_id": "page-appointment",
+            "page_name": "预约挂号",
+            "page_icon": "📅",
+            "description": "在线预约医生门诊，选择合适的时间段",
+            "confidence": "推荐"
+        },
+        {
+            "page_id": "page-medication",
+            "page_name": "用药咨询",
+            "page_icon": "💊",
+            "description": "查询药品用法、副作用和注意事项",
+            "confidence": "推荐"
+        },
+        {
+            "page_id": "page-department",
+            "page_name": "科室推荐",
+            "page_icon": "🏥",
+            "description": "智能匹配最合适的科室，快速找到对口的医生",
+            "confidence": "推荐"
+        }
+    ]
+
+    # 过滤掉已有的页面
+    result = [p for p in default_pages if p["page_id"] not in existing_ids]
+
+    return result
 
 
 # ============================================================
@@ -629,8 +698,8 @@ async def chat_stream(request: ChatRequest):
             # 4. 检查是否需要推荐页面跳转
             confidence = intent_result.confidence
 
-            # 高置信度 (>= 0.6): 直接推荐单个页面
-            if confidence >= 0.6:
+            # 高置信度 (>= 0.5): 直接推荐单个页面
+            if confidence >= 0.5:
                 suggested_page = get_suggested_page(
                     intent_result.intent.value,
                     confidence,
@@ -641,21 +710,43 @@ async def chat_stream(request: ChatRequest):
                         "type": "page_suggestion",
                         "page_info": suggested_page
                     }
-            # 中等置信度 (0.3-0.6): 返回候选页面列表让用户选择
-            elif confidence >= 0.3 and hasattr(intent_result, 'alternatives') and intent_result.alternatives:
-                # 构建候选意图列表（包含主意图）
+            # 中低置信度 (< 0.5): 返回候选页面列表让用户选择
+            else:
+                # 先检查是否有智能匹配的页面
+                smart_match_page = get_suggested_page(
+                    intent_result.intent.value,
+                    confidence,
+                    request.message
+                )
+
+                # 构建候选意图列表
                 all_alternatives = [{"intent": intent_result.intent.value, "confidence": confidence}]
-                all_alternatives.extend(intent_result.alternatives)
+                if hasattr(intent_result, 'alternatives') and intent_result.alternatives:
+                    all_alternatives.extend(intent_result.alternatives)
 
                 candidate_pages = get_candidate_pages(all_alternatives, request.message)
+
+                # 如果有智能匹配的页面，将其放在候选列表最前面
+                if smart_match_page:
+                    # 移除已存在的相同页面
+                    candidate_pages = [p for p in candidate_pages if p.get("page_id") != smart_match_page.get("page_id")]
+                    # 将智能匹配的页面放在最前面
+                    smart_match_page["confidence"] = "智能匹配"
+                    candidate_pages.insert(0, smart_match_page)
+
+                # 如果候选页面少于3个，添加默认的常用页面
+                if len(candidate_pages) < 3:
+                    default_pages = get_default_candidate_pages(candidate_pages)
+                    candidate_pages.extend(default_pages)
+                    candidate_pages = candidate_pages[:3]  # 最多3个
+
                 if len(candidate_pages) >= 2:
                     yield {
                         "type": "candidate_pages",
                         "pages": candidate_pages,
-                        "message": "我不太确定您的需求，请选择您想要的功能："
+                        "message": "请问您需要以下哪项服务？"
                     }
                 elif len(candidate_pages) == 1:
-                    # 只有一个候选时，直接推荐
                     yield {
                         "type": "page_suggestion",
                         "page_info": candidate_pages[0]
@@ -851,8 +942,8 @@ async def analyze_symptom_stream(request: SymptomAnalysisRequest):
             # 4. 检查是否需要推荐页面跳转
             confidence = intent_result.confidence
 
-            # 高置信度 (>= 0.6): 直接推荐单个页面
-            if confidence >= 0.6:
+            # 高置信度 (>= 0.5): 直接推荐单个页面
+            if confidence >= 0.5:
                 suggested_page = get_suggested_page(
                     intent_result.intent.value,
                     confidence,
@@ -863,21 +954,43 @@ async def analyze_symptom_stream(request: SymptomAnalysisRequest):
                         "type": "page_suggestion",
                         "page_info": suggested_page
                     }
-            # 中等置信度 (0.3-0.6): 返回候选页面列表让用户选择
-            elif confidence >= 0.3 and hasattr(intent_result, 'alternatives') and intent_result.alternatives:
-                # 构建候选意图列表（包含主意图）
+            # 中低置信度 (< 0.5): 返回候选页面列表让用户选择
+            else:
+                # 先检查是否有智能匹配的页面
+                smart_match_page = get_suggested_page(
+                    intent_result.intent.value,
+                    confidence,
+                    request.message
+                )
+
+                # 构建候选意图列表
                 all_alternatives = [{"intent": intent_result.intent.value, "confidence": confidence}]
-                all_alternatives.extend(intent_result.alternatives)
+                if hasattr(intent_result, 'alternatives') and intent_result.alternatives:
+                    all_alternatives.extend(intent_result.alternatives)
 
                 candidate_pages = get_candidate_pages(all_alternatives, request.message)
+
+                # 如果有智能匹配的页面，将其放在候选列表最前面
+                if smart_match_page:
+                    # 移除已存在的相同页面
+                    candidate_pages = [p for p in candidate_pages if p.get("page_id") != smart_match_page.get("page_id")]
+                    # 将智能匹配的页面放在最前面
+                    smart_match_page["confidence"] = "智能匹配"
+                    candidate_pages.insert(0, smart_match_page)
+
+                # 如果候选页面少于3个，添加默认的常用页面
+                if len(candidate_pages) < 3:
+                    default_pages = get_default_candidate_pages(candidate_pages)
+                    candidate_pages.extend(default_pages)
+                    candidate_pages = candidate_pages[:3]  # 最多3个
+
                 if len(candidate_pages) >= 2:
                     yield {
                         "type": "candidate_pages",
                         "pages": candidate_pages,
-                        "message": "我不太确定您的需求，请选择您想要的功能："
+                        "message": "请问您需要以下哪项服务？"
                     }
                 elif len(candidate_pages) == 1:
-                    # 只有一个候选时，直接推荐
                     yield {
                         "type": "page_suggestion",
                         "page_info": candidate_pages[0]
