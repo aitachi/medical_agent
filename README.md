@@ -5,13 +5,13 @@
 ## 作者信息
 
 **作者:** Aitachi
-**微信:** 17521168494
+**微信:** 17521168497
 **邮箱:** 44158892@qq.com
 **GitHub:** https://github.com/aitachi/medical_agent
 
 ## 在线体验
 
-🏥 **[点击访问医疗智能助手网站](http://59.110.40.73/medical/)**
+🏥 **[点击访问医疗智能助手网站](https://aitachi.cloud/medical)**
 
 直接体验基于多Agent架构的医疗智能对话系统，支持：
 - 🔍 症状分析 - 专业AI症状诊断

@@ -5,7 +5,7 @@
 **项目名称**: 医疗智能助手 (Medical AI Assistant)
 **测试日期**: 2026年2月2日
 **测试环境**: Conda Agent环境 (Python 3.10.19)
-**测试人员**: Claude AI Test Engineer
+**测试人员**: AI Test Engineer
 **报告版本**: 1.0
 
 ---
@@ -425,5 +425,5 @@ MCP工具调用
 ---
 
 **报告生成时间**: 2026-02-02 11:15:00
-**报告生成者**: Claude AI Test Engineer
+**报告生成者**: AI Test Engineer
 **审核状态**: 待审核
