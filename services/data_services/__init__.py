@@ -1,115 +1,97 @@
 # -*- coding: utf-8 -*-
 """
-服务模块
+医疗智能助手 - 数据服务层
+提供用户数据支撑服务
 """
 
-from .knowledge_service import (
-    KnowledgeService,
-    KnowledgeResult,
-    get_knowledge_service,
-    reset_knowledge_service
-)
-
-from .profile_service import (
-    ProfileService,
-    get_profile_service,
-    reset_profile_service
-)
-
-# 数据服务层
-from .data_services import (
-    # User Profile Service
+from .user_profile_service import (
     UserProfileService,
     UserProfile,
     get_user_profile_service,
-    reset_user_profile_service,
+    reset_user_profile_service
+)
 
-    # Health Records Service
+from .health_records_service import (
     HealthRecordsService,
     HealthRecord,
     get_health_records_service,
-    reset_health_records_service,
+    reset_health_records_service
+)
 
-    # Chronic Disease Service
+from .chronic_disease_service import (
     ChronicDiseaseService,
     ChronicRecord,
     TrendAnalysis,
     get_chronic_disease_service,
-    reset_chronic_disease_service,
+    reset_chronic_disease_service
+)
 
-    # Preference Service
+from .preference_service import (
     PreferenceService,
     UserPreference,
     get_preference_service,
-    reset_preference_service,
+    reset_preference_service
+)
 
-    # Behavior Log Service
+from .behavior_log_service import (
     BehaviorLogService,
     BehaviorLog,
     SessionLog,
     ActionType,
     get_behavior_log_service,
-    reset_behavior_log_service,
+    reset_behavior_log_service
+)
 
-    # Reminder Service
+from .reminder_service import (
     ReminderDataService,
     Reminder,
     ReminderType,
     get_reminder_service,
-    reset_reminder_service,
+    reset_reminder_service
+)
 
-    # Payment Service
+from .payment_service import (
     PaymentService,
     Order,
     Coupon,
     get_payment_service,
-    reset_payment_service,
+    reset_payment_service
+)
 
-    # Location Service
+from .location_service import (
     LocationService,
     Location,
     get_location_service,
-    reset_location_service,
+    reset_location_service
 )
 
 __all__ = [
-    # 知识库服务
-    'KnowledgeService',
-    'KnowledgeResult',
-    'get_knowledge_service',
-    'reset_knowledge_service',
-
-    # 用户画像服务（旧版）
-    'ProfileService',
-    'get_profile_service',
-    'reset_profile_service',
-
-    # 数据服务层 - 用户画像服务
+    # User Profile Service
     'UserProfileService',
     'UserProfile',
     'get_user_profile_service',
     'reset_user_profile_service',
 
-    # 数据服务层 - 健康档案服务
+    # Health Records Service
     'HealthRecordsService',
     'HealthRecord',
     'get_health_records_service',
     'reset_health_records_service',
 
-    # 数据服务层 - 慢病数据服务
+    # Chronic Disease Service
     'ChronicDiseaseService',
     'ChronicRecord',
     'TrendAnalysis',
     'get_chronic_disease_service',
     'reset_chronic_disease_service',
 
-    # 数据服务层 - 偏好数据服务
+    # Preference Service
     'PreferenceService',
     'UserPreference',
     'get_preference_service',
     'reset_preference_service',
 
-    # 数据服务层 - 行为日志服务
+    # Behavior Log Service
     'BehaviorLogService',
     'BehaviorLog',
     'SessionLog',
@@ -117,21 +99,21 @@ __all__ = [
     'get_behavior_log_service',
     'reset_behavior_log_service',
 
-    # 数据服务层 - 提醒数据服务
+    # Reminder Service
     'ReminderDataService',
     'Reminder',
     'ReminderType',
     'get_reminder_service',
     'reset_reminder_service',
 
-    # 数据服务层 - 支付数据服务
+    # Payment Service
     'PaymentService',
     'Order',
     'Coupon',
     'get_payment_service',
     'reset_payment_service',
 
-    # 数据服务层 - 位置数据服务
+    # Location Service
     'LocationService',
     'Location',
     'get_location_service',

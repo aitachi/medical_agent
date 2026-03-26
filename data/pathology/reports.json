@@ -1,0 +1,862 @@
+[
+  {
+    "report_id": "PATH001",
+    "report_type": "cytology",
+    "patient_id": "P123456",
+    "specimen_info": {
+      "specimen_type": "液基薄层细胞学(TCT)",
+      "site": "宫颈",
+      "collection_date": "2025-01-15"
+    },
+    "microscopic": {
+      "description": "涂片细胞量丰富，可见鳞状上皮细胞呈层次排列，表层、中层、底层细胞比例正常。细胞核大小均匀，染色质细腻，未见核异型性。未见挖空细胞。颈管柱状上皮细胞可见，未见异常。炎症细胞少量。",
+      "features": [
+        "鳞状上皮细胞形态正常",
+        "核浆比正常",
+        "未见挖空细胞",
+        "未见癌细胞"
+      ]
+    },
+    "diagnosis": {
+      "primary": "未见上皮内病变或恶性病变(NILM)",
+      "grade": ""
+    },
+    "pathologist": "王医师",
+    "report_date": "2025-01-18"
+  },
+  {
+    "report_id": "PATH002",
+    "report_type": "cytology",
+    "patient_id": "P234567",
+    "specimen_info": {
+      "specimen_type": "液基薄层细胞学(TCT)",
+      "site": "宫颈",
+      "collection_date": "2025-02-10"
+    },
+    "microscopic": {
+      "description": "涂片中可见少量鳞状上皮细胞核增大，约为正常中层细胞核的2.5倍，核染色质轻度增多，可见轻度核深染。细胞边界清楚，核浆比轻度增加。未见明确的高级别核异型性。背景可见少量炎症细胞。",
+      "features": [
+        "鳞状细胞核轻度增大",
+        "核染色质轻度增多",
+        "核浆比轻度增加",
+        "未见HSIL改变"
+      ]
+    },
+    "diagnosis": {
+      "primary": "非典型鳞状细胞，意义不明确(ASC-US)",
+      "grade": ""
+    },
+    "pathologist": "李医师",
+    "report_date": "2025-02-13"
+  },
+  {
+    "report_id": "PATH003",
+    "report_type": "cytology",
+    "patient_id": "P345678",
+    "specimen_info": {
+      "specimen_type": "液基薄层细胞学(TCT)",
+      "site": "宫颈",
+      "collection_date": "2025-03-08"
+    },
+    "microscopic": {
+      "description": "涂片可见少量成熟型鳞状上皮细胞，胞浆丰富，核周空晕明显，核增大伴轻度异型性，核膜不规则，可见双核细胞。可见典型挖空细胞。背景可见炎症细胞和坏死碎片。",
+      "features": [
+        "可见典型挖空细胞",
+        "核周空晕明显",
+        "HPV感染相关改变",
+        "低级别鳞状上皮内病变特征"
+      ]
+    },
+    "diagnosis": {
+      "primary": "低级别鳞状上皮内病变(LSIL)",
+      "grade": "CIN 1"
+    },
+    "pathologist": "张医师",
+    "report_date": "2025-03-11"
+  },
+  {
+    "report_id": "PATH004",
+    "report_type": "cytology",
+    "patient_id": "P456789",
+    "specimen_info": {
+      "specimen_type": "液基薄层细胞学(TCT)",
+      "site": "宫颈",
+      "collection_date": "2025-04-05"
+    },
+    "microscopic": {
+      "description": "涂片见大量异型鳞状上皮细胞，细胞核明显增大，染色质粗颗粒状，核膜不规则，核浆比明显增高。细胞形态多样，可见异型性明显的角化不良细胞。背景可见坏死碎片和炎症细胞。",
+      "features": [
+        "细胞核明显增大异型",
+        "染色质粗颗粒状",
+        "核浆比明显增高",
+        "高级别鳞状上皮内病变特征"
+      ]
+    },
+    "diagnosis": {
+      "primary": "高级别鳞状上皮内病变(HSIL)",
+      "grade": "CIN 2-3"
+    },
+    "pathologist": "刘医师",
+    "report_date": "2025-04-08"
+  },
+  {
+    "report_id": "PATH005",
+    "report_type": "cytology",
+    "patient_id": "P567890",
+    "specimen_info": {
+      "specimen_type": "液基薄层细胞学(TCT)",
+      "site": "宫颈",
+      "collection_date": "2025-05-12"
+    },
+    "microscopic": {
+      "description": "涂片见大量恶性肿瘤细胞，细胞排列散在或成团，细胞形态明显异型，核增大畸形，染色质粗块状，核仁明显，可见异常核分裂象。胞浆少而深染。背景可见肿瘤素质(坏死、出血、炎症细胞)。",
+      "features": [
+        "恶性肿瘤细胞明显异型",
+        "核畸形，染色质粗块状",
+        "核仁明显增大",
+        "可见异常核分裂象"
+      ]
+    },
+    "diagnosis": {
+      "primary": "鳞状细胞癌(SCC)",
+      "grade": ""
+    },
+    "pathologist": "陈医师",
+    "report_date": "2025-05-15"
+  },
+  {
+    "report_id": "PATH006",
+    "report_type": "cytology",
+    "patient_id": "P678901",
+    "specimen_info": {
+      "specimen_type": "胸水细胞学",
+      "site": "右侧胸腔",
+      "collection_date": "2025-06-08"
+    },
+    "microscopic": {
+      "description": "涂片见大量异型上皮细胞，细胞成团或散在分布，细胞核增大，染色质增多，核仁明显，胞浆丰富。细胞排列呈腺样结构，可见核偏位。背景可见红细胞和炎症细胞。细胞块免疫组化提示腺癌来源。",
+      "features": [
+        "异型上皮细胞呈腺样排列",
+        "核增大，核仁明显",
+        "胞浆丰富",
+        "符合腺癌细胞学特征"
+      ]
+    },
+    "diagnosis": {
+      "primary": "查见癌细胞",
+      "grade": "腺癌"
+    },
+    "pathologist": "赵医师",
+    "report_date": "2025-06-11"
+  },
+  {
+    "report_id": "PATH007",
+    "report_type": "cytology",
+    "patient_id": "P789012",
+    "specimen_info": {
+      "specimen_type": "腹水细胞学",
+      "site": "腹腔",
+      "collection_date": "2025-07-10"
+    },
+    "microscopic": {
+      "description": "涂片见间皮细胞、淋巴细胞、少量中性粒细胞。间皮细胞形态正常，呈立方形或多边形，核居中，胞浆丰富。未见异型细胞或癌细胞。背景可见少量红细胞。",
+      "features": [
+        "间皮细胞形态正常",
+        "淋巴细胞为主",
+        "未见异型细胞",
+        "未见癌细胞"
+      ]
+    },
+    "diagnosis": {
+      "primary": "未见癌细胞",
+      "grade": ""
+    },
+    "pathologist": "孙医师",
+    "report_date": "2025-07-13"
+  },
+  {
+    "report_id": "PATH008",
+    "report_type": "cytology",
+    "patient_id": "P890123",
+    "specimen_info": {
+      "specimen_type": "尿液细胞学",
+      "site": "尿液",
+      "collection_date": "2025-08-15"
+    },
+    "microscopic": {
+      "description": "涂片见少量移行上皮细胞(尿路上皮细胞)，细胞形态正常，核大小均匀，染色质细腻。可见少量伞细胞(表层大细胞)。背景可见红细胞和白细胞。未见异型细胞或恶性肿瘤细胞。",
+      "features": [
+        "移行上皮细胞形态正常",
+        "可见伞细胞",
+        "核无明显异型",
+        "未见恶性肿瘤细胞"
+      ]
+    },
+    "diagnosis": {
+      "primary": "未见异常",
+      "grade": ""
+    },
+    "pathologist": "周医师",
+    "report_date": "2025-08-18"
+  },
+  {
+    "report_id": "PATH009",
+    "report_type": "cytology",
+    "patient_id": "P901234",
+    "specimen_info": {
+      "specimen_type": "痰液细胞学",
+      "site": "痰液",
+      "collection_date": "2025-09-20"
+    },
+    "microscopic": {
+      "description": "涂片见纤毛柱状上皮细胞、鳞状上皮细胞、巨噬细胞。可见少量异型细胞，核增大，染色质轻度增多，核膜轻度不规则。细胞形态介于良恶性之间，建议进一步检查。",
+      "features": [
+        "可见少量异型细胞",
+        "核增大，染色质增多",
+        "核膜轻度不规则",
+        "建议进一步检查"
+      ]
+    },
+    "diagnosis": {
+      "primary": "查见异型细胞",
+      "grade": ""
+    },
+    "pathologist": "吴医师",
+    "report_date": "2025-09-23"
+  },
+  {
+    "report_id": "PATH010",
+    "report_type": "cytology",
+    "patient_id": "P012345",
+    "specimen_info": {
+      "specimen_type": "细针穿刺细胞学",
+      "site": "甲状腺左叶结节",
+      "collection_date": "2025-10-05"
+    },
+    "microscopic": {
+      "description": "涂片细胞量中等，可见滤泡上皮细胞排列成乳头状结构，细胞核轻度增大，可见核沟和核内假包涵体。间质可见少量胶原纤维。背景可见较多胶质。细胞形态提示乳头状病变。",
+      "features": [
+        "滤泡上皮呈乳头状排列",
+        "可见核沟",
+        "可见核内假包涵体",
+        "背景胶质丰富"
+      ]
+    },
+    "diagnosis": {
+      "primary": "乳头状病变",
+      "grade": "可疑乳头状癌"
+    },
+    "pathologist": "郑医师",
+    "report_date": "2025-10-08"
+  },
+  {
+    "report_id": "PATH011",
+    "report_type": "histology",
+    "patient_id": "P123789",
+    "specimen_info": {
+      "specimen_type": "胃黏膜活检",
+      "site": "胃窦",
+      "collection_date": "2025-01-20"
+    },
+    "microscopic": {
+      "description": "黏膜层见慢性炎性细胞浸润，以淋巴细胞和浆细胞为主，可见少量中性粒细胞浸润腺体。腺体排列规则，无明显萎缩。固有膜可见充血水肿。未见肠上皮化生，未见异型增生，未见恶性肿瘤。",
+      "features": [
+        "慢性炎性细胞浸润",
+        "腺体排列规则",
+        "无明显萎缩",
+        "无异型增生"
+      ]
+    },
+    "diagnosis": {
+      "primary": "慢性胃炎",
+      "grade": ""
+    },
+    "pathologist": "冯医师",
+    "report_date": "2025-01-23"
+  },
+  {
+    "report_id": "PATH012",
+    "report_type": "histology",
+    "patient_id": "P234890",
+    "specimen_info": {
+      "specimen_type": "胃黏膜活检",
+      "site": "胃体",
+      "collection_date": "2025-02-25"
+    },
+    "microscopic": {
+      "description": "黏膜层腺体减少，固有膜纤维组织增生。残留腺体变小，部分呈囊性扩张。可见肠上皮化生，杯状细胞和吸收细胞混合存在。慢性炎性细胞浸润中度。未见异型增生，未见恶性肿瘤。",
+      "features": [
+        "腺体减少、萎缩",
+        "固有膜纤维化",
+        "肠上皮化生",
+        "无异型增生"
+      ]
+    },
+    "diagnosis": {
+      "primary": "萎缩性胃炎伴肠上皮化生",
+      "grade": "中度"
+    },
+    "pathologist": "袁医师",
+    "report_date": "2025-02-28"
+  },
+  {
+    "report_id": "PATH013",
+    "report_type": "histology",
+    "patient_id": "P345901",
+    "specimen_info": {
+      "specimen_type": "肠黏膜活检",
+      "site": "乙状结肠",
+      "collection_date": "2025-03-15"
+    },
+    "microscopic": {
+      "description": "见腺管状结构增生，腺体排列紧密，腺上皮细胞呈高柱状，核位于基底部，核增大伴轻度异型性，核分裂象可见。间质少，无浸润。腺体呈绒毛状或管状结构，表面光滑。",
+      "features": [
+        "腺管状增生",
+        "腺上皮轻度异型",
+        "间质少无浸润",
+        "符合腺瘤特征"
+      ]
+    },
+    "diagnosis": {
+      "primary": "管状腺瘤",
+      "grade": "低级别上皮内瘤变"
+    },
+    "pathologist": "彭医师",
+    "report_date": "2025-03-18"
+  },
+  {
+    "report_id": "PATH014",
+    "report_type": "histology",
+    "patient_id": "P456012",
+    "specimen_info": {
+      "specimen_type": "乳腺肿块切除",
+      "site": "左乳腺外上象限",
+      "collection_date": "2025-04-20"
+    },
+    "microscopic": {
+      "description": "见良性增生的导管和腺泡，上皮细胞形态规则，无明显异型性。间质纤维组织增生，伴有胶原化，可见少量淋巴细胞浸润。周围脂肪组织可见挤压。无包膜，境界不清。无异型性，无坏死。",
+      "features": [
+        "导管和腺泡良性增生",
+        "间质纤维化",
+        "上皮细胞无异型",
+        "无浸润性生长"
+      ]
+    },
+    "diagnosis": {
+      "primary": "纤维腺瘤",
+      "grade": ""
+    },
+    "pathologist": "蒋医师",
+    "report_date": "2025-04-23"
+  },
+  {
+    "report_id": "PATH015",
+    "report_type": "histology",
+    "patient_id": "P567123",
+    "specimen_info": {
+      "specimen_type": "乳腺肿块穿刺",
+      "site": "右乳腺内上象限",
+      "collection_date": "2025-05-18"
+    },
+    "microscopic": {
+      "description": "见恶性肿瘤细胞呈巢状、条索状浸润性生长，细胞核异型性明显，核分裂象易见。部分区域呈导管样结构，中央可见坏死。间质纤维组织增生伴少量淋巴细胞浸润。免疫组化：ER(+)，PR(+)，HER2(-)。",
+      "features": [
+        "浸润性生长",
+        "核异型性明显",
+        "核分裂象易见",
+        "导管样结构伴中央坏死"
+      ]
+    },
+    "diagnosis": {
+      "primary": "浸润性导管癌",
+      "grade": "II级(NST)"
+    },
+    "pathologist": "沈医师",
+    "report_date": "2025-05-21"
+  },
+  {
+    "report_id": "PATH016",
+    "report_type": "histology",
+    "patient_id": "P678234",
+    "specimen_info": {
+      "specimen_type": "甲状腺结节切除",
+      "site": "甲状腺右叶",
+      "collection_date": "2025-06-22"
+    },
+    "microscopic": {
+      "description": "见乳头状结构，表面被覆单层或复层立方/柱状上皮，纤维血管轴心可见。肿瘤细胞核增大，染色质呈毛玻璃样，可见核沟和核内假包涵体。间质可见砂粒体。肿瘤周围有纤维包膜，未见明显侵犯。",
+      "features": [
+        "乳头状结构",
+        "毛玻璃样核",
+        "核沟和核内假包涵体",
+        "砂粒体形成"
+      ]
+    },
+    "diagnosis": {
+      "primary": "甲状腺乳头状癌",
+      "grade": "经典型"
+    },
+    "pathologist": "韩医师",
+    "report_date": "2025-06-25"
+  },
+  {
+    "report_id": "PATH017",
+    "report_type": "histology",
+    "patient_id": "P789345",
+    "specimen_info": {
+      "specimen_type": "甲状腺部分切除",
+      "site": "甲状腺左叶",
+      "collection_date": "2025-07-28"
+    },
+    "microscopic": {
+      "description": "见甲状腺滤泡大小不一，部分滤泡明显扩张，充满胶质。滤泡上皮细胞扁平或立方，无明显异型性。间质纤维组织增生伴少量淋巴细胞浸润。可见结节状结构，境界较清楚。未见乳头状结构，未见恶性肿瘤证据。",
+      "features": [
+        "滤泡大小不一",
+        "胶质充满滤泡",
+        "上皮细胞无明显异型",
+        "结节状结构"
+      ]
+    },
+    "diagnosis": {
+      "primary": "结节性甲状腺肿",
+      "grade": ""
+    },
+    "pathologist": "邓医师",
+    "report_date": "2025-07-31"
+  },
+  {
+    "report_id": "PATH018",
+    "report_type": "histology",
+    "patient_id": "P890456",
+    "specimen_info": {
+      "specimen_type": "前列腺穿刺活检",
+      "site": "前列腺",
+      "collection_date": "2025-08-25"
+    },
+    "microscopic": {
+      "description": "见腺体结构紊乱，排列密集，呈筛状或乳头状结构。腺上皮细胞核增大，染色质增多，核仁明显增大。基底细胞层消失。可见神经侵犯。免疫组化：p63(-)，基底细胞标记阴性；AMACR(+)。Gleason评分：3+4=7。",
+      "features": [
+        "腺体结构紊乱",
+        "基底细胞层消失",
+        "神经侵犯",
+        "Gleason评分3+4=7"
+      ]
+    },
+    "diagnosis": {
+      "primary": "前列腺腺癌",
+      "grade": "Gleason评分3+4=7(Grade Group 2)"
+    },
+    "pathologist": "许医师",
+    "report_date": "2025-08-28"
+  },
+  {
+    "report_id": "PATH019",
+    "report_type": "histology",
+    "patient_id": "P901567",
+    "specimen_info": {
+      "specimen_type": "宫颈活检(LEEP)",
+      "site": "宫颈",
+      "collection_date": "2025-09-30"
+    },
+    "microscopic": {
+      "description": "鳞状上皮全层可见异型性，细胞极性紊乱，核增大、深染，染色质粗块状，核分裂象多见并累及上皮上层。可见挖空细胞。基底膜完整，未见浸润。切缘阴性。",
+      "features": [
+        "上皮全层异型性",
+        "核分裂象累及上层",
+        "基底膜完整无浸润",
+        "切缘阴性"
+      ]
+    },
+    "diagnosis": {
+      "primary": "宫颈上皮内瘤变III级(CIN 3)",
+      "grade": "高级别鳞状上皮内病变"
+    },
+    "pathologist": "朱医师",
+    "report_date": "2025-10-03"
+  },
+  {
+    "report_id": "PATH020",
+    "report_type": "histology",
+    "patient_id": "P012678",
+    "specimen_info": {
+      "specimen_type": "淋巴结切除活检",
+      "site": "左侧锁骨上淋巴结",
+      "collection_date": "2025-10-15"
+    },
+    "microscopic": {
+      "description": "淋巴结结构部分破坏，见异型腺癌浸润，癌细胞呈腺管状或巢状排列，细胞核异型性明显，染色质增多，核仁清晰。间质纤维化伴炎症细胞浸润。结合免疫组化，符合转移性腺癌。原发灶建议进一步检查。",
+      "features": [
+        "淋巴结结构破坏",
+        "腺癌浸润",
+        "细胞核明显异型",
+        "符合转移性癌"
+      ]
+    },
+    "diagnosis": {
+      "primary": "转移性腺癌",
+      "grade": ""
+    },
+    "pathologist": "胡医师",
+    "report_date": "2025-10-18"
+  },
+  {
+    "report_id": "PATH001",
+    "patient_id": "P00001",
+    "specimen_type": "宫颈脱落细胞涂片",
+    "collection_date": "2025-03-12",
+    "result": {
+      "category": "细胞学检查",
+      "description": "见中-重度核异型，核增大、深染、形态不规则，可见双核及多核细胞，背景炎性渗出明显。",
+      "diagnosis": "高度鳞状上皮内病变（HSIL），建议阴道镜下活检。"
+    },
+    "pathologist": "张明远"
+  },
+  {
+    "report_id": "PATH002",
+    "patient_id": "P00002",
+    "specimen_type": "甲状腺细针穿刺标本",
+    "collection_date": "2025-03-14",
+    "result": {
+      "category": "细胞学检查",
+      "description": "大量滤泡上皮细胞呈微乳头状排列，核呈毛玻璃样改变，可见核沟及核内假包涵体。",
+      "diagnosis": "符合甲状腺乳头状癌（Bethesda VI类）。"
+    },
+    "pathologist": "林晓华"
+  },
+  {
+    "report_id": "PATH003",
+    "patient_id": "P00003",
+    "specimen_type": "乳腺粗针穿刺活检组织",
+    "collection_date": "2025-03-15",
+    "result": {
+      "category": "组织学检查",
+      "description": "浸润性导管癌，非特殊类型，组织学分级II级，肿瘤大小约1.8 cm，脉管内见癌栓，未见神经侵犯。",
+      "diagnosis": "浸润性导管癌（pT2N0M0，Luminal B型倾向）。"
+    },
+    "pathologist": "陈志伟"
+  },
+  {
+    "report_id": "PATH004",
+    "patient_id": "P00004",
+    "specimen_type": "胃窦黏膜活检组织",
+    "collection_date": "2025-03-16",
+    "result": {
+      "category": "组织学检查",
+      "description": "黏膜慢性炎症伴中度肠化生及轻度异型增生（低级别），幽门螺杆菌阳性（Warthin-Starry染色）。",
+      "diagnosis": "慢性萎缩性胃炎（C-2），伴低级别上皮内瘤变。"
+    },
+    "pathologist": "王雪梅"
+  },
+  {
+    "report_id": "PATH005",
+    "patient_id": "P00005",
+    "specimen_type": "支气管刷检涂片",
+    "collection_date": "2025-03-17",
+    "result": {
+      "category": "细胞学检查",
+      "description": "查见散在及成团的恶性上皮细胞，核大深染、核仁明显，胞质少，背景坏死明显。",
+      "diagnosis": "倾向低分化非小细胞肺癌，建议结合免疫组化进一步分型。"
+    },
+    "pathologist": "刘建国"
+  },
+  {
+    "report_id": "PATH006",
+    "patient_id": "P00006",
+    "specimen_type": "前列腺穿刺活检组织（共12条）",
+    "collection_date": "2025-03-18",
+    "result": {
+      "category": "组织学检查",
+      "description": "12条组织中3条见腺体结构紊乱、核仁显著增大、基底细胞层局灶缺失，Gleason评分3+4=7。",
+      "diagnosis": "前列腺腺癌（cT2bN0M0，中危组）。"
+    },
+    "pathologist": "赵雅婷"
+  },
+  {
+    "report_id": "PATH007",
+    "patient_id": "P00007",
+    "specimen_type": "腹水离心沉渣涂片",
+    "collection_date": "2025-03-19",
+    "result": {
+      "category": "细胞学检查",
+      "description": "大量异型腺上皮细胞，呈簇状或乳头状排列，核浆比增高，核染色质粗糙，部分见黏液分泌。",
+      "diagnosis": "转移性腺癌，原发灶待查（倾向消化道或妇科来源）。"
+    },
+    "pathologist": "黄振宇"
+  },
+  {
+    "report_id": "PATH008",
+    "patient_id": "P00008",
+    "specimen_type": "子宫内膜诊刮组织",
+    "collection_date": "2025-03-20",
+    "result": {
+      "category": "组织学检查",
+      "description": "子宫内膜呈复杂性增生伴重度不典型增生，腺体拥挤、背靠背，上皮细胞核大深染、核分裂象易见。",
+      "diagnosis": "子宫内膜样腺癌前病变（EIN），高度提示早期子宫内膜癌。"
+    },
+    "pathologist": "周文静"
+  },
+  {
+    "report_id": "PATH009",
+    "patient_id": "P00009",
+    "specimen_type": "淋巴结细针穿刺标本",
+    "collection_date": "2025-03-21",
+    "result": {
+      "category": "细胞学检查",
+      "description": "见大量弥漫分布的中等大小淋巴细胞，核形不规则，染色质细腻，可见星空现象。",
+      "diagnosis": "符合弥漫大B细胞淋巴瘤（DLBCL），需流式及分子检测确诊。"
+    },
+    "pathologist": "吴海峰"
+  },
+  {
+    "report_id": "PATH010",
+    "patient_id": "P00010",
+    "specimen_type": "皮肤切除标本（左耳后）",
+    "collection_date": "2025-03-22",
+    "result": {
+      "category": "组织学检查",
+      "description": "表皮角化过度，基底层黑素细胞巢状增生，细胞核大、部分可见核仁，向真皮浅层浸润，Breslow厚度1.4 mm。",
+      "diagnosis": "恶性黑色素瘤（SSM型，pT2aN0M0）。"
+    },
+    "pathologist": "徐立新"
+  },
+  {
+    "report_id": "PATH011",
+    "patient_id": "P00011",
+    "specimen_type": "尿液沉渣细胞学",
+    "collection_date": "2025-03-23",
+    "result": {
+      "category": "细胞学检查",
+      "description": "查见数个尿路上皮细胞呈明显异型，核浆比升高，核膜增厚，染色质粗颗粒状，可见奇异核。",
+      "diagnosis": "高级别尿路上皮癌细胞，建议膀胱镜检查。"
+    },
+    "pathologist": "孙丽萍"
+  },
+  {
+    "report_id": "PATH012",
+    "patient_id": "P00012",
+    "specimen_type": "结肠息肉切除标本",
+    "collection_date": "2025-03-24",
+    "result": {
+      "category": "组织学检查",
+      "description": "管状腺瘤，中度异型增生，最大径0.9 cm，切缘阴性，无绒毛成分及癌变。",
+      "diagnosis": "结肠管状腺瘤（低危）。"
+    },
+    "pathologist": "高建民"
+  },
+  {
+    "report_id": "PATH013",
+    "patient_id": "P00013",
+    "specimen_type": "卵巢囊肿穿刺液细胞学",
+    "collection_date": "2025-03-25",
+    "result": {
+      "category": "细胞学检查",
+      "description": "见大量退变间皮细胞及少量单个散在的异型上皮细胞，核深染、大小不一，部分呈印戒样。",
+      "diagnosis": "可疑卵巢浆液性癌细胞，建议手术探查及术中冰冻。"
+    },
+    "pathologist": "郑雅文"
+  },
+  {
+    "report_id": "PATH014",
+    "patient_id": "P00014",
+    "specimen_type": "肝穿刺活检组织",
+    "collection_date": "2025-03-26",
+    "result": {
+      "category": "组织学检查",
+      "description": "肝细胞气球样变、嗜酸性小体形成，汇管区淋巴细胞浸润伴界面炎，纤维间隔形成。",
+      "diagnosis": "慢性活动性肝炎（G3S2），符合自身免疫性肝炎可能。"
+    },
+    "pathologist": "马国栋"
+  },
+  {
+    "report_id": "PATH015",
+    "patient_id": "P00015",
+    "specimen_type": "涎腺肿物细针穿刺",
+    "collection_date": "2025-03-27",
+    "result": {
+      "category": "细胞学检查",
+      "description": "双相型细胞群：肌上皮样细胞与导管上皮细胞混合，呈微囊状及乳头状排列，背景黏液丰富。",
+      "diagnosis": "符合多形性腺瘤（良性混合瘤）。"
+    },
+    "pathologist": "何思敏"
+  },
+  {
+    "report_id": "PATH016",
+    "patient_id": "P00016",
+    "specimen_type": "食管黏膜活检",
+    "collection_date": "2025-03-28",
+    "result": {
+      "category": "组织学检查",
+      "description": "鳞状上皮全层被异型细胞取代，细胞极向消失，核分裂象活跃，未突破基底膜。",
+      "diagnosis": "食管高级别鳞状上皮内瘤变（HGIN），等同于原位癌。"
+    },
+    "pathologist": "罗志强"
+  },
+  {
+    "report_id": "PATH017",
+    "patient_id": "P00017",
+    "specimen_type": "脑脊液离心涂片",
+    "collection_date": "2025-03-29",
+    "result": {
+      "category": "细胞学检查",
+      "description": "查见少量中等大小淋巴细胞及数个大而异型的淋巴样细胞，核仁突出，胞质稀少。",
+      "diagnosis": "可疑中枢神经系统淋巴瘤细胞，建议脑MRI及脑膜活检。"
+    },
+    "pathologist": "范雪莹"
+  },
+  {
+    "report_id": "PATH018",
+    "patient_id": "P00018",
+    "specimen_type": "肾穿刺活检组织",
+    "collection_date": "2025-03-30",
+    "result": {
+      "category": "组织学检查",
+      "description": "肾小球系膜细胞及基质弥漫增生，毛细血管袢开放，IgA沉积为主（免疫荧光证实）。",
+      "diagnosis": "IgA肾病（Lee分级III级）。"
+    },
+    "pathologist": "崔浩然"
+  },
+  {
+    "report_id": "PATH019",
+    "patient_id": "P00019",
+    "specimen_type": "胆囊切除标本",
+    "collection_date": "2025-03-31",
+    "result": {
+      "category": "组织学检查",
+      "description": "胆囊壁慢性炎，黏膜腺体呈中-重度异型增生，局部突破基底膜，浸润至固有层，未达肌层。",
+      "diagnosis": "胆囊腺癌（pT1a）。"
+    },
+    "pathologist": "邓美琳"
+  },
+  {
+    "report_id": "PATH020",
+    "patient_id": "P00020",
+    "specimen_type": "鼻腔肿物活检",
+    "collection_date": "2025-04-01",
+    "result": {
+      "category": "组织学检查",
+      "description": "肿瘤由小圆细胞构成，呈片状及菊形团样排列，核染色质细，胞质稀少，可见坏死。",
+      "diagnosis": "神经内分泌癌（小细胞型），需排除肺原发。"
+    },
+    "pathologist": "潘俊杰"
+  },
+  {
+    "report_id": "PATH021",
+    "patient_id": "P00021",
+    "specimen_type": "胸腔积液细胞学",
+    "collection_date": "2025-04-02",
+    "result": {
+      "category": "细胞学检查",
+      "description": "大量成团及散在的腺癌细胞，核大深染，核仁明显，部分胞质含黏液空泡，背景见淋巴细胞及间皮细胞。",
+      "diagnosis": "转移性腺癌，倾向肺或乳腺来源。"
+    },
+    "pathologist": "杨瑞芳"
+  },
+  {
+    "report_id": "PATH022",
+    "patient_id": "P00022",
+    "specimen_type": "胰腺肿物穿刺组织",
+    "collection_date": "2025-04-03",
+    "result": {
+      "category": "组织学检查",
+      "description": "腺体结构紊乱，细胞核杆状、排列呈“筛状”，间质纤维化明显，可见神经周围侵犯。",
+      "diagnosis": "胰腺导管腺癌（pT3N0M0）。"
+    },
+    "pathologist": "秦立伟"
+  },
+  {
+    "report_id": "PATH023",
+    "patient_id": "P00023",
+    "specimen_type": "宫颈锥切标本",
+    "collection_date": "2025-04-04",
+    "result": {
+      "category": "组织学检查",
+      "description": "宫颈鳞状上皮全层为异型细胞占据，累及腺体，未见间质浸润，切缘净。",
+      "diagnosis": "宫颈原位癌（CIS），切缘阴性。"
+    },
+    "pathologist": "沈婉婷"
+  },
+  {
+    "report_id": "PATH024",
+    "patient_id": "P00024",
+    "specimen_type": "骨髓穿刺涂片",
+    "collection_date": "2025-04-05",
+    "result": {
+      "category": "细胞学检查",
+      "description": "有核细胞增生明显活跃，原始粒细胞占38%，伴Auer小体，红系及巨核系受抑。",
+      "diagnosis": "急性髓系白血病（AML-M2，WHO分类）。"
+    },
+    "pathologist": "卢志远"
+  },
+  {
+    "report_id": "PATH025",
+    "patient_id": "P00025",
+    "specimen_type": "乳腺导管内乳头状瘤切除标本",
+    "collection_date": "2025-04-06",
+    "result": {
+      "category": "组织学检查",
+      "description": "导管内乳头状结构，表面被覆单层上皮及肌上皮，无异型，未见浸润。",
+      "diagnosis": "良性导管内乳头状瘤。"
+    },
+    "pathologist": "韩雪梅"
+  },
+  {
+    "report_id": "PATH026",
+    "patient_id": "P00026",
+    "specimen_type": "纵隔肿物穿刺标本",
+    "collection_date": "2025-04-07",
+    "result": {
+      "category": "组织学检查",
+      "description": "淋巴细胞弥漫增生，混杂数量不等的R-S样大细胞，CD30阳性，EBER阳性。",
+      "diagnosis": "结节硬化型霍奇金淋巴瘤。"
+    },
+    "pathologist": "魏子豪"
+  },
+  {
+    "report_id": "PATH027",
+    "patient_id": "P00027",
+    "specimen_type": "膀胱肿瘤电切标本",
+    "collection_date": "2025-04-08",
+    "result": {
+      "category": "组织学检查",
+      "description": "乳头状尿路上皮癌，中级别，浸润至固有层（pT1），未见脉管及神经侵犯。",
+      "diagnosis": "pT1中级别尿路上皮癌。"
+    },
+    "pathologist": "顾明月"
+  },
+  {
+    "report_id": "PATH028",
+    "patient_id": "P00028",
+    "specimen_type": "唾液腺肿物切除标本",
+    "collection_date": "2025-04-09",
+    "result": {
+      "category": "组织学检查",
+      "description": "肿瘤由腺泡样结构及实性细胞巢组成，细胞胞质丰富嗜酸性，核圆形居中，间质玻璃样变。",
+      "diagnosis": "嗜酸细胞腺瘤（良性）。"
+    },
+    "pathologist": "丁永康"
+  },
+  {
+    "report_id": "PATH029",
+    "patient_id": "P00029",
+    "specimen_type": "腹股沟淋巴结切除标本",
+    "collection_date": "2025-04-10",
+    "result": {
+      "category": "组织学检查",
+      "description": "淋巴结结构破坏，被大量大B细胞弥漫浸润，核仁明显，Ki-67增殖指数约80%。",
+      "diagnosis": "弥漫大B细胞淋巴瘤（非生发中心型）。"
+    },
+    "pathologist": "严思源"
+  },
+  {
+    "report_id": "PATH030",
+    "patient_id": "P00030",
+    "specimen_type": "子宫颈管搔刮组织",
+    "collection_date": "2025-04-11",
+    "result": {
+      "category": "组织学检查",
+      "description": "宫颈管黏膜呈腺体囊性扩张，腺上皮呈轻度异型，核稍增大，排列较规则，无浸润。",
+      "diagnosis": "宫颈管腺体轻度非典型增生（AIS前期病变）。"
+    },
+    "pathologist": "曾慧琳"
+  }
+]

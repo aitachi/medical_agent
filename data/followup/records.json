@@ -1,0 +1,861 @@
+[
+  {
+    "record_id": "FR001",
+    "plan_id": "FP001",
+    "patient_id": "P001",
+    "followup_date": "2025-03-16",
+    "data": {
+      "blood_pressure": {
+        "systolic": 156,
+        "diastolic": 86
+      },
+      "heart_rate": 65,
+      "medication_adherence": "fair",
+      "symptoms": [
+        "多饮"
+      ]
+    },
+    "doctor_feedback": "各项指标稳定，继续保持。"
+  },
+  {
+    "record_id": "FR002",
+    "plan_id": "FP001",
+    "patient_id": "P001",
+    "followup_date": "2025-03-24",
+    "data": {
+      "blood_pressure": {
+        "systolic": 152,
+        "diastolic": 76
+      },
+      "heart_rate": 82,
+      "medication_adherence": "fair",
+      "symptoms": [
+        "多尿"
+      ]
+    },
+    "doctor_feedback": "血压偏高，建议增加服药频率。"
+  },
+  {
+    "record_id": "FR003",
+    "plan_id": "FP001",
+    "patient_id": "P001",
+    "followup_date": "2025-02-20",
+    "data": {
+      "blood_pressure": {
+        "systolic": 149,
+        "diastolic": 87
+      },
+      "heart_rate": 93,
+      "medication_adherence": "good",
+      "symptoms": [
+        "乏力"
+      ]
+    },
+    "doctor_feedback": "各项指标稳定，继续保持。"
+  },
+  {
+    "record_id": "FR004",
+    "plan_id": "FP002",
+    "patient_id": "P002",
+    "followup_date": "2025-03-26",
+    "data": {
+      "blood_pressure": {
+        "systolic": 131,
+        "diastolic": 85
+      },
+      "heart_rate": 68,
+      "symptoms": []
+    },
+    "doctor_feedback": "血糖控制不理想，需调整饮食结构。"
+  },
+  {
+    "record_id": "FR005",
+    "plan_id": "FP002",
+    "patient_id": "P002",
+    "followup_date": "2025-03-18",
+    "data": {
+      "blood_pressure": {
+        "systolic": 135,
+        "diastolic": 89
+      },
+      "heart_rate": 71,
+      "symptoms": [
+        "多饮"
+      ]
+    },
+    "doctor_feedback": "体重控制良好，建议继续监测。"
+  },
+  {
+    "record_id": "FR006",
+    "plan_id": "FP003",
+    "patient_id": "P003",
+    "followup_date": "2025-04-13",
+    "data": {
+      "blood_pressure": {
+        "systolic": 124,
+        "diastolic": 95
+      },
+      "heart_rate": 93,
+      "medication_adherence": "poor",
+      "symptoms": []
+    },
+    "doctor_feedback": "血糖控制不理想，需调整饮食结构。"
+  },
+  {
+    "record_id": "FR007",
+    "plan_id": "FP003",
+    "patient_id": "P003",
+    "followup_date": "2025-04-06",
+    "data": {
+      "blood_pressure": {
+        "systolic": 120,
+        "diastolic": 96
+      },
+      "heart_rate": 72,
+      "medication_adherence": "fair",
+      "symptoms": [
+        "乏力"
+      ]
+    },
+    "doctor_feedback": "血压控制良好，建议减少盐的摄入。"
+  },
+  {
+    "record_id": "FR008",
+    "plan_id": "FP004",
+    "patient_id": "P004",
+    "followup_date": "2025-03-27",
+    "data": {
+      "blood_pressure": {
+        "systolic": 137,
+        "diastolic": 98
+      },
+      "heart_rate": 87,
+      "medication_adherence": "fair",
+      "symptoms": [
+        "多饮"
+      ]
+    },
+    "doctor_feedback": "症状有所缓解，继续观察。"
+  },
+  {
+    "record_id": "FR009",
+    "plan_id": "FP004",
+    "patient_id": "P004",
+    "followup_date": "2025-03-01",
+    "data": {
+      "blood_pressure": {
+        "systolic": 125,
+        "diastolic": 80
+      },
+      "heart_rate": 75,
+      "medication_adherence": "good",
+      "symptoms": []
+    },
+    "doctor_feedback": "血压偏高，建议增加服药频率。"
+  },
+  {
+    "record_id": "FR010",
+    "plan_id": "FP005",
+    "patient_id": "P005",
+    "followup_date": "2025-02-06",
+    "data": {
+      "blood_pressure": {
+        "systolic": 131,
+        "diastolic": 96
+      },
+      "heart_rate": 72,
+      "medication_adherence": "fair",
+      "symptoms": [
+        "恶心"
+      ]
+    },
+    "doctor_feedback": "注意休息，避免过度劳累。"
+  },
+  {
+    "record_id": "FR011",
+    "plan_id": "FP005",
+    "patient_id": "P005",
+    "followup_date": "2025-02-18",
+    "data": {
+      "blood_pressure": {
+        "systolic": 137,
+        "diastolic": 75
+      },
+      "heart_rate": 73,
+      "medication_adherence": "poor",
+      "symptoms": []
+    },
+    "doctor_feedback": "各项指标稳定，继续保持。"
+  },
+  {
+    "record_id": "FR012",
+    "plan_id": "FP006",
+    "patient_id": "P006",
+    "followup_date": "2025-04-14",
+    "data": {
+      "blood_pressure": {
+        "systolic": 118,
+        "diastolic": 65
+      },
+      "heart_rate": 61,
+      "symptoms": [
+        "水肿"
+      ]
+    },
+    "doctor_feedback": "继续当前方案，保持良好生活习惯。"
+  },
+  {
+    "record_id": "FR013",
+    "plan_id": "FP006",
+    "patient_id": "P006",
+    "followup_date": "2025-04-10",
+    "data": {
+      "blood_pressure": {
+        "systolic": 134,
+        "diastolic": 85
+      },
+      "heart_rate": 78,
+      "symptoms": [
+        "视力模糊"
+      ]
+    },
+    "doctor_feedback": "血压控制良好，建议减少盐的摄入。"
+  },
+  {
+    "record_id": "FR014",
+    "plan_id": "FP006",
+    "patient_id": "P006",
+    "followup_date": "2025-04-04",
+    "data": {
+      "blood_pressure": {
+        "systolic": 124,
+        "diastolic": 84
+      },
+      "heart_rate": 57,
+      "symptoms": [
+        "乏力"
+      ]
+    },
+    "doctor_feedback": "继续当前方案，保持良好生活习惯。"
+  },
+  {
+    "record_id": "FR015",
+    "plan_id": "FP007",
+    "patient_id": "P007",
+    "followup_date": "2025-02-24",
+    "data": {
+      "blood_pressure": {
+        "systolic": 128,
+        "diastolic": 80
+      },
+      "heart_rate": 86,
+      "symptoms": []
+    },
+    "doctor_feedback": "继续当前方案，保持良好生活习惯。"
+  },
+  {
+    "record_id": "FR016",
+    "plan_id": "FP007",
+    "patient_id": "P007",
+    "followup_date": "2025-03-14",
+    "data": {
+      "blood_pressure": {
+        "systolic": 139,
+        "diastolic": 83
+      },
+      "heart_rate": 81,
+      "symptoms": [
+        "失眠"
+      ]
+    },
+    "doctor_feedback": "按时服药，定期复查。"
+  },
+  {
+    "record_id": "FR017",
+    "plan_id": "FP007",
+    "patient_id": "P007",
+    "followup_date": "2025-02-23",
+    "data": {
+      "blood_pressure": {
+        "systolic": 126,
+        "diastolic": 85
+      },
+      "heart_rate": 74,
+      "symptoms": []
+    },
+    "doctor_feedback": "心率正常，建议适当增加有氧运动。"
+  },
+  {
+    "record_id": "FR018",
+    "plan_id": "FP008",
+    "patient_id": "P008",
+    "followup_date": "2025-03-16",
+    "data": {
+      "blood_pressure": {
+        "systolic": 136,
+        "diastolic": 80
+      },
+      "heart_rate": 67,
+      "medication_adherence": "poor",
+      "symptoms": []
+    },
+    "doctor_feedback": "血压偏高，建议增加服药频率。"
+  },
+  {
+    "record_id": "FR019",
+    "plan_id": "FP008",
+    "patient_id": "P008",
+    "followup_date": "2025-04-23",
+    "data": {
+      "blood_pressure": {
+        "systolic": 141,
+        "diastolic": 84
+      },
+      "heart_rate": 89,
+      "medication_adherence": "fair",
+      "symptoms": []
+    },
+    "doctor_feedback": "注意休息，避免过度劳累。"
+  },
+  {
+    "record_id": "FR020",
+    "plan_id": "FP008",
+    "patient_id": "P008",
+    "followup_date": "2025-04-04",
+    "data": {
+      "blood_pressure": {
+        "systolic": 146,
+        "diastolic": 75
+      },
+      "heart_rate": 76,
+      "medication_adherence": "poor",
+      "symptoms": [
+        "气短",
+        "手脚麻木"
+      ]
+    },
+    "doctor_feedback": "按时服药，定期复查。"
+  },
+  {
+    "record_id": "FR021",
+    "plan_id": "FP009",
+    "patient_id": "P009",
+    "followup_date": "2025-03-17",
+    "data": {
+      "blood_pressure": {
+        "systolic": 116,
+        "diastolic": 80
+      },
+      "heart_rate": 62,
+      "medication_adherence": "fair",
+      "symptoms": [
+        "头痛",
+        "胸闷"
+      ]
+    },
+    "doctor_feedback": "症状改善明显，维持当前治疗。"
+  },
+  {
+    "record_id": "FR022",
+    "plan_id": "FP009",
+    "patient_id": "P009",
+    "followup_date": "2025-03-06",
+    "data": {
+      "blood_pressure": {
+        "systolic": 126,
+        "diastolic": 76
+      },
+      "heart_rate": 69,
+      "medication_adherence": "poor",
+      "symptoms": [
+        "乏力"
+      ]
+    },
+    "doctor_feedback": "血压控制良好，建议减少盐的摄入。"
+  },
+  {
+    "record_id": "FR023",
+    "plan_id": "FP010",
+    "patient_id": "P010",
+    "followup_date": "2025-03-08",
+    "data": {
+      "blood_pressure": {
+        "systolic": 135,
+        "diastolic": 87
+      },
+      "heart_rate": 68,
+      "medication_adherence": "good",
+      "symptoms": [
+        "头痛"
+      ]
+    },
+    "doctor_feedback": "用药依从性良好，继续坚持。"
+  },
+  {
+    "record_id": "FR024",
+    "plan_id": "FP010",
+    "patient_id": "P010",
+    "followup_date": "2025-02-16",
+    "data": {
+      "blood_pressure": {
+        "systolic": 111,
+        "diastolic": 84
+      },
+      "heart_rate": 82,
+      "medication_adherence": "good",
+      "symptoms": [
+        "手脚麻木"
+      ]
+    },
+    "doctor_feedback": "血糖控制不理想，需调整饮食结构。"
+  },
+  {
+    "record_id": "FR025",
+    "plan_id": "FP010",
+    "patient_id": "P010",
+    "followup_date": "2025-03-13",
+    "data": {
+      "blood_pressure": {
+        "systolic": 121,
+        "diastolic": 71
+      },
+      "heart_rate": 88,
+      "medication_adherence": "fair",
+      "symptoms": [
+        "失眠"
+      ]
+    },
+    "doctor_feedback": "血压控制良好，建议减少盐的摄入。"
+  },
+  {
+    "record_id": "FR026",
+    "plan_id": "FP011",
+    "patient_id": "P011",
+    "followup_date": "2025-03-22",
+    "data": {
+      "blood_pressure": {
+        "systolic": 112,
+        "diastolic": 81
+      },
+      "heart_rate": 89,
+      "symptoms": [
+        "失眠",
+        "视力模糊"
+      ]
+    },
+    "doctor_feedback": "症状改善明显，维持当前治疗。"
+  },
+  {
+    "record_id": "FR027",
+    "plan_id": "FP011",
+    "patient_id": "P011",
+    "followup_date": "2025-03-20",
+    "data": {
+      "blood_pressure": {
+        "systolic": 131,
+        "diastolic": 70
+      },
+      "heart_rate": 81,
+      "symptoms": [
+        "胸闷"
+      ]
+    },
+    "doctor_feedback": "体重控制良好，建议继续监测。"
+  },
+  {
+    "record_id": "FR028",
+    "plan_id": "FP012",
+    "patient_id": "P012",
+    "followup_date": "2025-04-04",
+    "data": {
+      "blood_pressure": {
+        "systolic": 117,
+        "diastolic": 82
+      },
+      "heart_rate": 85,
+      "medication_adherence": "good",
+      "symptoms": [
+        "恶心",
+        "视力模糊"
+      ]
+    },
+    "doctor_feedback": "按时服药，定期复查。"
+  },
+  {
+    "record_id": "FR029",
+    "plan_id": "FP012",
+    "patient_id": "P012",
+    "followup_date": "2025-04-11",
+    "data": {
+      "blood_pressure": {
+        "systolic": 153,
+        "diastolic": 71
+      },
+      "heart_rate": 73,
+      "medication_adherence": "good",
+      "symptoms": [
+        "心悸"
+      ]
+    },
+    "doctor_feedback": "体重控制良好，建议继续监测。"
+  },
+  {
+    "record_id": "FR030",
+    "plan_id": "FP012",
+    "patient_id": "P012",
+    "followup_date": "2025-04-17",
+    "data": {
+      "blood_pressure": {
+        "systolic": 140,
+        "diastolic": 91
+      },
+      "heart_rate": 70,
+      "medication_adherence": "good",
+      "symptoms": []
+    },
+    "doctor_feedback": "按时服药，定期复查。"
+  },
+  {
+    "record_id": "FR031",
+    "plan_id": "FP013",
+    "patient_id": "P013",
+    "followup_date": "2025-01-26",
+    "data": {
+      "blood_pressure": {
+        "systolic": 117,
+        "diastolic": 94
+      },
+      "heart_rate": 64,
+      "symptoms": [
+        "失眠",
+        "气短"
+      ]
+    },
+    "doctor_feedback": "用药依从性良好，继续坚持。"
+  },
+  {
+    "record_id": "FR032",
+    "plan_id": "FP013",
+    "patient_id": "P013",
+    "followup_date": "2025-03-09",
+    "data": {
+      "blood_pressure": {
+        "systolic": 132,
+        "diastolic": 82
+      },
+      "heart_rate": 82,
+      "symptoms": [
+        "手脚麻木"
+      ]
+    },
+    "doctor_feedback": "建议每周增加监测频率。"
+  },
+  {
+    "record_id": "FR033",
+    "plan_id": "FP013",
+    "patient_id": "P013",
+    "followup_date": "2025-02-19",
+    "data": {
+      "blood_pressure": {
+        "systolic": 110,
+        "diastolic": 82
+      },
+      "heart_rate": 61,
+      "symptoms": [
+        "失眠",
+        "头痛"
+      ]
+    },
+    "doctor_feedback": "体重控制良好，建议继续监测。"
+  },
+  {
+    "record_id": "FR034",
+    "plan_id": "FP014",
+    "patient_id": "P014",
+    "followup_date": "2025-03-18",
+    "data": {
+      "blood_sugar": {
+        "fasting": 5.489328086525601,
+        "postprandial": 11.833445210943502
+      },
+      "medication_adherence": "good",
+      "diet_compliance": "poor",
+      "symptoms": []
+    },
+    "doctor_feedback": "症状有所缓解，继续观察。"
+  },
+  {
+    "record_id": "FR035",
+    "plan_id": "FP014",
+    "patient_id": "P014",
+    "followup_date": "2025-03-13",
+    "data": {
+      "blood_sugar": {
+        "fasting": 5.348673807834397,
+        "postprandial": 7.588008352301114
+      },
+      "medication_adherence": "poor",
+      "diet_compliance": "poor",
+      "symptoms": []
+    },
+    "doctor_feedback": "血糖有所波动，请严格控制饮食。"
+  },
+  {
+    "record_id": "FR036",
+    "plan_id": "FP014",
+    "patient_id": "P014",
+    "followup_date": "2025-04-04",
+    "data": {
+      "blood_sugar": {
+        "fasting": 8.299076023925435,
+        "postprandial": 12.632563757485922
+      },
+      "medication_adherence": "fair",
+      "diet_compliance": "poor",
+      "symptoms": []
+    },
+    "doctor_feedback": "继续当前方案，保持良好生活习惯。"
+  },
+  {
+    "record_id": "FR037",
+    "plan_id": "FP015",
+    "patient_id": "P015",
+    "followup_date": "2025-03-11",
+    "data": {
+      "blood_sugar": {
+        "fasting": 7.938034280274309,
+        "postprandial": 8.608021634822697
+      },
+      "medication_adherence": "fair",
+      "diet_compliance": "poor",
+      "symptoms": [
+        "失眠"
+      ]
+    },
+    "doctor_feedback": "血糖有所波动，请严格控制饮食。"
+  },
+  {
+    "record_id": "FR038",
+    "plan_id": "FP015",
+    "patient_id": "P015",
+    "followup_date": "2025-04-02",
+    "data": {
+      "blood_sugar": {
+        "fasting": 6.356754757379848,
+        "postprandial": 11.926983770661387
+      },
+      "medication_adherence": "fair",
+      "diet_compliance": "poor",
+      "symptoms": []
+    },
+    "doctor_feedback": "血糖有所波动，请严格控制饮食。"
+  },
+  {
+    "record_id": "FR039",
+    "plan_id": "FP016",
+    "patient_id": "P016",
+    "followup_date": "2025-01-22",
+    "data": {
+      "blood_pressure": {
+        "systolic": 111,
+        "diastolic": 95
+      },
+      "heart_rate": 76,
+      "symptoms": [
+        "多尿",
+        "头晕"
+      ]
+    },
+    "doctor_feedback": "血压控制良好，建议减少盐的摄入。"
+  },
+  {
+    "record_id": "FR040",
+    "plan_id": "FP016",
+    "patient_id": "P016",
+    "followup_date": "2025-02-13",
+    "data": {
+      "blood_pressure": {
+        "systolic": 125,
+        "diastolic": 94
+      },
+      "heart_rate": 90,
+      "symptoms": [
+        "头痛",
+        "水肿",
+        "头晕"
+      ]
+    },
+    "doctor_feedback": "症状改善明显，维持当前治疗。"
+  },
+  {
+    "record_id": "FR041",
+    "plan_id": "FP017",
+    "patient_id": "P017",
+    "followup_date": "2025-04-07",
+    "data": {
+      "blood_sugar": {
+        "fasting": 4.942012607175515,
+        "postprandial": 10.390449668446204
+      },
+      "medication_adherence": "fair",
+      "diet_compliance": "fair",
+      "symptoms": [
+        "头晕"
+      ]
+    },
+    "doctor_feedback": "需要调整用药剂量，请按时复诊。"
+  },
+  {
+    "record_id": "FR042",
+    "plan_id": "FP017",
+    "patient_id": "P017",
+    "followup_date": "2025-04-16",
+    "data": {
+      "blood_sugar": {
+        "fasting": 8.2301701138569,
+        "postprandial": 12.55775712748251
+      },
+      "medication_adherence": "poor",
+      "diet_compliance": "good",
+      "symptoms": []
+    },
+    "doctor_feedback": "各项指标稳定，继续保持。"
+  },
+  {
+    "record_id": "FR043",
+    "plan_id": "FP018",
+    "patient_id": "P018",
+    "followup_date": "2025-04-22",
+    "data": {
+      "blood_sugar": {
+        "fasting": 6.800944199520899,
+        "postprandial": 8.121470412260848
+      },
+      "medication_adherence": "poor",
+      "diet_compliance": "poor",
+      "symptoms": []
+    },
+    "doctor_feedback": "心率正常，建议适当增加有氧运动。"
+  },
+  {
+    "record_id": "FR044",
+    "plan_id": "FP018",
+    "patient_id": "P018",
+    "followup_date": "2025-04-03",
+    "data": {
+      "blood_sugar": {
+        "fasting": 5.694898146610507,
+        "postprandial": 9.193996231768146
+      },
+      "medication_adherence": "poor",
+      "diet_compliance": "fair",
+      "symptoms": [
+        "视力模糊"
+      ]
+    },
+    "doctor_feedback": "各项指标稳定，继续保持。"
+  },
+  {
+    "record_id": "FR045",
+    "plan_id": "FP019",
+    "patient_id": "P019",
+    "followup_date": "2025-04-22",
+    "data": {
+      "blood_sugar": {
+        "fasting": 4.7116841778033525,
+        "postprandial": 10.973655226676504
+      },
+      "medication_adherence": "fair",
+      "diet_compliance": "fair",
+      "symptoms": []
+    },
+    "doctor_feedback": "体重控制良好，建议继续监测。"
+  },
+  {
+    "record_id": "FR046",
+    "plan_id": "FP019",
+    "patient_id": "P019",
+    "followup_date": "2025-05-15",
+    "data": {
+      "blood_sugar": {
+        "fasting": 7.996970777233646,
+        "postprandial": 7.9665668905991405
+      },
+      "medication_adherence": "fair",
+      "diet_compliance": "fair",
+      "symptoms": []
+    },
+    "doctor_feedback": "体重控制良好，建议继续监测。"
+  },
+  {
+    "record_id": "FR047",
+    "plan_id": "FP020",
+    "patient_id": "P020",
+    "followup_date": "2025-02-03",
+    "data": {
+      "blood_pressure": {
+        "systolic": 111,
+        "diastolic": 84
+      },
+      "heart_rate": 85,
+      "symptoms": [
+        "乏力",
+        "胸闷",
+        "头痛"
+      ]
+    },
+    "doctor_feedback": "注意休息，避免过度劳累。"
+  },
+  {
+    "record_id": "FR048",
+    "plan_id": "FP020",
+    "patient_id": "P020",
+    "followup_date": "2025-02-08",
+    "data": {
+      "blood_pressure": {
+        "systolic": 123,
+        "diastolic": 95
+      },
+      "heart_rate": 68,
+      "symptoms": [
+        "多饮",
+        "视力模糊"
+      ]
+    },
+    "doctor_feedback": "体重控制良好，建议继续监测。"
+  },
+  {
+    "record_id": "FR049",
+    "plan_id": "FP020",
+    "patient_id": "P020",
+    "followup_date": "2025-02-12",
+    "data": {
+      "blood_pressure": {
+        "systolic": 116,
+        "diastolic": 94
+      },
+      "heart_rate": 59,
+      "symptoms": []
+    },
+    "doctor_feedback": "血压控制良好，建议减少盐的摄入。"
+  },
+  {
+    "record_id": "FR050",
+    "plan_id": "FP011",
+    "patient_id": "P009",
+    "followup_date": "2025-01-07",
+    "data": {
+      "blood_sugar": {
+        "fasting": 6.1,
+        "postprandial": 10.8
+      },
+      "symptoms": [
+        "视力模糊",
+        "多尿",
+        "头痛"
+      ],
+      "medication_adherence": "fair"
+    },
+    "doctor_feedback": "血压偏高，建议增加服药频率。"
+  }
+]

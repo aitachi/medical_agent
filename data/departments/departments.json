@@ -1,0 +1,502 @@
+[
+  {
+    "id": "DEPT001",
+    "name": "内科",
+    "level": 1,
+    "category": "临床",
+    "parent_id": null,
+    "description": "诊治成人常见内科疾病，如高血压、糖尿病等。",
+    "common_symptoms": [
+      "乏力",
+      "头晕",
+      "胸闷"
+    ]
+  },
+  {
+    "id": "DEPT002",
+    "name": "外科",
+    "level": 1,
+    "category": "临床",
+    "parent_id": null,
+    "description": "开展各类手术治疗及创伤处理。",
+    "common_symptoms": [
+      "腹痛",
+      "肿块",
+      "外伤出血"
+    ]
+  },
+  {
+    "id": "DEPT003",
+    "name": "妇产科",
+    "level": 1,
+    "category": "临床",
+    "parent_id": null,
+    "description": "负责女性生殖健康、妊娠分娩及妇科疾病诊疗。",
+    "common_symptoms": [
+      "月经异常",
+      "下腹痛",
+      "阴道流血"
+    ]
+  },
+  {
+    "id": "DEPT004",
+    "name": "儿科",
+    "level": 1,
+    "category": "临床",
+    "parent_id": null,
+    "description": "专治0-14岁儿童常见病与生长发育问题。",
+    "common_symptoms": [
+      "发热",
+      "咳嗽",
+      "腹泻"
+    ]
+  },
+  {
+    "id": "DEPT005",
+    "name": "急诊科",
+    "level": 1,
+    "category": "临床",
+    "parent_id": null,
+    "description": "处理突发急症、创伤及危重患者抢救。",
+    "common_symptoms": [
+      "剧烈疼痛",
+      "意识障碍",
+      "呼吸困难"
+    ]
+  },
+  {
+    "id": "DEPT006",
+    "name": "重症医学科",
+    "level": 1,
+    "category": "临床",
+    "parent_id": null,
+    "description": "为危重症患者提供生命支持与监护治疗。",
+    "common_symptoms": [
+      "多器官衰竭",
+      "休克",
+      "严重感染"
+    ]
+  },
+  {
+    "id": "DEPT007",
+    "name": "眼科",
+    "level": 1,
+    "category": "临床",
+    "parent_id": null,
+    "description": "诊治眼表、屈光、青光眼、白内障等眼部疾病。",
+    "common_symptoms": [
+      "视力下降",
+      "眼红",
+      "眼痛"
+    ]
+  },
+  {
+    "id": "DEPT008",
+    "name": "耳鼻喉科",
+    "level": 1,
+    "category": "临床",
+    "parent_id": null,
+    "description": "诊治耳、鼻、咽、喉及相关头颈部疾病。",
+    "common_symptoms": [
+      "耳鸣",
+      "鼻塞",
+      "咽喉痛"
+    ]
+  },
+  {
+    "id": "DEPT009",
+    "name": "口腔科",
+    "level": 1,
+    "category": "临床",
+    "parent_id": null,
+    "description": "提供牙体牙髓、牙周、颌面外科及修复服务。",
+    "common_symptoms": [
+      "牙痛",
+      "牙龈出血",
+      "口腔溃疡"
+    ]
+  },
+  {
+    "id": "DEPT010",
+    "name": "皮肤科",
+    "level": 1,
+    "category": "临床",
+    "parent_id": null,
+    "description": "诊治各类皮肤病、性病及皮肤美容相关问题。",
+    "common_symptoms": [
+      "皮疹",
+      "瘙痒",
+      "脱发"
+    ]
+  },
+  {
+    "id": "DEPT011",
+    "name": "心血管内科",
+    "level": 2,
+    "category": "临床",
+    "parent_id": "DEPT001",
+    "description": "专注高血压、冠心病、心力衰竭等心脏血管疾病。",
+    "common_symptoms": [
+      "胸痛",
+      "心悸",
+      "气促"
+    ]
+  },
+  {
+    "id": "DEPT012",
+    "name": "消化内科",
+    "level": 2,
+    "category": "临床",
+    "parent_id": "DEPT001",
+    "description": "诊治食管、胃、肠、肝胆胰等消化系统疾病。",
+    "common_symptoms": [
+      "腹痛",
+      "恶心",
+      "便血"
+    ]
+  },
+  {
+    "id": "DEPT013",
+    "name": "呼吸内科",
+    "level": 2,
+    "category": "临床",
+    "parent_id": "DEPT001",
+    "description": "专治哮喘、慢阻肺、肺炎、肺癌等呼吸系统疾病。",
+    "common_symptoms": [
+      "咳嗽",
+      "咯血",
+      "喘息"
+    ]
+  },
+  {
+    "id": "DEPT014",
+    "name": "内分泌科",
+    "level": 2,
+    "category": "临床",
+    "parent_id": "DEPT001",
+    "description": "诊治糖尿病、甲状腺疾病、骨质疏松等代谢性疾病。",
+    "common_symptoms": [
+      "多饮",
+      "消瘦",
+      "怕热多汗"
+    ]
+  },
+  {
+    "id": "DEPT015",
+    "name": "神经内科",
+    "level": 2,
+    "category": "临床",
+    "parent_id": "DEPT001",
+    "description": "诊治脑卒中、癫痫、帕金森病、头痛等神经系统疾病。",
+    "common_symptoms": [
+      "头痛",
+      "肢体无力",
+      "言语不清"
+    ]
+  },
+  {
+    "id": "DEPT016",
+    "name": "普外科",
+    "level": 2,
+    "category": "临床",
+    "parent_id": "DEPT002",
+    "description": "开展腹部、甲状腺、乳腺、疝等常规外科手术。",
+    "common_symptoms": [
+      "腹痛",
+      "腹部包块",
+      "腹股沟肿物"
+    ]
+  },
+  {
+    "id": "DEPT017",
+    "name": "骨科",
+    "level": 2,
+    "category": "临床",
+    "parent_id": "DEPT002",
+    "description": "诊治骨折、关节炎、脊柱疾病及运动损伤。",
+    "common_symptoms": [
+      "关节疼痛",
+      "活动受限",
+      "腰背痛"
+    ]
+  },
+  {
+    "id": "DEPT018",
+    "name": "神经外科",
+    "level": 2,
+    "category": "临床",
+    "parent_id": "DEPT002",
+    "description": "施行颅脑外伤、肿瘤、脑血管病等神经外科手术。",
+    "common_symptoms": [
+      "剧烈头痛",
+      "呕吐",
+      "意识障碍"
+    ]
+  },
+  {
+    "id": "DEPT019",
+    "name": "泌尿外科",
+    "level": 2,
+    "category": "临床",
+    "parent_id": "DEPT002",
+    "description": "诊治肾、输尿管、膀胱、前列腺及男性生殖系统疾病。",
+    "common_symptoms": [
+      "尿频",
+      "血尿",
+      "排尿困难"
+    ]
+  },
+  {
+    "id": "DEPT020",
+    "name": "胸外科",
+    "level": 2,
+    "category": "临床",
+    "parent_id": "DEPT002",
+    "description": "开展肺、食管、纵隔等胸部疾病的外科治疗。",
+    "common_symptoms": [
+      "胸痛",
+      "咳嗽",
+      "咯血"
+    ]
+  },
+  {
+    "dept_id": "DEPT001",
+    "name": "心血管内科",
+    "category": "内科",
+    "description": "专注于高血压、冠心病、心力衰竭、心律失常等心血管系统疾病的诊断与综合治疗。",
+    "location": "3楼东区",
+    "doctors_count": 12
+  },
+  {
+    "dept_id": "DEPT002",
+    "name": "神经外科",
+    "category": "外科",
+    "description": "开展脑肿瘤、脑血管病、颅脑外伤、脊柱脊髓疾病等神经系统疾病的手术与微创治疗。",
+    "location": "5楼西区",
+    "doctors_count": 9
+  },
+  {
+    "dept_id": "DEPT003",
+    "name": "产科",
+    "category": "妇儿",
+    "description": "提供孕前咨询、产前检查、高危妊娠管理、自然分娩及剖宫产等全程母婴健康服务。",
+    "location": "2楼南区",
+    "doctors_count": 14
+  },
+  {
+    "dept_id": "DEPT004",
+    "name": "耳鼻咽喉科",
+    "category": "五官",
+    "description": "诊治耳部感染、听力障碍、鼻炎鼻窦炎、咽喉肿瘤、睡眠呼吸暂停等耳鼻喉头颈疾病。",
+    "location": "4楼北区",
+    "doctors_count": 8
+  },
+  {
+    "dept_id": "DEPT005",
+    "name": "消化内科",
+    "category": "内科",
+    "description": "擅长胃炎、消化性溃疡、炎症性肠病、肝硬化、胰腺炎及胃肠早癌内镜筛查与干预。",
+    "location": "3楼西区",
+    "doctors_count": 11
+  },
+  {
+    "dept_id": "DEPT006",
+    "name": "骨科",
+    "category": "外科",
+    "description": "涵盖创伤、脊柱、关节、运动医学及骨肿瘤等领域，开展微创关节置换与3D打印个性化植入术。",
+    "location": "5楼东区",
+    "doctors_count": 15
+  },
+  {
+    "dept_id": "DEPT007",
+    "name": "儿科",
+    "category": "妇儿",
+    "description": "为0-14岁儿童提供常见病、多发病、生长发育评估、儿童哮喘及过敏性疾病诊疗服务。",
+    "location": "2楼北区",
+    "doctors_count": 13
+  },
+  {
+    "dept_id": "DEPT008",
+    "name": "眼科",
+    "category": "五官",
+    "description": "开展白内障超声乳化、青光眼手术、玻璃体视网膜微创术、屈光矫正及儿童斜弱视干预。",
+    "location": "4楼东区",
+    "doctors_count": 10
+  },
+  {
+    "dept_id": "DEPT009",
+    "name": "呼吸内科",
+    "category": "内科",
+    "description": "诊治慢性阻塞性肺疾病、支气管哮喘、间质性肺病、肺部感染及肺癌早期筛查与多学科管理。",
+    "location": "3楼南区",
+    "doctors_count": 9
+  },
+  {
+    "dept_id": "DEPT010",
+    "name": "泌尿外科",
+    "category": "外科",
+    "description": "开展腹腔镜/机器人辅助肾癌根治、前列腺癌切除、尿路结石微创取石及男科疾病诊疗。",
+    "location": "5楼南区",
+    "doctors_count": 11
+  },
+  {
+    "dept_id": "DEPT011",
+    "name": "妇科",
+    "category": "妇儿",
+    "description": "提供宫颈病变诊治、子宫肌瘤/卵巢囊肿微创手术、盆底康复、更年期管理及妇科肿瘤综合治疗。",
+    "location": "2楼西区",
+    "doctors_count": 12
+  },
+  {
+    "dept_id": "DEPT012",
+    "name": "口腔科",
+    "category": "五官",
+    "description": "涵盖牙体牙髓、牙周病、口腔颌面外科、正畸、种植修复及儿童口腔预防保健。",
+    "location": "4楼南区",
+    "doctors_count": 14
+  },
+  {
+    "dept_id": "DEPT013",
+    "name": "内分泌科",
+    "category": "内科",
+    "description": "专注糖尿病及其并发症、甲状腺疾病、骨质疏松、垂体及肾上腺疾病等内分泌代谢性病管理。",
+    "location": "3楼中区",
+    "doctors_count": 8
+  },
+  {
+    "dept_id": "DEPT014",
+    "name": "普外科",
+    "category": "外科",
+    "description": "处理甲状腺/乳腺疾病、腹壁疝、阑尾炎、胆囊结石、胃肠肿瘤等常见普外疾病及微创手术。",
+    "location": "5楼中区",
+    "doctors_count": 16
+  },
+  {
+    "dept_id": "DEPT015",
+    "name": "新生儿科",
+    "category": "妇儿",
+    "description": "收治早产儿、低体重儿、新生儿窒息、黄疸、感染及先天畸形等危重新生儿的监护与救治。",
+    "location": "1楼东区",
+    "doctors_count": 10
+  },
+  {
+    "dept_id": "DEPT016",
+    "name": "皮肤科",
+    "category": "其他",
+    "description": "诊治各类皮肤病、性传播疾病、皮肤美容（激光/光子嫩肤）、毛发疾病及皮肤病理诊断。",
+    "location": "6楼东区",
+    "doctors_count": 7
+  },
+  {
+    "dept_id": "DEPT017",
+    "name": "血液科",
+    "category": "内科",
+    "description": "开展白血病、淋巴瘤、多发性骨髓瘤、再生障碍性贫血、出血凝血障碍等血液系统疾病诊疗。",
+    "location": "3楼北区",
+    "doctors_count": 9
+  },
+  {
+    "dept_id": "DEPT018",
+    "name": "胸外科",
+    "category": "外科",
+    "description": "主攻肺癌、食管癌、纵隔肿瘤、气胸及胸部外伤的胸腔镜微创手术与综合治疗。",
+    "location": "5楼北区",
+    "doctors_count": 8
+  },
+  {
+    "dept_id": "DEPT019",
+    "name": "小儿外科",
+    "category": "妇儿",
+    "description": "专治儿童先天性畸形（如先天性巨结肠、尿道下裂）、急腹症、肿瘤及创伤等外科疾病。",
+    "location": "2楼中区",
+    "doctors_count": 6
+  },
+  {
+    "dept_id": "DEPT020",
+    "name": "放射科",
+    "category": "其他",
+    "description": "提供X线、CT、MRI、DSA等影像检查与介入放射诊疗，支撑全院临床精准诊断与微创治疗。",
+    "location": "B1楼西区",
+    "doctors_count": 12
+  },
+  {
+    "dept_id": "DEPT021",
+    "name": "病理科",
+    "category": "其他",
+    "description": "承担组织活检、细胞学、分子病理检测及术中快速冰冻诊断，为临床提供金标准依据。",
+    "location": "B2楼东区",
+    "doctors_count": 9
+  },
+  {
+    "dept_id": "DEPT022",
+    "name": "康复医学科",
+    "category": "其他",
+    "description": "针对脑卒中、脊髓损伤、骨关节术后、慢性疼痛等开展物理治疗、作业治疗及言语康复。",
+    "location": "6楼西区",
+    "doctors_count": 11
+  },
+  {
+    "dept_id": "DEPT023",
+    "name": "感染科",
+    "category": "内科",
+    "description": "诊治病毒性肝炎、艾滋病、结核病、发热待查及新发传染病的规范化防控与个体化治疗。",
+    "location": "3楼东区",
+    "doctors_count": 7
+  },
+  {
+    "dept_id": "DEPT024",
+    "name": "精神心理科",
+    "category": "其他",
+    "description": "提供焦虑抑郁、失眠、青少年心理问题、老年认知障碍及心身疾病的评估、咨询与干预。",
+    "location": "6楼中区",
+    "doctors_count": 8
+  },
+  {
+    "dept_id": "DEPT025",
+    "name": "肿瘤科",
+    "category": "内科",
+    "description": "开展化疗、靶向治疗、免疫治疗及多学科会诊（MDT），为实体瘤及血液肿瘤患者制定个体方案。",
+    "location": "4楼中区",
+    "doctors_count": 13
+  },
+  {
+    "dept_id": "DEPT026",
+    "name": "麻醉科",
+    "category": "其他",
+    "description": "负责手术麻醉、无痛诊疗（胃肠镜/分娩）、重症监护及急慢性疼痛管理。",
+    "location": "B1楼中区",
+    "doctors_count": 15
+  },
+  {
+    "dept_id": "DEPT027",
+    "name": "急诊医学科",
+    "category": "其他",
+    "description": "24小时接诊急危重症患者，涵盖心脑血管急症、创伤、中毒、休克等，具备高级生命支持能力。",
+    "location": "1楼中区",
+    "doctors_count": 22
+  },
+  {
+    "dept_id": "DEPT028",
+    "name": "营养科",
+    "category": "其他",
+    "description": "为住院及门诊患者提供营养风险筛查、疾病特异性膳食指导、肠内肠外营养支持及慢病营养管理。",
+    "location": "6楼南区",
+    "doctors_count": 5
+  },
+  {
+    "dept_id": "DEPT029",
+    "name": "中医科",
+    "category": "其他",
+    "description": "融合传统中医辨证施治与现代医学技术，开展针灸、推拿、中药调理及中西医结合慢病管理。",
+    "location": "6楼北区",
+    "doctors_count": 9
+  },
+  {
+    "dept_id": "DEPT030",
+    "name": "核医学科",
+    "category": "其他",
+    "description": "开展PET/CT肿瘤显像、甲状腺功能测定、骨转移筛查及放射性核素治疗（如碘-131）。",
+    "location": "B2楼西区",
+    "doctors_count": 6
+  }
+]

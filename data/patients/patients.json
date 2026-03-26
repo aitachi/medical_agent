@@ -1,0 +1,1145 @@
+[
+  {
+    "patient_id": "P001",
+    "basic_info": {
+      "name": "患者1",
+      "gender": "男",
+      "age": 12,
+      "birth_date": "2012-08-04",
+      "phone": "13657995797",
+      "address": {
+        "province": "江苏省",
+        "city": "南京市"
+      }
+    },
+    "health_record": {
+      "allergies": [],
+      "chronic_diseases": [],
+      "medications": [],
+      "surgeries": [],
+      "family_history": []
+    },
+    "last_checkup": "2025-02-27"
+  },
+  {
+    "patient_id": "P002",
+    "basic_info": {
+      "name": "患者2",
+      "gender": "女",
+      "age": 8,
+      "birth_date": "2016-06-01",
+      "phone": "13394411221",
+      "address": {
+        "province": "浙江省",
+        "city": "温州市"
+      }
+    },
+    "health_record": {
+      "allergies": [],
+      "chronic_diseases": [],
+      "medications": [],
+      "surgeries": [
+        "阑尾切除术"
+      ],
+      "family_history": [
+        "父亲有高血压"
+      ]
+    },
+    "last_checkup": "2025-02-10"
+  },
+  {
+    "patient_id": "P003",
+    "basic_info": {
+      "name": "患者3",
+      "gender": "男",
+      "age": 16,
+      "birth_date": "2008-12-20",
+      "phone": "13221778326",
+      "address": {
+        "province": "广东省",
+        "city": "东莞市"
+      }
+    },
+    "health_record": {
+      "allergies": [],
+      "chronic_diseases": [],
+      "medications": [],
+      "surgeries": [],
+      "family_history": []
+    },
+    "last_checkup": "2025-02-01"
+  },
+  {
+    "patient_id": "P004",
+    "basic_info": {
+      "name": "患者4",
+      "gender": "女",
+      "age": 5,
+      "birth_date": "2019-12-06",
+      "phone": "13566176468",
+      "address": {
+        "province": "江苏省",
+        "city": "无锡市"
+      }
+    },
+    "health_record": {
+      "allergies": [],
+      "chronic_diseases": [
+        "慢性支气管炎"
+      ],
+      "medications": [
+        "沙丁胺醇",
+        "氨茶碱"
+      ],
+      "surgeries": [],
+      "family_history": []
+    },
+    "last_checkup": "2025-03-28"
+  },
+  {
+    "patient_id": "P005",
+    "basic_info": {
+      "name": "患者5",
+      "gender": "男",
+      "age": 14,
+      "birth_date": "2011-01-10",
+      "phone": "13850060616",
+      "address": {
+        "province": "湖北省",
+        "city": "襄阳市"
+      }
+    },
+    "health_record": {
+      "allergies": [],
+      "chronic_diseases": [
+        "高脂血症"
+      ],
+      "medications": [
+        "阿托伐他汀",
+        "非诺贝特"
+      ],
+      "surgeries": [],
+      "family_history": [
+        "母亲有骨质疏松",
+        "祖父有高血压"
+      ]
+    },
+    "last_checkup": "2025-01-25"
+  },
+  {
+    "patient_id": "P006",
+    "basic_info": {
+      "name": "患者6",
+      "gender": "女",
+      "age": 29,
+      "birth_date": "1995-07-18",
+      "phone": "13357197720",
+      "address": {
+        "province": "北京市",
+        "city": "西城区"
+      }
+    },
+    "health_record": {
+      "allergies": [],
+      "chronic_diseases": [
+        "冠心病"
+      ],
+      "medications": [
+        "美托洛尔",
+        "硝酸甘油"
+      ],
+      "surgeries": [],
+      "family_history": []
+    },
+    "last_checkup": "2025-01-15"
+  },
+  {
+    "patient_id": "P007",
+    "basic_info": {
+      "name": "患者7",
+      "gender": "男",
+      "age": 22,
+      "birth_date": "2003-01-14",
+      "phone": "13792165446",
+      "address": {
+        "province": "陕西省",
+        "city": "咸阳市"
+      }
+    },
+    "health_record": {
+      "allergies": [],
+      "chronic_diseases": [],
+      "medications": [],
+      "surgeries": [],
+      "family_history": []
+    },
+    "last_checkup": "2025-03-02"
+  },
+  {
+    "patient_id": "P008",
+    "basic_info": {
+      "name": "患者8",
+      "gender": "女",
+      "age": 33,
+      "birth_date": "1991-10-25",
+      "phone": "13769138087",
+      "address": {
+        "province": "河南省",
+        "city": "南阳市"
+      }
+    },
+    "health_record": {
+      "allergies": [],
+      "chronic_diseases": [],
+      "medications": [],
+      "surgeries": [],
+      "family_history": [
+        "父亲有高血压",
+        "父亲有冠心病"
+      ]
+    },
+    "last_checkup": "2025-01-19"
+  },
+  {
+    "patient_id": "P009",
+    "basic_info": {
+      "name": "患者9",
+      "gender": "男",
+      "age": 26,
+      "birth_date": "1998-06-19",
+      "phone": "13493488383",
+      "address": {
+        "province": "河南省",
+        "city": "洛阳市"
+      }
+    },
+    "health_record": {
+      "allergies": [],
+      "chronic_diseases": [
+        "高脂血症"
+      ],
+      "medications": [
+        "阿托伐他汀",
+        "非诺贝特"
+      ],
+      "surgeries": [],
+      "family_history": []
+    },
+    "last_checkup": "2025-03-12"
+  },
+  {
+    "patient_id": "P010",
+    "basic_info": {
+      "name": "患者10",
+      "gender": "女",
+      "age": 35,
+      "birth_date": "1989-07-25",
+      "phone": "13285399299",
+      "address": {
+        "province": "江苏省",
+        "city": "南京市"
+      }
+    },
+    "health_record": {
+      "allergies": [],
+      "chronic_diseases": [
+        "高脂血症"
+      ],
+      "medications": [
+        "非诺贝特",
+        "辛伐他汀"
+      ],
+      "surgeries": [],
+      "family_history": [
+        "母亲有糖尿病"
+      ]
+    },
+    "last_checkup": "2025-02-21"
+  },
+  {
+    "patient_id": "P011",
+    "basic_info": {
+      "name": "患者11",
+      "gender": "男",
+      "age": 42,
+      "birth_date": "1983-01-10",
+      "phone": "13131250645",
+      "address": {
+        "province": "四川省",
+        "city": "南充市"
+      }
+    },
+    "health_record": {
+      "allergies": [],
+      "chronic_diseases": [],
+      "medications": [],
+      "surgeries": [],
+      "family_history": [
+        "母亲有骨质疏松"
+      ]
+    },
+    "last_checkup": "2025-02-01"
+  },
+  {
+    "patient_id": "P012",
+    "basic_info": {
+      "name": "患者12",
+      "gender": "女",
+      "age": 47,
+      "birth_date": "1977-12-12",
+      "phone": "13467658206",
+      "address": {
+        "province": "江苏省",
+        "city": "无锡市"
+      }
+    },
+    "health_record": {
+      "allergies": [],
+      "chronic_diseases": [],
+      "medications": [],
+      "surgeries": [],
+      "family_history": [
+        "祖父有高血压"
+      ]
+    },
+    "last_checkup": "2025-02-24"
+  },
+  {
+    "patient_id": "P013",
+    "basic_info": {
+      "name": "患者13",
+      "gender": "男",
+      "age": 38,
+      "birth_date": "1986-09-19",
+      "phone": "13967693885",
+      "address": {
+        "province": "广东省",
+        "city": "深圳市"
+      }
+    },
+    "health_record": {
+      "allergies": [],
+      "chronic_diseases": [],
+      "medications": [],
+      "surgeries": [],
+      "family_history": []
+    },
+    "last_checkup": "2025-02-16"
+  },
+  {
+    "patient_id": "P014",
+    "basic_info": {
+      "name": "患者14",
+      "gender": "女",
+      "age": 44,
+      "birth_date": "1980-08-17",
+      "phone": "13698216139",
+      "address": {
+        "province": "河南省",
+        "city": "洛阳市"
+      }
+    },
+    "health_record": {
+      "allergies": [],
+      "chronic_diseases": [],
+      "medications": [],
+      "surgeries": [],
+      "family_history": []
+    },
+    "last_checkup": "2025-02-14"
+  },
+  {
+    "patient_id": "P015",
+    "basic_info": {
+      "name": "患者15",
+      "gender": "男",
+      "age": 49,
+      "birth_date": "1975-09-04",
+      "phone": "13899101520",
+      "address": {
+        "province": "上海市",
+        "city": "黄浦区"
+      }
+    },
+    "health_record": {
+      "allergies": [],
+      "chronic_diseases": [],
+      "medications": [],
+      "surgeries": [],
+      "family_history": [
+        "父亲有高血压",
+        "母亲有骨质疏松"
+      ]
+    },
+    "last_checkup": "2025-01-27"
+  },
+  {
+    "patient_id": "P016",
+    "basic_info": {
+      "name": "患者16",
+      "gender": "女",
+      "age": 53,
+      "birth_date": "1971-08-08",
+      "phone": "13934289979",
+      "address": {
+        "province": "四川省",
+        "city": "绵阳市"
+      }
+    },
+    "health_record": {
+      "allergies": [],
+      "chronic_diseases": [],
+      "medications": [],
+      "surgeries": [],
+      "family_history": [
+        "母亲有骨质疏松"
+      ]
+    },
+    "last_checkup": "2025-02-26"
+  },
+  {
+    "patient_id": "P017",
+    "basic_info": {
+      "name": "患者17",
+      "gender": "男",
+      "age": 57,
+      "birth_date": "1968-01-24",
+      "phone": "13193253119",
+      "address": {
+        "province": "北京市",
+        "city": "朝阳区"
+      }
+    },
+    "health_record": {
+      "allergies": [
+        "牛奶过敏"
+      ],
+      "chronic_diseases": [],
+      "medications": [],
+      "surgeries": [],
+      "family_history": []
+    },
+    "last_checkup": "2025-03-25"
+  },
+  {
+    "patient_id": "P018",
+    "basic_info": {
+      "name": "患者18",
+      "gender": "女",
+      "age": 55,
+      "birth_date": "1969-11-13",
+      "phone": "13036318809",
+      "address": {
+        "province": "江苏省",
+        "city": "南京市"
+      }
+    },
+    "health_record": {
+      "allergies": [
+        "牛奶过敏"
+      ],
+      "chronic_diseases": [],
+      "medications": [],
+      "surgeries": [],
+      "family_history": [
+        "祖母有糖尿病",
+        "父亲有高血压"
+      ]
+    },
+    "last_checkup": "2025-02-06"
+  },
+  {
+    "patient_id": "P019",
+    "basic_info": {
+      "name": "患者19",
+      "gender": "男",
+      "age": 62,
+      "birth_date": "1962-10-04",
+      "phone": "13167311721",
+      "address": {
+        "province": "四川省",
+        "city": "南充市"
+      }
+    },
+    "health_record": {
+      "allergies": [],
+      "chronic_diseases": [],
+      "medications": [],
+      "surgeries": [],
+      "family_history": [
+        "祖父有高血压",
+        "祖母有糖尿病"
+      ]
+    },
+    "last_checkup": "2025-02-28"
+  },
+  {
+    "patient_id": "P020",
+    "basic_info": {
+      "name": "患者20",
+      "gender": "女",
+      "age": 64,
+      "birth_date": "1960-10-11",
+      "phone": "13544641584",
+      "address": {
+        "province": "浙江省",
+        "city": "绍兴市"
+      }
+    },
+    "health_record": {
+      "allergies": [],
+      "chronic_diseases": [
+        "慢性肾病"
+      ],
+      "medications": [
+        "促红细胞生成素",
+        "骨化三醇"
+      ],
+      "surgeries": [],
+      "family_history": [
+        "母亲有糖尿病"
+      ]
+    },
+    "last_checkup": "2025-02-16"
+  },
+  {
+    "patient_id": "P021",
+    "basic_info": {
+      "name": "患者21",
+      "gender": "男",
+      "age": 71,
+      "birth_date": "1953-08-12",
+      "phone": "13282011049",
+      "address": {
+        "province": "山东省",
+        "city": "青岛市"
+      }
+    },
+    "health_record": {
+      "allergies": [],
+      "chronic_diseases": [],
+      "medications": [],
+      "surgeries": [],
+      "family_history": []
+    },
+    "last_checkup": "2025-03-17"
+  },
+  {
+    "patient_id": "P022",
+    "basic_info": {
+      "name": "患者22",
+      "gender": "女",
+      "age": 78,
+      "birth_date": "1946-12-23",
+      "phone": "13864373686",
+      "address": {
+        "province": "四川省",
+        "city": "南充市"
+      }
+    },
+    "health_record": {
+      "allergies": [],
+      "chronic_diseases": [],
+      "medications": [],
+      "surgeries": [],
+      "family_history": []
+    },
+    "last_checkup": "2025-01-17"
+  },
+  {
+    "patient_id": "P023",
+    "basic_info": {
+      "name": "患者23",
+      "gender": "男",
+      "age": 27,
+      "birth_date": "1997-11-09",
+      "phone": "13874247393",
+      "address": {
+        "province": "河南省",
+        "city": "郑州市"
+      }
+    },
+    "health_record": {
+      "allergies": [],
+      "chronic_diseases": [],
+      "medications": [],
+      "surgeries": [
+        "疝气修补术"
+      ],
+      "family_history": [
+        "母亲有糖尿病"
+      ]
+    },
+    "last_checkup": "2025-01-27"
+  },
+  {
+    "patient_id": "P024",
+    "basic_info": {
+      "name": "患者24",
+      "gender": "女",
+      "age": 41,
+      "birth_date": "1983-05-14",
+      "phone": "13736527584",
+      "address": {
+        "province": "广东省",
+        "city": "广州市"
+      }
+    },
+    "health_record": {
+      "allergies": [],
+      "chronic_diseases": [],
+      "medications": [],
+      "surgeries": [],
+      "family_history": []
+    },
+    "last_checkup": "2025-02-27"
+  },
+  {
+    "patient_id": "P025",
+    "basic_info": {
+      "name": "患者25",
+      "gender": "男",
+      "age": 32,
+      "birth_date": "1992-11-01",
+      "phone": "13449984101",
+      "address": {
+        "province": "四川省",
+        "city": "成都市"
+      }
+    },
+    "health_record": {
+      "allergies": [],
+      "chronic_diseases": [],
+      "medications": [],
+      "surgeries": [],
+      "family_history": []
+    },
+    "last_checkup": "2025-03-27"
+  },
+  {
+    "patient_id": "P026",
+    "basic_info": {
+      "name": "患者26",
+      "gender": "女",
+      "age": 45,
+      "birth_date": "1980-01-04",
+      "phone": "13691882296",
+      "address": {
+        "province": "山东省",
+        "city": "烟台市"
+      }
+    },
+    "health_record": {
+      "allergies": [
+        "尘螨过敏"
+      ],
+      "chronic_diseases": [],
+      "medications": [],
+      "surgeries": [],
+      "family_history": []
+    },
+    "last_checkup": "2025-02-14"
+  },
+  {
+    "patient_id": "P027",
+    "basic_info": {
+      "name": "患者27",
+      "gender": "男",
+      "age": 19,
+      "birth_date": "2005-07-24",
+      "phone": "13763771107",
+      "address": {
+        "province": "浙江省",
+        "city": "温州市"
+      }
+    },
+    "health_record": {
+      "allergies": [],
+      "chronic_diseases": [],
+      "medications": [],
+      "surgeries": [],
+      "family_history": [
+        "祖父有高血压"
+      ]
+    },
+    "last_checkup": "2025-01-18"
+  },
+  {
+    "patient_id": "P028",
+    "basic_info": {
+      "name": "患者28",
+      "gender": "女",
+      "age": 34,
+      "birth_date": "1990-12-29",
+      "phone": "13067064396",
+      "address": {
+        "province": "北京市",
+        "city": "西城区"
+      }
+    },
+    "health_record": {
+      "allergies": [],
+      "chronic_diseases": [],
+      "medications": [],
+      "surgeries": [
+        "扁桃体切除术"
+      ],
+      "family_history": [
+        "母亲有骨质疏松",
+        "父亲有高血压"
+      ]
+    },
+    "last_checkup": "2025-02-24"
+  },
+  {
+    "patient_id": "P029",
+    "basic_info": {
+      "name": "患者29",
+      "gender": "男",
+      "age": 52,
+      "birth_date": "1972-05-29",
+      "phone": "13456325099",
+      "address": {
+        "province": "北京市",
+        "city": "西城区"
+      }
+    },
+    "health_record": {
+      "allergies": [
+        "海鲜过敏"
+      ],
+      "chronic_diseases": [],
+      "medications": [],
+      "surgeries": [],
+      "family_history": [
+        "母亲有骨质疏松",
+        "祖父有高血压"
+      ]
+    },
+    "last_checkup": "2025-01-20"
+  },
+  {
+    "patient_id": "P030",
+    "basic_info": {
+      "name": "患者30",
+      "gender": "女",
+      "age": 37,
+      "birth_date": "1987-09-17",
+      "phone": "13757144849",
+      "address": {
+        "province": "湖北省",
+        "city": "荆州市"
+      }
+    },
+    "health_record": {
+      "allergies": [],
+      "chronic_diseases": [],
+      "medications": [],
+      "surgeries": [],
+      "family_history": [
+        "祖父有高血压",
+        "母亲有骨质疏松"
+      ]
+    },
+    "last_checkup": "2025-01-12"
+  },
+  {
+    "patient_id": "P00001",
+    "name": "张伟",
+    "gender": "男",
+    "age": 45,
+    "phone": "13800138000",
+    "id_card": "110101197905123456",
+    "address": "北京市朝阳区建国路8号SOHO现代城A座1201",
+    "emergency_contact": {
+      "name": "李芳",
+      "phone": "13900139000",
+      "relationship": "配偶"
+    },
+    "blood_type": "A型",
+    "allergies": [
+      "青霉素",
+      "头孢类抗生素"
+    ],
+    "register_date": "2025-03-01"
+  },
+  {
+    "patient_id": "P00002",
+    "name": "王婷",
+    "gender": "女",
+    "age": 32,
+    "phone": "13912345678",
+    "id_card": "310115199211234567",
+    "address": "上海市浦东新区世纪大道1001号环球金融中心B栋2805",
+    "emergency_contact": {
+      "name": "王建国",
+      "phone": "13678901234",
+      "relationship": "父亲"
+    },
+    "blood_type": "O型",
+    "allergies": [
+      "尘螨",
+      "花生"
+    ],
+    "register_date": "2025-03-02"
+  },
+  {
+    "patient_id": "P00003",
+    "name": "陈明",
+    "gender": "男",
+    "age": 67,
+    "phone": "13787654321",
+    "id_card": "440304195708156789",
+    "address": "广东省深圳市南山区科技园科苑路15号海天大厦3单元502",
+    "emergency_contact": {
+      "name": "陈小雨",
+      "phone": "13567890123",
+      "relationship": "女儿"
+    },
+    "blood_type": "B型",
+    "allergies": [
+      "磺胺类药物"
+    ],
+    "register_date": "2025-03-03"
+  },
+  {
+    "patient_id": "P00004",
+    "name": "刘静",
+    "gender": "女",
+    "age": 28,
+    "phone": "15912345678",
+    "id_card": "320102199612051234",
+    "address": "江苏省南京市鼓楼区汉中路288号金陵饭店公寓A座1803",
+    "emergency_contact": {
+      "name": "赵磊",
+      "phone": "18888777766",
+      "relationship": "男友"
+    },
+    "blood_type": "AB型",
+    "allergies": [
+      "海鲜",
+      "阿司匹林"
+    ],
+    "register_date": "2025-03-04"
+  },
+  {
+    "patient_id": "P00005",
+    "name": "黄志强",
+    "gender": "男",
+    "age": 53,
+    "phone": "13611223344",
+    "id_card": "510104197109225678",
+    "address": "四川省成都市武侯区人民南路四段27号凯莱帝景A栋1208",
+    "emergency_contact": {
+      "name": "黄丽华",
+      "phone": "13811223344",
+      "relationship": "姐姐"
+    },
+    "blood_type": "A型",
+    "allergies": [
+      "碘伏",
+      "造影剂"
+    ],
+    "register_date": "2025-03-05"
+  },
+  {
+    "patient_id": "P00006",
+    "name": "徐雅琳",
+    "gender": "女",
+    "age": 41,
+    "phone": "15298765432",
+    "id_card": "210202198307142345",
+    "address": "辽宁省大连市中山区友好广场1号星海国际大厦C座2201",
+    "emergency_contact": {
+      "name": "徐国强",
+      "phone": "13344556677",
+      "relationship": "丈夫"
+    },
+    "blood_type": "O型",
+    "allergies": [
+      "乳胶",
+      "蜂毒"
+    ],
+    "register_date": "2025-03-06"
+  },
+  {
+    "patient_id": "P00007",
+    "name": "周浩",
+    "gender": "男",
+    "age": 24,
+    "phone": "18655667788",
+    "id_card": "330106200005211234",
+    "address": "浙江省杭州市西湖区文三路388号浙大科技园B座305室",
+    "emergency_contact": {
+      "name": "周美玲",
+      "phone": "13755667788",
+      "relationship": "母亲"
+    },
+    "blood_type": "B型",
+    "allergies": [
+      "芒果",
+      "布洛芬"
+    ],
+    "register_date": "2025-03-07"
+  },
+  {
+    "patient_id": "P00008",
+    "name": "孙莉",
+    "gender": "女",
+    "age": 59,
+    "phone": "13999887766",
+    "id_card": "420106196512123456",
+    "address": "湖北省武汉市武昌区中北路86号楚河汉街万达御湖公馆2栋1604",
+    "emergency_contact": {
+      "name": "孙伟",
+      "phone": "15877665544",
+      "relationship": "弟弟"
+    },
+    "blood_type": "A型",
+    "allergies": [
+      "链霉素",
+      "花粉"
+    ],
+    "register_date": "2025-03-08"
+  },
+  {
+    "patient_id": "P00009",
+    "name": "吴昊",
+    "gender": "男",
+    "age": 36,
+    "phone": "18766554433",
+    "id_card": "350102198809102345",
+    "address": "福建省福州市鼓楼区五四路158号国际大厦D座1102",
+    "emergency_contact": {
+      "name": "林雪",
+      "phone": "13688776655",
+      "relationship": "妻子"
+    },
+    "blood_type": "O型",
+    "allergies": [
+      "酒精",
+      "硝酸甘油"
+    ],
+    "register_date": "2025-03-09"
+  },
+  {
+    "patient_id": "P00010",
+    "name": "郑晓彤",
+    "gender": "女",
+    "age": 29,
+    "phone": "15012345678",
+    "id_card": "220102199508223456",
+    "address": "吉林省长春市朝阳区解放大路2222号活力城A座2607",
+    "emergency_contact": {
+      "name": "郑志远",
+      "phone": "13211223344",
+      "relationship": "哥哥"
+    },
+    "blood_type": "AB型",
+    "allergies": [
+      "柳絮",
+      "左氧氟沙星"
+    ],
+    "register_date": "2025-03-10"
+  },
+  {
+    "patient_id": "P00011",
+    "name": "王磊",
+    "gender": "男",
+    "age": 47,
+    "phone": "13500112233",
+    "id_card": "610103197711154567",
+    "address": "陕西省西安市雁塔区小寨东路126号百盛购物中心南楼1809",
+    "emergency_contact": {
+      "name": "王敏",
+      "phone": "18629223344",
+      "relationship": "妹妹"
+    },
+    "blood_type": "B型",
+    "allergies": [
+      "阿莫西林",
+      "镍金属"
+    ],
+    "register_date": "2025-03-11"
+  },
+  {
+    "patient_id": "P00012",
+    "name": "冯雪",
+    "gender": "女",
+    "age": 33,
+    "phone": "18988776655",
+    "id_card": "370202199110122345",
+    "address": "山东省青岛市市南区香港中路66号阳光百货A座2103",
+    "emergency_contact": {
+      "name": "冯建国",
+      "phone": "13966778899",
+      "relationship": "父亲"
+    },
+    "blood_type": "A型",
+    "allergies": [
+      "虾蟹",
+      "氯霉素"
+    ],
+    "register_date": "2025-03-12"
+  },
+  {
+    "patient_id": "P00013",
+    "name": "胡洋",
+    "gender": "男",
+    "age": 26,
+    "phone": "15122334455",
+    "id_card": "500101199803211234",
+    "address": "重庆市渝中区解放碑民权路28号英利国际金融中心16层1605",
+    "emergency_contact": {
+      "name": "胡慧敏",
+      "phone": "13811223344",
+      "relationship": "姑妈"
+    },
+    "blood_type": "O型",
+    "allergies": [
+      "芒果",
+      "磺胺甲噁唑"
+    ],
+    "register_date": "2025-03-13"
+  },
+  {
+    "patient_id": "P00014",
+    "name": "高洁",
+    "gender": "女",
+    "age": 51,
+    "phone": "13799887766",
+    "id_card": "430102197306143456",
+    "address": "湖南省长沙市芙蓉区五一大道89号中天广场B座2301",
+    "emergency_contact": {
+      "name": "高远",
+      "phone": "15988776655",
+      "relationship": "儿子"
+    },
+    "blood_type": "AB型",
+    "allergies": [
+      "青霉素",
+      "蜂毒"
+    ],
+    "register_date": "2025-03-14"
+  },
+  {
+    "patient_id": "P00015",
+    "name": "林峰",
+    "gender": "男",
+    "age": 39,
+    "phone": "18866778899",
+    "id_card": "350203198512052345",
+    "address": "福建省厦门市思明区厦禾路818号宝龙中心A座1907",
+    "emergency_contact": {
+      "name": "林秀英",
+      "phone": "13677889900",
+      "relationship": "母亲"
+    },
+    "blood_type": "A型",
+    "allergies": [
+      "头孢曲松",
+      "染发剂"
+    ],
+    "register_date": "2025-03-15"
+  },
+  {
+    "patient_id": "P00016",
+    "name": "赵敏",
+    "gender": "女",
+    "age": 44,
+    "phone": "13955667788",
+    "id_card": "230102198011223456",
+    "address": "黑龙江省哈尔滨市南岗区中山路181号金源大厦B座1204",
+    "emergency_contact": {
+      "name": "赵阳",
+      "phone": "15166778899",
+      "relationship": "丈夫"
+    },
+    "blood_type": "B型",
+    "allergies": [
+      "鸡蛋",
+      "碘酒"
+    ],
+    "register_date": "2025-03-16"
+  },
+  {
+    "patient_id": "P00017",
+    "name": "邓超",
+    "gender": "男",
+    "age": 31,
+    "phone": "15233445566",
+    "id_card": "440106199307152345",
+    "address": "广东省广州市天河区珠江新城华夏路10号富力中心A座2502",
+    "emergency_contact": {
+      "name": "邓玉兰",
+      "phone": "13722334455",
+      "relationship": "姐姐"
+    },
+    "blood_type": "O型",
+    "allergies": [
+      "阿司匹林",
+      "柳絮"
+    ],
+    "register_date": "2025-03-17"
+  },
+  {
+    "patient_id": "P00018",
+    "name": "韩梅梅",
+    "gender": "女",
+    "age": 27,
+    "phone": "18644556677",
+    "id_card": "120102199704121234",
+    "address": "天津市和平区南京路188号万通中心C座1906",
+    "emergency_contact": {
+      "name": "韩建国",
+      "phone": "13944556677",
+      "relationship": "父亲"
+    },
+    "blood_type": "AB型",
+    "allergies": [
+      "牛奶",
+      "庆大霉素"
+    ],
+    "register_date": "2025-03-18"
+  },
+  {
+    "patient_id": "P00019",
+    "name": "杨帆",
+    "gender": "男",
+    "age": 55,
+    "phone": "13455667788",
+    "id_card": "650102196910203456",
+    "address": "新疆维吾尔自治区乌鲁木齐市天山区解放北路269号宏源大厦A座1103",
+    "emergency_contact": {
+      "name": "杨丽娜",
+      "phone": "15055667788",
+      "relationship": "妻子"
+    },
+    "blood_type": "A型",
+    "allergies": [
+      "阿奇霉素",
+      "橡胶"
+    ],
+    "register_date": "2025-03-19"
+  },
+  {
+    "patient_id": "P00020",
+    "name": "潘婷",
+    "gender": "女",
+    "age": 34,
+    "phone": "15922334455",
+    "id_card": "520102199009152345",
+    "address": "贵州省贵阳市云岩区中华北路18号国贸广场B座2008",
+    "emergency_contact": {
+      "name": "潘卫东",
+      "phone": "13833445566",
+      "relationship": "哥哥"
+    },
+    "blood_type": "O型",
+    "allergies": [
+      "坚果",
+      "卡马西平"
+    ],
+    "register_date": "2025-03-20"
+  }
+]

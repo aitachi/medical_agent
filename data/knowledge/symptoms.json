@@ -1,0 +1,1755 @@
+{
+  "total": 50,
+  "symptoms": [
+    {
+      "id": "SYM001",
+      "name": "发热",
+      "aliases": [
+        "发烧",
+        "体温升高"
+      ],
+      "category": "全身症状",
+      "description": "身体温度异常升高，通常超过正常范围37.2°C。",
+      "common_causes": [
+        "感染性疾病",
+        "免疫反应",
+        "脱水",
+        "药物副作用",
+        "环境因素"
+      ],
+      "red_flags": [
+        "持续高热不退",
+        "伴有意识改变或严重头痛"
+      ],
+      "recommended_department": "内科",
+      "alternative_departments": [
+        "急诊科",
+        "儿科"
+      ],
+      "self_care": [
+        "多饮水保持水分",
+        "适当休息并监测体温变化"
+      ],
+      "severity_levels": {
+        "mild": "轻度",
+        "moderate": "中度",
+        "severe": "重度"
+      }
+    },
+    {
+      "id": "SYM002",
+      "name": "乏力",
+      "aliases": [
+        "疲劳",
+        "无力"
+      ],
+      "category": "全身症状",
+      "description": "感到身体疲倦，缺乏活力，进行日常活动时感觉吃力。",
+      "common_causes": [
+        "贫血",
+        "慢性疾病",
+        "睡眠不足",
+        "营养不良",
+        "压力过大"
+      ],
+      "red_flags": [
+        "突然出现的严重乏力",
+        "伴有胸痛或呼吸困难"
+      ],
+      "recommended_department": "内科",
+      "alternative_departments": [
+        "血液科",
+        "心理科"
+      ],
+      "self_care": [
+        "保证充足休息",
+        "均衡饮食，补充维生素和矿物质"
+      ],
+      "severity_levels": {
+        "mild": "轻度",
+        "moderate": "中度",
+        "severe": "重度"
+      }
+    },
+    {
+      "id": "SYM003",
+      "name": "水肿",
+      "aliases": [
+        "浮肿",
+        "水胀"
+      ],
+      "category": "全身症状",
+      "description": "身体组织间隙液体积聚过多，导致局部或全身出现肿胀。",
+      "common_causes": [
+        "心脏疾病",
+        "肾脏问题",
+        "肝脏疾病",
+        "营养不良",
+        "药物副作用"
+      ],
+      "red_flags": [
+        "呼吸困难",
+        "胸痛"
+      ],
+      "recommended_department": "内科",
+      "alternative_departments": [
+        "心血管科",
+        "肾病科"
+      ],
+      "self_care": [
+        "减少盐分摄入",
+        "适当抬高双腿休息"
+      ],
+      "severity_levels": {
+        "mild": "轻度",
+        "moderate": "中度",
+        "severe": "重度"
+      }
+    },
+    {
+      "id": "SYM004",
+      "name": "消瘦",
+      "aliases": [
+        "体重下降",
+        "体形变瘦"
+      ],
+      "category": "全身症状",
+      "description": "指在没有刻意减肥的情况下，体重明显减轻，可能伴有食欲不振、乏力等症状。",
+      "common_causes": [
+        "慢性疾病",
+        "消化系统疾病",
+        "内分泌失调",
+        "精神压力大",
+        "恶性肿瘤"
+      ],
+      "red_flags": [
+        "短期内体重急剧下降",
+        "伴随有持续性发热"
+      ],
+      "recommended_department": "内科",
+      "alternative_departments": [
+        "营养科",
+        "心理科"
+      ],
+      "self_care": [
+        "保持均衡饮食",
+        "适量运动，增强体质"
+      ],
+      "severity_levels": {
+        "mild": "轻度",
+        "moderate": "中度",
+        "severe": "重度"
+      }
+    },
+    {
+      "id": "SYM005",
+      "name": "肥胖",
+      "aliases": [
+        "超重",
+        "体重过重"
+      ],
+      "category": "全身症状",
+      "description": "身体脂肪积累过多，导致体重超出健康范围。",
+      "common_causes": [
+        "遗传因素",
+        "不良饮食习惯",
+        "缺乏运动",
+        "内分泌失调",
+        "药物副作用"
+      ],
+      "red_flags": [
+        "呼吸困难",
+        "睡眠障碍"
+      ],
+      "recommended_department": "内分泌科",
+      "alternative_departments": [
+        "营养科",
+        "心血管内科"
+      ],
+      "self_care": [
+        "均衡饮食",
+        "定期锻炼"
+      ],
+      "severity_levels": {
+        "mild": "轻度",
+        "moderate": "中度",
+        "severe": "重度"
+      }
+    },
+    {
+      "id": "SYM006",
+      "name": "盗汗",
+      "aliases": [
+        "夜间出汗",
+        "睡眠中出汗"
+      ],
+      "category": "全身症状",
+      "description": "指在睡眠过程中出现的大量出汗现象，通常会导致床单和衣物湿透。",
+      "common_causes": [
+        "更年期综合症",
+        "感染性疾病如结核病",
+        "恶性肿瘤",
+        "内分泌失调",
+        "药物副作用"
+      ],
+      "red_flags": [
+        "体重无故下降",
+        "持续发热"
+      ],
+      "recommended_department": "内科",
+      "alternative_departments": [
+        "妇科",
+        "内分泌科"
+      ],
+      "self_care": [
+        "保持良好的个人卫生",
+        "穿着透气性好的睡衣"
+      ],
+      "severity_levels": {
+        "mild": "轻度",
+        "moderate": "中度",
+        "severe": "重度"
+      }
+    },
+    {
+      "id": "SYM007",
+      "name": "畏寒",
+      "aliases": [
+        "怕冷",
+        "寒冷敏感"
+      ],
+      "category": "全身症状",
+      "description": "患者感到异常寒冷，即使在温暖的环境中也难以缓解。",
+      "common_causes": [
+        "感冒或流感",
+        "甲状腺功能减退",
+        "贫血",
+        "低血糖",
+        "慢性疲劳综合症"
+      ],
+      "red_flags": [
+        "持续高烧不退",
+        "突发性严重畏寒伴随疼痛"
+      ],
+      "recommended_department": "内科",
+      "alternative_departments": [
+        "内分泌科",
+        "血液科"
+      ],
+      "self_care": [
+        "保持身体温暖，穿着保暖衣物",
+        "适量饮用温热饮料"
+      ],
+      "severity_levels": {
+        "mild": "轻度",
+        "moderate": "中度",
+        "severe": "重度"
+      }
+    },
+    {
+      "id": "SYM008",
+      "name": "潮热",
+      "aliases": [
+        "热潮红",
+        "突发性发热"
+      ],
+      "category": "全身症状",
+      "description": "突然感到身体一阵阵发热，常伴有出汗和皮肤发红。",
+      "common_causes": [
+        "更年期",
+        "荷尔蒙失调",
+        "甲状腺功能亢进",
+        "药物副作用",
+        "神经系统疾病"
+      ],
+      "red_flags": [
+        "持续高烧不退",
+        "严重脱水"
+      ],
+      "recommended_department": "内分泌科",
+      "alternative_departments": [
+        "妇科",
+        "神经内科"
+      ],
+      "self_care": [
+        "保持室内通风凉爽",
+        "穿着透气衣物"
+      ],
+      "severity_levels": {
+        "mild": "轻度",
+        "moderate": "中度",
+        "severe": "重度"
+      }
+    },
+    {
+      "id": "SYM009",
+      "name": "全身不适",
+      "aliases": [
+        "身体不舒服",
+        "感觉不佳"
+      ],
+      "category": "全身症状",
+      "description": "患者感到整体健康状况下降，可能伴有疲劳、无力或其他非特异性症状。",
+      "common_causes": [
+        "病毒感染",
+        "细菌感染",
+        "慢性疾病恶化",
+        "压力过大",
+        "睡眠不足"
+      ],
+      "red_flags": [
+        "持续高烧不退",
+        "突然出现严重头痛"
+      ],
+      "recommended_department": "内科",
+      "alternative_departments": [
+        "急诊科",
+        "全科医学科"
+      ],
+      "self_care": [
+        "保证充足休息",
+        "保持良好饮食习惯"
+      ],
+      "severity_levels": {
+        "mild": "轻度",
+        "moderate": "中度",
+        "severe": "重度"
+      }
+    },
+    {
+      "id": "SYM010",
+      "name": "淋巴结肿大",
+      "aliases": [
+        "淋巴腺肿",
+        "淋巴结增大"
+      ],
+      "category": "全身症状",
+      "description": "身体某部位或多个部位的淋巴结异常增大，可能伴有疼痛。",
+      "common_causes": [
+        "感染（如细菌、病毒）",
+        "免疫系统疾病",
+        "恶性肿瘤（如淋巴瘤）",
+        "药物反应",
+        "自身免疫性疾病"
+      ],
+      "red_flags": [
+        "持续性无痛性淋巴结肿大",
+        "体重迅速下降"
+      ],
+      "recommended_department": "内科",
+      "alternative_departments": [
+        "血液科",
+        "肿瘤科"
+      ],
+      "self_care": [
+        "保持良好的个人卫生",
+        "避免接触已知过敏源或刺激物"
+      ],
+      "severity_levels": {
+        "mild": "轻度",
+        "moderate": "中度",
+        "severe": "重度"
+      }
+    },
+    {
+      "id": "SYM011",
+      "name": "体重下降",
+      "aliases": [
+        "消瘦",
+        "非自愿性减重"
+      ],
+      "category": "全身症状",
+      "description": "指在没有刻意减肥的情况下，体重明显减轻，可能是健康问题的信号。",
+      "common_causes": [
+        "消化系统疾病",
+        "内分泌失调",
+        "恶性肿瘤",
+        "精神压力或抑郁",
+        "慢性感染"
+      ],
+      "red_flags": [
+        "短时间内急剧下降",
+        "伴有持续发热"
+      ],
+      "recommended_department": "内科",
+      "alternative_departments": [
+        "营养科",
+        "心理科"
+      ],
+      "self_care": [
+        "保持均衡饮食",
+        "适量运动，避免过度劳累"
+      ],
+      "severity_levels": {
+        "mild": "轻度",
+        "moderate": "中度",
+        "severe": "重度"
+      }
+    },
+    {
+      "id": "SYM012",
+      "name": "体重增加",
+      "aliases": [
+        "增重",
+        "肥胖"
+      ],
+      "category": "全身症状",
+      "description": "指在短时间内或长时间内体重非正常地增长，可能与饮食、生活习惯及疾病有关。",
+      "common_causes": [
+        "过量饮食",
+        "缺乏运动",
+        "激素失衡",
+        "某些药物副作用",
+        "慢性疾病如甲状腺功能减退"
+      ],
+      "red_flags": [
+        "短期内体重急剧增加",
+        "伴有极度疲劳或其他异常症状"
+      ],
+      "recommended_department": "内分泌科",
+      "alternative_departments": [
+        "营养科",
+        "内科"
+      ],
+      "self_care": [
+        "均衡饮食",
+        "定期进行体育活动"
+      ],
+      "severity_levels": {
+        "mild": "轻度",
+        "moderate": "中度",
+        "severe": "重度"
+      }
+    },
+    {
+      "id": "SYM013",
+      "name": "食欲不振",
+      "aliases": [
+        "厌食",
+        "不想吃东西"
+      ],
+      "category": "全身症状",
+      "description": "指对食物缺乏兴趣或完全不想进食，可能伴有体重下降。",
+      "common_causes": [
+        "消化系统疾病",
+        "精神压力",
+        "慢性病",
+        "药物副作用",
+        "感染性疾病"
+      ],
+      "red_flags": [
+        "持续性呕吐",
+        "不明原因的体重急剧下降"
+      ],
+      "recommended_department": "消化内科",
+      "alternative_departments": [
+        "心理科",
+        "营养科"
+      ],
+      "self_care": [
+        "保持规律饮食",
+        "尝试少量多餐"
+      ],
+      "severity_levels": {
+        "mild": "轻度",
+        "moderate": "中度",
+        "severe": "重度"
+      }
+    },
+    {
+      "id": "SYM014",
+      "name": "食欲亢进",
+      "aliases": [
+        "多食症",
+        "贪食"
+      ],
+      "category": "全身症状",
+      "description": "患者表现出异常强烈的进食欲望，即使不饿也想吃东西。",
+      "common_causes": [
+        "甲状腺功能亢进",
+        "糖尿病",
+        "精神压力大",
+        "药物副作用",
+        "神经性厌食恢复期"
+      ],
+      "red_flags": [
+        "体重急剧下降或增加",
+        "伴随有极度口渴和频繁排尿"
+      ],
+      "recommended_department": "内分泌科",
+      "alternative_departments": [
+        "消化内科",
+        "心理科"
+      ],
+      "self_care": [
+        "保持规律饮食习惯",
+        "避免高糖、高脂肪食物"
+      ],
+      "severity_levels": {
+        "mild": "轻度",
+        "moderate": "中度",
+        "severe": "重度"
+      }
+    },
+    {
+      "id": "SYM015",
+      "name": "口干",
+      "aliases": [
+        "口腔干燥",
+        "唾液减少"
+      ],
+      "category": "全身症状",
+      "description": "感觉口腔内缺乏足够的唾液，导致吞咽困难或说话不便。",
+      "common_causes": [
+        "脱水",
+        "药物副作用",
+        "自身免疫性疾病如舍格伦综合症",
+        "糖尿病",
+        "放射治疗后遗症"
+      ],
+      "red_flags": [
+        "持续性极度口渴",
+        "不明原因体重下降"
+      ],
+      "recommended_department": "内分泌科",
+      "alternative_departments": [
+        "口腔科",
+        "风湿免疫科"
+      ],
+      "self_care": [
+        "多喝水保持水分",
+        "使用无糖口香糖刺激唾液分泌"
+      ],
+      "severity_levels": {
+        "mild": "轻度",
+        "moderate": "中度",
+        "severe": "重度"
+      }
+    },
+    {
+      "id": "SYM016",
+      "name": "口渴",
+      "aliases": [
+        "多饮",
+        "渴感"
+      ],
+      "category": "全身症状",
+      "description": "持续感到需要喝水，即使刚喝过水也觉得喉咙干燥。",
+      "common_causes": [
+        "脱水",
+        "糖尿病",
+        "尿崩症",
+        "高血糖",
+        "药物副作用"
+      ],
+      "red_flags": [
+        "极度口渴伴随体重下降",
+        "频繁小便且量大"
+      ],
+      "recommended_department": "内分泌科",
+      "alternative_departments": [
+        "内科",
+        "肾内科"
+      ],
+      "self_care": [
+        "适量增加水分摄入",
+        "避免含糖饮料和酒精"
+      ],
+      "severity_levels": {
+        "mild": "轻度",
+        "moderate": "中度",
+        "severe": "重度"
+      }
+    },
+    {
+      "id": "SYM017",
+      "name": "咳嗽",
+      "aliases": [
+        "干咳",
+        "湿咳"
+      ],
+      "category": "呼吸系统",
+      "description": "咳嗽是身体清除呼吸道异物或分泌物的一种自然反应，可能伴有喉咙痛、发热等症状。",
+      "common_causes": [
+        "感冒",
+        "流感",
+        "过敏",
+        "支气管炎",
+        "肺炎"
+      ],
+      "red_flags": [
+        "持续高烧不退",
+        "咳血"
+      ],
+      "recommended_department": "呼吸内科",
+      "alternative_departments": [
+        "耳鼻喉科",
+        "急诊科"
+      ],
+      "self_care": [
+        "多喝水保持水分",
+        "使用加湿器改善室内空气湿度"
+      ],
+      "severity_levels": {
+        "mild": "轻度",
+        "moderate": "中度",
+        "severe": "重度"
+      }
+    },
+    {
+      "id": "SYM018",
+      "name": "咳痰",
+      "aliases": [
+        "咳嗽带痰",
+        "咳黏液"
+      ],
+      "category": "呼吸系统",
+      "description": "咳痰是指从呼吸道排出过多的黏液，常见于感冒、支气管炎等疾病。",
+      "common_causes": [
+        "感冒",
+        "急性或慢性支气管炎",
+        "肺炎",
+        "哮喘",
+        "吸烟"
+      ],
+      "red_flags": [
+        "持续高烧不退",
+        "血丝痰"
+      ],
+      "recommended_department": "呼吸内科",
+      "alternative_departments": [
+        "急诊科",
+        "全科医学科"
+      ],
+      "self_care": [
+        "多喝水保持水分",
+        "使用加湿器保持空气湿润"
+      ],
+      "severity_levels": {
+        "mild": "轻度",
+        "moderate": "中度",
+        "severe": "重度"
+      }
+    },
+    {
+      "id": "SYM019",
+      "name": "呼吸困难",
+      "aliases": [
+        "气短",
+        "喘息"
+      ],
+      "category": "呼吸系统",
+      "description": "患者感到空气不足或呼吸费力，严重时可伴有胸闷、心慌等症状。",
+      "common_causes": [
+        "哮喘",
+        "慢性阻塞性肺疾病",
+        "肺炎",
+        "心脏疾病",
+        "焦虑症"
+      ],
+      "red_flags": [
+        "突然发作的剧烈呼吸困难",
+        "伴随胸痛"
+      ],
+      "recommended_department": "呼吸内科",
+      "alternative_departments": [
+        "心血管科",
+        "急诊科"
+      ],
+      "self_care": [
+        "保持室内空气流通",
+        "避免接触已知过敏源"
+      ],
+      "severity_levels": {
+        "mild": "轻度",
+        "moderate": "中度",
+        "severe": "重度"
+      }
+    },
+    {
+      "id": "SYM020",
+      "name": "胸痛",
+      "aliases": [
+        "胸口疼痛",
+        "心口痛"
+      ],
+      "category": "呼吸系统",
+      "description": "胸部出现的不适或疼痛感，可能伴有压迫、紧绷或烧灼的感觉。",
+      "common_causes": [
+        "心脏疾病",
+        "肺部感染",
+        "胃食管反流病",
+        "肌肉骨骼问题",
+        "焦虑或压力过大"
+      ],
+      "red_flags": [
+        "剧烈且持续的疼痛",
+        "伴随呼吸困难或晕厥"
+      ],
+      "recommended_department": "心血管内科",
+      "alternative_departments": [
+        "急诊科",
+        "呼吸内科"
+      ],
+      "self_care": [
+        "保持平静，避免过度紧张",
+        "采取舒适的体位休息"
+      ],
+      "severity_levels": {
+        "mild": "轻度",
+        "moderate": "中度",
+        "severe": "重度"
+      }
+    },
+    {
+      "id": "SYM021",
+      "name": "咯血",
+      "aliases": [
+        "咳血",
+        "肺出血"
+      ],
+      "category": "呼吸系统",
+      "description": "指从呼吸道（喉部以下）咳出血液，颜色可鲜红或暗红。",
+      "common_causes": [
+        "肺结核",
+        "支气管扩张症",
+        "肺癌",
+        "肺炎",
+        "心血管疾病"
+      ],
+      "red_flags": [
+        "大量持续性咯血",
+        "伴有严重呼吸困难"
+      ],
+      "recommended_department": "呼吸内科",
+      "alternative_departments": [
+        "胸外科",
+        "急诊科"
+      ],
+      "self_care": [
+        "保持安静，避免剧烈运动",
+        "坐位或半卧位休息"
+      ],
+      "severity_levels": {
+        "mild": "少量咯血，无其他症状",
+        "moderate": "中等量咯血，可能伴有轻微不适",
+        "severe": "大量咯血，伴有呼吸困难或其他严重症状"
+      }
+    },
+    {
+      "id": "SYM022",
+      "name": "喘息",
+      "aliases": [
+        "气喘",
+        "呼吸困难"
+      ],
+      "category": "呼吸系统",
+      "description": "患者在呼吸时出现异常的高音调声音，通常与呼吸道阻塞有关。",
+      "common_causes": [
+        "哮喘",
+        "慢性阻塞性肺疾病",
+        "过敏反应",
+        "肺炎",
+        "心脏衰竭"
+      ],
+      "red_flags": [
+        "持续加重的呼吸困难",
+        "嘴唇或指甲床发绀"
+      ],
+      "recommended_department": "呼吸内科",
+      "alternative_departments": [
+        "急诊科",
+        "心血管科"
+      ],
+      "self_care": [
+        "保持室内空气清新",
+        "避免已知过敏原"
+      ],
+      "severity_levels": {
+        "mild": "轻度",
+        "moderate": "中度",
+        "severe": "重度"
+      }
+    },
+    {
+      "id": "SYM023",
+      "name": "胸闷",
+      "aliases": [
+        "胸部不适",
+        "胸口憋闷"
+      ],
+      "category": "呼吸系统",
+      "description": "感到胸部沉重或压迫感，可能伴有轻微疼痛，影响正常呼吸。",
+      "common_causes": [
+        "心脏疾病",
+        "肺部感染",
+        "焦虑症",
+        "胃食管反流病",
+        "气胸"
+      ],
+      "red_flags": [
+        "持续性剧烈胸痛",
+        "呼吸极度困难"
+      ],
+      "recommended_department": "心血管内科",
+      "alternative_departments": [
+        "呼吸科",
+        "急诊科"
+      ],
+      "self_care": [
+        "保持平静，尝试深呼吸练习",
+        "避免已知的触发因素如烟雾、尘埃"
+      ],
+      "severity_levels": {
+        "mild": "轻度",
+        "moderate": "中度",
+        "severe": "重度"
+      }
+    },
+    {
+      "id": "SYM024",
+      "name": "气短",
+      "aliases": [
+        "呼吸困难",
+        "喘不过气"
+      ],
+      "category": "呼吸系统",
+      "description": "患者感到空气不足，需要用力呼吸以满足身体需求。",
+      "common_causes": [
+        "哮喘",
+        "慢性阻塞性肺疾病",
+        "肺炎",
+        "心脏疾病",
+        "焦虑症"
+      ],
+      "red_flags": [
+        "突然发作的严重气短",
+        "伴有胸痛或晕厥"
+      ],
+      "recommended_department": "呼吸内科",
+      "alternative_departments": [
+        "心内科",
+        "急诊科"
+      ],
+      "self_care": [
+        "保持室内空气流通",
+        "避免接触过敏源"
+      ],
+      "severity_levels": {
+        "mild": "轻度",
+        "moderate": "中度",
+        "severe": "重度"
+      }
+    },
+    {
+      "id": "SYM025",
+      "name": "紫绀",
+      "aliases": [
+        "发绀",
+        "青紫"
+      ],
+      "category": "呼吸系统",
+      "description": "皮肤或黏膜呈现蓝紫色，通常由于血液中氧含量过低引起。",
+      "common_causes": [
+        "心脏疾病",
+        "肺部疾病",
+        "贫血",
+        "寒冷环境暴露",
+        "先天性心脏病"
+      ],
+      "red_flags": [
+        "突然出现的严重紫绀",
+        "伴有意识丧失"
+      ],
+      "recommended_department": "呼吸内科",
+      "alternative_departments": [
+        "心血管科",
+        "急诊科"
+      ],
+      "self_care": [
+        "保持温暖",
+        "避免剧烈运动"
+      ],
+      "severity_levels": {
+        "mild": "轻度",
+        "moderate": "中度",
+        "severe": "重度"
+      }
+    },
+    {
+      "id": "SYM026",
+      "name": "鼻塞",
+      "aliases": [
+        "鼻不通",
+        "鼻阻塞"
+      ],
+      "category": "呼吸系统",
+      "description": "鼻腔内因炎症或异物导致气流受阻，引起呼吸不畅。",
+      "common_causes": [
+        "感冒",
+        "过敏性鼻炎",
+        "鼻窦炎",
+        "鼻息肉",
+        "环境因素如干燥或污染"
+      ],
+      "red_flags": [
+        "持续高烧",
+        "面部肿胀"
+      ],
+      "recommended_department": "耳鼻喉科",
+      "alternative_departments": [
+        "内科",
+        "过敏科"
+      ],
+      "self_care": [
+        "保持室内空气湿润",
+        "使用生理盐水清洗鼻腔"
+      ],
+      "severity_levels": {
+        "mild": "轻度",
+        "moderate": "中度",
+        "severe": "重度"
+      }
+    },
+    {
+      "id": "SYM027",
+      "name": "流涕",
+      "aliases": [
+        "鼻水",
+        "鼻涕"
+      ],
+      "category": "呼吸系统",
+      "description": "流涕是指鼻腔分泌物增多，通常由感冒、过敏或鼻窦炎引起。",
+      "common_causes": [
+        "感冒",
+        "过敏性鼻炎",
+        "鼻窦炎",
+        "气候变化",
+        "空气污染"
+      ],
+      "red_flags": [
+        "持续高烧",
+        "严重头痛"
+      ],
+      "recommended_department": "耳鼻喉科",
+      "alternative_departments": [
+        "内科",
+        "过敏科"
+      ],
+      "self_care": [
+        "多喝水保持水分",
+        "使用生理盐水清洗鼻腔"
+      ],
+      "severity_levels": {
+        "mild": "轻度",
+        "moderate": "中度",
+        "severe": "重度"
+      }
+    },
+    {
+      "id": "SYM028",
+      "name": "打鼾",
+      "aliases": [
+        "鼾声",
+        "打呼噜"
+      ],
+      "category": "呼吸系统",
+      "description": "睡眠时由于呼吸道部分阻塞导致空气通过时产生振动声音。",
+      "common_causes": [
+        "肥胖",
+        "鼻腔结构异常",
+        "饮酒过量",
+        "吸烟",
+        "睡姿不当"
+      ],
+      "red_flags": [
+        "持续性严重打鼾",
+        "伴有呼吸暂停"
+      ],
+      "recommended_department": "耳鼻喉科",
+      "alternative_departments": [
+        "呼吸内科",
+        "睡眠医学中心"
+      ],
+      "self_care": [
+        "减肥",
+        "避免仰卧睡觉"
+      ],
+      "severity_levels": {
+        "mild": "轻度",
+        "moderate": "中度",
+        "severe": "重度"
+      }
+    },
+    {
+      "id": "SYM029",
+      "name": "喉咙痛",
+      "aliases": [
+        "咽喉疼痛",
+        "嗓子疼"
+      ],
+      "category": "呼吸系统",
+      "description": "喉咙痛是指咽部不适或疼痛感，可能伴有吞咽困难。",
+      "common_causes": [
+        "感冒",
+        "流感",
+        "扁桃体炎",
+        "过敏反应",
+        "干燥环境"
+      ],
+      "red_flags": [
+        "持续高烧",
+        "吞咽极度困难"
+      ],
+      "recommended_department": "耳鼻喉科",
+      "alternative_departments": [
+        "内科",
+        "急诊科"
+      ],
+      "self_care": [
+        "多喝水保持喉咙湿润",
+        "使用含片缓解症状"
+      ],
+      "severity_levels": {
+        "mild": "轻度",
+        "moderate": "中度",
+        "severe": "重度"
+      }
+    },
+    {
+      "id": "SYM030",
+      "name": "声音嘶哑",
+      "aliases": [
+        "嗓音沙哑",
+        "声带疲劳"
+      ],
+      "category": "呼吸系统",
+      "description": "声音变得低沉、粗糙，说话时感觉费力，常见于过度使用声带或感染。",
+      "common_causes": [
+        "声带炎症",
+        "过度用嗓",
+        "感冒或流感",
+        "吸烟",
+        "胃酸反流"
+      ],
+      "red_flags": [
+        "持续时间超过两周",
+        "伴有吞咽困难或呼吸问题"
+      ],
+      "recommended_department": "耳鼻喉科",
+      "alternative_departments": [
+        "呼吸内科",
+        "普通内科"
+      ],
+      "self_care": [
+        "多喝水保持喉咙湿润",
+        "避免大声喊叫和长时间讲话"
+      ],
+      "severity_levels": {
+        "mild": "轻度",
+        "moderate": "中度",
+        "severe": "重度"
+      }
+    },
+    {
+      "id": "SYM031",
+      "name": "咽异物感",
+      "aliases": [
+        "喉咙有东西卡住的感觉",
+        "咽喉不适"
+      ],
+      "category": "呼吸系统",
+      "description": "患者感觉喉咙中有异物存在，但实际并无物体阻塞。可能伴有轻微疼痛或吞咽困难。",
+      "common_causes": [
+        "慢性咽炎",
+        "扁桃体炎",
+        "食道反流",
+        "精神因素如焦虑症",
+        "鼻后滴漏综合症"
+      ],
+      "red_flags": [
+        "持续性声音嘶哑超过两周",
+        "吞咽极度困难或疼痛加剧"
+      ],
+      "recommended_department": "耳鼻喉科",
+      "alternative_departments": [
+        "消化内科",
+        "心理科"
+      ],
+      "self_care": [
+        "多喝水保持咽喉湿润",
+        "避免辛辣刺激食物"
+      ],
+      "severity_levels": {
+        "mild": "轻度",
+        "moderate": "中度",
+        "severe": "重度"
+      }
+    },
+    {
+      "id": "SYM032",
+      "name": "鼻出血",
+      "aliases": [
+        "流鼻血",
+        "鼻子出血"
+      ],
+      "category": "呼吸系统",
+      "description": "鼻腔内血管破裂导致的血液流出，常见于鼻中隔前部。",
+      "common_causes": [
+        "鼻腔干燥",
+        "外伤",
+        "高血压",
+        "药物副作用",
+        "鼻炎"
+      ],
+      "red_flags": [
+        "频繁出血",
+        "大量出血不止"
+      ],
+      "recommended_department": "耳鼻喉科",
+      "alternative_departments": [
+        "内科",
+        "急诊科"
+      ],
+      "self_care": [
+        "保持鼻腔湿润",
+        "避免挖鼻孔"
+      ],
+      "severity_levels": {
+        "mild": "轻度",
+        "moderate": "中度",
+        "severe": "重度"
+      }
+    },
+    {
+      "id": "SYM033",
+      "name": "嗅觉减退",
+      "aliases": [
+        "嗅觉丧失",
+        "闻不到味道"
+      ],
+      "category": "呼吸系统",
+      "description": "患者感到鼻子对气味的感知能力下降，影响日常生活。",
+      "common_causes": [
+        "感冒或流感",
+        "鼻窦炎",
+        "过敏性鼻炎",
+        "头部受伤",
+        "老化过程"
+      ],
+      "red_flags": [
+        "突然完全失去嗅觉",
+        "伴有头痛或视力问题"
+      ],
+      "recommended_department": "耳鼻喉科",
+      "alternative_departments": [
+        "神经内科",
+        "全科医学科"
+      ],
+      "self_care": [
+        "保持鼻腔湿润",
+        "避免接触刺激性气味"
+      ],
+      "severity_levels": {
+        "mild": "轻度",
+        "moderate": "中度",
+        "severe": "重度"
+      }
+    },
+    {
+      "id": "SYM034",
+      "name": "呼吸急促",
+      "aliases": [
+        "气短",
+        "喘息"
+      ],
+      "category": "呼吸系统",
+      "description": "患者感到空气不足，需要更频繁或更深地呼吸。",
+      "common_causes": [
+        "哮喘发作",
+        "肺炎",
+        "心脏疾病",
+        "焦虑症",
+        "肺栓塞"
+      ],
+      "red_flags": [
+        "突然出现的严重呼吸困难",
+        "伴有胸痛或晕厥"
+      ],
+      "recommended_department": "呼吸内科",
+      "alternative_departments": [
+        "心血管科",
+        "急诊科"
+      ],
+      "self_care": [
+        "保持坐姿以帮助呼吸",
+        "尝试深呼吸练习"
+      ],
+      "severity_levels": {
+        "mild": "轻度",
+        "moderate": "中度",
+        "severe": "重度"
+      }
+    },
+    {
+      "id": "SYM035",
+      "name": "呼吸困难",
+      "aliases": [
+        "气短",
+        "喘息"
+      ],
+      "category": "呼吸系统",
+      "description": "患者感到空气不足，呼吸费力，严重时无法平躺。",
+      "common_causes": [
+        "哮喘",
+        "慢性阻塞性肺疾病",
+        "肺炎",
+        "心脏衰竭",
+        "焦虑症"
+      ],
+      "red_flags": [
+        "突然发作的剧烈呼吸困难",
+        "伴有胸痛或晕厥"
+      ],
+      "recommended_department": "呼吸内科",
+      "alternative_departments": [
+        "心内科",
+        "急诊科"
+      ],
+      "self_care": [
+        "保持室内空气流通",
+        "避免接触已知过敏源"
+      ],
+      "severity_levels": {
+        "mild": "轻度",
+        "moderate": "中度",
+        "severe": "重度"
+      }
+    },
+    {
+      "id": "SYM036",
+      "name": "咳嗽伴胸痛",
+      "aliases": [
+        "咳喘胸痛",
+        "呼吸困难伴随胸部不适"
+      ],
+      "category": "呼吸系统",
+      "description": "患者出现持续性或间歇性的咳嗽，并伴有胸部疼痛，可能是由于呼吸道感染或其他肺部疾病引起。",
+      "common_causes": [
+        "肺炎",
+        "支气管炎",
+        "肺结核",
+        "肺癌",
+        "心脏疾病"
+      ],
+      "red_flags": [
+        "剧烈胸痛",
+        "呼吸极度困难"
+      ],
+      "recommended_department": "呼吸内科",
+      "alternative_departments": [
+        "心内科",
+        "急诊科"
+      ],
+      "self_care": [
+        "保持室内空气流通",
+        "避免吸入刺激性气体"
+      ],
+      "severity_levels": {
+        "mild": "轻度",
+        "moderate": "中度",
+        "severe": "重度"
+      }
+    },
+    {
+      "id": "SYM037",
+      "name": "心悸",
+      "aliases": [
+        "心跳加速",
+        "心脏跳动异常"
+      ],
+      "category": "心血管系统",
+      "description": "患者感到心脏跳动强烈或快速，可能伴有胸闷、头晕等症状。",
+      "common_causes": [
+        "焦虑或压力过大",
+        "咖啡因过量摄入",
+        "甲状腺功能亢进",
+        "贫血",
+        "心脏疾病"
+      ],
+      "red_flags": [
+        "持续性胸痛",
+        "呼吸困难"
+      ],
+      "recommended_department": "心血管内科",
+      "alternative_departments": [
+        "急诊科",
+        "内分泌科"
+      ],
+      "self_care": [
+        "减少咖啡因和酒精的摄入",
+        "保持良好的休息与睡眠习惯"
+      ],
+      "severity_levels": {
+        "mild": "轻度",
+        "moderate": "中度",
+        "severe": "重度"
+      }
+    },
+    {
+      "id": "SYM038",
+      "name": "胸闷",
+      "aliases": [
+        "胸部不适",
+        "心口憋闷"
+      ],
+      "category": "心血管系统",
+      "description": "患者感到胸部有压迫感或沉重感，呼吸不畅，可能伴有轻微疼痛。",
+      "common_causes": [
+        "冠状动脉疾病",
+        "心脏瓣膜病",
+        "肺部疾病",
+        "焦虑症",
+        "胃食管反流"
+      ],
+      "red_flags": [
+        "持续性剧烈胸痛",
+        "突然出现的严重呼吸困难"
+      ],
+      "recommended_department": "心血管内科",
+      "alternative_departments": [
+        "急诊科",
+        "呼吸内科"
+      ],
+      "self_care": [
+        "保持平静，避免过度紧张",
+        "采取舒适的体位休息"
+      ],
+      "severity_levels": {
+        "mild": "轻度",
+        "moderate": "中度",
+        "severe": "重度"
+      }
+    },
+    {
+      "id": "SYM039",
+      "name": "胸痛",
+      "aliases": [
+        "心口痛",
+        "胸口疼痛"
+      ],
+      "category": "心血管系统",
+      "description": "胸部出现的不适或疼痛感，可能由心脏疾病引起。",
+      "common_causes": [
+        "冠状动脉疾病",
+        "心肌梗死",
+        "心绞痛",
+        "肺栓塞",
+        "胃食管反流病"
+      ],
+      "red_flags": [
+        "持续性剧烈胸痛",
+        "伴有呼吸困难"
+      ],
+      "recommended_department": "心血管内科",
+      "alternative_departments": [
+        "急诊科",
+        "胸外科"
+      ],
+      "self_care": [
+        "保持安静休息",
+        "避免过度劳累"
+      ],
+      "severity_levels": {
+        "mild": "轻度",
+        "moderate": "中度",
+        "severe": "重度"
+      }
+    },
+    {
+      "id": "SYM040",
+      "name": "晕厥",
+      "aliases": [
+        "昏倒",
+        "失去知觉"
+      ],
+      "category": "心血管系统",
+      "description": "突然短暂失去意识，通常由于大脑血流暂时减少引起。",
+      "common_causes": [
+        "低血压",
+        "心脏疾病",
+        "脱水",
+        "血糖水平异常",
+        "神经系统问题"
+      ],
+      "red_flags": [
+        "持续昏迷不醒",
+        "伴有胸痛或呼吸困难"
+      ],
+      "recommended_department": "心内科",
+      "alternative_departments": [
+        "急诊科",
+        "神经内科"
+      ],
+      "self_care": [
+        "平躺并抬高双腿以促进血液回流至大脑",
+        "保持充足水分和适当饮食"
+      ],
+      "severity_levels": {
+        "mild": "轻度",
+        "moderate": "中度",
+        "severe": "重度"
+      }
+    },
+    {
+      "id": "SYM041",
+      "name": "发绀",
+      "aliases": [
+        "青紫",
+        "皮肤发蓝"
+      ],
+      "category": "心血管系统",
+      "description": "发绀是指皮肤和黏膜呈现蓝紫色，通常是由于血液中氧含量不足导致。",
+      "common_causes": [
+        "心脏疾病",
+        "肺部疾病",
+        "呼吸衰竭",
+        "先天性心脏病",
+        "低体温症"
+      ],
+      "red_flags": [
+        "突然出现的严重发绀",
+        "伴有呼吸困难或胸痛"
+      ],
+      "recommended_department": "心内科",
+      "alternative_departments": [
+        "呼吸科",
+        "急诊科"
+      ],
+      "self_care": [
+        "保持温暖",
+        "避免剧烈运动"
+      ],
+      "severity_levels": {
+        "mild": "轻度",
+        "moderate": "中度",
+        "severe": "重度"
+      }
+    },
+    {
+      "id": "SYM042",
+      "name": "血压升高",
+      "aliases": [
+        "高血压",
+        "血压偏高"
+      ],
+      "category": "心血管系统",
+      "description": "血压升高是指动脉内血液对血管壁的压力持续高于正常范围。",
+      "common_causes": [
+        "遗传因素",
+        "不良饮食习惯",
+        "缺乏运动",
+        "肥胖",
+        "长期精神压力大"
+      ],
+      "red_flags": [
+        "剧烈头痛",
+        "视力模糊"
+      ],
+      "recommended_department": "心血管内科",
+      "alternative_departments": [
+        "内分泌科",
+        "全科医学科"
+      ],
+      "self_care": [
+        "定期监测血压",
+        "保持健康的生活方式，如均衡饮食、适量运动"
+      ],
+      "severity_levels": {
+        "mild": "轻度",
+        "moderate": "中度",
+        "severe": "重度"
+      }
+    },
+    {
+      "id": "SYM043",
+      "name": "血压降低",
+      "aliases": [
+        "低血压",
+        "血压下降"
+      ],
+      "category": "心血管系统",
+      "description": "血压低于正常范围，可能导致头晕、乏力等症状。",
+      "common_causes": [
+        "脱水",
+        "心脏疾病",
+        "内分泌失调",
+        "药物副作用",
+        "严重感染"
+      ],
+      "red_flags": [
+        "晕厥",
+        "持续性胸痛"
+      ],
+      "recommended_department": "心血管内科",
+      "alternative_departments": [
+        "急诊科",
+        "内分泌科"
+      ],
+      "self_care": [
+        "保持充足水分",
+        "避免突然站立"
+      ],
+      "severity_levels": {
+        "mild": "轻度",
+        "moderate": "中度",
+        "severe": "重度"
+      }
+    },
+    {
+      "id": "SYM044",
+      "name": "心前区不适",
+      "aliases": [
+        "胸闷",
+        "胸前区疼痛"
+      ],
+      "category": "心血管系统",
+      "description": "患者感到心脏所在的胸部区域出现压迫感或疼痛，可能伴有呼吸困难。",
+      "common_causes": [
+        "冠状动脉疾病",
+        "心肌梗死",
+        "心绞痛",
+        "心脏瓣膜病",
+        "心律失常"
+      ],
+      "red_flags": [
+        "持续性剧烈胸痛",
+        "突然晕厥"
+      ],
+      "recommended_department": "心血管内科",
+      "alternative_departments": [
+        "急诊科",
+        "全科医学科"
+      ],
+      "self_care": [
+        "保持平静，避免剧烈运动",
+        "采取舒适的坐姿或半卧位休息"
+      ],
+      "severity_levels": {
+        "mild": "轻度",
+        "moderate": "中度",
+        "severe": "重度"
+      }
+    },
+    {
+      "id": "SYM045",
+      "name": "脉搏异常",
+      "aliases": [
+        "心跳不规则",
+        "心律失常"
+      ],
+      "category": "心血管系统",
+      "description": "脉搏异常指心跳速率或节律出现非正常变化，可能表现为过快、过慢或不规律。",
+      "common_causes": [
+        "心脏疾病",
+        "电解质失衡",
+        "压力过大",
+        "药物副作用",
+        "甲状腺功能亢进"
+      ],
+      "red_flags": [
+        "持续性胸痛",
+        "晕厥"
+      ],
+      "recommended_department": "心内科",
+      "alternative_departments": [
+        "急诊科",
+        "内分泌科"
+      ],
+      "self_care": [
+        "保持良好的生活习惯",
+        "避免过度劳累和精神紧张"
+      ],
+      "severity_levels": {
+        "mild": "轻度",
+        "moderate": "中度",
+        "severe": "重度"
+      }
+    },
+    {
+      "id": "SYM046",
+      "name": "心慌",
+      "aliases": [
+        "心跳加速",
+        "心悸"
+      ],
+      "category": "心血管系统",
+      "description": "感到心脏跳动异常强烈或快速，可能伴有胸闷、出汗等症状。",
+      "common_causes": [
+        "焦虑或压力过大",
+        "过度摄入咖啡因",
+        "贫血",
+        "甲状腺功能亢进",
+        "心脏病"
+      ],
+      "red_flags": [
+        "持续性胸痛",
+        "呼吸困难加剧"
+      ],
+      "recommended_department": "心血管内科",
+      "alternative_departments": [
+        "急诊科",
+        "内分泌科"
+      ],
+      "self_care": [
+        "尝试深呼吸放松",
+        "减少咖啡因摄入"
+      ],
+      "severity_levels": {
+        "mild": "轻度",
+        "moderate": "中度",
+        "severe": "重度"
+      }
+    },
+    {
+      "id": "SYM047",
+      "name": "心跳不规则",
+      "aliases": [
+        "心律失常",
+        "心悸"
+      ],
+      "category": "心血管系统",
+      "description": "心跳节律异常，可能感觉心跳过快、过慢或跳动不规律。",
+      "common_causes": [
+        "心脏疾病",
+        "电解质不平衡",
+        "压力过大",
+        "过度摄入咖啡因",
+        "某些药物副作用"
+      ],
+      "red_flags": [
+        "持续性胸痛",
+        "晕厥或近乎晕厥"
+      ],
+      "recommended_department": "心内科",
+      "alternative_departments": [
+        "急诊科",
+        "全科"
+      ],
+      "self_care": [
+        "减少咖啡因摄入",
+        "保持良好的睡眠习惯"
+      ],
+      "severity_levels": {
+        "mild": "轻度",
+        "moderate": "中度",
+        "severe": "重度"
+      }
+    },
+    {
+      "id": "SYM048",
+      "name": "心动过速",
+      "aliases": [
+        "心悸",
+        "心跳加速"
+      ],
+      "category": "心血管系统",
+      "description": "心跳频率异常加快，通常超过每分钟100次。",
+      "common_causes": [
+        "焦虑或压力",
+        "运动后",
+        "发热",
+        "甲状腺功能亢进",
+        "心脏疾病"
+      ],
+      "red_flags": [
+        "持续性胸痛",
+        "晕厥或接近晕厥"
+      ],
+      "recommended_department": "心内科",
+      "alternative_departments": [
+        "急诊科",
+        "内分泌科"
+      ],
+      "self_care": [
+        "保持平静，尝试深呼吸放松",
+        "避免摄入咖啡因和酒精"
+      ],
+      "severity_levels": {
+        "mild": "轻度",
+        "moderate": "中度",
+        "severe": "重度"
+      }
+    },
+    {
+      "id": "SYM049",
+      "name": "心动过缓",
+      "aliases": [
+        "心率过慢",
+        "缓慢性心律失常"
+      ],
+      "category": "心血管系统",
+      "description": "心跳频率低于正常范围，成人静息状态下每分钟心跳少于60次。",
+      "common_causes": [
+        "心脏传导系统疾病",
+        "药物副作用",
+        "甲状腺功能低下",
+        "电解质不平衡",
+        "心脏病"
+      ],
+      "red_flags": [
+        "晕厥或接近晕厥",
+        "胸痛"
+      ],
+      "recommended_department": "心内科",
+      "alternative_departments": [
+        "急诊科",
+        "内分泌科"
+      ],
+      "self_care": [
+        "避免剧烈运动",
+        "定期监测心率"
+      ],
+      "severity_levels": {
+        "mild": "轻度",
+        "moderate": "中度",
+        "severe": "重度"
+      }
+    },
+    {
+      "id": "SYM050",
+      "name": "水肿(心源性)",
+      "aliases": [
+        "心脏性水肿",
+        "心力衰竭引起的水肿"
+      ],
+      "category": "心血管系统",
+      "description": "由于心脏功能不全导致体液在组织间隙积聚，常见于下肢。",
+      "common_causes": [
+        "心力衰竭",
+        "高血压心脏病",
+        "冠状动脉疾病",
+        "瓣膜病",
+        "先天性心脏病"
+      ],
+      "red_flags": [
+        "呼吸困难加剧",
+        "夜间阵发性呼吸困难"
+      ],
+      "recommended_department": "心血管内科",
+      "alternative_departments": [
+        "急诊科",
+        "老年科"
+      ],
+      "self_care": [
+        "限制盐分摄入",
+        "定期监测体重变化"
+      ],
+      "severity_levels": {
+        "mild": "轻度",
+        "moderate": "中度",
+        "severe": "重度"
+      }
+    }
+  ]
+}

@@ -23,7 +23,7 @@ class DashScopeLLM:
         self,
         api_key: str,
         base_url: str = "https://dashscope.aliyuncs.com/compatible-mode/v1",
-        model: str = "qwen-plus",
+        model: str = "qwen-max",  # 默认使用最强模型
         timeout: int = 120
     ):
         self.api_key = api_key

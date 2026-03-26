@@ -1,0 +1,1412 @@
+[
+  {
+    "record_id": "DEPT001001",
+    "department_id": "DEPT001",
+    "department_name": "心血管内科",
+    "patient_case": {
+      "age": "45岁",
+      "gender": "男",
+      "chief_complaint": "chest pain",
+      "diagnosis": {
+        "primary": "Angina",
+        "icd_code": "I20",
+        "severity": "中度"
+      },
+      "treatment": {
+        "medication": [
+          "Aspirin"
+        ],
+        "procedure": "None",
+        "other": "Rest"
+      },
+      "outcome": {
+        "result": "好转",
+        "length_of_stay": 5,
+        "complications": []
+      }
+    }
+  },
+  {
+    "record_id": "DEPT001002",
+    "department_id": "DEPT001",
+    "department_name": "心血管内科",
+    "patient_case": {
+      "age": "62岁",
+      "gender": "女",
+      "chief_complaint": "sudden onset chest pain and shortness of breath",
+      "diagnosis": {
+        "primary": "Unstable Angina",
+        "icd_code": "I25.1",
+        "severity": "重度"
+      },
+      "treatment": {
+        "medication": [
+          "Nitroglycerin",
+          "Clopidogrel"
+        ],
+        "procedure": "Coronary Angiography",
+        "other": "Cardiac rehabilitation referral"
+      },
+      "outcome": {
+        "result": "治愈",
+        "length_of_stay": 7,
+        "complications": []
+      }
+    }
+  },
+  {
+    "record_id": "DEPT001003",
+    "department_id": "DEPT001",
+    "department_name": "心血管内科",
+    "patient_case": {
+      "age": "58岁",
+      "gender": "男",
+      "chief_complaint": "crushing chest pain radiating to left arm",
+      "diagnosis": {
+        "primary": "Acute Myocardial Infarction",
+        "icd_code": "I21",
+        "severity": "重度"
+      },
+      "treatment": {
+        "medication": [
+          "Aspirin",
+          "Heparin",
+          "Metoprolol"
+        ],
+        "procedure": "Primary PCI",
+        "other": "ICU monitoring"
+      },
+      "outcome": {
+        "result": "好转",
+        "length_of_stay": 9,
+        "complications": [
+          "Mild LV dysfunction"
+        ]
+      }
+    }
+  },
+  {
+    "record_id": "DEPT001004",
+    "department_id": "DEPT001",
+    "department_name": "心血管内科",
+    "patient_case": {
+      "age": "71岁",
+      "gender": "女",
+      "chief_complaint": "palpitations and dizziness",
+      "diagnosis": {
+        "primary": "Atrial Fibrillation",
+        "icd_code": "I48",
+        "severity": "中度"
+      },
+      "treatment": {
+        "medication": [
+          "Apixaban",
+          "Diltiazem"
+        ],
+        "procedure": "Electrophysiology Study",
+        "other": "Rate control strategy"
+      },
+      "outcome": {
+        "result": "未愈",
+        "length_of_stay": 4,
+        "complications": []
+      }
+    }
+  },
+  {
+    "record_id": "DEPT001005",
+    "department_id": "DEPT001",
+    "department_name": "心血管内科",
+    "patient_case": {
+      "age": "83岁",
+      "gender": "男",
+      "chief_complaint": "progressive dyspnea and orthopnea",
+      "diagnosis": {
+        "primary": "Congestive Heart Failure",
+        "icd_code": "I50",
+        "severity": "重度"
+      },
+      "treatment": {
+        "medication": [
+          "Furosemide",
+          "Sacubitril/Valsartan"
+        ],
+        "procedure": "None",
+        "other": "Palliative care consultation"
+      },
+      "outcome": {
+        "result": "死亡",
+        "length_of_stay": 12,
+        "complications": [
+          "Acute kidney injury",
+          "Respiratory failure"
+        ]
+      }
+    }
+  },
+  {
+    "record_id": "DEPT002001",
+    "department_id": "DEPT002",
+    "department_name": "消化内科",
+    "patient_case": {
+      "age": "45岁",
+      "gender": "男",
+      "chief_complaint": "abdominal pain",
+      "diagnosis": {
+        "primary": "Gastritis",
+        "icd_code": "K29",
+        "severity": "中度"
+      },
+      "treatment": {
+        "medication": [
+          "Omeprazole"
+        ],
+        "procedure": "Endoscopy",
+        "other": "Diet modification"
+      },
+      "outcome": {
+        "result": "好转",
+        "length_of_stay": 4,
+        "complications": []
+      }
+    }
+  },
+  {
+    "record_id": "DEPT002002",
+    "department_id": "DEPT002",
+    "department_name": "消化内科",
+    "patient_case": {
+      "age": "62岁",
+      "gender": "女",
+      "chief_complaint": "chronic diarrhea and weight loss",
+      "diagnosis": {
+        "primary": "Noninfective gastroenteritis and colitis, unspecified",
+        "icd_code": "K51",
+        "severity": "重度"
+      },
+      "treatment": {
+        "medication": [
+          "Mesalamine",
+          "Prednisone"
+        ],
+        "procedure": "Colonoscopy with biopsy",
+        "other": "Nutritional counseling"
+      },
+      "outcome": {
+        "result": "好转",
+        "length_of_stay": 7,
+        "complications": [
+          "Mild anemia"
+        ]
+      }
+    }
+  },
+  {
+    "record_id": "DEPT002003",
+    "department_id": "DEPT002",
+    "department_name": "消化内科",
+    "patient_case": {
+      "age": "33岁",
+      "gender": "男",
+      "chief_complaint": "acute onset epigastric pain and vomiting",
+      "diagnosis": {
+        "primary": "Acute pancreatitis",
+        "icd_code": "K85",
+        "severity": "中度"
+      },
+      "treatment": {
+        "medication": [
+          "IV fluids",
+          "Acetaminophen"
+        ],
+        "procedure": "Abdominal ultrasound",
+        "other": "NPO status, gradual diet advancement"
+      },
+      "outcome": {
+        "result": "治愈",
+        "length_of_stay": 5,
+        "complications": []
+      }
+    }
+  },
+  {
+    "record_id": "DEPT002004",
+    "department_id": "DEPT002",
+    "department_name": "消化内科",
+    "patient_case": {
+      "age": "71岁",
+      "gender": "女",
+      "chief_complaint": "abdominal distension and constipation",
+      "diagnosis": {
+        "primary": "Intestinal pseudo-obstruction",
+        "icd_code": "K56.0",
+        "severity": "重度"
+      },
+      "treatment": {
+        "medication": [
+          "Neostigmine"
+        ],
+        "procedure": "Nasogastric decompression",
+        "other": "Monitoring in ICU"
+      },
+      "outcome": {
+        "result": "好转",
+        "length_of_stay": 12,
+        "complications": [
+          "Electrolyte imbalance",
+          "Aspiration pneumonia"
+        ]
+      }
+    }
+  },
+  {
+    "record_id": "DEPT002005",
+    "department_id": "DEPT002",
+    "department_name": "消化内科",
+    "patient_case": {
+      "age": "54岁",
+      "gender": "男",
+      "chief_complaint": "intermittent abdominal pain and bloating",
+      "diagnosis": {
+        "primary": "Pancreatic insufficiency",
+        "icd_code": "K85.9",
+        "severity": "轻度"
+      },
+      "treatment": {
+        "medication": [
+          "Pancrelipase"
+        ],
+        "procedure": "Fecal elastase test",
+        "other": "Low-fat diet education"
+      },
+      "outcome": {
+        "result": "好转",
+        "length_of_stay": 2,
+        "complications": []
+      }
+    }
+  },
+  {
+    "record_id": "DEPT003001",
+    "department_id": "DEPT003",
+    "department_name": "呼吸内科",
+    "patient_case": {
+      "age": "45岁",
+      "gender": "男",
+      "chief_complaint": "cough",
+      "diagnosis": {
+        "primary": "Pneumonia",
+        "icd_code": "J18",
+        "severity": "中度"
+      },
+      "treatment": {
+        "medication": [
+          "Antibiotics"
+        ],
+        "procedure": "None",
+        "other": "Rest"
+      },
+      "outcome": {
+        "result": "好转",
+        "length_of_stay": 5,
+        "complications": []
+      }
+    }
+  },
+  {
+    "record_id": "DEPT003002",
+    "department_id": "DEPT003",
+    "department_name": "呼吸内科",
+    "patient_case": {
+      "age": "62岁",
+      "gender": "女",
+      "chief_complaint": "wheezing and shortness of breath",
+      "diagnosis": {
+        "primary": "Asthma",
+        "icd_code": "J45",
+        "severity": "重度"
+      },
+      "treatment": {
+        "medication": [
+          "Inhaled corticosteroids",
+          "Bronchodilators"
+        ],
+        "procedure": "Spirometry",
+        "other": "Asthma action plan education"
+      },
+      "outcome": {
+        "result": "治愈",
+        "length_of_stay": 3,
+        "complications": []
+      }
+    }
+  },
+  {
+    "record_id": "DEPT003003",
+    "department_id": "DEPT003",
+    "department_name": "呼吸内科",
+    "patient_case": {
+      "age": "71岁",
+      "gender": "男",
+      "chief_complaint": "chronic cough and dyspnea",
+      "diagnosis": {
+        "primary": "Chronic obstructive pulmonary disease",
+        "icd_code": "J44",
+        "severity": "中度"
+      },
+      "treatment": {
+        "medication": [
+          "Long-acting bronchodilators",
+          "Inhaled corticosteroids"
+        ],
+        "procedure": "Pulmonary rehabilitation",
+        "other": "Smoking cessation counseling"
+      },
+      "outcome": {
+        "result": "好转",
+        "length_of_stay": 7,
+        "complications": [
+          "Acute bronchitis"
+        ]
+      }
+    }
+  },
+  {
+    "record_id": "DEPT003004",
+    "department_id": "DEPT003",
+    "department_name": "呼吸内科",
+    "patient_case": {
+      "age": "33岁",
+      "gender": "女",
+      "chief_complaint": "sore throat and productive cough",
+      "diagnosis": {
+        "primary": "Acute bronchitis",
+        "icd_code": "J20",
+        "severity": "轻度"
+      },
+      "treatment": {
+        "medication": [
+          "Symptomatic relief (e.g., guaifenesin)"
+        ],
+        "procedure": "None",
+        "other": "Hydration and rest"
+      },
+      "outcome": {
+        "result": "治愈",
+        "length_of_stay": 0,
+        "complications": []
+      }
+    }
+  },
+  {
+    "record_id": "DEPT003005",
+    "department_id": "DEPT003",
+    "department_name": "呼吸内科",
+    "patient_case": {
+      "age": "58岁",
+      "gender": "男",
+      "chief_complaint": "fever, chills, and pleuritic chest pain",
+      "diagnosis": {
+        "primary": "Bacterial pneumonia",
+        "icd_code": "J15",
+        "severity": "重度"
+      },
+      "treatment": {
+        "medication": [
+          "IV antibiotics",
+          "Oxygen therapy"
+        ],
+        "procedure": "Thoracentesis",
+        "other": "ICU monitoring"
+      },
+      "outcome": {
+        "result": "死亡",
+        "length_of_stay": 12,
+        "complications": [
+          "Septic shock",
+          "Acute respiratory distress syndrome"
+        ]
+      }
+    }
+  },
+  {
+    "record_id": "DEPT004001",
+    "department_id": "DEPT004",
+    "department_name": "内分泌科",
+    "patient_case": {
+      "age": "45岁",
+      "gender": "男",
+      "chief_complaint": "thirst",
+      "diagnosis": {
+        "primary": "Diabetes",
+        "icd_code": "E11",
+        "severity": "中度"
+      },
+      "treatment": {
+        "medication": [
+          "Metformin"
+        ],
+        "procedure": "None",
+        "other": "Diet"
+      },
+      "outcome": {
+        "result": "好转",
+        "length_of_stay": 3,
+        "complications": []
+      }
+    }
+  },
+  {
+    "record_id": "DEPT004002",
+    "department_id": "DEPT004",
+    "department_name": "内分泌科",
+    "patient_case": {
+      "age": "38岁",
+      "gender": "女",
+      "chief_complaint": "palpitations and weight loss",
+      "diagnosis": {
+        "primary": "Hyperthyroidism",
+        "icd_code": "E05",
+        "severity": "重度"
+      },
+      "treatment": {
+        "medication": [
+          "Methimazole",
+          "Propranolol"
+        ],
+        "procedure": "Radioactive iodine therapy planned",
+        "other": "Thyroid function monitoring"
+      },
+      "outcome": {
+        "result": "好转",
+        "length_of_stay": 2,
+        "complications": [
+          "Transient thyrotoxicosis"
+        ]
+      }
+    }
+  },
+  {
+    "record_id": "DEPT004003",
+    "department_id": "DEPT004",
+    "department_name": "内分泌科",
+    "patient_case": {
+      "age": "62岁",
+      "gender": "女",
+      "chief_complaint": "fatigue and cold intolerance",
+      "diagnosis": {
+        "primary": "Hypothyroidism",
+        "icd_code": "E03",
+        "severity": "轻度"
+      },
+      "treatment": {
+        "medication": [
+          "Levothyroxine"
+        ],
+        "procedure": "None",
+        "other": "Annual TSH monitoring"
+      },
+      "outcome": {
+        "result": "治愈",
+        "length_of_stay": 1,
+        "complications": []
+      }
+    }
+  },
+  {
+    "record_id": "DEPT004004",
+    "department_id": "DEPT004",
+    "department_name": "内分泌科",
+    "patient_case": {
+      "age": "51岁",
+      "gender": "男",
+      "chief_complaint": "weight gain and shortness of breath",
+      "diagnosis": {
+        "primary": "Obesity",
+        "icd_code": "E66",
+        "severity": "重度"
+      },
+      "treatment": {
+        "medication": [
+          "Semaglutide"
+        ],
+        "procedure": "Bariatric consultation",
+        "other": "Multidisciplinary weight management program"
+      },
+      "outcome": {
+        "result": "好转",
+        "length_of_stay": 4,
+        "complications": [
+          "Mild nausea"
+        ]
+      }
+    }
+  },
+  {
+    "record_id": "DEPT004005",
+    "department_id": "DEPT004",
+    "department_name": "内分泌科",
+    "patient_case": {
+      "age": "70岁",
+      "gender": "女",
+      "chief_complaint": "back pain and height loss",
+      "diagnosis": {
+        "primary": "Osteoporosis",
+        "icd_code": "M81",
+        "severity": "中度"
+      },
+      "treatment": {
+        "medication": [
+          "Alendronate",
+          "Calcium + Vitamin D"
+        ],
+        "procedure": "DEXA scan",
+        "other": "Fall prevention counseling"
+      },
+      "outcome": {
+        "result": "好转",
+        "length_of_stay": 2,
+        "complications": []
+      }
+    }
+  },
+  {
+    "record_id": "DEPT005001",
+    "department_id": "DEPT005",
+    "department_name": "神经内科",
+    "patient_case": {
+      "age": "45岁",
+      "gender": "男",
+      "chief_complaint": "headache",
+      "diagnosis": {
+        "primary": "Migraine",
+        "icd_code": "G43",
+        "severity": "轻度"
+      },
+      "treatment": {
+        "medication": [
+          "Sumatriptan"
+        ],
+        "procedure": "None",
+        "other": "Rest"
+      },
+      "outcome": {
+        "result": "好转",
+        "length_of_stay": 2,
+        "complications": []
+      }
+    }
+  },
+  {
+    "record_id": "DEPT005002",
+    "department_id": "DEPT005",
+    "department_name": "神经内科",
+    "patient_case": {
+      "age": "68岁",
+      "gender": "女",
+      "chief_complaint": "sudden weakness and slurred speech",
+      "diagnosis": {
+        "primary": "Cerebral infarction",
+        "icd_code": "I63",
+        "severity": "中度"
+      },
+      "treatment": {
+        "medication": [
+          "Aspirin",
+          "Atorvastatin"
+        ],
+        "procedure": "Thrombolysis",
+        "other": "Rehabilitation referral"
+      },
+      "outcome": {
+        "result": "好转",
+        "length_of_stay": 7,
+        "complications": [
+          "Aphasia"
+        ]
+      }
+    }
+  },
+  {
+    "record_id": "DEPT005003",
+    "department_id": "DEPT005",
+    "department_name": "神经内科",
+    "patient_case": {
+      "age": "32岁",
+      "gender": "女",
+      "chief_complaint": "recurrent seizures",
+      "diagnosis": {
+        "primary": "Epilepsy",
+        "icd_code": "G40",
+        "severity": "重度"
+      },
+      "treatment": {
+        "medication": [
+          "Levetiracetam"
+        ],
+        "procedure": "EEG monitoring",
+        "other": "Seizure safety counseling"
+      },
+      "outcome": {
+        "result": "好转",
+        "length_of_stay": 3,
+        "complications": []
+      }
+    }
+  },
+  {
+    "record_id": "DEPT005004",
+    "department_id": "DEPT005",
+    "department_name": "神经内科",
+    "patient_case": {
+      "age": "79岁",
+      "gender": "男",
+      "chief_complaint": "progressive memory loss and confusion",
+      "diagnosis": {
+        "primary": "Alzheimer's disease",
+        "icd_code": "F00",
+        "severity": "中度"
+      },
+      "treatment": {
+        "medication": [
+          "Donepezil"
+        ],
+        "procedure": "None",
+        "other": "Caregiver education and cognitive stimulation"
+      },
+      "outcome": {
+        "result": "好转",
+        "length_of_stay": 1,
+        "complications": [
+          "Mild agitation"
+        ]
+      }
+    }
+  },
+  {
+    "record_id": "DEPT005005",
+    "department_id": "DEPT005",
+    "department_name": "神经内科",
+    "patient_case": {
+      "age": "53岁",
+      "gender": "男",
+      "chief_complaint": "sudden vertigo and facial droop",
+      "diagnosis": {
+        "primary": "Bell's palsy",
+        "icd_code": "G51",
+        "severity": "轻度"
+      },
+      "treatment": {
+        "medication": [
+          "Prednisone"
+        ],
+        "procedure": "None",
+        "other": "Physical therapy referral"
+      },
+      "outcome": {
+        "result": "好转",
+        "length_of_stay": 0,
+        "complications": []
+      }
+    }
+  },
+  {
+    "record_id": "DEPT006001",
+    "department_id": "DEPT006",
+    "department_name": "普外科",
+    "patient_case": {
+      "age": "45岁",
+      "gender": "男",
+      "chief_complaint": "abdominal pain",
+      "diagnosis": {
+        "primary": "Appendicitis",
+        "icd_code": "K35",
+        "severity": "中度"
+      },
+      "treatment": {
+        "medication": [
+          "Antibiotics"
+        ],
+        "procedure": "Appendectomy",
+        "other": "Rest"
+      },
+      "outcome": {
+        "result": "治愈",
+        "length_of_stay": 3,
+        "complications": []
+      }
+    }
+  },
+  {
+    "record_id": "DEPT006002",
+    "department_id": "DEPT006",
+    "department_name": "普外科",
+    "patient_case": {
+      "age": "72岁",
+      "gender": "女",
+      "chief_complaint": "intermittent lower abdominal swelling and discomfort",
+      "diagnosis": {
+        "primary": "Inguinal hernia",
+        "icd_code": "K40",
+        "severity": "重度"
+      },
+      "treatment": {
+        "medication": [
+          "Analgesics"
+        ],
+        "procedure": "Laparoscopic inguinal hernia repair",
+        "other": "Post-op activity restrictions"
+      },
+      "outcome": {
+        "result": "好转",
+        "length_of_stay": 2,
+        "complications": [
+          "mild seroma"
+        ]
+      }
+    }
+  },
+  {
+    "record_id": "DEPT006003",
+    "department_id": "DEPT006",
+    "department_name": "普外科",
+    "patient_case": {
+      "age": "58岁",
+      "gender": "男",
+      "chief_complaint": "right upper quadrant pain and jaundice",
+      "diagnosis": {
+        "primary": "Cholelithiasis",
+        "icd_code": "K80",
+        "severity": "Acute"
+      },
+      "treatment": {
+        "medication": [
+          "IV antibiotics",
+          "Pain control"
+        ],
+        "procedure": "Laparoscopic cholecystectomy",
+        "other": "NPO pre-op, IV fluids"
+      },
+      "outcome": {
+        "result": "治愈",
+        "length_of_stay": 4,
+        "complications": []
+      }
+    }
+  },
+  {
+    "record_id": "DEPT006004",
+    "department_id": "DEPT006",
+    "department_name": "普外科",
+    "patient_case": {
+      "age": "33岁",
+      "gender": "女",
+      "chief_complaint": "chronic constipation and bloating",
+      "diagnosis": {
+        "primary": "Functional constipation",
+        "icd_code": "K59",
+        "severity": "轻度"
+      },
+      "treatment": {
+        "medication": [
+          "Laxatives",
+          "Fiber supplement"
+        ],
+        "procedure": "None",
+        "other": "Dietary counseling, bowel retraining"
+      },
+      "outcome": {
+        "result": "好转",
+        "length_of_stay": 0,
+        "complications": []
+      }
+    }
+  },
+  {
+    "record_id": "DEPT006005",
+    "department_id": "DEPT006",
+    "department_name": "普外科",
+    "patient_case": {
+      "age": "61岁",
+      "gender": "男",
+      "chief_complaint": "painful, warm, erythematous nodule on thigh",
+      "diagnosis": {
+        "primary": "Cutaneous abscess",
+        "icd_code": "L02",
+        "severity": "中度"
+      },
+      "treatment": {
+        "medication": [
+          "Oral antibiotics"
+        ],
+        "procedure": "Incision and drainage",
+        "other": "Wound care instructions"
+      },
+      "outcome": {
+        "result": "治愈",
+        "length_of_stay": 1,
+        "complications": []
+      }
+    }
+  },
+  {
+    "record_id": "DEPT007001",
+    "department_id": "DEPT007",
+    "department_name": "骨科",
+    "patient_case": {
+      "age": "45岁",
+      "gender": "男",
+      "chief_complaint": "knee pain",
+      "diagnosis": {
+        "primary": "Fracture",
+        "icd_code": "S72",
+        "severity": "中度"
+      },
+      "treatment": {
+        "medication": [
+          "Analgesics"
+        ],
+        "procedure": "ORIF",
+        "other": "Rest"
+      },
+      "outcome": {
+        "result": "好转",
+        "length_of_stay": 5,
+        "complications": []
+      }
+    }
+  },
+  {
+    "record_id": "DEPT007002",
+    "department_id": "DEPT007",
+    "department_name": "骨科",
+    "patient_case": {
+      "age": "68岁",
+      "gender": "女",
+      "chief_complaint": "joint stiffness and swelling",
+      "diagnosis": {
+        "primary": "Joint pain",
+        "icd_code": "M25",
+        "severity": "轻度"
+      },
+      "treatment": {
+        "medication": [
+          "NSAIDs",
+          "Glucosamine"
+        ],
+        "procedure": "Physical therapy",
+        "other": "Activity modification"
+      },
+      "outcome": {
+        "result": "好转",
+        "length_of_stay": 2,
+        "complications": []
+      }
+    }
+  },
+  {
+    "record_id": "DEPT007003",
+    "department_id": "DEPT007",
+    "department_name": "骨科",
+    "patient_case": {
+      "age": "32岁",
+      "gender": "男",
+      "chief_complaint": "neck pain with radiating arm numbness",
+      "diagnosis": {
+        "primary": "Spondylosis",
+        "icd_code": "M43",
+        "severity": "重度"
+      },
+      "treatment": {
+        "medication": [
+          "Muscle relaxants",
+          "Gabapentin"
+        ],
+        "procedure": "Cervical fusion",
+        "other": "Post-op rehabilitation"
+      },
+      "outcome": {
+        "result": "治愈",
+        "length_of_stay": 7,
+        "complications": [
+          "Transient dysphagia"
+        ]
+      }
+    }
+  },
+  {
+    "record_id": "DEPT007004",
+    "department_id": "DEPT007",
+    "department_name": "骨科",
+    "patient_case": {
+      "age": "72岁",
+      "gender": "女",
+      "chief_complaint": "chronic knee swelling and instability",
+      "diagnosis": {
+        "primary": "Osteoarthritis",
+        "icd_code": "M17",
+        "severity": "重度"
+      },
+      "treatment": {
+        "medication": [
+          "Acetaminophen",
+          "Topical capsaicin"
+        ],
+        "procedure": "Total knee arthroplasty",
+        "other": "Gait training"
+      },
+      "outcome": {
+        "result": "好转",
+        "length_of_stay": 6,
+        "complications": [
+          "Minor wound hematoma"
+        ]
+      }
+    }
+  },
+  {
+    "record_id": "DEPT007005",
+    "department_id": "DEPT007",
+    "department_name": "骨科",
+    "patient_case": {
+      "age": "51岁",
+      "gender": "男",
+      "chief_complaint": "low back pain with leg tingling",
+      "diagnosis": {
+        "primary": "Low back pain",
+        "icd_code": "M54",
+        "severity": "中度"
+      },
+      "treatment": {
+        "medication": [
+          "Ibuprofen",
+          "Tramadol"
+        ],
+        "procedure": "Epidural steroid injection",
+        "other": "Core strengthening program"
+      },
+      "outcome": {
+        "result": "好转",
+        "length_of_stay": 1,
+        "complications": []
+      }
+    }
+  },
+  {
+    "record_id": "DEPT008001",
+    "department_id": "DEPT008",
+    "department_name": "神经外科",
+    "patient_case": {
+      "age": "45岁",
+      "gender": "男",
+      "chief_complaint": "headache",
+      "diagnosis": {
+        "primary": "Brain Tumor",
+        "icd_code": "C71",
+        "severity": "重度"
+      },
+      "treatment": {
+        "medication": [
+          "Dexamethasone"
+        ],
+        "procedure": "Craniotomy",
+        "other": "Radiation"
+      },
+      "outcome": {
+        "result": "好转",
+        "length_of_stay": 10,
+        "complications": []
+      }
+    }
+  },
+  {
+    "record_id": "DEPT008002",
+    "department_id": "DEPT008",
+    "department_name": "神经外科",
+    "patient_case": {
+      "age": "22岁",
+      "gender": "女",
+      "chief_complaint": "loss of consciousness",
+      "diagnosis": {
+        "primary": "Traumatic Brain Injury",
+        "icd_code": "S06",
+        "severity": "中度"
+      },
+      "treatment": {
+        "medication": [
+          "Mannitol",
+          "Phenytoin"
+        ],
+        "procedure": "Decompressive Craniectomy",
+        "other": "ICP monitoring"
+      },
+      "outcome": {
+        "result": "治愈",
+        "length_of_stay": 14,
+        "complications": [
+          "seizure"
+        ]
+      }
+    }
+  },
+  {
+    "record_id": "DEPT008003",
+    "department_id": "DEPT008",
+    "department_name": "神经外科",
+    "patient_case": {
+      "age": "68岁",
+      "gender": "男",
+      "chief_complaint": "sudden severe headache and neck stiffness",
+      "diagnosis": {
+        "primary": "Subarachnoid Hemorrhage",
+        "icd_code": "I60",
+        "severity": "Critical"
+      },
+      "treatment": {
+        "medication": [
+          "Nimodipine",
+          "Labetalol"
+        ],
+        "procedure": "Endovascular Coiling",
+        "other": "Ventriculostomy"
+      },
+      "outcome": {
+        "result": "好转",
+        "length_of_stay": 21,
+        "complications": [
+          "vasospasm",
+          "hydrocephalus"
+        ]
+      }
+    }
+  },
+  {
+    "record_id": "DEPT008004",
+    "department_id": "DEPT008",
+    "department_name": "神经外科",
+    "patient_case": {
+      "age": "3岁",
+      "gender": "女",
+      "chief_complaint": "increased head circumference and developmental delay",
+      "diagnosis": {
+        "primary": "Congenital Hydrocephalus",
+        "icd_code": "Q03",
+        "severity": "重度"
+      },
+      "treatment": {
+        "medication": [],
+        "procedure": "Ventriculoperitoneal Shunt Placement",
+        "other": "Shunt revision follow-up"
+      },
+      "outcome": {
+        "result": "好转",
+        "length_of_stay": 5,
+        "complications": []
+      }
+    }
+  },
+  {
+    "record_id": "DEPT008005",
+    "department_id": "DEPT008",
+    "department_name": "神经外科",
+    "patient_case": {
+      "age": "52岁",
+      "gender": "男",
+      "chief_complaint": "progressive weakness and gait instability",
+      "diagnosis": {
+        "primary": "Meningioma",
+        "icd_code": "C71",
+        "severity": "中度"
+      },
+      "treatment": {
+        "medication": [
+          "Dexamethasone"
+        ],
+        "procedure": "Stereotactic Biopsy and Resection",
+        "other": "Post-op MRI surveillance"
+      },
+      "outcome": {
+        "result": "治愈",
+        "length_of_stay": 7,
+        "complications": []
+      }
+    }
+  },
+  {
+    "record_id": "DEPT009001",
+    "department_id": "DEPT009",
+    "department_name": "妇产科",
+    "patient_case": {
+      "age": "28岁",
+      "gender": "女",
+      "chief_complaint": "pain",
+      "diagnosis": {
+        "primary": "Fibroids",
+        "icd_code": "D25",
+        "severity": "轻度"
+      },
+      "treatment": {
+        "medication": [
+          "NSAIDs"
+        ],
+        "procedure": "None",
+        "other": "Monitoring"
+      },
+      "outcome": {
+        "result": "好转",
+        "length_of_stay": 2,
+        "complications": []
+      }
+    }
+  },
+  {
+    "record_id": "DEPT009002",
+    "department_id": "DEPT009",
+    "department_name": "妇产科",
+    "patient_case": {
+      "age": "34岁",
+      "gender": "女",
+      "chief_complaint": "vaginal bleeding",
+      "diagnosis": {
+        "primary": "Complete abortion",
+        "icd_code": "O01",
+        "severity": "中度"
+      },
+      "treatment": {
+        "medication": [
+          "Misoprostol",
+          "Iron supplements"
+        ],
+        "procedure": "Uterine aspiration",
+        "other": "Counseling and follow-up"
+      },
+      "outcome": {
+        "result": "治愈",
+        "length_of_stay": 1,
+        "complications": []
+      }
+    }
+  },
+  {
+    "record_id": "DEPT009003",
+    "department_id": "DEPT009",
+    "department_name": "妇产科",
+    "patient_case": {
+      "age": "26岁",
+      "gender": "女",
+      "chief_complaint": "pelvic pain",
+      "diagnosis": {
+        "primary": "Endometriosis",
+        "icd_code": "N80",
+        "severity": "重度"
+      },
+      "treatment": {
+        "medication": [
+          "GnRH agonist",
+          "Combined oral contraceptives"
+        ],
+        "procedure": "Laparoscopic excision",
+        "other": "Pain management plan"
+      },
+      "outcome": {
+        "result": "好转",
+        "length_of_stay": 3,
+        "complications": [
+          "Mild postoperative nausea"
+        ]
+      }
+    }
+  },
+  {
+    "record_id": "DEPT009004",
+    "department_id": "DEPT009",
+    "department_name": "妇产科",
+    "patient_case": {
+      "age": "32岁",
+      "gender": "女",
+      "chief_complaint": "routine delivery",
+      "diagnosis": {
+        "primary": "Singleton pregnancy, full-term, spontaneous vaginal delivery",
+        "icd_code": "O80",
+        "severity": "None"
+      },
+      "treatment": {
+        "medication": [
+          "Oxytocin (postpartum)"
+        ],
+        "procedure": "Spontaneous vaginal delivery",
+        "other": "Postnatal education"
+      },
+      "outcome": {
+        "result": "好转",
+        "length_of_stay": 2,
+        "complications": []
+      }
+    }
+  },
+  {
+    "record_id": "DEPT009005",
+    "department_id": "DEPT009",
+    "department_name": "妇产科",
+    "patient_case": {
+      "age": "41岁",
+      "gender": "女",
+      "chief_complaint": "abnormal discharge and itching",
+      "diagnosis": {
+        "primary": "Chronic endocervicitis",
+        "icd_code": "N70",
+        "severity": "轻度"
+      },
+      "treatment": {
+        "medication": [
+          "Doxycycline"
+        ],
+        "procedure": "Cervical swab and colposcopy",
+        "other": "STI screening and partner notification"
+      },
+      "outcome": {
+        "result": "好转",
+        "length_of_stay": 0,
+        "complications": []
+      }
+    }
+  },
+  {
+    "record_id": "DEPT010001",
+    "department_id": "DEPT010",
+    "department_name": "儿科",
+    "patient_case": {
+      "age": "5岁",
+      "gender": "男",
+      "chief_complaint": "fever",
+      "diagnosis": {
+        "primary": "Pneumonia",
+        "icd_code": "J18",
+        "severity": "中度"
+      },
+      "treatment": {
+        "medication": [
+          "Antibiotics"
+        ],
+        "procedure": "None",
+        "other": "Fluids"
+      },
+      "outcome": {
+        "result": "治愈",
+        "length_of_stay": 5,
+        "complications": []
+      }
+    }
+  },
+  {
+    "record_id": "DEPT010002",
+    "department_id": "DEPT010",
+    "department_name": "儿科",
+    "patient_case": {
+      "age": "2岁",
+      "gender": "女",
+      "chief_complaint": "diarrhea and vomiting",
+      "diagnosis": {
+        "primary": "Gastroenteritis, unspecified",
+        "icd_code": "A09",
+        "severity": "轻度"
+      },
+      "treatment": {
+        "medication": [
+          "Oral rehydration salts"
+        ],
+        "procedure": "None",
+        "other": "Dietary counseling"
+      },
+      "outcome": {
+        "result": "治愈",
+        "length_of_stay": 2,
+        "complications": []
+      }
+    }
+  },
+  {
+    "record_id": "DEPT010003",
+    "department_id": "DEPT010",
+    "department_name": "儿科",
+    "patient_case": {
+      "age": "14岁",
+      "gender": "男",
+      "chief_complaint": "fever",
+      "diagnosis": {
+        "primary": "Fever of unknown origin",
+        "icd_code": "R50",
+        "severity": "轻度"
+      },
+      "treatment": {
+        "medication": [
+          "Acetaminophen"
+        ],
+        "procedure": "Diagnostic workup (CBC, CRP, blood cultures)",
+        "other": "Observation and follow-up"
+      },
+      "outcome": {
+        "result": "好转",
+        "length_of_stay": 3,
+        "complications": []
+      }
+    }
+  },
+  {
+    "record_id": "DEPT010004",
+    "department_id": "DEPT010",
+    "department_name": "儿科",
+    "patient_case": {
+      "age": "7岁",
+      "gender": "女",
+      "chief_complaint": "wheezing and shortness of breath",
+      "diagnosis": {
+        "primary": "Bronchial asthma",
+        "icd_code": "J45",
+        "severity": "Moderate persistent"
+      },
+      "treatment": {
+        "medication": [
+          "Inhaled corticosteroids",
+          "Short-acting beta agonist"
+        ],
+        "procedure": "Pulmonary function testing (spirometry)",
+        "other": "Asthma action plan education"
+      },
+      "outcome": {
+        "result": "好转",
+        "length_of_stay": 4,
+        "complications": []
+      }
+    }
+  },
+  {
+    "record_id": "DEPT010005",
+    "department_id": "DEPT010",
+    "department_name": "儿科",
+    "patient_case": {
+      "age": "0岁",
+      "gender": "男",
+      "chief_complaint": "jaundice",
+      "diagnosis": {
+        "primary": "Neonatal jaundice",
+        "icd_code": "P59",
+        "severity": "重度"
+      },
+      "treatment": {
+        "medication": [
+          "Phototherapy"
+        ],
+        "procedure": "Exchange transfusion",
+        "other": "Monitoring bilirubin levels"
+      },
+      "outcome": {
+        "result": "治愈",
+        "length_of_stay": 7,
+        "complications": [
+          "Mild hypocalcemia"
+        ]
+      }
+    }
+  }
+]

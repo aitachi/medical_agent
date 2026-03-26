@@ -1,0 +1,472 @@
+[
+  {
+    "reminder_id": "REM001",
+    "user_id": "U001",
+    "reminder_type": "medication",
+    "title": "服用降压药",
+    "content": "请于早餐后服用1片降压药，不要漏服。",
+    "remind_time": "15:15",
+    "repeat": "onetime",
+    "status": "active"
+  },
+  {
+    "reminder_id": "REM002",
+    "user_id": "U002",
+    "reminder_type": "medication",
+    "title": "服用降糖药",
+    "content": "请于餐前30分钟服用降糖药。",
+    "remind_time": "21:00",
+    "repeat": "daily",
+    "status": "active"
+  },
+  {
+    "reminder_id": "REM003",
+    "user_id": "U003",
+    "reminder_type": "medication",
+    "title": "服用阿司匹林",
+    "content": "请服用阿司匹林，预防血栓形成。",
+    "remind_time": "19:15",
+    "repeat": "daily",
+    "status": "paused"
+  },
+  {
+    "reminder_id": "REM004",
+    "user_id": "U004",
+    "reminder_type": "medication",
+    "title": "服用他汀类药物",
+    "content": "睡前服用他汀类药物，调节血脂。",
+    "remind_time": "20:15",
+    "repeat": "onetime",
+    "status": "active"
+  },
+  {
+    "reminder_id": "REM005",
+    "user_id": "U005",
+    "reminder_type": "medication",
+    "title": "服用硝酸甘油",
+    "content": "如出现胸闷症状，请含服硝酸甘油。",
+    "remind_time": "15:30",
+    "repeat": "monthly",
+    "status": "active"
+  },
+  {
+    "reminder_id": "REM006",
+    "user_id": "U006",
+    "reminder_type": "medication",
+    "title": "胰岛素注射",
+    "content": "请按时注射胰岛素，注意剂量。",
+    "remind_time": "13:45",
+    "repeat": "weekly",
+    "status": "active"
+  },
+  {
+    "reminder_id": "REM007",
+    "user_id": "U007",
+    "reminder_type": "medication",
+    "title": "服用利尿剂",
+    "content": "请于早晨服用利尿剂。",
+    "remind_time": "12:00",
+    "repeat": "daily",
+    "status": "paused"
+  },
+  {
+    "reminder_id": "REM008",
+    "user_id": "U008",
+    "reminder_type": "medication",
+    "title": "服用钙通道阻滞剂",
+    "content": "请按时服用钙通道阻滞剂。",
+    "remind_time": "13:00",
+    "repeat": "daily",
+    "status": "active"
+  },
+  {
+    "reminder_id": "REM009",
+    "user_id": "U009",
+    "reminder_type": "measurement",
+    "title": "测量血压",
+    "content": "请测量血压并记录收缩压和舒张压。",
+    "remind_time": "19:15",
+    "repeat": "weekly",
+    "status": "active"
+  },
+  {
+    "reminder_id": "REM010",
+    "user_id": "U010",
+    "reminder_type": "measurement",
+    "title": "测量血糖",
+    "content": "请测量空腹血糖并记录数值。",
+    "remind_time": "17:00",
+    "repeat": "monthly",
+    "status": "active"
+  },
+  {
+    "reminder_id": "REM011",
+    "user_id": "U011",
+    "reminder_type": "measurement",
+    "title": "测量餐后血糖",
+    "content": "请测量餐后2小时血糖。",
+    "remind_time": "12:30",
+    "repeat": "onetime",
+    "status": "paused"
+  },
+  {
+    "reminder_id": "REM012",
+    "user_id": "U012",
+    "reminder_type": "measurement",
+    "title": "测量心率",
+    "content": "请静息5分钟后测量心率。",
+    "remind_time": "20:00",
+    "repeat": "monthly",
+    "status": "active"
+  },
+  {
+    "reminder_id": "REM013",
+    "user_id": "U013",
+    "reminder_type": "measurement",
+    "title": "测量体重",
+    "content": "请在清晨空腹时测量体重。",
+    "remind_time": "14:45",
+    "repeat": "daily",
+    "status": "active"
+  },
+  {
+    "reminder_id": "REM014",
+    "user_id": "U014",
+    "reminder_type": "measurement",
+    "title": "记录症状",
+    "content": "请记录今日是否有不适症状。",
+    "remind_time": "09:45",
+    "repeat": "daily",
+    "status": "active"
+  },
+  {
+    "reminder_id": "REM015",
+    "user_id": "U015",
+    "reminder_type": "measurement",
+    "title": "记录运动",
+    "content": "请记录今日运动情况。",
+    "remind_time": "07:00",
+    "repeat": "monthly",
+    "status": "active"
+  },
+  {
+    "reminder_id": "REM016",
+    "user_id": "U016",
+    "reminder_type": "measurement",
+    "title": "记录饮食",
+    "content": "请记录今日饮食情况。",
+    "remind_time": "19:15",
+    "repeat": "daily",
+    "status": "active"
+  },
+  {
+    "reminder_id": "REM017",
+    "user_id": "U017",
+    "reminder_type": "appointment",
+    "title": "心内科复诊",
+    "content": "请按时到心内科复诊，携带检查报告。",
+    "remind_time": "07:45",
+    "repeat": "daily",
+    "status": "active"
+  },
+  {
+    "reminder_id": "REM018",
+    "user_id": "U018",
+    "reminder_type": "appointment",
+    "title": "内分泌科复诊",
+    "content": "请到内分泌科复查血糖和糖化血红蛋白。",
+    "remind_time": "14:45",
+    "repeat": "onetime",
+    "status": "paused"
+  },
+  {
+    "reminder_id": "REM019",
+    "user_id": "U019",
+    "reminder_type": "appointment",
+    "title": "血压监测门诊",
+    "content": "请到高血压门诊复查。",
+    "remind_time": "20:30",
+    "repeat": "daily",
+    "status": "active"
+  },
+  {
+    "reminder_id": "REM020",
+    "user_id": "U020",
+    "reminder_type": "appointment",
+    "title": "心电图检查",
+    "content": "请到医院做心电图检查。",
+    "remind_time": "16:00",
+    "repeat": "monthly",
+    "status": "paused"
+  },
+  {
+    "reminder_id": "REM001",
+    "type": "用药",
+    "title": "每日阿司匹林口服",
+    "content": "饭后服用阿司匹林肠溶片100mg，预防心脑血管事件。",
+    "frequency": "每天一次",
+    "time": "08:00",
+    "priority": "high"
+  },
+  {
+    "reminder_id": "REM002",
+    "type": "复诊",
+    "title": "高血压专科复诊",
+    "content": "携带近期血压记录本及所有正在服用药物清单，复诊评估降压方案。",
+    "frequency": "每3个月一次",
+    "time": "09:30",
+    "priority": "high"
+  },
+  {
+    "reminder_id": "REM003",
+    "type": "检查",
+    "title": "糖化血红蛋白检测",
+    "content": "空腹抽血检测HbA1c，评估近3个月血糖控制情况。",
+    "frequency": "每3个月一次",
+    "time": "07:30",
+    "priority": "medium"
+  },
+  {
+    "reminder_id": "REM004",
+    "type": "生活方式",
+    "title": "每日步行锻炼",
+    "content": "餐后1小时开始快走30分钟，心率维持在（170-年龄）次/分。",
+    "frequency": "每天一次",
+    "time": "18:30",
+    "priority": "medium"
+  },
+  {
+    "reminder_id": "REM005",
+    "type": "用药",
+    "title": "二甲双胍缓释片",
+    "content": "晚餐时整片吞服，不可嚼碎，避免胃肠道不适。",
+    "frequency": "每天一次",
+    "time": "19:00",
+    "priority": "high"
+  },
+  {
+    "reminder_id": "REM006",
+    "type": "复诊",
+    "title": "糖尿病足筛查",
+    "content": "由内分泌科或足病师进行足部感觉、脉搏及皮肤检查。",
+    "frequency": "每6个月一次",
+    "time": "10:00",
+    "priority": "medium"
+  },
+  {
+    "reminder_id": "REM007",
+    "type": "检查",
+    "title": "眼底照相检查",
+    "content": "散瞳后行眼底照相，筛查糖尿病视网膜病变。",
+    "frequency": "每年一次",
+    "time": "08:15",
+    "priority": "medium"
+  },
+  {
+    "reminder_id": "REM008",
+    "type": "生活方式",
+    "title": "低盐饮食记录",
+    "content": "每日食盐摄入≤5g，使用限盐勺，避免腌制食品和酱油过量。",
+    "frequency": "每天一次",
+    "time": "20:00",
+    "priority": "low"
+  },
+  {
+    "reminder_id": "REM009",
+    "type": "用药",
+    "title": "他汀类药物服用",
+    "content": "阿托伐他汀20mg睡前口服，用于调脂及稳定斑块。",
+    "frequency": "每天一次",
+    "time": "22:00",
+    "priority": "high"
+  },
+  {
+    "reminder_id": "REM010",
+    "type": "复诊",
+    "title": "冠心病介入术后随访",
+    "content": "复查心电图、心脏超声及血脂、肝肾功能，评估支架状态。",
+    "frequency": "术后1个月、3个月、6个月",
+    "time": "08:45",
+    "priority": "high"
+  },
+  {
+    "reminder_id": "REM011",
+    "type": "检查",
+    "title": "甲状腺功能五项",
+    "content": "空腹抽血检测TSH、FT3、FT4、TPOAb、TGAb。",
+    "frequency": "每6个月一次（甲减患者）",
+    "time": "07:15",
+    "priority": "medium"
+  },
+  {
+    "reminder_id": "REM012",
+    "type": "生活方式",
+    "title": "戒烟打卡",
+    "content": "今日未吸烟，记录戒烟天数，可饮水/咀嚼无糖口香糖缓解渴求。",
+    "frequency": "每天一次",
+    "time": "21:00",
+    "priority": "high"
+  },
+  {
+    "reminder_id": "REM013",
+    "type": "用药",
+    "title": "左甲状腺素钠片",
+    "content": "晨起空腹温水送服，服药后30分钟再进食早餐。",
+    "frequency": "每天一次",
+    "time": "06:30",
+    "priority": "high"
+  },
+  {
+    "reminder_id": "REM014",
+    "type": "复诊",
+    "title": "慢性肾病随访",
+    "content": "复查尿微量白蛋白/肌酐比值、eGFR及电解质，评估肾功能进展。",
+    "frequency": "每3个月一次",
+    "time": "09:15",
+    "priority": "high"
+  },
+  {
+    "reminder_id": "REM015",
+    "type": "检查",
+    "title": "骨密度检测（DXA）",
+    "content": "双能X线吸收测定法检测腰椎及股骨颈骨密度。",
+    "frequency": "绝经后女性每2年一次；长期激素治疗者每年一次",
+    "time": "08:00",
+    "priority": "medium"
+  },
+  {
+    "reminder_id": "REM016",
+    "type": "生活方式",
+    "title": "晚间口腔护理",
+    "content": "使用含氟牙膏刷牙+牙线清洁，糖尿病患者需特别注意牙龈健康。",
+    "frequency": "每天一次",
+    "time": "22:15",
+    "priority": "low"
+  },
+  {
+    "reminder_id": "REM017",
+    "type": "用药",
+    "title": "胰岛素基础注射",
+    "content": "甘精胰岛素12U皮下注射，固定时间（如21:00），勿漏打。",
+    "frequency": "每天一次",
+    "time": "21:00",
+    "priority": "high"
+  },
+  {
+    "reminder_id": "REM018",
+    "type": "复诊",
+    "title": "哮喘控制评估",
+    "content": "完成ACT问卷，肺功能检查（FEV1/FVC），调整吸入药物方案。",
+    "frequency": "每3个月一次（未控制者每月）",
+    "time": "10:30",
+    "priority": "medium"
+  },
+  {
+    "reminder_id": "REM019",
+    "type": "检查",
+    "title": "结肠镜复查（息肉切除术后）",
+    "content": "距首次切除高危腺瘤后3年复查结肠镜。",
+    "frequency": "单次（按医嘱）",
+    "time": "07:00",
+    "priority": "high"
+  },
+  {
+    "reminder_id": "REM020",
+    "type": "生活方式",
+    "title": "午间小憩管理",
+    "content": "午休不超过30分钟，避免影响夜间睡眠节律（尤其高血压/失眠患者）。",
+    "frequency": "每天一次",
+    "time": "13:00",
+    "priority": "low"
+  },
+  {
+    "reminder_id": "REM021",
+    "type": "用药",
+    "title": "抗凝药华法林监测与服药",
+    "content": "INR目标2.0–3.0，服药时间固定（如18:00），避免维生素K食物大幅波动。",
+    "frequency": "每天一次",
+    "time": "18:00",
+    "priority": "high"
+  },
+  {
+    "reminder_id": "REM022",
+    "type": "复诊",
+    "title": "乳腺癌术后内分泌治疗随访",
+    "content": "评估依西美坦/他莫昔芬耐受性，复查乳腺超声或钼靶。",
+    "frequency": "每6个月一次",
+    "time": "09:45",
+    "priority": "medium"
+  },
+  {
+    "reminder_id": "REM023",
+    "type": "检查",
+    "title": "前列腺特异性抗原（PSA）",
+    "content": "男性≥50岁（或45岁高危人群）年度筛查，采血前48小时避免骑车/前列腺检查。",
+    "frequency": "每年一次",
+    "time": "07:45",
+    "priority": "medium"
+  },
+  {
+    "reminder_id": "REM024",
+    "type": "生活方式",
+    "title": "饮水计划执行",
+    "content": "每日饮水1500–1700ml（心肾功能正常者），分时段饮用，避免睡前2小时大量饮水。",
+    "frequency": "每天一次",
+    "time": "16:00",
+    "priority": "low"
+  },
+  {
+    "reminder_id": "REM025",
+    "type": "用药",
+    "title": "吸入性糖皮质激素（ICS）",
+    "content": "布地奈德吸入剂早晚各1吸，吸药后清水漱口并吐出，防止口腔念珠菌感染。",
+    "frequency": "每天两次",
+    "time": "07:00, 20:00",
+    "priority": "medium"
+  },
+  {
+    "reminder_id": "REM026",
+    "type": "复诊",
+    "title": "帕金森病症状评估",
+    "content": "进行UPDRS量表评估，调整多巴丝肼剂量及服药时间窗。",
+    "frequency": "每3个月一次",
+    "time": "11:00",
+    "priority": "high"
+  },
+  {
+    "reminder_id": "REM027",
+    "type": "检查",
+    "title": "幽门螺杆菌根除后复查",
+    "content": "停用PPI 4周、抗生素2周后行¹³C呼气试验确认根除。",
+    "frequency": "单次（治疗后4–8周）",
+    "time": "08:30",
+    "priority": "medium"
+  },
+  {
+    "reminder_id": "REM028",
+    "type": "生活方式",
+    "title": "认知训练打卡",
+    "content": "完成15分钟数字记忆/词语联想训练（如APP或纸笔练习），延缓轻度认知障碍进展。",
+    "frequency": "每天一次",
+    "time": "15:00",
+    "priority": "low"
+  },
+  {
+    "reminder_id": "REM029",
+    "type": "用药",
+    "title": "维生素D3补充",
+    "content": "胆钙化醇2000IU口服，随餐服用以增强吸收（尤其骨质疏松/CKD患者）。",
+    "frequency": "每天一次",
+    "time": "12:00",
+    "priority": "medium"
+  },
+  {
+    "reminder_id": "REM030",
+    "type": "复诊",
+    "title": "儿童哮喘控制门诊",
+    "content": "评估峰流速值、症状日记、吸入技术，更新哮喘行动计划（AAP）。",
+    "frequency": "每3个月一次（急性发作后4周内加访）",
+    "time": "14:00",
+    "priority": "high"
+  }
+]

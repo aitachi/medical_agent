@@ -10,10 +10,13 @@ __all__ = [
 
 # 导入新增模块
 try:
+    from .scene_filter import SceneFilter, EmergencyDetector, FilterResult, FilterCategory
     from .exceptions import *
     from .monitoring import MetricsCollector, get_metrics_collector, track_time, track_counter
     from .user_profile import UserProfile, ProfileUpdate, UserProfileBuilder, create_profile, create_default_profile
     __all__.extend([
+        # Scene Filter
+        "SceneFilter", "EmergencyDetector", "FilterResult", "FilterCategory",
         # Exceptions
         "MedicalAgentError", "IntentClassificationError", "KnowledgeBaseError",
         "SkillInvocationError", "SafetyCheckError", "EmergencyDetectedError",

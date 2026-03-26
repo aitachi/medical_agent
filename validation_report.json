@@ -1,0 +1,227 @@
+{
+  "timestamp": "2026-03-26T10:16:33.221112",
+  "summary": {
+    "total": 36,
+    "passed": 34,
+    "failed": 1,
+    "warnings": 1
+  },
+  "results": [
+    {
+      "category": "模型配置",
+      "name": "web_api_server.py模型",
+      "status": "PASS",
+      "details": "qwen-max"
+    },
+    {
+      "category": "模型配置",
+      "name": "API Key配置",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "category": "模型配置",
+      "name": "Base URL配置",
+      "status": "PASS",
+      "details": "dashscope.aliyuncs.com"
+    },
+    {
+      "category": "模型配置",
+      "name": "llm_service.py模型",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "category": "模型配置",
+      "name": "DashScope客户端",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "category": "Skills",
+      "name": "report_interpreter",
+      "status": "PASS",
+      "details": "有SKILL.md"
+    },
+    {
+      "category": "Skills",
+      "name": "online_consult",
+      "status": "PASS",
+      "details": "有SKILL.md"
+    },
+    {
+      "category": "Skills",
+      "name": "chronic_recorder",
+      "status": "PASS",
+      "details": "有SKILL.md"
+    },
+    {
+      "category": "Skills",
+      "name": "chronic_advisor",
+      "status": "PASS",
+      "details": "有SKILL.md"
+    },
+    {
+      "category": "Skills",
+      "name": "followup_service",
+      "status": "PASS",
+      "details": "有SKILL.md"
+    },
+    {
+      "category": "Skills",
+      "name": "checkup_service",
+      "status": "PASS",
+      "details": "有SKILL.md"
+    },
+    {
+      "category": "Skills",
+      "name": "reminder_service",
+      "status": "PASS",
+      "details": "有SKILL.md"
+    },
+    {
+      "category": "Skills",
+      "name": "emergency_handler",
+      "status": "PASS",
+      "details": "有SKILL.md"
+    },
+    {
+      "category": "Skills",
+      "name": "scope_handler",
+      "status": "PASS",
+      "details": "有SKILL.md"
+    },
+    {
+      "category": "Skills",
+      "name": "help_handler",
+      "status": "PASS",
+      "details": "有SKILL.md"
+    },
+    {
+      "category": "Skills",
+      "name": "appointment_manage",
+      "status": "PASS",
+      "details": "有SKILL.md"
+    },
+    {
+      "category": "MCP工具",
+      "name": "初始化",
+      "status": "FAIL",
+      "details": "'MCPServer' object has no attribute 'get_tools'"
+    },
+    {
+      "category": "数据服务",
+      "name": "user_profile_service",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "category": "数据服务",
+      "name": "health_records_service",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "category": "数据服务",
+      "name": "chronic_disease_service",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "category": "数据服务",
+      "name": "preference_service",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "category": "数据服务",
+      "name": "behavior_log_service",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "category": "数据服务",
+      "name": "reminder_service",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "category": "数据服务",
+      "name": "payment_service",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "category": "数据服务",
+      "name": "location_service",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "category": "Agent",
+      "name": "MedicalAgent",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "category": "Agent",
+      "name": "SceneFilter",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "category": "Agent",
+      "name": "DashScopeLLM",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "category": "Agent",
+      "name": "UserProfile",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "category": "Agent",
+      "name": "IntentType枚举",
+      "status": "PASS",
+      "details": "73种意图"
+    },
+    {
+      "category": "API服务",
+      "name": "服务运行状态",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "category": "API端点",
+      "name": "系统状态",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "category": "API端点",
+      "name": "基础聊天",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "category": "API端点",
+      "name": "用户画像",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "category": "API端点",
+      "name": "健康档案",
+      "status": "WARN",
+      "details": "状态码: 422"
+    },
+    {
+      "category": "API端点",
+      "name": "健康检查",
+      "status": "PASS",
+      "details": ""
+    }
+  ]
+}

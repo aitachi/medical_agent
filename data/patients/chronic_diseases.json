@@ -1,0 +1,539 @@
+{
+  "total": 10000,
+  "generated_at": "2026-03-26",
+  "description": "慢病数据 - 10000个患者中20%有慢病标记 - 匿名化",
+  "statistics": {
+    "hypertension": {"count": 3000, "percentage": 30},
+    "diabetes": {"count": 2000, "percentage": 20},
+    "coronary_heart_disease": {"count": 1500, "percentage": 15},
+    "copd": {"count": 1000, "percentage": 10},
+    "other": {"count": 2500, "percentage": 25}
+  },
+  "chronic_diseases": [
+    {
+      "patient_id": "P00031",
+      "has_chronic_disease": true,
+      "diseases": [
+        {
+          "name": "高血压",
+          "code": "I10",
+          "diagnosis_date": "2018-06-15",
+          "severity": "2级",
+          "status": "控制中",
+          "blood_pressure_range": "130-140/80-90mmHg",
+          "complications": ["左心室肥厚"],
+          "doctor": "心内科",
+          "hospital": "安贞医院",
+          "follow_up_frequency": "每月1次"
+        },
+        {
+          "name": "2型糖尿病",
+          "code": "E11.9",
+          "diagnosis_date": "2020-09-20",
+          "severity": "中度",
+          "status": "控制中",
+          "hba1c": "6.8%",
+          "fasting_glucose": "6.5mmol/L",
+          "complications": [],
+          "doctor": "内分泌科",
+          "hospital": "协和医院",
+          "follow_up_frequency": "每2月1次"
+        }
+      ]
+    },
+    {
+      "patient_id": "P00032",
+      "has_chronic_disease": true,
+      "diseases": [
+        {
+          "name": "骨质疏松",
+          "code": "M81.0",
+          "diagnosis_date": "2019-04-15",
+          "severity": "中度",
+          "status": "治疗中",
+          "bone_density": "T值-2.8",
+          "complications": [],
+          "doctor": "内分泌科",
+          "hospital": "华东医院",
+          "follow_up_frequency": "每年1次"
+        }
+      ]
+    },
+    {
+      "patient_id": "P00033",
+      "has_chronic_disease": true,
+      "diseases": [
+        {
+          "name": "高血压",
+          "code": "I10",
+          "diagnosis_date": "2015-03-10",
+          "severity": "1级",
+          "status": "控制良好",
+          "blood_pressure_range": "120-130/75-85mmHg",
+          "complications": [],
+          "doctor": "心内科",
+          "hospital": "珠海市人民医院",
+          "follow_up_frequency": "每3月1次"
+        }
+      ]
+    },
+    {
+      "patient_id": "P00034",
+      "has_chronic_disease": true,
+      "diseases": [
+        {
+          "name": "冠心病",
+          "code": "I25.1",
+          "diagnosis_date": "2017-08-20",
+          "severity": "稳定型",
+          "status": "稳定",
+          "nyha_class": "II级",
+          "complications": [],
+          "doctor": "心内科",
+          "hospital": "南昌大学一附院",
+          "follow_up_frequency": "每2月1次"
+        }
+      ]
+    },
+    {
+      "patient_id": "P00035",
+      "has_chronic_disease": true,
+      "diseases": [
+        {
+          "name": "慢阻肺",
+          "code": "J44.1",
+          "diagnosis_date": "2016-11-15",
+          "severity": "GOLD 2级",
+          "status": "稳定",
+          "fev1_predicted": "68%",
+          "complications": ["慢性肺源性心脏病"],
+          "doctor": "呼吸科",
+          "hospital": "贵州省人民医院",
+          "follow_up_frequency": "每3月1次"
+        }
+      ]
+    },
+    {
+      "patient_id": "P00036",
+      "has_chronic_disease": true,
+      "diseases": [
+        {
+          "name": "2型糖尿病",
+          "code": "E11.9",
+          "diagnosis_date": "2014-05-20",
+          "severity": "轻度",
+          "status": "控制良好",
+          "hba1c": "6.2%",
+          "fasting_glucose": "5.8mmol/L",
+          "complications": [],
+          "doctor": "内分泌科",
+          "hospital": "青海省人民医院",
+          "follow_up_frequency": "每3月1次"
+        }
+      ]
+    },
+    {
+      "patient_id": "P00037",
+      "has_chronic_disease": true,
+      "diseases": [
+        {
+          "name": "高血压",
+          "code": "I10",
+          "diagnosis_date": "2012-07-10",
+          "severity": "2级",
+          "status": "控制中",
+          "blood_pressure_range": "135-145/85-95mmHg",
+          "complications": ["微量白蛋白尿"],
+          "doctor": "心内科",
+          "hospital": "大连医科大学一附院",
+          "follow_up_frequency": "每月1次"
+        },
+        {
+          "name": "冠心病",
+          "code": "I25.1",
+          "diagnosis_date": "2018-09-15",
+          "severity": "稳定型",
+          "status": "稳定",
+          "nyha_class": "I级",
+          "complications": [],
+          "doctor": "心内科",
+          "hospital": "大连医科大学一附院",
+          "follow_up_frequency": "每2月1次"
+        }
+      ]
+    },
+    {
+      "patient_id": "P00038",
+      "has_chronic_disease": true,
+      "diseases": [
+        {
+          "name": "类风湿关节炎",
+          "code": "M05.9",
+          "diagnosis_date": "2019-02-20",
+          "severity": "中度活动",
+          "status": "控制中",
+          "rf_factor": "阳性",
+          "complications": [],
+          "doctor": "风湿免疫科",
+          "hospital": "唐山工人医院",
+          "follow_up_frequency": "每月1次"
+        }
+      ]
+    },
+    {
+      "patient_id": "P00039",
+      "has_chronic_disease": true,
+      "diseases": [
+        {
+          "name": "慢阻肺",
+          "code": "J44.1",
+          "diagnosis_date": "2013-06-15",
+          "severity": "GOLD 3级",
+          "status": "急性加重频繁",
+          "fev1_predicted": "48%",
+          "complications": ["呼吸衰竭", "肺源性心脏病"],
+          "doctor": "呼吸科",
+          "hospital": "九江市第一人民医院",
+          "follow_up_frequency": "每月1次"
+        }
+      ]
+    },
+    {
+      "patient_id": "P00040",
+      "has_chronic_disease": true,
+      "diseases": [
+        {
+          "name": "高血压",
+          "code": "I10",
+          "diagnosis_date": "2016-10-20",
+          "severity": "1级",
+          "status": "控制良好",
+          "blood_pressure_range": "125-135/80-85mmHg",
+          "complications": [],
+          "doctor": "心内科",
+          "hospital": "东莞市人民医院",
+          "follow_up_frequency": "每3月1次"
+        },
+        {
+          "name": "2型糖尿病",
+          "code": "E11.9",
+          "diagnosis_date": "2019-04-15",
+          "severity": "轻度",
+          "status": "控制良好",
+          "hba1c": "6.5%",
+          "fasting_glucose": "6.2mmol/L",
+          "complications": [],
+          "doctor": "内分泌科",
+          "hospital": "东莞市人民医院",
+          "follow_up_frequency": "每2月1次"
+        }
+      ]
+    },
+    {
+      "patient_id": "P00041",
+      "has_chronic_disease": true,
+      "diseases": [
+        {
+          "name": "高血压",
+          "code": "I10",
+          "diagnosis_date": "2005-03-15",
+          "severity": "3级",
+          "status": "控制中",
+          "blood_pressure_range": "140-150/90-100mmHg",
+          "complications": ["左心室肥厚", "颈动脉斑块"],
+          "doctor": "心内科",
+          "hospital": "阜外医院",
+          "follow_up_frequency": "每月1次"
+        },
+        {
+          "name": "冠心病",
+          "code": "I25.1",
+          "diagnosis_date": "2012-06-20",
+          "severity": "不稳定型",
+          "status": "稳定",
+          "nyha_class": "II级",
+          "complications": ["缺血性心肌病"],
+          "doctor": "心内科",
+          "hospital": "安贞医院",
+          "follow_up_frequency": "每月1次"
+        },
+        {
+          "name": "慢性肾功能不全",
+          "code": "N18.4",
+          "diagnosis_date": "2018-09-10",
+          "severity": "CKD 3期",
+          "status": "稳定",
+          "egfr": "45ml/min/1.73m2",
+          "complications": ["肾性贫血", "肾性高血压"],
+          "doctor": "肾内科",
+          "hospital": "协和医院",
+          "follow_up_frequency": "每月1次"
+        }
+      ]
+    },
+    {
+      "patient_id": "P00042",
+      "has_chronic_disease": true,
+      "diseases": [
+        {
+          "name": "2型糖尿病",
+          "code": "E11.9",
+          "diagnosis_date": "2008-04-20",
+          "severity": "重度",
+          "status": "控制不佳",
+          "hba1c": "8.5%",
+          "fasting_glucose": "9.2mmol/L",
+          "complications": ["糖尿病周围神经病变", "糖尿病视网膜病变", "糖尿病肾病"],
+          "doctor": "内分泌科",
+          "hospital": "瑞金医院",
+          "follow_up_frequency": "每月1次"
+        }
+      ]
+    },
+    {
+      "patient_id": "P00043",
+      "has_chronic_disease": true,
+      "diseases": [
+        {
+          "name": "高血压",
+          "code": "I10",
+          "diagnosis_date": "2010-08-15",
+          "severity": "2级",
+          "status": "控制中",
+          "blood_pressure_range": "135-145/85-90mmHg",
+          "complications": [],
+          "doctor": "心内科",
+          "hospital": "佛山市第一人民医院",
+          "follow_up_frequency": "每2月1次"
+        },
+        {
+          "name": "帕金森病",
+          "code": "G20",
+          "diagnosis_date": "2019-03-20",
+          "severity": "H&Y 2级",
+          "status": "进展中",
+          "updrs_score": "35分",
+          "complications": [],
+          "doctor": "神经内科",
+          "hospital": "广州市第一人民医院",
+          "follow_up_frequency": "每2月1次"
+        }
+      ]
+    },
+    {
+      "patient_id": "P00044",
+      "has_chronic_disease": true,
+      "diseases": [
+        {
+          "name": "冠心病",
+          "code": "I25.1",
+          "diagnosis_date": "2014-06-10",
+          "severity": "稳定型",
+          "status": "稳定",
+          "nyha_class": "II级",
+          "complications": ["阵发性房颤"],
+          "doctor": "心内科",
+          "hospital": "宜昌市中心医院",
+          "follow_up_frequency": "每2月1次"
+        },
+        {
+          "name": "骨质疏松",
+          "code": "M81.0",
+          "diagnosis_date": "2017-09-20",
+          "severity": "重度",
+          "status": "治疗中",
+          "bone_density": "T值-3.5",
+          "complications": ["腰椎压缩性骨折"],
+          "doctor": "内分泌科",
+          "hospital": "宜昌市中心医院",
+          "follow_up_frequency": "每年1次"
+        }
+      ]
+    },
+    {
+      "patient_id": "P00045",
+      "has_chronic_disease": true,
+      "diseases": [
+        {
+          "name": "慢阻肺",
+          "code": "J44.1",
+          "diagnosis_date": "2011-04-15",
+          "severity": "GOLD 2级",
+          "status": "稳定",
+          "fev1_predicted": "62%",
+          "complications": [],
+          "doctor": "呼吸科",
+          "hospital": "绵阳市中心医院",
+          "follow_up_frequency": "每3月1次"
+        }
+      ]
+    },
+    {
+      "patient_id": "P00046",
+      "has_chronic_disease": true,
+      "diseases": [
+        {
+          "name": "高血压",
+          "code": "I10",
+          "diagnosis_date": "2008-11-20",
+          "severity": "2级",
+          "status": "控制良好",
+          "blood_pressure_range": "125-135/80-85mmHg",
+          "complications": [],
+          "doctor": "心内科",
+          "hospital": "宝鸡市中心医院",
+          "follow_up_frequency": "每3月1次"
+        },
+        {
+          "name": "2型糖尿病",
+          "code": "E11.9",
+          "diagnosis_date": "2012-05-15",
+          "severity": "中度",
+          "status": "控制中",
+          "hba1c": "7.2%",
+          "fasting_glucose": "7.8mmol/L",
+          "complications": ["糖尿病周围神经病变"],
+          "doctor": "内分泌科",
+          "hospital": "宝鸡市中心医院",
+          "follow_up_frequency": "每2月1次"
+        }
+      ]
+    },
+    {
+      "patient_id": "P00047",
+      "has_chronic_disease": true,
+      "diseases": [
+        {
+          "name": "冠心病",
+          "code": "I25.1",
+          "diagnosis_date": "2009-07-20",
+          "severity": "稳定型",
+          "status": "稳定",
+          "nyha_class": "I级",
+          "complications": [],
+          "doctor": "心内科",
+          "hospital": "大连市中心医院",
+          "follow_up_frequency": "每3月1次"
+        }
+      ]
+    },
+    {
+      "patient_id": "P00048",
+      "has_chronic_disease": true,
+      "diseases": [
+        {
+          "name": "阿尔茨海默病",
+          "code": "G30.9",
+          "diagnosis_date": "2020-02-15",
+          "severity": "中度",
+          "status": "进展中",
+          "mmse_score": "18分",
+          "complications": [],
+          "doctor": "神经内科",
+          "hospital": "天津市环湖医院",
+          "follow_up_frequency": "每2月1次"
+        }
+      ]
+    },
+    {
+      "patient_id": "P00049",
+      "has_chronic_disease": true,
+      "diseases": [
+        {
+          "name": "高血压",
+          "code": "I10",
+          "diagnosis_date": "2006-09-10",
+          "severity": "3级",
+          "status": "控制不佳",
+          "blood_pressure_range": "150-160/95-105mmHg",
+          "complications": ["脑梗死后遗症"],
+          "doctor": "心内科",
+          "hospital": "苏州大学一附院",
+          "follow_up_frequency": "每月1次"
+        }
+      ]
+    },
+    {
+      "patient_id": "P00050",
+      "has_chronic_disease": true,
+      "diseases": [
+        {
+          "name": "2型糖尿病",
+          "code": "E11.9",
+          "diagnosis_date": "2010-03-25",
+          "severity": "中度",
+          "status": "控制中",
+          "hba1c": "7.0%",
+          "fasting_glucose": "7.2mmol/L",
+          "complications": ["糖尿病肾病早期"],
+          "doctor": "内分泌科",
+          "hospital": "中山市人民医院",
+          "follow_up_frequency": "每2月1次"
+        },
+        {
+          "name": "骨质疏松",
+          "code": "M81.0",
+          "diagnosis_date": "2016-08-15",
+          "severity": "中度",
+          "status": "治疗中",
+          "bone_density": "T值-2.6",
+          "complications": [],
+          "doctor": "内分泌科",
+          "hospital": "中山市人民医院",
+          "follow_up_frequency": "每年1次"
+        }
+      ]
+    },
+    {
+      "patient_id": "P00021",
+      "has_chronic_disease": true,
+      "diseases": [
+        {
+          "name": "高尿酸血症",
+          "code": "E79.0",
+          "diagnosis_date": "2023-08-20",
+          "severity": "轻度",
+          "status": "控制中",
+          "uric_acid": "480umol/L",
+          "complications": [],
+          "doctor": "内分泌科",
+          "hospital": "山西省人民医院",
+          "follow_up_frequency": "每3月1次"
+        }
+      ]
+    },
+    {
+      "patient_id": "P00022",
+      "has_chronic_disease": true,
+      "diseases": [
+        {
+          "name": "子宫肌瘤",
+          "code": "D25.9",
+          "diagnosis_date": "2021-03-15",
+          "severity": "轻度",
+          "status": "观察中",
+          "fibroid_size": "3cm",
+          "complications": [],
+          "doctor": "妇科",
+          "hospital": "齐鲁医院",
+          "follow_up_frequency": "每年1次"
+        }
+      ]
+    },
+    {
+      "patient_id": "P00001",
+      "has_chronic_disease": false,
+      "diseases": []
+    },
+    {
+      "patient_id": "P00002",
+      "has_chronic_disease": false,
+      "diseases": []
+    },
+    {
+      "patient_id": "P00003",
+      "has_chronic_disease": false,
+      "diseases": []
+    }
+  ]
+}

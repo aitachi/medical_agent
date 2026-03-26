@@ -1,0 +1,927 @@
+[
+  {
+    "consult_id": "C001",
+    "patient_id": "P019",
+    "doctor_id": "D001",
+    "consult_type": "text",
+    "chief_complaint": "咽喉痛",
+    "description": "患者出现咽喉痛症状7天，伴有乏力。",
+    "status": "waiting",
+    "created_at": "2026-03-05 00:16",
+    "messages": [
+      {
+        "sender": "patient",
+        "content": "医生你好，我咽喉痛已经5天了，请问应该怎么办？",
+        "timestamp": "2026-03-05 00:16"
+      }
+    ]
+  },
+  {
+    "consult_id": "C002",
+    "patient_id": "P021",
+    "doctor_id": "D003",
+    "consult_type": "text",
+    "chief_complaint": "腹痛腹泻",
+    "description": "患者出现腹痛腹泻症状7天，伴有乏力。",
+    "status": "waiting",
+    "created_at": "2026-03-18 15:16",
+    "messages": [
+      {
+        "sender": "patient",
+        "content": "医生你好，我腹痛腹泻已经2天了，请问应该怎么办？",
+        "timestamp": "2026-03-18 15:16"
+      }
+    ]
+  },
+  {
+    "consult_id": "C003",
+    "patient_id": "P017",
+    "doctor_id": "D004",
+    "consult_type": "video",
+    "chief_complaint": "恶心呕吐",
+    "description": "患者出现恶心呕吐症状4天，伴有食欲不振。",
+    "status": "completed",
+    "created_at": "2026-03-06 17:16",
+    "messages": [
+      {
+        "sender": "patient",
+        "content": "医生你好，我恶心呕吐已经2天了，请问应该怎么办？",
+        "timestamp": "2026-03-06 17:16"
+      },
+      {
+        "sender": "doctor",
+        "content": "您好，根据您的描述，恶心呕吐可能是由多种原因引起的。请问您还有其他症状吗？比如发热、恶心等？",
+        "timestamp": "2026-03-06 17:44"
+      }
+    ]
+  },
+  {
+    "consult_id": "C004",
+    "patient_id": "P010",
+    "doctor_id": "D006",
+    "consult_type": "text",
+    "chief_complaint": "口腔溃疡",
+    "description": "患者出现口腔溃疡症状5天，伴有食欲不振。",
+    "status": "waiting",
+    "created_at": "2026-03-04 15:16",
+    "messages": [
+      {
+        "sender": "patient",
+        "content": "医生你好，我口腔溃疡已经3天了，请问应该怎么办？",
+        "timestamp": "2026-03-04 15:16"
+      }
+    ]
+  },
+  {
+    "consult_id": "C005",
+    "patient_id": "P005",
+    "doctor_id": "D001",
+    "consult_type": "video",
+    "chief_complaint": "食欲不振",
+    "description": "患者出现食欲不振症状1天，伴有食欲不振。",
+    "status": "completed",
+    "created_at": "2026-03-02 00:16",
+    "messages": [
+      {
+        "sender": "patient",
+        "content": "医生你好，我食欲不振已经6天了，请问应该怎么办？",
+        "timestamp": "2026-03-02 00:16"
+      },
+      {
+        "sender": "doctor",
+        "content": "了解，建议您注意休息，多喝温水。如果症状持续加重，建议来院进行详细检查。",
+        "timestamp": "2026-03-02 00:33"
+      }
+    ]
+  },
+  {
+    "consult_id": "C006",
+    "patient_id": "P004",
+    "doctor_id": "D020",
+    "consult_type": "phone",
+    "chief_complaint": "便秘",
+    "description": "患者出现便秘症状7天，伴有乏力。",
+    "status": "completed",
+    "created_at": "2026-02-26 18:16",
+    "messages": [
+      {
+        "sender": "patient",
+        "content": "医生你好，我便秘已经5天了，请问应该怎么办？",
+        "timestamp": "2026-02-26 18:16"
+      },
+      {
+        "sender": "doctor",
+        "content": "根据您的症状，建议您服用一些对症药物，同时注意饮食清淡。如有不适请及时就医。",
+        "timestamp": "2026-02-26 18:28"
+      }
+    ]
+  },
+  {
+    "consult_id": "C007",
+    "patient_id": "P004",
+    "doctor_id": "D005",
+    "consult_type": "video",
+    "chief_complaint": "咽喉痛",
+    "description": "患者出现咽喉痛症状2天，伴有乏力。",
+    "status": "waiting",
+    "created_at": "2026-03-02 15:16",
+    "messages": [
+      {
+        "sender": "patient",
+        "content": "医生你好，我咽喉痛已经3天了，请问应该怎么办？",
+        "timestamp": "2026-03-02 15:16"
+      }
+    ]
+  },
+  {
+    "consult_id": "C008",
+    "patient_id": "P012",
+    "doctor_id": "D004",
+    "consult_type": "phone",
+    "chief_complaint": "尿频尿急",
+    "description": "患者出现尿频尿急症状6天，伴有食欲不振。",
+    "status": "cancelled",
+    "created_at": "2026-02-25 10:16",
+    "messages": []
+  },
+  {
+    "consult_id": "C009",
+    "patient_id": "P002",
+    "doctor_id": "D003",
+    "consult_type": "video",
+    "chief_complaint": "食欲不振",
+    "description": "患者出现食欲不振症状6天，伴有食欲不振。",
+    "status": "completed",
+    "created_at": "2026-03-08 07:16",
+    "messages": [
+      {
+        "sender": "patient",
+        "content": "医生你好，我食欲不振已经7天了，请问应该怎么办？",
+        "timestamp": "2026-03-08 07:16"
+      },
+      {
+        "sender": "doctor",
+        "content": "您好，根据您的描述，食欲不振可能是由多种原因引起的。请问您还有其他症状吗？比如发热、恶心等？",
+        "timestamp": "2026-03-08 07:40"
+      }
+    ]
+  },
+  {
+    "consult_id": "C010",
+    "patient_id": "P029",
+    "doctor_id": "D007",
+    "consult_type": "video",
+    "chief_complaint": "皮疹",
+    "description": "患者出现皮疹症状3天，伴有乏力。",
+    "status": "cancelled",
+    "created_at": "2026-02-23 22:16",
+    "messages": []
+  },
+  {
+    "consult_id": "C011",
+    "patient_id": "P026",
+    "doctor_id": "D019",
+    "consult_type": "phone",
+    "chief_complaint": "咽喉痛",
+    "description": "患者出现咽喉痛症状7天，伴有乏力。",
+    "status": "cancelled",
+    "created_at": "2026-03-02 14:16",
+    "messages": []
+  },
+  {
+    "consult_id": "C012",
+    "patient_id": "P028",
+    "doctor_id": "D005",
+    "consult_type": "video",
+    "chief_complaint": "鼻塞流涕",
+    "description": "患者出现鼻塞流涕症状3天，伴有食欲不振。",
+    "status": "cancelled",
+    "created_at": "2026-02-25 06:16",
+    "messages": []
+  },
+  {
+    "consult_id": "C013",
+    "patient_id": "P024",
+    "doctor_id": "D010",
+    "consult_type": "phone",
+    "chief_complaint": "乏力",
+    "description": "患者出现乏力症状4天，伴有食欲不振。",
+    "status": "completed",
+    "created_at": "2026-03-25 02:16",
+    "messages": [
+      {
+        "sender": "patient",
+        "content": "医生你好，我乏力已经5天了，请问应该怎么办？",
+        "timestamp": "2026-03-25 02:16"
+      },
+      {
+        "sender": "doctor",
+        "content": "根据您的症状，建议您服用一些对症药物，同时注意饮食清淡。如有不适请及时就医。",
+        "timestamp": "2026-03-25 02:21"
+      }
+    ]
+  },
+  {
+    "consult_id": "C014",
+    "patient_id": "P002",
+    "doctor_id": "D008",
+    "consult_type": "video",
+    "chief_complaint": "便秘",
+    "description": "患者出现便秘症状7天，伴有乏力。",
+    "status": "waiting",
+    "created_at": "2026-02-27 04:16",
+    "messages": [
+      {
+        "sender": "patient",
+        "content": "医生你好，我便秘已经6天了，请问应该怎么办？",
+        "timestamp": "2026-02-27 04:16"
+      }
+    ]
+  },
+  {
+    "consult_id": "C015",
+    "patient_id": "P013",
+    "doctor_id": "D015",
+    "consult_type": "phone",
+    "chief_complaint": "心悸",
+    "description": "患者出现心悸症状2天，伴有食欲不振。",
+    "status": "cancelled",
+    "created_at": "2026-03-24 02:16",
+    "messages": []
+  },
+  {
+    "consult_id": "C016",
+    "patient_id": "P004",
+    "doctor_id": "D003",
+    "consult_type": "video",
+    "chief_complaint": "咽喉痛",
+    "description": "患者出现咽喉痛症状2天，伴有食欲不振。",
+    "status": "waiting",
+    "created_at": "2026-03-04 01:16",
+    "messages": [
+      {
+        "sender": "patient",
+        "content": "医生你好，我咽喉痛已经3天了，请问应该怎么办？",
+        "timestamp": "2026-03-04 01:16"
+      }
+    ]
+  },
+  {
+    "consult_id": "C017",
+    "patient_id": "P023",
+    "doctor_id": "D016",
+    "consult_type": "text",
+    "chief_complaint": "心悸",
+    "description": "患者出现心悸症状3天，伴有乏力。",
+    "status": "waiting",
+    "created_at": "2026-03-03 02:16",
+    "messages": [
+      {
+        "sender": "patient",
+        "content": "医生你好，我心悸已经3天了，请问应该怎么办？",
+        "timestamp": "2026-03-03 02:16"
+      }
+    ]
+  },
+  {
+    "consult_id": "C018",
+    "patient_id": "P007",
+    "doctor_id": "D009",
+    "consult_type": "phone",
+    "chief_complaint": "便秘",
+    "description": "患者出现便秘症状6天，伴有乏力。",
+    "status": "cancelled",
+    "created_at": "2026-03-24 04:16",
+    "messages": []
+  },
+  {
+    "consult_id": "C019",
+    "patient_id": "P010",
+    "doctor_id": "D010",
+    "consult_type": "text",
+    "chief_complaint": "失眠多梦",
+    "description": "患者出现失眠多梦症状2天，伴有食欲不振。",
+    "status": "cancelled",
+    "created_at": "2026-03-21 19:16",
+    "messages": []
+  },
+  {
+    "consult_id": "C020",
+    "patient_id": "P027",
+    "doctor_id": "D015",
+    "consult_type": "video",
+    "chief_complaint": "发热",
+    "description": "患者出现发热症状5天，伴有食欲不振。",
+    "status": "waiting",
+    "created_at": "2026-03-16 19:16",
+    "messages": [
+      {
+        "sender": "patient",
+        "content": "医生你好，我发热已经2天了，请问应该怎么办？",
+        "timestamp": "2026-03-16 19:16"
+      }
+    ]
+  },
+  {
+    "consult_id": "C021",
+    "patient_id": "P016",
+    "doctor_id": "D020",
+    "consult_type": "text",
+    "chief_complaint": "视力模糊",
+    "description": "患者出现视力模糊症状1天，伴有食欲不振。",
+    "status": "cancelled",
+    "created_at": "2026-03-06 07:16",
+    "messages": []
+  },
+  {
+    "consult_id": "C022",
+    "patient_id": "P020",
+    "doctor_id": "D012",
+    "consult_type": "video",
+    "chief_complaint": "咳嗽咳痰",
+    "description": "患者出现咳嗽咳痰症状5天，伴有乏力。",
+    "status": "waiting",
+    "created_at": "2026-03-12 08:16",
+    "messages": [
+      {
+        "sender": "patient",
+        "content": "医生你好，我咳嗽咳痰已经7天了，请问应该怎么办？",
+        "timestamp": "2026-03-12 08:16"
+      }
+    ]
+  },
+  {
+    "consult_id": "C023",
+    "patient_id": "P024",
+    "doctor_id": "D006",
+    "consult_type": "video",
+    "chief_complaint": "头痛头晕",
+    "description": "患者出现头痛头晕症状6天，伴有乏力。",
+    "status": "cancelled",
+    "created_at": "2026-02-27 08:16",
+    "messages": []
+  },
+  {
+    "consult_id": "C024",
+    "patient_id": "P015",
+    "doctor_id": "D012",
+    "consult_type": "phone",
+    "chief_complaint": "口腔溃疡",
+    "description": "患者出现口腔溃疡症状3天，伴有食欲不振。",
+    "status": "completed",
+    "created_at": "2026-03-01 01:16",
+    "messages": [
+      {
+        "sender": "patient",
+        "content": "医生你好，我口腔溃疡已经6天了，请问应该怎么办？",
+        "timestamp": "2026-03-01 01:16"
+      },
+      {
+        "sender": "doctor",
+        "content": "了解，建议您注意休息，多喝温水。如果症状持续加重，建议来院进行详细检查。",
+        "timestamp": "2026-03-01 01:34"
+      }
+    ]
+  },
+  {
+    "consult_id": "C025",
+    "patient_id": "P027",
+    "doctor_id": "D016",
+    "consult_type": "phone",
+    "chief_complaint": "失眠多梦",
+    "description": "患者出现失眠多梦症状3天，伴有食欲不振。",
+    "status": "waiting",
+    "created_at": "2026-03-09 18:16",
+    "messages": [
+      {
+        "sender": "patient",
+        "content": "医生你好，我失眠多梦已经4天了，请问应该怎么办？",
+        "timestamp": "2026-03-09 18:16"
+      }
+    ]
+  },
+  {
+    "consult_id": "C026",
+    "patient_id": "P018",
+    "doctor_id": "D003",
+    "consult_type": "phone",
+    "chief_complaint": "口腔溃疡",
+    "description": "患者出现口腔溃疡症状3天，伴有食欲不振。",
+    "status": "cancelled",
+    "created_at": "2026-03-20 23:16",
+    "messages": []
+  },
+  {
+    "consult_id": "C027",
+    "patient_id": "P019",
+    "doctor_id": "D020",
+    "consult_type": "video",
+    "chief_complaint": "皮肤瘙痒",
+    "description": "患者出现皮肤瘙痒症状5天，伴有食欲不振。",
+    "status": "cancelled",
+    "created_at": "2026-03-15 17:16",
+    "messages": []
+  },
+  {
+    "consult_id": "C028",
+    "patient_id": "P015",
+    "doctor_id": "D012",
+    "consult_type": "text",
+    "chief_complaint": "发热",
+    "description": "患者出现发热症状3天，伴有食欲不振。",
+    "status": "waiting",
+    "created_at": "2026-03-23 03:16",
+    "messages": [
+      {
+        "sender": "patient",
+        "content": "医生你好，我发热已经7天了，请问应该怎么办？",
+        "timestamp": "2026-03-23 03:16"
+      }
+    ]
+  },
+  {
+    "consult_id": "C029",
+    "patient_id": "P013",
+    "doctor_id": "D019",
+    "consult_type": "text",
+    "chief_complaint": "乏力",
+    "description": "患者出现乏力症状6天，伴有乏力。",
+    "status": "completed",
+    "created_at": "2026-03-06 21:16",
+    "messages": [
+      {
+        "sender": "patient",
+        "content": "医生你好，我乏力已经3天了，请问应该怎么办？",
+        "timestamp": "2026-03-06 21:16"
+      },
+      {
+        "sender": "doctor",
+        "content": "了解，建议您注意休息，多喝温水。如果症状持续加重，建议来院进行详细检查。",
+        "timestamp": "2026-03-06 21:24"
+      }
+    ]
+  },
+  {
+    "consult_id": "C030",
+    "patient_id": "P004",
+    "doctor_id": "D006",
+    "consult_type": "text",
+    "chief_complaint": "腰痛",
+    "description": "患者出现腰痛症状2天，伴有食欲不振。",
+    "status": "completed",
+    "created_at": "2026-03-14 17:16",
+    "messages": [
+      {
+        "sender": "patient",
+        "content": "医生你好，我腰痛已经1天了，请问应该怎么办？",
+        "timestamp": "2026-03-14 17:16"
+      },
+      {
+        "sender": "doctor",
+        "content": "了解，建议您注意休息，多喝温水。如果症状持续加重，建议来院进行详细检查。",
+        "timestamp": "2026-03-14 17:43"
+      }
+    ]
+  },
+  {
+    "record_id": "CR001",
+    "patient_id": "P10001",
+    "doctor_id": "CD201",
+    "type": "图文",
+    "status": "completed",
+    "chief_complaint": "反复上腹隐痛伴反酸2周",
+    "symptoms": [
+      "上腹隐痛",
+      "反酸",
+      "餐后饱胀"
+    ],
+    "diagnosis": "慢性浅表性胃炎",
+    "prescription": [
+      "奥美拉唑20mg每日一次晨服",
+      "避免辛辣刺激饮食",
+      "2周后复诊"
+    ],
+    "create_time": "2025-03-01 09:15",
+    "duration_minutes": 12
+  },
+  {
+    "record_id": "CR002",
+    "patient_id": "P10002",
+    "doctor_id": "CD202",
+    "type": "视频",
+    "status": "completed",
+    "chief_complaint": "发热、咳嗽3天，伴咽痛",
+    "symptoms": [
+      "发热",
+      "干咳",
+      "咽痛",
+      "乏力"
+    ],
+    "diagnosis": "急性上呼吸道感染（病毒性）",
+    "prescription": [
+      "对症退热止咳",
+      "多饮水休息",
+      "若高热超3天或呼吸困难及时就诊"
+    ],
+    "create_time": "2025-03-01 14:30",
+    "duration_minutes": 18
+  },
+  {
+    "record_id": "CR003",
+    "patient_id": "P10003",
+    "doctor_id": "CD203",
+    "type": "电话",
+    "status": "completed",
+    "chief_complaint": "左膝关节肿痛1周，活动受限",
+    "symptoms": [
+      "左膝肿胀",
+      "压痛",
+      "屈伸受限",
+      "晨僵<30分钟"
+    ],
+    "diagnosis": "膝关节滑膜炎",
+    "prescription": [
+      "布洛芬缓释胶囊300mg每日两次",
+      "局部冷敷+抬高患肢",
+      "避免负重，1周后复查"
+    ],
+    "create_time": "2025-03-02 10:45",
+    "duration_minutes": 9
+  },
+  {
+    "record_id": "CR004",
+    "patient_id": "P10004",
+    "doctor_id": "CD204",
+    "type": "图文",
+    "status": "completed",
+    "chief_complaint": "双手指关节晨僵、肿胀2月",
+    "symptoms": [
+      "双手近端指间关节晨僵>1小时",
+      "对称性肿胀",
+      "握力下降"
+    ],
+    "diagnosis": "类风湿关节炎（初筛）",
+    "prescription": [
+      "建议查RF、抗CCP抗体、ESR、CRP及双手X线",
+      "暂予塞来昔布200mg每日一次",
+      "转风湿免疫科面诊"
+    ],
+    "create_time": "2025-03-02 16:20",
+    "duration_minutes": 15
+  },
+  {
+    "record_id": "CR005",
+    "patient_id": "P10005",
+    "doctor_id": "CD201",
+    "type": "视频",
+    "status": "completed",
+    "chief_complaint": "头晕伴视物旋转3小时",
+    "symptoms": [
+      "突发眩晕",
+      "恶心",
+      "不敢睁眼",
+      "无耳鸣听力下降"
+    ],
+    "diagnosis": "良性阵发性位置性眩晕（BPPV）",
+    "prescription": [
+      "Epley手法复位指导（视频演示）",
+      "避免快速翻身仰卧",
+      "症状持续超48小时需门诊评估"
+    ],
+    "create_time": "2025-03-03 08:50",
+    "duration_minutes": 22
+  },
+  {
+    "record_id": "CR006",
+    "patient_id": "P10006",
+    "doctor_id": "CD205",
+    "type": "图文",
+    "status": "completed",
+    "chief_complaint": "面部红斑、光敏1月，伴低热",
+    "symptoms": [
+      "双颊蝶形红斑",
+      "日晒后加重",
+      "午后低热",
+      "轻度脱发"
+    ],
+    "diagnosis": "系统性红斑狼疮（疑似）",
+    "prescription": [
+      "立即查ANA、ENA谱、C3/C4、尿常规、血常规",
+      "严格防晒，避免紫外线暴露",
+      "暂缓激素，待检验结果后专科随访"
+    ],
+    "create_time": "2025-03-03 13:10",
+    "duration_minutes": 17
+  },
+  {
+    "record_id": "CR007",
+    "patient_id": "P10007",
+    "doctor_id": "CD202",
+    "type": "电话",
+    "status": "completed",
+    "chief_complaint": "儿童夜间阵发性咳嗽2周，无发热",
+    "symptoms": [
+      "夜间/清晨干咳为主",
+      "运动后加重",
+      "无喘息",
+      "家族过敏史阳性"
+    ],
+    "diagnosis": "咳嗽变异性哮喘",
+    "prescription": [
+      "孟鲁司特钠咀嚼片4mg每晚一次",
+      "布地奈德吸入剂（需家长学习正确使用）",
+      "记录咳嗽日记，2周后复评"
+    ],
+    "create_time": "2025-03-04 11:25",
+    "duration_minutes": 14
+  },
+  {
+    "record_id": "CR008",
+    "patient_id": "P10008",
+    "doctor_id": "CD206",
+    "type": "图文",
+    "status": "completed",
+    "chief_complaint": "右下腹痛伴低热1天",
+    "symptoms": [
+      "转移性右下腹痛",
+      "食欲减退",
+      "轻度恶心",
+      "体温37.8℃"
+    ],
+    "diagnosis": "急性阑尾炎（早期）",
+    "prescription": [
+      "禁食水，立即急诊外科就诊",
+      "避免服用止痛药掩盖病情",
+      "完善血常规+腹部超声"
+    ],
+    "create_time": "2025-03-04 19:05",
+    "duration_minutes": 8
+  },
+  {
+    "record_id": "CR009",
+    "patient_id": "P10009",
+    "doctor_id": "CD203",
+    "type": "视频",
+    "status": "completed",
+    "chief_complaint": "产后乳房胀痛、硬结3天，伴畏寒",
+    "symptoms": [
+      "右侧乳房红肿热痛",
+      "可触及条索状硬结",
+      "体温38.2℃",
+      "乏力"
+    ],
+    "diagnosis": "急性乳腺炎",
+    "prescription": [
+      "头孢氨苄500mg每日三次×5天",
+      "持续排空乳汁（吸奶器或哺乳）",
+      "热敷+轻柔按摩硬结区",
+      "如48小时无缓解或脓肿形成需外科处理"
+    ],
+    "create_time": "2025-03-05 10:30",
+    "duration_minutes": 20
+  },
+  {
+    "record_id": "CR010",
+    "patient_id": "P10010",
+    "doctor_id": "CD204",
+    "type": "图文",
+    "status": "completed",
+    "chief_complaint": "双眼异物感、干涩、烧灼感1月",
+    "symptoms": [
+      "晨起粘滞感",
+      "视疲劳明显",
+      "畏光",
+      "泪液分泌减少"
+    ],
+    "diagnosis": "中度干眼症",
+    "prescription": [
+      "玻璃酸钠滴眼液每日4次",
+      "热敷+睑板腺按摩每日2次",
+      "增加环境湿度，减少屏幕用眼时间"
+    ],
+    "create_time": "2025-03-05 15:40",
+    "duration_minutes": 11
+  },
+  {
+    "record_id": "CR011",
+    "patient_id": "P10011",
+    "doctor_id": "CD205",
+    "type": "电话",
+    "status": "completed",
+    "chief_complaint": "高血压病史3年，近期头晕伴心悸",
+    "symptoms": [
+      "晨起头晕",
+      "心悸",
+      "偶有视物模糊",
+      "血压自测波动于158–166/92–98mmHg"
+    ],
+    "diagnosis": "高血压2级（很高危）",
+    "prescription": [
+      "调整氨氯地平5mg改为10mg每日一次",
+      "加用厄贝沙坦150mg每日一次",
+      "监测家庭血压并记录，2周后复诊"
+    ],
+    "create_time": "2025-03-06 07:55",
+    "duration_minutes": 13
+  },
+  {
+    "record_id": "CR012",
+    "patient_id": "P10012",
+    "doctor_id": "CD206",
+    "type": "视频",
+    "status": "completed",
+    "chief_complaint": "外阴瘙痒、豆腐渣样白带5天",
+    "symptoms": [
+      "外阴灼痛瘙痒",
+      "白色稠厚凝乳状分泌物",
+      "性交痛",
+      "无异味"
+    ],
+    "diagnosis": "外阴阴道假丝酵母菌病",
+    "prescription": [
+      "克霉唑阴道片500mg单次用药",
+      "伴侣同步外用酮康唑乳膏",
+      "治疗期间禁性生活，穿棉质内裤"
+    ],
+    "create_time": "2025-03-06 18:20",
+    "duration_minutes": 10
+  },
+  {
+    "record_id": "CR013",
+    "patient_id": "P10013",
+    "doctor_id": "CD201",
+    "type": "图文",
+    "status": "completed",
+    "chief_complaint": "体检发现甲状腺结节（TI-RADS 4a类）",
+    "symptoms": [
+      "无颈部不适",
+      "无吞咽困难",
+      "无声音嘶哑",
+      "无甲亢/甲减表现"
+    ],
+    "diagnosis": "甲状腺结节（TI-RADS 4a）",
+    "prescription": [
+      "建议行甲状腺细针穿刺（FNA）",
+      "查TSH、FT4、甲状腺过氧化物酶抗体",
+      "3个月超声随访"
+    ],
+    "create_time": "2025-03-07 11:00",
+    "duration_minutes": 9
+  },
+  {
+    "record_id": "CR014",
+    "patient_id": "P10014",
+    "doctor_id": "CD202",
+    "type": "图文",
+    "status": "completed",
+    "chief_complaint": "青少年背部疼痛伴驼背进展2月",
+    "symptoms": [
+      "胸背部隐痛",
+      "坐立时明显",
+      "身高增长停滞",
+      "父母发现肩胛不对称"
+    ],
+    "diagnosis": "青少年特发性脊柱侧弯（Cobb角约28°）",
+    "prescription": [
+      "佩戴矫形支具（每天≥18小时）",
+      "每周物理治疗2次",
+      "每3个月全脊柱X线复查"
+    ],
+    "create_time": "2025-03-07 14:15",
+    "duration_minutes": 16
+  },
+  {
+    "record_id": "CR015",
+    "patient_id": "P10015",
+    "doctor_id": "CD203",
+    "type": "视频",
+    "status": "completed",
+    "chief_complaint": "糖尿病患者血糖控制不佳（空腹8.2mmol/L，餐后12.6mmol/L）",
+    "symptoms": [
+      "口干多饮",
+      "夜尿增多",
+      "近期体重下降2kg"
+    ],
+    "diagnosis": "2型糖尿病（血糖未达标）",
+    "prescription": [
+      "二甲双胍缓释片1000mg每日两次",
+      "门冬胰岛素早晚餐前各6U",
+      "强化血糖监测（空腹+三餐后2h）",
+      "营养师线上随访安排"
+    ],
+    "create_time": "2025-03-08 09:40",
+    "duration_minutes": 25
+  },
+  {
+    "record_id": "CR016",
+    "patient_id": "P10016",
+    "doctor_id": "CD204",
+    "type": "电话",
+    "status": "completed",
+    "chief_complaint": "老年女性跌倒后右髋部剧痛无法站立",
+    "symptoms": [
+      "右髋部压痛明显",
+      "右下肢短缩外旋",
+      "拒绝负重",
+      "神志清"
+    ],
+    "diagnosis": "股骨颈骨折（疑似）",
+    "prescription": [
+      "立即拨打120转运至骨科急诊",
+      "平卧制动，勿尝试站立或复位",
+      "备好近期骨密度报告及用药清单"
+    ],
+    "create_time": "2025-03-08 16:50",
+    "duration_minutes": 7
+  },
+  {
+    "record_id": "CR017",
+    "patient_id": "P10017",
+    "doctor_id": "CD205",
+    "type": "图文",
+    "status": "completed",
+    "chief_complaint": "焦虑紧张、入睡困难2月，伴心慌手抖",
+    "symptoms": [
+      "持续担忧失控",
+      "入睡困难、易醒",
+      "静息心率92bpm",
+      "手部细微震颤"
+    ],
+    "diagnosis": "广泛性焦虑障碍",
+    "prescription": [
+      "艾司西酞普兰10mg每日晨服",
+      "认知行为疗法（CBT）线上课程推荐",
+      "规律作息+正念呼吸训练每日10分钟"
+    ],
+    "create_time": "2025-03-09 10:20",
+    "duration_minutes": 19
+  },
+  {
+    "record_id": "CR018",
+    "patient_id": "P10018",
+    "doctor_id": "CD206",
+    "type": "视频",
+    "status": "completed",
+    "chief_complaint": "儿童反复鼻塞、打喷嚏、揉眼2月（春秋季加重）",
+    "symptoms": [
+      "清水样涕",
+      "阵发性喷嚏",
+      "过敏性黑眼圈",
+      "鼻黏膜苍白水肿"
+    ],
+    "diagnosis": "过敏性鼻炎（中-重度过敏）",
+    "prescription": [
+      "糠酸莫米松鼻喷剂每日1喷/鼻孔",
+      "盐酸西替利嗪滴剂5滴每日一次",
+      "回避花粉源，使用空气净化器"
+    ],
+    "create_time": "2025-03-09 15:30",
+    "duration_minutes": 12
+  },
+  {
+    "record_id": "CR019",
+    "patient_id": "P10019",
+    "doctor_id": "CD201",
+    "type": "图文",
+    "status": "completed",
+    "chief_complaint": "体检发现肝功能异常（ALT 128U/L，AST 96U/L）",
+    "symptoms": [
+      "无乏力纳差",
+      "无皮肤巩膜黄染",
+      "偶右上腹隐痛",
+      "饮酒史5年（每周白酒200g）"
+    ],
+    "diagnosis": "酒精性肝损伤",
+    "prescription": [
+      "严格戒酒",
+      "复查肝功能、肝脏超声、FIB-4指数",
+      "维生素B族补充",
+      "3个月后评估是否需保肝治疗"
+    ],
+    "create_time": "2025-03-10 08:35",
+    "duration_minutes": 14
+  },
+  {
+    "record_id": "CR020",
+    "patient_id": "P10020",
+    "doctor_id": "CD202",
+    "type": "电话",
+    "status": "completed",
+    "chief_complaint": "孕28周下肢水肿加重伴头痛1天",
+    "symptoms": [
+      "双下肢凹陷性水肿+++",
+      "持续性额部头痛",
+      "视物模糊",
+      "血压152/96mmHg"
+    ],
+    "diagnosis": "子痫前期（轻度）",
+    "prescription": [
+      "立即产科急诊评估",
+      "监测胎动及血压（每日2次）",
+      "避免劳累，左侧卧位休息",
+      "禁止自行服用降压药"
+    ],
+    "create_time": "2025-03-10 20:10",
+    "duration_minutes": 11
+  }
+]

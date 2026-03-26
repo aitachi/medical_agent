@@ -1,0 +1,932 @@
+[
+  {
+    "doctor_id": "D001",
+    "name": "王伟",
+    "title": "主任医师",
+    "department": "内科",
+    "specialty": "高血压",
+    "experience_years": 26,
+    "rating": 4.6,
+    "available": true,
+    "consultation_types": [
+      "text"
+    ],
+    "price": {
+      "text": 78,
+      "video": 269
+    },
+    "schedule": [
+      "周二下午",
+      "周三上午"
+    ],
+    "introduction": "王伟医生从事内科临床工作17年，擅长高血压等疾病的诊治，具有丰富的临床经验。"
+  },
+  {
+    "doctor_id": "D002",
+    "name": "李芳",
+    "title": "副主任医师",
+    "department": "外科",
+    "specialty": "微创手术",
+    "experience_years": 18,
+    "rating": 4.0,
+    "available": false,
+    "consultation_types": [
+      "text",
+      "video",
+      "phone"
+    ],
+    "price": {
+      "text": 86,
+      "video": 85
+    },
+    "schedule": [
+      "周日上午",
+      "周四上午"
+    ],
+    "introduction": "李芳医生从事外科临床工作12年，擅长普外手术等疾病的诊治，具有丰富的临床经验。"
+  },
+  {
+    "doctor_id": "D003",
+    "name": "张娜",
+    "title": "主治医师",
+    "department": "儿科",
+    "specialty": "新生儿疾病",
+    "experience_years": 5,
+    "rating": 4.4,
+    "available": false,
+    "consultation_types": [
+      "video"
+    ],
+    "price": {
+      "text": 92,
+      "video": 114
+    },
+    "schedule": [
+      "周二下午",
+      "周六上午"
+    ],
+    "introduction": "张娜医生从事儿科临床工作17年，擅长儿童呼吸等疾病的诊治，具有丰富的临床经验。"
+  },
+  {
+    "doctor_id": "D004",
+    "name": "刘敏",
+    "title": "主任医师",
+    "department": "妇产科",
+    "specialty": "妇科炎症",
+    "experience_years": 22,
+    "rating": 4.6,
+    "available": true,
+    "consultation_types": [
+      "text",
+      "phone"
+    ],
+    "price": {
+      "text": 98,
+      "video": 183
+    },
+    "schedule": [
+      "周四下午",
+      "周三上午"
+    ],
+    "introduction": "刘敏医生从事妇产科临床工作8年，擅长妇科炎症等疾病的诊治，具有丰富的临床经验。"
+  },
+  {
+    "doctor_id": "D005",
+    "name": "陈静",
+    "title": "副主任医师",
+    "department": "骨科",
+    "specialty": "关节外科",
+    "experience_years": 22,
+    "rating": 4.2,
+    "available": true,
+    "consultation_types": [
+      "text",
+      "phone"
+    ],
+    "price": {
+      "text": 87,
+      "video": 100
+    },
+    "schedule": [
+      "周三下午",
+      "周四下午"
+    ],
+    "introduction": "陈静医生从事骨科临床工作25年，擅长脊柱外科等疾病的诊治，具有丰富的临床经验。"
+  },
+  {
+    "doctor_id": "D006",
+    "name": "杨丽",
+    "title": "主治医师",
+    "department": "心血管科",
+    "specialty": "心力衰竭",
+    "experience_years": 13,
+    "rating": 4.4,
+    "available": true,
+    "consultation_types": [
+      "text"
+    ],
+    "price": {
+      "text": 79,
+      "video": 89
+    },
+    "schedule": [
+      "周五下午",
+      "周四下午"
+    ],
+    "introduction": "杨丽医生从事心血管科临床工作22年，擅长冠心病等疾病的诊治，具有丰富的临床经验。"
+  },
+  {
+    "doctor_id": "D007",
+    "name": "赵强",
+    "title": "主任医师",
+    "department": "神经科",
+    "specialty": "脑血管病",
+    "experience_years": 16,
+    "rating": 4.3,
+    "available": false,
+    "consultation_types": [
+      "video"
+    ],
+    "price": {
+      "text": 34,
+      "video": 160
+    },
+    "schedule": [
+      "周二下午",
+      "周四下午"
+    ],
+    "introduction": "赵强医生从事神经科临床工作16年，擅长脑血管病等疾病的诊治，具有丰富的临床经验。"
+  },
+  {
+    "doctor_id": "D008",
+    "name": "黄磊",
+    "title": "副主任医师",
+    "department": "皮肤科",
+    "specialty": "皮炎",
+    "experience_years": 34,
+    "rating": 4.4,
+    "available": false,
+    "consultation_types": [
+      "video"
+    ],
+    "price": {
+      "text": 33,
+      "video": 228
+    },
+    "schedule": [
+      "周四下午",
+      "周二下午"
+    ],
+    "introduction": "黄磊医生从事皮肤科临床工作8年，擅长湿疹等疾病的诊治，具有丰富的临床经验。"
+  },
+  {
+    "doctor_id": "D009",
+    "name": "周军",
+    "title": "主治医师",
+    "department": "眼科",
+    "specialty": "近视矫正",
+    "experience_years": 15,
+    "rating": 4.7,
+    "available": true,
+    "consultation_types": [
+      "text"
+    ],
+    "price": {
+      "text": 86,
+      "video": 88
+    },
+    "schedule": [
+      "周五下午",
+      "周二上午"
+    ],
+    "introduction": "周军医生从事眼科临床工作28年，擅长白内障等疾病的诊治，具有丰富的临床经验。"
+  },
+  {
+    "doctor_id": "D010",
+    "name": "吴洋",
+    "title": "主任医师",
+    "department": "耳鼻喉科",
+    "specialty": "中耳炎",
+    "experience_years": 7,
+    "rating": 4.7,
+    "available": false,
+    "consultation_types": [
+      "phone",
+      "text"
+    ],
+    "price": {
+      "text": 43,
+      "video": 154
+    },
+    "schedule": [
+      "周二上午",
+      "周三上午"
+    ],
+    "introduction": "吴洋医生从事耳鼻喉科临床工作13年，擅长中耳炎等疾病的诊治，具有丰富的临床经验。"
+  },
+  {
+    "doctor_id": "D011",
+    "name": "徐勇",
+    "title": "副主任医师",
+    "department": "呼吸科",
+    "specialty": "哮喘",
+    "experience_years": 7,
+    "rating": 4.4,
+    "available": false,
+    "consultation_types": [
+      "text",
+      "phone"
+    ],
+    "price": {
+      "text": 66,
+      "video": 258
+    },
+    "schedule": [
+      "周二下午",
+      "周五上午"
+    ],
+    "introduction": "徐勇医生从事呼吸科临床工作8年，擅长肺炎等疾病的诊治，具有丰富的临床经验。"
+  },
+  {
+    "doctor_id": "D012",
+    "name": "孙艳",
+    "title": "主治医师",
+    "department": "消化科",
+    "specialty": "肝病",
+    "experience_years": 16,
+    "rating": 4.9,
+    "available": false,
+    "consultation_types": [
+      "text"
+    ],
+    "price": {
+      "text": 55,
+      "video": 94
+    },
+    "schedule": [
+      "周五上午",
+      "周四下午"
+    ],
+    "introduction": "孙艳医生从事消化科临床工作5年，擅长胃炎等疾病的诊治，具有丰富的临床经验。"
+  },
+  {
+    "doctor_id": "D013",
+    "name": "马杰",
+    "title": "主任医师",
+    "department": "内分泌科",
+    "specialty": "甲状腺疾病",
+    "experience_years": 29,
+    "rating": 4.9,
+    "available": false,
+    "consultation_types": [
+      "video",
+      "phone",
+      "text"
+    ],
+    "price": {
+      "text": 63,
+      "video": 278
+    },
+    "schedule": [
+      "周五下午",
+      "周一上午"
+    ],
+    "introduction": "马杰医生从事内分泌科临床工作27年，擅长甲状腺疾病等疾病的诊治，具有丰富的临床经验。"
+  },
+  {
+    "doctor_id": "D014",
+    "name": "胡涛",
+    "title": "副主任医师",
+    "department": "泌尿外科",
+    "specialty": "泌尿系结石",
+    "experience_years": 28,
+    "rating": 4.0,
+    "available": true,
+    "consultation_types": [
+      "phone",
+      "video",
+      "text"
+    ],
+    "price": {
+      "text": 76,
+      "video": 230
+    },
+    "schedule": [
+      "周三上午",
+      "周日上午"
+    ],
+    "introduction": "胡涛医生从事泌尿外科临床工作33年，擅长前列腺疾病等疾病的诊治，具有丰富的临床经验。"
+  },
+  {
+    "doctor_id": "D015",
+    "name": "朱明",
+    "title": "主治医师",
+    "department": "内科",
+    "specialty": "冠心病",
+    "experience_years": 28,
+    "rating": 4.3,
+    "available": false,
+    "consultation_types": [
+      "phone",
+      "text"
+    ],
+    "price": {
+      "text": 94,
+      "video": 183
+    },
+    "schedule": [
+      "周五下午",
+      "周五上午"
+    ],
+    "introduction": "朱明医生从事内科临床工作6年，擅长高血压等疾病的诊治，具有丰富的临床经验。"
+  },
+  {
+    "doctor_id": "D016",
+    "name": "高超",
+    "title": "主任医师",
+    "department": "外科",
+    "specialty": "普外手术",
+    "experience_years": 32,
+    "rating": 4.8,
+    "available": true,
+    "consultation_types": [
+      "video",
+      "phone"
+    ],
+    "price": {
+      "text": 71,
+      "video": 219
+    },
+    "schedule": [
+      "周二下午",
+      "周五下午"
+    ],
+    "introduction": "高超医生从事外科临床工作20年，擅长普外手术等疾病的诊治，具有丰富的临床经验。"
+  },
+  {
+    "doctor_id": "D017",
+    "name": "林秀英",
+    "title": "副主任医师",
+    "department": "儿科",
+    "specialty": "儿童消化",
+    "experience_years": 25,
+    "rating": 4.6,
+    "available": false,
+    "consultation_types": [
+      "text",
+      "video"
+    ],
+    "price": {
+      "text": 79,
+      "video": 88
+    },
+    "schedule": [
+      "周二上午",
+      "周五下午"
+    ],
+    "introduction": "林秀英医生从事儿科临床工作29年，擅长儿童呼吸等疾病的诊治，具有丰富的临床经验。"
+  },
+  {
+    "doctor_id": "D018",
+    "name": "何娟",
+    "title": "主治医师",
+    "department": "妇产科",
+    "specialty": "不孕不育",
+    "experience_years": 21,
+    "rating": 4.4,
+    "available": true,
+    "consultation_types": [
+      "text"
+    ],
+    "price": {
+      "text": 41,
+      "video": 109
+    },
+    "schedule": [
+      "周一上午",
+      "周四下午"
+    ],
+    "introduction": "何娟医生从事妇产科临床工作27年，擅长妇科炎症等疾病的诊治，具有丰富的临床经验。"
+  },
+  {
+    "doctor_id": "D019",
+    "name": "郭英",
+    "title": "主任医师",
+    "department": "骨科",
+    "specialty": "脊柱外科",
+    "experience_years": 31,
+    "rating": 4.1,
+    "available": false,
+    "consultation_types": [
+      "video"
+    ],
+    "price": {
+      "text": 85,
+      "video": 285
+    },
+    "schedule": [
+      "周二下午",
+      "周日上午"
+    ],
+    "introduction": "郭英医生从事骨科临床工作22年，擅长脊柱外科等疾病的诊治，具有丰富的临床经验。"
+  },
+  {
+    "doctor_id": "D020",
+    "name": "梁华",
+    "title": "副主任医师",
+    "department": "心血管科",
+    "specialty": "心律失常",
+    "experience_years": 16,
+    "rating": 4.2,
+    "available": false,
+    "consultation_types": [
+      "text"
+    ],
+    "price": {
+      "text": 44,
+      "video": 115
+    },
+    "schedule": [
+      "周五下午",
+      "周一上午"
+    ],
+    "introduction": "梁华医生从事心血管科临床工作34年，擅长冠心病等疾病的诊治，具有丰富的临床经验。"
+  },
+  {
+    "doctor_id": "CD001",
+    "name": "李明远",
+    "gender": "男",
+    "department": "心血管内科",
+    "title": "主任医师",
+    "specialty": "高血压与冠心病介入治疗",
+    "experience_years": 28,
+    "rating": 4.9,
+    "consultation_fee": 120,
+    "available_times": [
+      "09:00-11:00",
+      "14:00-16:00"
+    ],
+    "intro": "三甲医院心内科首席专家，国家心血管病中心特聘顾问，完成冠脉介入手术超5000例。"
+  },
+  {
+    "doctor_id": "CD002",
+    "name": "张雅婷",
+    "gender": "女",
+    "department": "皮肤科",
+    "title": "副主任医师",
+    "specialty": "痤疮与敏感肌综合管理",
+    "experience_years": 15,
+    "rating": 4.8,
+    "consultation_fee": 98,
+    "available_times": [
+      "10:00-12:00",
+      "15:00-17:00"
+    ],
+    "intro": "专注面部皮肤病十余年，倡导‘精准分型+微生态调节’疗法，患者复诊率达82%。"
+  },
+  {
+    "doctor_id": "CD003",
+    "name": "王振国",
+    "gender": "男",
+    "department": "神经外科",
+    "title": "主任医师",
+    "specialty": "脑胶质瘤微创手术与术后康复",
+    "experience_years": 32,
+    "rating": 4.95,
+    "consultation_fee": 180,
+    "available_times": [
+      "08:30-10:30"
+    ],
+    "intro": "中华医学会神经外科分会委员，年均主刀复杂脑肿瘤手术200+台，术后功能保留率业内领先。"
+  },
+  {
+    "doctor_id": "CD004",
+    "name": "陈思敏",
+    "gender": "女",
+    "department": "儿科",
+    "title": "副主任医师",
+    "specialty": "儿童哮喘与过敏性疾病",
+    "experience_years": 19,
+    "rating": 4.75,
+    "consultation_fee": 85,
+    "available_times": [
+      "09:30-11:30",
+      "13:00-15:00"
+    ],
+    "intro": "深耕儿童呼吸系统疾病15年，建立区域首个儿童哮喘标准化管理平台，家长满意度连续5年达96%以上。"
+  },
+  {
+    "doctor_id": "CD005",
+    "name": "赵宏远",
+    "gender": "男",
+    "department": "骨科",
+    "title": "主任医师",
+    "specialty": "关节置换与运动损伤修复",
+    "experience_years": 26,
+    "rating": 4.85,
+    "consultation_fee": 130,
+    "available_times": [
+      "09:00-11:00",
+      "16:00-17:30"
+    ],
+    "intro": "人工关节置换术超3000例，擅长机器人辅助精准置入，术后3个月功能恢复率达94%。"
+  },
+  {
+    "doctor_id": "CD006",
+    "name": "林晓薇",
+    "gender": "女",
+    "department": "内分泌科",
+    "title": "副主任医师",
+    "specialty": "妊娠期糖尿病与多囊卵巢综合征",
+    "experience_years": 14,
+    "rating": 4.7,
+    "consultation_fee": 90,
+    "available_times": [
+      "10:00-12:00",
+      "14:30-16:30"
+    ],
+    "intro": "专攻女性内分泌代谢疾病，独创‘孕前-孕期-产后’全周期血糖管理方案。"
+  },
+  {
+    "doctor_id": "CD007",
+    "name": "黄志伟",
+    "gender": "男",
+    "department": "消化内科",
+    "title": "主任医师",
+    "specialty": "早癌筛查与内镜下微创切除",
+    "experience_years": 24,
+    "rating": 4.9,
+    "consultation_fee": 150,
+    "available_times": [
+      "08:00-10:00",
+      "13:30-15:30"
+    ],
+    "intro": "ESD/EMR手术经验逾2000例，早期胃癌检出率高于全国平均水平18%，获省级内镜技术突出贡献奖。"
+  },
+  {
+    "doctor_id": "CD008",
+    "name": "吴静怡",
+    "gender": "女",
+    "department": "眼科",
+    "title": "副主任医师",
+    "specialty": "青少年近视防控与屈光矫正",
+    "experience_years": 12,
+    "rating": 4.65,
+    "consultation_fee": 80,
+    "available_times": [
+      "09:00-11:00",
+      "15:00-17:00"
+    ],
+    "intro": "主持多项近视防控临床研究，建立‘光学+行为+药物’三维干预模型，有效延缓近视进展达40%。"
+  },
+  {
+    "doctor_id": "CD009",
+    "name": "周立峰",
+    "gender": "男",
+    "department": "泌尿外科",
+    "title": "主任医师",
+    "specialty": "前列腺癌根治与尿控重建",
+    "experience_years": 27,
+    "rating": 4.88,
+    "consultation_fee": 160,
+    "available_times": [
+      "09:30-11:30"
+    ],
+    "intro": "达芬奇机器人泌尿手术超1200例，术后尿失禁发生率低于3%，国内首批开展保留性神经术式专家。"
+  },
+  {
+    "doctor_id": "CD010",
+    "name": "郑婉清",
+    "gender": "女",
+    "department": "精神心理科",
+    "title": "副主任医师",
+    "specialty": "焦虑抑郁障碍的认知行为治疗",
+    "experience_years": 16,
+    "rating": 4.78,
+    "consultation_fee": 105,
+    "available_times": [
+      "10:30-12:30",
+      "14:00-16:00"
+    ],
+    "intro": "CBT认证高级治疗师，累计完成个体心理干预超4000小时，复发率较常规治疗降低35%。"
+  },
+  {
+    "doctor_id": "CD011",
+    "name": "徐浩然",
+    "gender": "男",
+    "department": "呼吸内科",
+    "title": "主任医师",
+    "specialty": "间质性肺病与肺纤维化靶向治疗",
+    "experience_years": 22,
+    "rating": 4.82,
+    "consultation_fee": 140,
+    "available_times": [
+      "08:30-10:30",
+      "15:30-17:00"
+    ],
+    "intro": "参与制定《中国IPF诊疗指南》，主导多项抗纤维化新药Ⅲ期临床试验，显著延长患者中位生存期。"
+  },
+  {
+    "doctor_id": "CD012",
+    "name": "孙梦瑶",
+    "gender": "女",
+    "department": "妇产科",
+    "title": "副主任医师",
+    "specialty": "高危妊娠管理与胎儿医学",
+    "experience_years": 13,
+    "rating": 4.72,
+    "consultation_fee": 110,
+    "available_times": [
+      "09:00-11:00",
+      "13:00-15:00"
+    ],
+    "intro": "年均管理高危妊娠超800例，熟练开展胎儿超声心动图及宫内治疗，围产期并发症发生率低于行业均值42%。"
+  },
+  {
+    "doctor_id": "CD013",
+    "name": "高远航",
+    "gender": "男",
+    "department": "肿瘤科",
+    "title": "主任医师",
+    "specialty": "肺癌精准免疫治疗与耐药管理",
+    "experience_years": 25,
+    "rating": 4.92,
+    "consultation_fee": 175,
+    "available_times": [
+      "10:00-12:00",
+      "14:30-16:30"
+    ],
+    "intro": "国家肿瘤质控中心肺癌专家组成员，主导PD-1/PD-L1联合治疗方案优化，客观缓解率提升至61%。"
+  },
+  {
+    "doctor_id": "CD014",
+    "name": "刘雪梅",
+    "gender": "女",
+    "department": "中医内科",
+    "title": "主任医师",
+    "specialty": "慢性疲劳综合征与亚健康状态调理",
+    "experience_years": 30,
+    "rating": 4.8,
+    "consultation_fee": 95,
+    "available_times": [
+      "09:00-11:00",
+      "14:00-16:00"
+    ],
+    "intro": "国家级名老中医传承人，融合经方与时方，构建‘调枢通络’亚健康干预体系，有效率91.3%。"
+  },
+  {
+    "doctor_id": "CD015",
+    "name": "罗俊杰",
+    "gender": "男",
+    "department": "耳鼻喉科",
+    "title": "副主任医师",
+    "specialty": "睡眠呼吸暂停综合征多导联监测与UPPP手术",
+    "experience_years": 17,
+    "rating": 4.68,
+    "consultation_fee": 88,
+    "available_times": [
+      "10:30-12:30",
+      "15:00-17:00"
+    ],
+    "intro": "完成OSAHS规范化评估超2000例，UPPP术后AHI下降幅度达76%，获中华耳鼻喉科青年创新奖。"
+  },
+  {
+    "doctor_id": "CD016",
+    "name": "韩雨桐",
+    "gender": "女",
+    "department": "风湿免疫科",
+    "title": "副主任医师",
+    "specialty": "系统性红斑狼疮妊娠管理与生物制剂应用",
+    "experience_years": 11,
+    "rating": 4.73,
+    "consultation_fee": 92,
+    "available_times": [
+      "09:30-11:30",
+      "14:00-16:00"
+    ],
+    "intro": "专注SLE生育管理近十年，建立‘孕前评估-孕期监测-产后随访’闭环路径，母婴安全率达99.2%。"
+  },
+  {
+    "doctor_id": "CD017",
+    "name": "邓凯文",
+    "gender": "男",
+    "department": "普外科",
+    "title": "主任医师",
+    "specialty": "腹腔镜胃肠道肿瘤根治术",
+    "experience_years": 23,
+    "rating": 4.86,
+    "consultation_fee": 145,
+    "available_times": [
+      "08:00-10:00",
+      "13:30-15:30"
+    ],
+    "intro": "单孔+减孔腹腔镜技术先行者，胃肠癌微创手术占比达95%，术后平均住院日缩短至5.2天。"
+  },
+  {
+    "doctor_id": "CD018",
+    "name": "杨若曦",
+    "gender": "女",
+    "department": "口腔颌面外科",
+    "title": "副主任医师",
+    "specialty": "正颌外科与颜面轮廓精雕",
+    "experience_years": 14,
+    "rating": 4.77,
+    "consultation_fee": 135,
+    "available_times": [
+      "10:00-12:00",
+      "15:30-17:30"
+    ],
+    "intro": "完成正颌手术超800例，融合数字化导航与3D打印技术，实现咬合-美观-功能三维协同改善。"
+  },
+  {
+    "doctor_id": "CD019",
+    "name": "彭志远",
+    "gender": "男",
+    "department": "肾内科",
+    "title": "主任医师",
+    "specialty": "慢性肾脏病一体化管理与腹膜透析",
+    "experience_years": 29,
+    "rating": 4.84,
+    "consultation_fee": 115,
+    "available_times": [
+      "09:00-11:00",
+      "14:30-16:30"
+    ],
+    "intro": "创建CKD分级随访体系，腹透患者1年技术存活率达96.5%，获国家慢病防控示范项目推广。"
+  },
+  {
+    "doctor_id": "CD020",
+    "name": "许佳音",
+    "gender": "女",
+    "department": "感染科",
+    "title": "副主任医师",
+    "specialty": "病毒性肝炎临床治愈与耐药管理",
+    "experience_years": 15,
+    "rating": 4.7,
+    "consultation_fee": 100,
+    "available_times": [
+      "09:30-11:30",
+      "13:00-15:00"
+    ],
+    "intro": "乙肝临床治愈率达38.6%（高于全国均值12个百分点），牵头制定华东地区耐药监测协作网络。"
+  },
+  {
+    "doctor_id": "CD021",
+    "name": "蒋承宇",
+    "gender": "男",
+    "department": "血液科",
+    "title": "主任医师",
+    "specialty": "淋巴瘤靶向与CAR-T细胞治疗",
+    "experience_years": 26,
+    "rating": 4.93,
+    "consultation_fee": 200,
+    "available_times": [
+      "10:00-12:00"
+    ],
+    "intro": "国内首批开展CAR-T治疗复发难治淋巴瘤专家，完全缓解率67%，长期无病生存率达52%。"
+  },
+  {
+    "doctor_id": "CD022",
+    "name": "沈曼琳",
+    "gender": "女",
+    "department": "康复医学科",
+    "title": "副主任医师",
+    "specialty": "卒中后神经功能重建与智能康复",
+    "experience_years": 13,
+    "rating": 4.65,
+    "consultation_fee": 85,
+    "available_times": [
+      "09:00-11:00",
+      "14:00-16:00"
+    ],
+    "intro": "融合fNIRS脑功能监测与外骨骼机器人训练，卒中患者6个月步行能力恢复率提升至89%。"
+  },
+  {
+    "doctor_id": "CD023",
+    "name": "陆子轩",
+    "gender": "男",
+    "department": "急诊医学科",
+    "title": "主任医师",
+    "specialty": "急性胸痛与卒中绿色通道管理",
+    "experience_years": 24,
+    "rating": 4.8,
+    "consultation_fee": 125,
+    "available_times": [
+      "08:00-10:00",
+      "13:00-15:00"
+    ],
+    "intro": "主导建设区域胸痛/卒中中心，D-to-B时间中位数缩短至58分钟，救治成功率提升至93.7%。"
+  },
+  {
+    "doctor_id": "CD024",
+    "name": "范思颖",
+    "gender": "女",
+    "department": "营养科",
+    "title": "副主任医师",
+    "specialty": "肿瘤患者全程营养支持与代谢干预",
+    "experience_years": 12,
+    "rating": 4.62,
+    "consultation_fee": 75,
+    "available_times": [
+      "10:00-12:00",
+      "15:00-17:00"
+    ],
+    "intro": "建立肿瘤营养风险筛查-干预-随访标准化流程，显著改善患者化疗耐受性及生活质量。"
+  },
+  {
+    "doctor_id": "CD025",
+    "name": "姚天佑",
+    "gender": "男",
+    "department": "放射科",
+    "title": "主任医师",
+    "specialty": "影像引导下肿瘤消融与介入诊断",
+    "experience_years": 27,
+    "rating": 4.87,
+    "consultation_fee": 130,
+    "available_times": [
+      "09:00-11:00",
+      "14:00-16:00"
+    ],
+    "intro": "CT/MRI引导下消融治疗超2500例，小肝癌局部控制率达95.4%，并发症率低于1.2%。"
+  },
+  {
+    "doctor_id": "CD026",
+    "name": "苏婉婷",
+    "gender": "女",
+    "department": "全科医学科",
+    "title": "副主任医师",
+    "specialty": "老年共病整合管理与居家照护指导",
+    "experience_years": 16,
+    "rating": 4.75,
+    "consultation_fee": 80,
+    "available_times": [
+      "09:30-11:30",
+      "13:30-15:30"
+    ],
+    "intro": "构建‘医疗-护理-社工-家属’四位一体老年照护模式，降低再入院率31%，获省级优质服务案例。"
+  },
+  {
+    "doctor_id": "CD027",
+    "name": "程远哲",
+    "gender": "男",
+    "department": "烧伤整形外科",
+    "title": "主任医师",
+    "specialty": "瘢痕综合防治与功能重建",
+    "experience_years": 22,
+    "rating": 4.83,
+    "consultation_fee": 140,
+    "available_times": [
+      "10:00-12:00",
+      "15:00-17:00"
+    ],
+    "intro": "提出‘预防-干预-修复’瘢痕三级管理体系，增生性瘢痕发生率下降至19%，功能恢复优良率87%。"
+  },
+  {
+    "doctor_id": "CD028",
+    "name": "杜馨然",
+    "gender": "女",
+    "department": "生殖医学科",
+    "title": "副主任医师",
+    "specialty": "反复种植失败与子宫内膜容受性调控",
+    "experience_years": 14,
+    "rating": 4.79,
+    "consultation_fee": 155,
+    "available_times": [
+      "09:00-11:00",
+      "14:00-16:00"
+    ],
+    "intro": "运用ERA检测与个性化移植策略，RIF患者活产率提升至48.5%，发表SCI论文12篇。"
+  },
+  {
+    "doctor_id": "CD029",
+    "name": "秦瀚宇",
+    "gender": "男",
+    "department": "麻醉科",
+    "title": "主任医师",
+    "specialty": "舒适化医疗与老年患者围术期管理",
+    "experience_years": 25,
+    "rating": 4.81,
+    "consultation_fee": 110,
+    "available_times": [
+      "08:30-10:30",
+      "13:00-15:00"
+    ],
+    "intro": "推动无痛胃肠镜、无痛分娩等舒适化技术全覆盖，老年患者围术期心脑血管事件发生率低于0.8%。"
+  },
+  {
+    "doctor_id": "CD030",
+    "name": "白芷涵",
+    "gender": "女",
+    "department": "疼痛科",
+    "title": "副主任医师",
+    "specialty": "顽固性神经病理性疼痛射频调控",
+    "experience_years": 13,
+    "rating": 4.67,
+    "consultation_fee": 120,
+    "available_times": [
+      "10:00-12:00",
+      "14:30-16:30"
+    ],
+    "intro": "专注带状疱疹后神经痛、三叉神经痛等难治性疼痛，C形臂引导射频治疗有效率86.3%，复发率仅11%。"
+  }
+]

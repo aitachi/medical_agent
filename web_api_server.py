@@ -46,7 +46,8 @@ print("[INFO] Database initialized")
 
 DASHSCOPE_API_KEY = "sk-a9a4edb1b4214016baa11c9be3b9fec4"
 DASHSCOPE_BASE_URL = "https://dashscope.aliyuncs.com/compatible-mode/v1"
-DASHSCOPE_MODEL = "qwen-plus"
+# 通义千问最新Plus模型 (qwen-plus 为通义千问2.5，qwen-max 为最强版本)
+DASHSCOPE_MODEL = "qwen-max"  # 可选: qwen-turbo, qwen-plus, qwen-max, qwen-long
 
 
 # ============================================================
@@ -98,6 +99,112 @@ class SystemStatus(BaseModel):
     active_sessions: int
     total_requests: int
     classifier_type: str
+
+
+# ============================================================
+# 新增 API 请求/响应模型
+# ============================================================
+
+class ChronicRecordRequest(BaseModel):
+    """慢病记录请求"""
+    user_id: str
+    disease_type: str  # hypertension/diabetes/hyperlipidemia/coronary/copd等
+    measure_data: dict  # 测量数据
+    measure_time: str
+    note: Optional[str] = None
+
+
+class ChronicRecordResponse(BaseModel):
+    """慢病记录响应"""
+    record_id: str
+    status: str  # normal/elevated/high
+    trend: str  # stable/rising/falling
+    alert: Optional[str] = None
+    advice: List[str]
+
+
+class ChronicHistoryResponse(BaseModel):
+    """慢病历史响应"""
+    user_id: str
+    disease_type: str
+    records: List[Dict]
+    statistics: Dict
+
+
+class ConsultCreateRequest(BaseModel):
+    """在线问诊创建请求"""
+    user_id: str
+    consult_type: str  # text/video/phone
+    department: Optional[str] = None
+    doctor_id: Optional[str] = None
+    symptom_desc: str
+    images: Optional[List[str]] = None
+
+
+class ConsultCreateResponse(BaseModel):
+    """在线问诊创建响应"""
+    consult_id: str
+    status: str  # waiting/queued/active
+    queue_position: int
+    estimated_wait: int  # 预计等待时间（分钟）
+    payment_info: Dict
+
+
+class ReportInterpretRequest(BaseModel):
+    """报告解读请求"""
+    user_id: str
+    report_type: str  # blood_test/urine_test/liver_function/kidney_function等
+    report_data: Dict  # 报告数据
+    images: Optional[List[str]] = None
+
+
+class ReportInterpretResponse(BaseModel):
+    """报告解读响应"""
+    report_id: str
+    summary: str
+    abnormal_items: List[Dict]
+    health_suggestions: List[str]
+    follow_up: Optional[str] = None
+
+
+class FollowupFeedbackRequest(BaseModel):
+    """随访反馈请求"""
+    user_id: str
+    followup_id: Optional[str] = None
+    feedback_type: str  # recovery/side_effect/medication/adverse_event等
+    symptoms: List[str]
+    medication_compliance: str  # good/partial/poor
+    additional_notes: Optional[str] = None
+
+
+class FollowupFeedbackResponse(BaseModel):
+    """随访反馈响应"""
+    feedback_id: str
+    status: str
+    assessment: str
+    recommendations: List[str]
+    next_followup_date: Optional[str] = None
+
+
+class UserProfileResponse(BaseModel):
+    """用户画像响应"""
+    user_id: str
+    basic_info: Dict
+    health_tags: List[str]
+    preferences: Dict
+    behavior_stats: Dict
+    risk_level: str
+
+
+class HealthRecordsResponse(BaseModel):
+    """健康档案响应"""
+    user_id: str
+    basic_info: Dict
+    medical_history: List[Dict]
+    allergy_history: List[str]
+    medication_history: List[Dict]
+    surgery_history: List[Dict]
+    family_history: List[Dict]
 
 
 # ============================================================
@@ -1169,6 +1276,855 @@ async def get_sessions():
         return {"sessions": sessions}
     except Exception as e:
         return {"sessions": [], "error": str(e)}
+
+
+# ============================================================
+# 新增 API 端点
+# ============================================================
+
+# ------------------------------------------------------------
+# 1. 慢病记录接口
+# ------------------------------------------------------------
+
+@app.post("/api/chronic/record", response_model=ChronicRecordResponse)
+async def record_chronic_data(request: ChronicRecordRequest):
+    """
+    记录慢病监测数据
+
+    支持的疾病类型:
+    - hypertension: 高血压 (measure_data: {systolic, diastolic, heart_rate})
+    - diabetes: 糖尿病 (measure_data: {fpg, ppg})
+    - hyperlipidemia: 高血脂 (measure_data: {tc, tg})
+    - coronary: 冠心病 (measure_data: {symptoms, medication})
+    - copd: 慢阻肺 (measure_data: {spo2, symptoms})
+    """
+    state.increment_request()
+
+    try:
+        import uuid
+        record_id = f"CR{datetime.now().strftime('%Y%m%d%H%M%S')}{uuid.uuid4().hex[:6]}"
+
+        # 分析数据状态
+        disease_type = request.disease_type.lower()
+        measure_data = request.measure_data
+
+        status = "normal"
+        alert = None
+        advice = []
+        trend = "stable"
+
+        # 高血压分析
+        if disease_type == "hypertension":
+            systolic = measure_data.get("systolic", 0)
+            diastolic = measure_data.get("diastolic", 0)
+
+            if systolic >= 180 or diastolic >= 110:
+                status = "high"
+                alert = "血压严重升高，请立即就医！"
+                advice = [
+                    "立即就医或拨打120",
+                    "停止活动，静卧休息",
+                    "如有降压药，按医嘱服用"
+                ]
+            elif systolic >= 140 or diastolic >= 90:
+                status = "elevated"
+                alert = "血压偏高，建议监测并咨询医生"
+                advice = [
+                    "按时服药，不要擅自停药",
+                    "低盐饮食，每日食盐<6g",
+                    "规律作息，避免熬夜",
+                    "如持续偏高请及时就医"
+                ]
+            else:
+                advice = [
+                    "血压控制良好，继续保持",
+                    "坚持健康生活方式",
+                    "定期监测血压"
+                ]
+
+        # 糖尿病分析
+        elif disease_type == "diabetes":
+            fpg = measure_data.get("fpg", 0)  # 空腹血糖
+            ppg = measure_data.get("ppg", 0)  # 餐后血糖
+
+            if fpg >= 7.0 or ppg >= 11.1:
+                status = "elevated"
+                alert = "血糖偏高，请咨询医生调整用药"
+                advice = [
+                    "控制饮食，减少碳水化合物摄入",
+                    "适当运动，饭后散步30分钟",
+                    "按时服药或注射胰岛素",
+                    "定期监测血糖"
+                ]
+            elif fpg < 3.9:
+                status = "high"
+                alert = "血糖过低，请立即补充糖分！"
+                advice = [
+                    "立即进食糖果、饼干等含糖食物",
+                    "15分钟后复测血糖",
+                    "如无好转请及时就医"
+                ]
+            else:
+                advice = [
+                    "血糖控制良好，继续保持",
+                    "坚持饮食控制和运动",
+                    "定期监测血糖"
+                ]
+
+        # 高血脂分析
+        elif disease_type == "hyperlipidemia":
+            tc = measure_data.get("tc", 0)  # 总胆固醇
+            tg = measure_data.get("tg", 0)  # 甘油三酯
+
+            if tc >= 6.2 or tg >= 2.3:
+                status = "elevated"
+                alert = "血脂偏高，建议咨询医生"
+                advice = [
+                    "低脂饮食，少吃动物内脏",
+                    "增加运动，控制体重",
+                    "戒烟限酒",
+                    "按时服药"
+                ]
+            else:
+                advice = [
+                    "血脂控制良好",
+                    "继续保持健康生活方式"
+                ]
+
+        # 其他疾病类型
+        else:
+            advice = [
+                "记录已保存",
+                "如有不适请及时就医",
+                "遵医嘱用药"
+            ]
+
+        # 保存到数据库（这里可以扩展为持久化存储）
+        # TODO: 添加到慢病数据库
+
+        return ChronicRecordResponse(
+            record_id=record_id,
+            status=status,
+            trend=trend,
+            alert=alert,
+            advice=advice
+        )
+
+    except Exception as e:
+        import traceback
+        traceback.print_exc()
+        raise HTTPException(status_code=500, detail=f"记录失败: {str(e)}")
+
+
+# ------------------------------------------------------------
+# 2. 慢病历史接口
+# ------------------------------------------------------------
+
+@app.get("/api/chronic/history", response_model=ChronicHistoryResponse)
+async def get_chronic_history(
+    user_id: str,
+    disease_type: Optional[str] = None,
+    days: Optional[int] = 30
+):
+    """
+    获取慢病监测历史数据
+
+    参数:
+    - user_id: 用户ID
+    - disease_type: 疾病类型（可选）
+    - days: 查询天数（默认30天）
+    """
+    state.increment_request()
+
+    try:
+        # TODO: 从数据库查询实际历史记录
+        # 这里返回模拟数据
+        records = []
+        statistics = {
+            "avg_value": 0,
+            "max_value": 0,
+            "min_value": 0,
+            "trend": "stable",
+            "abnormal_count": 0,
+            "total_records": 0
+        }
+
+        return ChronicHistoryResponse(
+            user_id=user_id,
+            disease_type=disease_type or "all",
+            records=records,
+            statistics=statistics
+        )
+
+    except Exception as e:
+        import traceback
+        traceback.print_exc()
+        raise HTTPException(status_code=500, detail=f"查询失败: {str(e)}")
+
+
+# ------------------------------------------------------------
+# 3. 在线问诊接口
+# ------------------------------------------------------------
+
+@app.post("/api/consult/create", response_model=ConsultCreateResponse)
+async def create_consultation(request: ConsultCreateRequest):
+    """
+    创建在线问诊单
+
+    支持的问诊类型:
+    - text: 图文问诊（24小时响应）
+    - video: 视频问诊（即时）
+    - phone: 电话问诊（预约回拨）
+    """
+    state.increment_request()
+
+    try:
+        import uuid
+        consult_id = f"CONSULT{datetime.now().strftime('%Y%m%d%H%M%S')}{uuid.uuid4().hex[:6]}"
+
+        # 根据问诊类型确定等待时间
+        estimated_wait_map = {
+            "text": 60,  # 图文问诊：1小时内
+            "video": 5,  # 视频问诊：5分钟内
+            "phone": 30  # 电话问诊：30分钟内
+        }
+        estimated_wait = estimated_wait_map.get(request.consult_type, 30)
+
+        # 模拟排队位置
+        queue_position = 1
+
+        # 支付信息
+        payment_info = {
+            "amount": 50 if request.consult_type == "text" else 100,
+            "currency": "CNY",
+            "status": "pending",
+            "description": "在线问诊费用"
+        }
+
+        # 保存问诊记录到数据库
+        # TODO: 添加到问诊数据库
+
+        return ConsultCreateResponse(
+            consult_id=consult_id,
+            status="waiting",
+            queue_position=queue_position,
+            estimated_wait=estimated_wait,
+            payment_info=payment_info
+        )
+
+    except Exception as e:
+        import traceback
+        traceback.print_exc()
+        raise HTTPException(status_code=500, detail=f"创建问诊失败: {str(e)}")
+
+
+@app.get("/api/consult/available")
+async def get_available_doctors(
+    department: Optional[str] = None,
+    consult_type: Optional[str] = "text"
+):
+    """获取可用医生列表"""
+    state.increment_request()
+
+    try:
+        # 模拟医生数据
+        doctors = [
+            {
+                "doctor_id": "DOC001",
+                "name": "张医生",
+                "title": "主任医师",
+                "department": "内科",
+                "specialty": "心血管疾病",
+                "experience": "20年",
+                "rating": 4.9,
+                "available": True,
+                "consult_price": {"text": 50, "video": 100, "phone": 80}
+            },
+            {
+                "doctor_id": "DOC002",
+                "name": "李医生",
+                "title": "副主任医师",
+                "department": "内分泌科",
+                "specialty": "糖尿病、甲状腺疾病",
+                "experience": "15年",
+                "rating": 4.8,
+                "available": True,
+                "consult_price": {"text": 40, "video": 80, "phone": 60}
+            }
+        ]
+
+        # 按科室过滤
+        if department:
+            doctors = [d for d in doctors if d["department"] == department]
+
+        return {"doctors": doctors, "total": len(doctors)}
+
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"查询失败: {str(e)}")
+
+
+# ------------------------------------------------------------
+# 4. 报告解读接口
+# ------------------------------------------------------------
+
+@app.post("/api/health/report", response_model=ReportInterpretResponse)
+async def interpret_health_report(request: ReportInterpretRequest):
+    """
+    解读健康检查报告
+
+    支持的报告类型:
+    - blood_test: 血常规
+    - urine_test: 尿常规
+    - liver_function: 肝功能
+    - kidney_function: 肾功能
+    - blood_lipids: 血脂四项
+    - blood_glucose: 血糖
+    - thyroid_function: 甲状腺功能
+    """
+    state.increment_request()
+
+    try:
+        import uuid
+        report_id = f"REPORT{datetime.now().strftime('%Y%m%d%H%M%S')}{uuid.uuid4().hex[:6]}"
+
+        # 解析报告数据
+        abnormal_items = []
+        summary = "您的检查报告整体情况如下"
+        health_suggestions = []
+
+        report_type = request.report_type.lower()
+        report_data = request.report_data
+
+        # 血常规解读
+        if report_type == "blood_test":
+            # 白细胞
+            wbc = report_data.get("wbc", 0)
+            if wbc > 10:
+                abnormal_items.append({
+                    "item": "白细胞(WBC)",
+                    "value": wbc,
+                    "unit": "10^9/L",
+                    "status": "升高",
+                    "meaning": "可能存在感染或炎症"
+                })
+            elif wbc < 4:
+                abnormal_items.append({
+                    "item": "白细胞(WBC)",
+                    "value": wbc,
+                    "unit": "10^9/L",
+                    "status": "降低",
+                    "meaning": "可能存在免疫功能低下"
+                })
+
+            # 血红蛋白
+            hgb = report_data.get("hgb", 0)
+            if hgb < 120:
+                abnormal_items.append({
+                    "item": "血红蛋白(HGB)",
+                    "value": hgb,
+                    "unit": "g/L",
+                    "status": "降低",
+                    "meaning": "可能存在贫血"
+                })
+
+            # 血小板
+            plt = report_data.get("plt", 0)
+            if plt < 100:
+                abnormal_items.append({
+                    "item": "血小板(PLT)",
+                    "value": plt,
+                    "unit": "10^9/L",
+                    "status": "降低",
+                    "meaning": "注意出血倾向"
+                })
+
+        # 血脂解读
+        elif report_type == "blood_lipids":
+            tc = report_data.get("tc", 0)
+            tg = report_data.get("tg", 0)
+            ldl = report_data.get("ldl", 0)
+
+            if tc > 5.2:
+                abnormal_items.append({
+                    "item": "总胆固醇(TC)",
+                    "value": tc,
+                    "unit": "mmol/L",
+                    "status": "升高",
+                    "meaning": "心血管疾病风险增加"
+                })
+
+            if tg > 1.7:
+                abnormal_items.append({
+                    "item": "甘油三酯(TG)",
+                    "value": tg,
+                    "unit": "mmol/L",
+                    "status": "升高",
+                    "meaning": "需要注意饮食控制"
+                })
+
+            if ldl > 3.4:
+                abnormal_items.append({
+                    "item": "低密度脂蛋白(LDL-C)",
+                    "value": ldl,
+                    "unit": "mmol/L",
+                    "status": "升高",
+                    "meaning": "动脉粥样硬化风险增加"
+                })
+
+        # 肝功能解读
+        elif report_type == "liver_function":
+            alt = report_data.get("alt", 0)
+            ast = report_data.get("ast", 0)
+
+            if alt > 50:
+                abnormal_items.append({
+                    "item": "谷丙转氨酶(ALT)",
+                    "value": alt,
+                    "unit": "U/L",
+                    "status": "升高",
+                    "meaning": "可能存在肝细胞损伤"
+                })
+
+            if ast > 50:
+                abnormal_items.append({
+                    "item": "谷草转氨酶(AST)",
+                    "value": ast,
+                    "unit": "U/L",
+                    "status": "升高",
+                    "meaning": "可能存在肝脏或心肌损伤"
+                })
+
+        # 肾功能解读
+        elif report_type == "kidney_function":
+            creatinine = report_data.get("creatinine", 0)
+            urea = report_data.get("urea", 0)
+
+            if creatinine > 133:
+                abnormal_items.append({
+                    "item": "肌酐",
+                    "value": creatinine,
+                    "unit": "μmol/L",
+                    "status": "升高",
+                    "meaning": "可能存在肾功能损害"
+                })
+
+            if urea > 7.1:
+                abnormal_items.append({
+                    "item": "尿素",
+                    "value": urea,
+                    "unit": "mmol/L",
+                    "status": "升高",
+                    "meaning": "需要关注肾功能"
+                })
+
+        # 血糖解读
+        elif report_type == "blood_glucose":
+            fpg = report_data.get("fpg", 0)
+            hba1c = report_data.get("hba1c", 0)
+
+            if fpg >= 7.0:
+                abnormal_items.append({
+                    "item": "空腹血糖(FPG)",
+                    "value": fpg,
+                    "unit": "mmol/L",
+                    "status": "升高",
+                    "meaning": "可能存在糖尿病"
+                })
+
+            if hba1c >= 6.5:
+                abnormal_items.append({
+                    "item": "糖化血红蛋白(HbA1c)",
+                    "value": hba1c,
+                    "unit": "%",
+                    "status": "升高",
+                    "meaning": "近3个月血糖控制不佳"
+                })
+
+        # 生成总结
+        if abnormal_items:
+            summary = f"检查发现 {len(abnormal_items)} 项异常指标"
+            health_suggestions = [
+                "建议及时就医，咨询专科医生",
+                "保持良好的生活习惯",
+                "遵医嘱进行进一步检查",
+                "定期复查相关指标"
+            ]
+        else:
+            summary = "检查指标均在正常范围内"
+            health_suggestions = [
+                "继续保持健康的生活方式",
+                "定期体检",
+                "注意饮食均衡",
+                "适量运动"
+            ]
+
+        return ReportInterpretResponse(
+            report_id=report_id,
+            summary=summary,
+            abnormal_items=abnormal_items,
+            health_suggestions=health_suggestions,
+            follow_up="建议1-2周后复查" if abnormal_items else "按常规体检周期复查"
+        )
+
+    except Exception as e:
+        import traceback
+        traceback.print_exc()
+        raise HTTPException(status_code=500, detail=f"报告解读失败: {str(e)}")
+
+
+# ------------------------------------------------------------
+# 5. 随访反馈接口
+# ------------------------------------------------------------
+
+@app.post("/api/followup/feedback", response_model=FollowupFeedbackResponse)
+async def submit_followup_feedback(request: FollowupFeedbackRequest):
+    """
+    提交随访反馈
+
+    反馈类型:
+    - recovery: 康复情况反馈
+    - side_effect: 副作用反馈
+    - medication: 用药情况反馈
+    - adverse_event: 不良事件报告
+    """
+    state.increment_request()
+
+    try:
+        import uuid
+        feedback_id = f"FOLLOWUP{datetime.now().strftime('%Y%m%d%H%M%S')}{uuid.uuid4().hex[:6]}"
+
+        # 分析反馈
+        assessment = "感谢您的反馈"
+        recommendations = []
+        next_followup_date = None
+
+        feedback_type = request.feedback_type.lower()
+
+        # 康复情况评估
+        if feedback_type == "recovery":
+            if not request.symptoms:
+                assessment = "您的情况正在好转"
+                recommendations = [
+                    "继续保持当前治疗方案",
+                    "注意休息，避免劳累",
+                    "定期复查"
+                ]
+            else:
+                assessment = "您仍有症状需要关注"
+                recommendations = [
+                    "症状持续建议及时就医",
+                    "按时服药",
+                    "记录症状变化"
+                ]
+
+        # 副作用评估
+        elif feedback_type == "side_effect":
+            assessment = "您反馈的副作用已记录"
+            recommendations = [
+                "请勿擅自停药",
+                "及时与主治医生联系",
+                "严重副作用请立即就医"
+            ]
+
+        # 用药情况评估
+        elif feedback_type == "medication":
+            if request.medication_compliance == "good":
+                assessment = "用药依从性良好"
+                recommendations = [
+                    "继续保持良好的用药习惯",
+                    "定期复查"
+                ]
+            else:
+                assessment = "用药依从性需要改善"
+                recommendations = [
+                    "建议设置用药提醒",
+                    "按时规律服药非常重要",
+                    "与医生讨论用药困难"
+                ]
+
+        # 不良事件报告
+        elif feedback_type == "adverse_event":
+            assessment = "您的不良事件报告已记录"
+            recommendations = [
+                "请立即停止相关用药",
+                "尽快就医处理",
+                "保留相关记录和药品"
+            ]
+
+        # 计算下次随访日期
+        from datetime import timedelta
+        next_followup_date = (datetime.now() + timedelta(days=7)).strftime("%Y-%m-%d")
+
+        # 保存反馈到数据库
+        # TODO: 添加到随访数据库
+
+        return FollowupFeedbackResponse(
+            feedback_id=feedback_id,
+            status="recorded",
+            assessment=assessment,
+            recommendations=recommendations,
+            next_followup_date=next_followup_date
+        )
+
+    except Exception as e:
+        import traceback
+        traceback.print_exc()
+        raise HTTPException(status_code=500, detail=f"提交反馈失败: {str(e)}")
+
+
+# ------------------------------------------------------------
+# 6. 用户画像接口
+# ------------------------------------------------------------
+
+@app.get("/api/profile", response_model=UserProfileResponse)
+async def get_user_profile(user_id: str):
+    """
+    获取用户画像
+
+    包含:
+    - 基础信息: 年龄、性别、地区
+    - 健康标签: 高血压、糖尿病等
+    - 偏好: 常去医院、偏好医生
+    - 行为统计: 咨询次数、挂号次数
+    - 风险等级: 低/中/高
+    """
+    state.increment_request()
+
+    try:
+        # 尝试从profile_service获取数据
+        try:
+            from services.profile_service import get_profile_service
+            profile_service = get_profile_service()
+            profile = await profile_service.get_or_create_profile(user_id)
+
+            # 转换为响应格式
+            health_tags = profile.chronic_conditions if hasattr(profile, 'chronic_conditions') else []
+            risk_level = "low"
+
+            # 根据健康标签评估风险等级
+            if len(health_tags) >= 3:
+                risk_level = "high"
+            elif len(health_tags) >= 1:
+                risk_level = "medium"
+
+            return UserProfileResponse(
+                user_id=profile.user_id,
+                basic_info=profile.basic_info if hasattr(profile, 'basic_info') else {},
+                health_tags=health_tags,
+                preferences=profile.preferences if hasattr(profile, 'preferences') else {},
+                behavior_stats=profile.stats if hasattr(profile, 'stats') else {},
+                risk_level=risk_level
+            )
+        except Exception as profile_error:
+            # 如果profile_service不可用，返回默认画像
+            import traceback
+            traceback.print_exc()
+
+            return UserProfileResponse(
+                user_id=user_id,
+                basic_info={},
+                health_tags=[],
+                preferences={},
+                behavior_stats={},
+                risk_level="low"
+            )
+
+    except Exception as e:
+        import traceback
+        traceback.print_exc()
+        raise HTTPException(status_code=500, detail=f"获取用户画像失败: {str(e)}")
+
+
+@app.post("/api/profile/update")
+async def update_user_profile(user_id: str, update_data: dict):
+    """更新用户画像"""
+    state.increment_request()
+
+    try:
+        from services.profile_service import get_profile_service
+        profile_service = get_profile_service()
+        profile = await profile_service.get_or_create_profile(user_id)
+
+        # 更新基本信息
+        if "basic_info" in update_data:
+            if hasattr(profile, 'basic_info'):
+                profile.basic_info.update(update_data["basic_info"])
+
+        # 更新偏好
+        if "preferences" in update_data:
+            if hasattr(profile, 'preferences'):
+                profile.preferences.update(update_data["preferences"])
+
+        # 更新时间
+        profile.updated_at = datetime.now().isoformat()
+
+        # 保存
+        await profile_service.save_profile(profile)
+
+        return {
+            "success": True,
+            "message": "用户画像已更新",
+            "user_id": user_id
+        }
+
+    except Exception as e:
+        import traceback
+        traceback.print_exc()
+        raise HTTPException(status_code=500, detail=f"更新用户画像失败: {str(e)}")
+
+
+# ------------------------------------------------------------
+# 7. 健康档案接口
+# ------------------------------------------------------------
+
+@app.get("/api/records", response_model=HealthRecordsResponse)
+async def get_health_records(user_id: str):
+    """
+    获取健康档案
+
+    包含:
+    - 基础信息: 血型、身高、体重、BMI
+    - 病史记录: 既往病史
+    - 过敏记录: 药物过敏、食物过敏
+    - 用药记录: 当前用药、过往用药
+    - 手术史: 手术记录
+    - 家族病史: 家族疾病史
+    """
+    state.increment_request()
+
+    try:
+        # 尝试从profile_service获取数据
+        try:
+            from services.profile_service import get_profile_service
+            profile_service = get_profile_service()
+            profile = await profile_service.get_or_create_profile(user_id)
+
+            # 转换为响应格式
+            medical_history_list = []
+            if hasattr(profile, 'medical_history') and profile.medical_history:
+                for condition in profile.medical_history:
+                    medical_history_list.append({
+                        "condition": condition,
+                        "diagnosed_date": "",
+                        "status": "active"
+                    })
+
+            medication_history_list = []
+            if hasattr(profile, 'current_medications') and profile.current_medications:
+                for med_name, med_info in profile.current_medications.items():
+                    medication_history_list.append({
+                        "name": med_name,
+                        "dosage": med_info.get("dosage", ""),
+                        "started": med_info.get("started", ""),
+                        "status": "active"
+                    })
+
+            return HealthRecordsResponse(
+                user_id=profile.user_id,
+                basic_info=profile.basic_info if hasattr(profile, 'basic_info') else {},
+                medical_history=medical_history_list,
+                allergy_history=profile.allergies if hasattr(profile, 'allergies') else [],
+                medication_history=medication_history_list,
+                surgery_history=[],
+                family_history=[]
+            )
+        except Exception as profile_error:
+            # 如果profile_service不可用，返回空档案
+            import traceback
+            traceback.print_exc()
+
+            return HealthRecordsResponse(
+                user_id=user_id,
+                basic_info={},
+                medical_history=[],
+                allergy_history=[],
+                medication_history=[],
+                surgery_history=[],
+                family_history=[]
+            )
+
+    except Exception as e:
+        import traceback
+        traceback.print_exc()
+        raise HTTPException(status_code=500, detail=f"获取健康档案失败: {str(e)}")
+
+
+@app.post("/api/records/update")
+async def update_health_records(user_id: str, record_type: str, record_data: dict):
+    """
+    更新健康档案
+
+    支持的记录类型:
+    - medical_history: 病史
+    - allergy: 过敏史
+    - medication: 用药记录
+    - surgery: 手术史
+    - family_history: 家族病史
+    """
+    state.increment_request()
+
+    try:
+        from services.profile_service import get_profile_service
+        profile_service = get_profile_service()
+        profile = await profile_service.get_or_create_profile(user_id)
+
+        # 根据记录类型更新
+        if record_type == "medical_history":
+            if hasattr(profile, 'medical_history'):
+                condition = record_data.get("condition")
+                if condition and condition not in profile.medical_history:
+                    profile.medical_history.append(condition)
+
+        elif record_type == "allergy":
+            if hasattr(profile, 'allergies'):
+                allergy = record_data.get("allergy")
+                if allergy and allergy not in profile.allergies:
+                    profile.allergies.append(allergy)
+
+        elif record_type == "medication":
+            if hasattr(profile, 'current_medications'):
+                med_name = record_data.get("name")
+                if med_name:
+                    profile.current_medications[med_name] = {
+                        "dosage": record_data.get("dosage", ""),
+                        "started": datetime.now().isoformat()
+                    }
+
+        elif record_type == "surgery":
+            if not hasattr(profile, 'surgery_history'):
+                profile.surgery_history = []
+            surgery = {
+                "name": record_data.get("name", ""),
+                "date": record_data.get("date", ""),
+                "hospital": record_data.get("hospital", "")
+            }
+            profile.surgery_history.append(surgery)
+
+        elif record_type == "family_history":
+            if not hasattr(profile, 'family_history'):
+                profile.family_history = []
+            family = {
+                "relation": record_data.get("relation", ""),
+                "condition": record_data.get("condition", "")
+            }
+            profile.family_history.append(family)
+
+        # 更新时间
+        profile.updated_at = datetime.now().isoformat()
+
+        # 保存
+        await profile_service.save_profile(profile)
+
+        return {
+            "success": True,
+            "message": f"{record_type} 已更新",
+            "user_id": user_id
+        }
+
+    except Exception as e:
+        import traceback
+        traceback.print_exc()
+        raise HTTPException(status_code=500, detail=f"更新健康档案失败: {str(e)}")
 
 
 # ============================================================

@@ -1,0 +1,1492 @@
+[
+  {
+    "plan_id": "FP001",
+    "patient_id": "P001",
+    "disease": "高血压",
+    "start_date": "2025-02-05",
+    "frequency": "weekly",
+    "status": "active",
+    "items": [
+      {
+        "type": "blood_pressure",
+        "name": "血压监测",
+        "frequency": "weekly"
+      },
+      {
+        "type": "heart_rate",
+        "name": "心率监测",
+        "frequency": "weekly"
+      },
+      {
+        "type": "medication",
+        "name": "用药情况",
+        "frequency": "monthly"
+      }
+    ],
+    "assigned_doctor": "邓超"
+  },
+  {
+    "plan_id": "FP002",
+    "patient_id": "P002",
+    "disease": "冠心病",
+    "start_date": "2025-02-12",
+    "frequency": "weekly",
+    "status": "active",
+    "items": [
+      {
+        "type": "blood_pressure",
+        "name": "血压监测",
+        "frequency": "weekly"
+      },
+      {
+        "type": "heart_rate",
+        "name": "心率监测",
+        "frequency": "weekly"
+      },
+      {
+        "type": "symptom",
+        "name": "症状记录",
+        "frequency": "weekly"
+      },
+      {
+        "type": "weight",
+        "name": "体重监测",
+        "frequency": "biweekly"
+      }
+    ],
+    "assigned_doctor": "周杰"
+  },
+  {
+    "plan_id": "FP003",
+    "patient_id": "P003",
+    "disease": "高血压",
+    "start_date": "2025-03-02",
+    "frequency": "biweekly",
+    "status": "completed",
+    "items": [
+      {
+        "type": "blood_pressure",
+        "name": "血压监测",
+        "frequency": "weekly"
+      },
+      {
+        "type": "heart_rate",
+        "name": "心率监测",
+        "frequency": "weekly"
+      },
+      {
+        "type": "medication",
+        "name": "用药情况",
+        "frequency": "monthly"
+      },
+      {
+        "type": "symptom",
+        "name": "症状记录",
+        "frequency": "monthly"
+      }
+    ],
+    "assigned_doctor": "吴婷"
+  },
+  {
+    "plan_id": "FP004",
+    "patient_id": "P004",
+    "disease": "高血压",
+    "start_date": "2025-02-09",
+    "frequency": "biweekly",
+    "status": "paused",
+    "items": [
+      {
+        "type": "blood_pressure",
+        "name": "血压监测",
+        "frequency": "weekly"
+      },
+      {
+        "type": "heart_rate",
+        "name": "心率监测",
+        "frequency": "weekly"
+      },
+      {
+        "type": "medication",
+        "name": "用药情况",
+        "frequency": "monthly"
+      }
+    ],
+    "assigned_doctor": "李芳"
+  },
+  {
+    "plan_id": "FP005",
+    "patient_id": "P005",
+    "disease": "高血压",
+    "start_date": "2025-01-02",
+    "frequency": "biweekly",
+    "status": "completed",
+    "items": [
+      {
+        "type": "blood_pressure",
+        "name": "血压监测",
+        "frequency": "weekly"
+      },
+      {
+        "type": "heart_rate",
+        "name": "心率监测",
+        "frequency": "weekly"
+      },
+      {
+        "type": "medication",
+        "name": "用药情况",
+        "frequency": "monthly"
+      }
+    ],
+    "assigned_doctor": "吴婷"
+  },
+  {
+    "plan_id": "FP006",
+    "patient_id": "P006",
+    "disease": "冠心病",
+    "start_date": "2025-03-22",
+    "frequency": "biweekly",
+    "status": "paused",
+    "items": [
+      {
+        "type": "blood_pressure",
+        "name": "血压监测",
+        "frequency": "weekly"
+      },
+      {
+        "type": "heart_rate",
+        "name": "心率监测",
+        "frequency": "weekly"
+      },
+      {
+        "type": "symptom",
+        "name": "症状记录",
+        "frequency": "weekly"
+      },
+      {
+        "type": "diet",
+        "name": "饮食记录",
+        "frequency": "monthly"
+      }
+    ],
+    "assigned_doctor": "刘敏"
+  },
+  {
+    "plan_id": "FP007",
+    "patient_id": "P007",
+    "disease": "冠心病",
+    "start_date": "2025-01-25",
+    "frequency": "monthly",
+    "status": "active",
+    "items": [
+      {
+        "type": "blood_pressure",
+        "name": "血压监测",
+        "frequency": "weekly"
+      },
+      {
+        "type": "heart_rate",
+        "name": "心率监测",
+        "frequency": "weekly"
+      },
+      {
+        "type": "symptom",
+        "name": "症状记录",
+        "frequency": "weekly"
+      }
+    ],
+    "assigned_doctor": "郑涛"
+  },
+  {
+    "plan_id": "FP008",
+    "patient_id": "P008",
+    "disease": "高血压",
+    "start_date": "2025-03-07",
+    "frequency": "monthly",
+    "status": "paused",
+    "items": [
+      {
+        "type": "blood_pressure",
+        "name": "血压监测",
+        "frequency": "weekly"
+      },
+      {
+        "type": "heart_rate",
+        "name": "心率监测",
+        "frequency": "weekly"
+      },
+      {
+        "type": "medication",
+        "name": "用药情况",
+        "frequency": "monthly"
+      }
+    ],
+    "assigned_doctor": "孙丽"
+  },
+  {
+    "plan_id": "FP009",
+    "patient_id": "P009",
+    "disease": "高血压",
+    "start_date": "2025-02-21",
+    "frequency": "biweekly",
+    "status": "completed",
+    "items": [
+      {
+        "type": "blood_pressure",
+        "name": "血压监测",
+        "frequency": "weekly"
+      },
+      {
+        "type": "heart_rate",
+        "name": "心率监测",
+        "frequency": "weekly"
+      },
+      {
+        "type": "medication",
+        "name": "用药情况",
+        "frequency": "monthly"
+      },
+      {
+        "type": "weight",
+        "name": "体重监测",
+        "frequency": "weekly"
+      }
+    ],
+    "assigned_doctor": "刘敏"
+  },
+  {
+    "plan_id": "FP010",
+    "patient_id": "P010",
+    "disease": "高血压",
+    "start_date": "2025-01-27",
+    "frequency": "weekly",
+    "status": "completed",
+    "items": [
+      {
+        "type": "blood_pressure",
+        "name": "血压监测",
+        "frequency": "weekly"
+      },
+      {
+        "type": "heart_rate",
+        "name": "心率监测",
+        "frequency": "weekly"
+      },
+      {
+        "type": "medication",
+        "name": "用药情况",
+        "frequency": "monthly"
+      },
+      {
+        "type": "symptom",
+        "name": "症状记录",
+        "frequency": "monthly"
+      }
+    ],
+    "assigned_doctor": "孙丽"
+  },
+  {
+    "plan_id": "FP011",
+    "patient_id": "P011",
+    "disease": "冠心病",
+    "start_date": "2025-03-02",
+    "frequency": "monthly",
+    "status": "active",
+    "items": [
+      {
+        "type": "blood_pressure",
+        "name": "血压监测",
+        "frequency": "weekly"
+      },
+      {
+        "type": "heart_rate",
+        "name": "心率监测",
+        "frequency": "weekly"
+      },
+      {
+        "type": "symptom",
+        "name": "症状记录",
+        "frequency": "weekly"
+      },
+      {
+        "type": "medication",
+        "name": "用药情况",
+        "frequency": "monthly"
+      }
+    ],
+    "assigned_doctor": "刘敏"
+  },
+  {
+    "plan_id": "FP012",
+    "patient_id": "P012",
+    "disease": "高血压",
+    "start_date": "2025-03-01",
+    "frequency": "monthly",
+    "status": "active",
+    "items": [
+      {
+        "type": "blood_pressure",
+        "name": "血压监测",
+        "frequency": "weekly"
+      },
+      {
+        "type": "heart_rate",
+        "name": "心率监测",
+        "frequency": "weekly"
+      },
+      {
+        "type": "medication",
+        "name": "用药情况",
+        "frequency": "monthly"
+      },
+      {
+        "type": "symptom",
+        "name": "症状记录",
+        "frequency": "biweekly"
+      }
+    ],
+    "assigned_doctor": "杨洋"
+  },
+  {
+    "plan_id": "FP013",
+    "patient_id": "P013",
+    "disease": "冠心病",
+    "start_date": "2025-01-18",
+    "frequency": "monthly",
+    "status": "completed",
+    "items": [
+      {
+        "type": "blood_pressure",
+        "name": "血压监测",
+        "frequency": "weekly"
+      },
+      {
+        "type": "heart_rate",
+        "name": "心率监测",
+        "frequency": "weekly"
+      },
+      {
+        "type": "symptom",
+        "name": "症状记录",
+        "frequency": "weekly"
+      }
+    ],
+    "assigned_doctor": "王伟"
+  },
+  {
+    "plan_id": "FP014",
+    "patient_id": "P014",
+    "disease": "糖尿病",
+    "start_date": "2025-02-24",
+    "frequency": "biweekly",
+    "status": "completed",
+    "items": [
+      {
+        "type": "blood_sugar",
+        "name": "血糖监测",
+        "frequency": "daily"
+      },
+      {
+        "type": "diet",
+        "name": "饮食记录",
+        "frequency": "weekly"
+      },
+      {
+        "type": "medication",
+        "name": "用药情况",
+        "frequency": "monthly"
+      }
+    ],
+    "assigned_doctor": "刘敏"
+  },
+  {
+    "plan_id": "FP015",
+    "patient_id": "P015",
+    "disease": "糖尿病",
+    "start_date": "2025-03-02",
+    "frequency": "biweekly",
+    "status": "completed",
+    "items": [
+      {
+        "type": "blood_sugar",
+        "name": "血糖监测",
+        "frequency": "daily"
+      },
+      {
+        "type": "diet",
+        "name": "饮食记录",
+        "frequency": "weekly"
+      },
+      {
+        "type": "medication",
+        "name": "用药情况",
+        "frequency": "monthly"
+      },
+      {
+        "type": "weight",
+        "name": "体重监测",
+        "frequency": "biweekly"
+      }
+    ],
+    "assigned_doctor": "杨洋"
+  },
+  {
+    "plan_id": "FP016",
+    "patient_id": "P016",
+    "disease": "冠心病",
+    "start_date": "2025-01-02",
+    "frequency": "weekly",
+    "status": "active",
+    "items": [
+      {
+        "type": "blood_pressure",
+        "name": "血压监测",
+        "frequency": "weekly"
+      },
+      {
+        "type": "heart_rate",
+        "name": "心率监测",
+        "frequency": "weekly"
+      },
+      {
+        "type": "symptom",
+        "name": "症状记录",
+        "frequency": "weekly"
+      }
+    ],
+    "assigned_doctor": "陈静"
+  },
+  {
+    "plan_id": "FP017",
+    "patient_id": "P017",
+    "disease": "糖尿病",
+    "start_date": "2025-03-17",
+    "frequency": "biweekly",
+    "status": "active",
+    "items": [
+      {
+        "type": "blood_sugar",
+        "name": "血糖监测",
+        "frequency": "daily"
+      },
+      {
+        "type": "diet",
+        "name": "饮食记录",
+        "frequency": "weekly"
+      },
+      {
+        "type": "medication",
+        "name": "用药情况",
+        "frequency": "monthly"
+      }
+    ],
+    "assigned_doctor": "于飞"
+  },
+  {
+    "plan_id": "FP018",
+    "patient_id": "P018",
+    "disease": "糖尿病",
+    "start_date": "2025-02-27",
+    "frequency": "monthly",
+    "status": "paused",
+    "items": [
+      {
+        "type": "blood_sugar",
+        "name": "血糖监测",
+        "frequency": "daily"
+      },
+      {
+        "type": "diet",
+        "name": "饮食记录",
+        "frequency": "weekly"
+      },
+      {
+        "type": "medication",
+        "name": "用药情况",
+        "frequency": "monthly"
+      }
+    ],
+    "assigned_doctor": "于飞"
+  },
+  {
+    "plan_id": "FP019",
+    "patient_id": "P019",
+    "disease": "糖尿病",
+    "start_date": "2025-03-28",
+    "frequency": "monthly",
+    "status": "paused",
+    "items": [
+      {
+        "type": "blood_sugar",
+        "name": "血糖监测",
+        "frequency": "daily"
+      },
+      {
+        "type": "diet",
+        "name": "饮食记录",
+        "frequency": "weekly"
+      },
+      {
+        "type": "medication",
+        "name": "用药情况",
+        "frequency": "monthly"
+      }
+    ],
+    "assigned_doctor": "孙丽"
+  },
+  {
+    "plan_id": "FP020",
+    "patient_id": "P020",
+    "disease": "冠心病",
+    "start_date": "2025-01-18",
+    "frequency": "monthly",
+    "status": "active",
+    "items": [
+      {
+        "type": "blood_pressure",
+        "name": "血压监测",
+        "frequency": "weekly"
+      },
+      {
+        "type": "heart_rate",
+        "name": "心率监测",
+        "frequency": "weekly"
+      },
+      {
+        "type": "symptom",
+        "name": "症状记录",
+        "frequency": "weekly"
+      }
+    ],
+    "assigned_doctor": "袁娜"
+  },
+  {
+    "plan_id": "FP001",
+    "name": "高血压稳定期年度随访计划",
+    "target_condition": "原发性高血压",
+    "duration_days": 365,
+    "followup_frequency": "每3个月一次",
+    "tasks": [
+      {
+        "task_id": "FT001",
+        "name": "血压测量（坐位双侧上臂）",
+        "type": "测量",
+        "frequency": "每周2次"
+      },
+      {
+        "task_id": "FT002",
+        "name": "服药依从性问卷（MMAS-8）",
+        "type": "问卷",
+        "frequency": "每3个月一次"
+      },
+      {
+        "task_id": "FT003",
+        "name": "血常规、尿常规、肾功能、电解质、空腹血糖、血脂四项",
+        "type": "检查",
+        "frequency": "每6个月一次"
+      }
+    ],
+    "reminders": [
+      "下次随访前3天测量晨起血压并记录",
+      "随访日前1周避免高盐饮食"
+    ]
+  },
+  {
+    "plan_id": "FP002",
+    "name": "2型糖尿病强化管理计划（HbA1c≥9%）",
+    "target_condition": "2型糖尿病",
+    "duration_days": 180,
+    "followup_frequency": "每2周一次",
+    "tasks": [
+      {
+        "task_id": "FT004",
+        "name": "空腹及餐后2小时血糖监测",
+        "type": "测量",
+        "frequency": "每日3次（早/中/晚）"
+      },
+      {
+        "task_id": "FT005",
+        "name": "糖尿病知识掌握度评估（DKS）",
+        "type": "问卷",
+        "frequency": "每月一次"
+      },
+      {
+        "task_id": "FT006",
+        "name": "足部神经感觉检查（10g单丝）",
+        "type": "检查",
+        "frequency": "每月一次"
+      }
+    ],
+    "reminders": [
+      "血糖记录需同步上传至管理平台",
+      "每次随访携带近7日血糖日记"
+    ]
+  },
+  {
+    "plan_id": "FP003",
+    "name": "冠心病PCI术后1年康复计划",
+    "target_condition": "冠状动脉粥样硬化性心脏病",
+    "duration_days": 365,
+    "followup_frequency": "每月一次",
+    "tasks": [
+      {
+        "task_id": "FT007",
+        "name": "心率与血压联合监测",
+        "type": "测量",
+        "frequency": "每日晨起及晚间各1次"
+      },
+      {
+        "task_id": "FT008",
+        "name": "心绞痛发作频率与诱因记录表",
+        "type": "问卷",
+        "frequency": "每周一次"
+      },
+      {
+        "task_id": "FT009",
+        "name": "心电图+NT-proBNP检测",
+        "type": "检查",
+        "frequency": "每3个月一次"
+      }
+    ],
+    "reminders": [
+      "如出现胸闷/气促加重立即联系医生",
+      "坚持服用阿司匹林+他汀类药物不可自行停用"
+    ]
+  },
+  {
+    "plan_id": "FP004",
+    "name": "慢性阻塞性肺疾病稳定期阶梯管理计划",
+    "target_condition": "慢性阻塞性肺疾病",
+    "duration_days": 365,
+    "followup_frequency": "每3个月一次",
+    "tasks": [
+      {
+        "task_id": "FT010",
+        "name": "家庭肺功能监测（FEV1%预计值）",
+        "type": "测量",
+        "frequency": "每月一次"
+      },
+      {
+        "task_id": "FT011",
+        "name": "圣乔治呼吸问卷（SGRQ）",
+        "type": "问卷",
+        "frequency": "每6个月一次"
+      },
+      {
+        "task_id": "FT012",
+        "name": "胸部高分辨率CT（仅首年基线）",
+        "type": "检查",
+        "frequency": "每年一次"
+      }
+    ],
+    "reminders": [
+      "戒烟是首要目标，随访时核查呼出气CO浓度",
+      "吸入装置使用技巧每季度复核"
+    ]
+  },
+  {
+    "plan_id": "FP005",
+    "name": "心力衰竭（HFrEF）优化治疗随访计划",
+    "target_condition": "慢性心力衰竭",
+    "duration_days": 365,
+    "followup_frequency": "每2个月一次",
+    "tasks": [
+      {
+        "task_id": "FT013",
+        "name": "体重监测（晨起空腹排便后）",
+        "type": "测量",
+        "frequency": "每日一次"
+      },
+      {
+        "task_id": "FT014",
+        "name": "KCCQ生活质量量表",
+        "type": "问卷",
+        "frequency": "每3个月一次"
+      },
+      {
+        "task_id": "FT015",
+        "name": "NT-proBNP、肝肾功能、电解质、心超（LVEF）",
+        "type": "检查",
+        "frequency": "每3个月一次"
+      }
+    ],
+    "reminders": [
+      "体重3天内增加≥2kg需立即就诊",
+      "限盐<5g/日，限水<1.5L/日"
+    ]
+  },
+  {
+    "plan_id": "FP006",
+    "name": "慢性肾脏病CKD3期综合干预计划",
+    "target_condition": "慢性肾脏病",
+    "duration_days": 365,
+    "followup_frequency": "每3个月一次",
+    "tasks": [
+      {
+        "task_id": "FT016",
+        "name": "尿蛋白/肌酐比值（UPCR）",
+        "type": "检查",
+        "frequency": "每3个月一次"
+      },
+      {
+        "task_id": "FT017",
+        "name": "eGFR动态趋势评估问卷",
+        "type": "问卷",
+        "frequency": "每6个月一次"
+      },
+      {
+        "task_id": "FT018",
+        "name": "血压、血红蛋白、血磷、iPTH、血清白蛋白",
+        "type": "检查",
+        "frequency": "每3个月一次"
+      }
+    ],
+    "reminders": [
+      "低蛋白饮食（0.6–0.8g/kg/d）执行情况自查",
+      "避免NSAIDs类止痛药"
+    ]
+  },
+  {
+    "plan_id": "FP007",
+    "name": "哮喘控制水平动态管理计划",
+    "target_condition": "支气管哮喘",
+    "duration_days": 365,
+    "followup_frequency": "每2个月一次",
+    "tasks": [
+      {
+        "task_id": "FT019",
+        "name": "呼气峰流速（PEF）日间变异率监测",
+        "type": "测量",
+        "frequency": "每日早晚各1次"
+      },
+      {
+        "task_id": "FT020",
+        "name": "哮喘控制测试（ACT）",
+        "type": "问卷",
+        "frequency": "每月一次"
+      },
+      {
+        "task_id": "FT021",
+        "name": "FeNO检测+支气管激发试验（必要时）",
+        "type": "检查",
+        "frequency": "每6个月一次"
+      }
+    ],
+    "reminders": [
+      "随访前1周暂停短效β2激动剂以评估基础控制水平",
+      "吸入器使用视频回放复核"
+    ]
+  },
+  {
+    "plan_id": "FP008",
+    "name": "骨质疏松症抗骨吸收治疗随访计划",
+    "target_condition": "骨质疏松症",
+    "duration_days": 730,
+    "followup_frequency": "每6个月一次",
+    "tasks": [
+      {
+        "task_id": "FT022",
+        "name": "腰椎及髋部DXA骨密度复查",
+        "type": "检查",
+        "frequency": "每年一次"
+      },
+      {
+        "task_id": "FT023",
+        "name": "国际骨质疏松基金会风险评估（IOF One-Minute Test）",
+        "type": "问卷",
+        "frequency": "每6个月一次"
+      },
+      {
+        "task_id": "FT024",
+        "name": "血钙、磷、25(OH)D、骨转换标志物（PINP/CTX）",
+        "type": "检查",
+        "frequency": "每6个月一次"
+      }
+    ],
+    "reminders": [
+      "每日补充钙剂1200mg+维生素D 800IU",
+      "坚持抗跌倒锻炼每周3次"
+    ]
+  },
+  {
+    "plan_id": "FP009",
+    "name": "房颤患者卒中预防结构化随访计划",
+    "target_condition": "心房颤动",
+    "duration_days": 365,
+    "followup_frequency": "每3个月一次",
+    "tasks": [
+      {
+        "task_id": "FT025",
+        "name": "CHA₂DS₂-VASc与HAS-BLED评分更新",
+        "type": "问卷",
+        "frequency": "每3个月一次"
+      },
+      {
+        "task_id": "FT026",
+        "name": "INR监测（华法林使用者）或DOAC服药依从性核查",
+        "type": "测量",
+        "frequency": "每周一次（华法林）/每月一次（DOAC）"
+      },
+      {
+        "task_id": "FT027",
+        "name": "24小时动态心电图（Holter）",
+        "type": "检查",
+        "frequency": "每年一次"
+      }
+    ],
+    "reminders": [
+      "避免自行合用影响抗凝的中药或保健品",
+      "牙科/外科操作前务必告知抗凝状态"
+    ]
+  },
+  {
+    "plan_id": "FP010",
+    "name": "类风湿关节炎达标治疗（T2T）随访计划",
+    "target_condition": "类风湿关节炎",
+    "duration_days": 365,
+    "followup_frequency": "每2个月一次",
+    "tasks": [
+      {
+        "task_id": "FT028",
+        "name": "DAS28-CRP活动度评估",
+        "type": "问卷",
+        "frequency": "每2个月一次"
+      },
+      {
+        "task_id": "FT029",
+        "name": "晨僵时间与关节压痛/肿胀计数",
+        "type": "测量",
+        "frequency": "每周一次"
+      },
+      {
+        "task_id": "FT030",
+        "name": "CRP、ESR、RF、抗CCP抗体、肝肾功能",
+        "type": "检查",
+        "frequency": "每3个月一次"
+      }
+    ],
+    "reminders": [
+      "生物制剂注射后48小时内记录不良反应",
+      "避免在疾病活动期接种活疫苗"
+    ]
+  },
+  {
+    "plan_id": "FP011",
+    "name": "慢性乙肝病毒携带者长期监测计划",
+    "target_condition": "慢性乙型肝炎",
+    "duration_days": 365,
+    "followup_frequency": "每6个月一次",
+    "tasks": [
+      {
+        "task_id": "FT031",
+        "name": "HBV DNA定量检测",
+        "type": "检查",
+        "frequency": "每6个月一次"
+      },
+      {
+        "task_id": "FT032",
+        "name": "肝脏超声+AFP",
+        "type": "检查",
+        "frequency": "每6个月一次"
+      },
+      {
+        "task_id": "FT033",
+        "name": "患者疾病认知与心理适应量表（PHQ-9/GAD-7）",
+        "type": "问卷",
+        "frequency": "每年一次"
+      }
+    ],
+    "reminders": [
+      "避免饮酒及肝毒性药物",
+      "家庭成员筛查乙肝五项并接种疫苗"
+    ]
+  },
+  {
+    "plan_id": "FP012",
+    "name": "甲状腺功能减退症替代治疗稳定性评估计划",
+    "target_condition": "甲状腺功能减退症",
+    "duration_days": 365,
+    "followup_frequency": "每3个月一次",
+    "tasks": [
+      {
+        "task_id": "FT034",
+        "name": "TSH、FT4检测",
+        "type": "检查",
+        "frequency": "每3个月一次"
+      },
+      {
+        "task_id": "FT035",
+        "name": "甲状腺相关症状自评量表（THYPRO）",
+        "type": "问卷",
+        "frequency": "每6个月一次"
+      },
+      {
+        "task_id": "FT036",
+        "name": "左甲状腺素钠服药时间与依从性核查",
+        "type": "用药",
+        "frequency": "每次随访"
+      }
+    ],
+    "reminders": [
+      "空腹服药后30分钟再进食",
+      "避免与铁剂、钙剂、豆制品同服"
+    ]
+  },
+  {
+    "plan_id": "FP013",
+    "name": "痛风慢性期尿酸达标管理计划",
+    "target_condition": "痛风",
+    "duration_days": 365,
+    "followup_frequency": "每2个月一次",
+    "tasks": [
+      {
+        "task_id": "FT037",
+        "name": "血尿酸水平检测",
+        "type": "检查",
+        "frequency": "每2个月一次"
+      },
+      {
+        "task_id": "FT038",
+        "name": "痛风发作频率与诱因记录表",
+        "type": "问卷",
+        "frequency": "每月一次"
+      },
+      {
+        "task_id": "FT039",
+        "name": "24小时尿尿酸排泄量（必要时）",
+        "type": "检查",
+        "frequency": "每年一次"
+      }
+    ],
+    "reminders": [
+      "目标尿酸<360μmol/L（有石者<300μmol/L）",
+      "避免高嘌呤食物及含糖饮料"
+    ]
+  },
+  {
+    "plan_id": "FP014",
+    "name": "多囊卵巢综合征代谢整合管理计划",
+    "target_condition": "多囊卵巢综合征",
+    "duration_days": 365,
+    "followup_frequency": "每3个月一次",
+    "tasks": [
+      {
+        "task_id": "FT040",
+        "name": "空腹血糖、胰岛素、HOMA-IR计算",
+        "type": "检查",
+        "frequency": "每6个月一次"
+      },
+      {
+        "task_id": "FT041",
+        "name": "月经周期规律性与生育意愿评估",
+        "type": "问卷",
+        "frequency": "每3个月一次"
+      },
+      {
+        "task_id": "FT042",
+        "name": "盆腔超声（卵泡计数+卵巢体积）",
+        "type": "检查",
+        "frequency": "每年一次"
+      }
+    ],
+    "reminders": [
+      "生活方式干预（减重5–10%）为一线治疗",
+      "二甲双胍使用期间监测维生素B12"
+    ]
+  },
+  {
+    "plan_id": "FP015",
+    "name": "老年痴呆（AD）轻度认知障碍阶段干预计划",
+    "target_condition": "阿尔茨海默病",
+    "duration_days": 365,
+    "followup_frequency": "每3个月一次",
+    "tasks": [
+      {
+        "task_id": "FT043",
+        "name": "MMSE与MoCA认知评估",
+        "type": "问卷",
+        "frequency": "每3个月一次"
+      },
+      {
+        "task_id": "FT044",
+        "name": "日常生活能力量表（ADL）",
+        "type": "问卷",
+        "frequency": "每6个月一次"
+      },
+      {
+        "task_id": "FT045",
+        "name": "头颅MRI（海马体积测量）",
+        "type": "检查",
+        "frequency": "每年一次"
+      }
+    ],
+    "reminders": [
+      "每日认知训练（记忆/定向/计算）不少于20分钟",
+      "照护者压力评估同步进行"
+    ]
+  },
+  {
+    "plan_id": "FP016",
+    "name": "银屑病关节炎达标治疗随访计划",
+    "target_condition": "银屑病关节炎",
+    "duration_days": 365,
+    "followup_frequency": "每2个月一次",
+    "tasks": [
+      {
+        "task_id": "FT046",
+        "name": "CASPAR标准符合性再评估",
+        "type": "问卷",
+        "frequency": "每2个月一次"
+      },
+      {
+        "task_id": "FT047",
+        "name": "皮肤PASI评分与关节肿胀/压痛关节数",
+        "type": "测量",
+        "frequency": "每2个月一次"
+      },
+      {
+        "task_id": "FT048",
+        "name": "HLA-B27、CRP、ESR、肝肾功能",
+        "type": "检查",
+        "frequency": "每3个月一次"
+      }
+    ],
+    "reminders": [
+      "生物制剂治疗前完成结核与乙肝筛查",
+      "避免NSAIDs长期大剂量使用"
+    ]
+  },
+  {
+    "plan_id": "FP017",
+    "name": "慢性心力衰竭（HFmrEF）运动耐量提升计划",
+    "target_condition": "慢性心力衰竭",
+    "duration_days": 180,
+    "followup_frequency": "每4周一次",
+    "tasks": [
+      {
+        "task_id": "FT049",
+        "name": "6分钟步行试验距离记录",
+        "type": "测量",
+        "frequency": "每4周一次"
+      },
+      {
+        "task_id": "FT050",
+        "name": "明尼苏达心衰生活质量量表（MLHFQ）",
+        "type": "问卷",
+        "frequency": "每4周一次"
+      },
+      {
+        "task_id": "FT051",
+        "name": "BNP、血钾、eGFR",
+        "type": "检查",
+        "frequency": "每4周一次"
+      }
+    ],
+    "reminders": [
+      "运动方案需经心脏康复师个体化制定",
+      "随访当日禁用利尿剂"
+    ]
+  },
+  {
+    "plan_id": "FP018",
+    "name": "慢性丙型肝炎治愈后长期随访计划",
+    "target_condition": "慢性丙型肝炎",
+    "duration_days": 730,
+    "followup_frequency": "每6个月一次",
+    "tasks": [
+      {
+        "task_id": "FT052",
+        "name": "HCV RNA定量（确认SVR12/24）",
+        "type": "检查",
+        "frequency": "第12周、24周各1次"
+      },
+      {
+        "task_id": "FT053",
+        "name": "肝脏弹性成像（FibroScan）",
+        "type": "检查",
+        "frequency": "每年一次"
+      },
+      {
+        "task_id": "FT054",
+        "name": "肝癌筛查（AFP+肝脏超声）",
+        "type": "检查",
+        "frequency": "每6个月一次"
+      }
+    ],
+    "reminders": [
+      "即使治愈仍需终身监测肝纤维化进展",
+      "避免酒精及非必要药物"
+    ]
+  },
+  {
+    "plan_id": "FP019",
+    "name": "缺血性卒中二级预防结构化随访计划",
+    "target_condition": "缺血性脑卒中",
+    "duration_days": 365,
+    "followup_frequency": "每3个月一次",
+    "tasks": [
+      {
+        "task_id": "FT055",
+        "name": "ABCD2卒中复发风险评估",
+        "type": "问卷",
+        "frequency": "每3个月一次"
+      },
+      {
+        "task_id": "FT056",
+        "name": "血压、心率、颈动脉超声",
+        "type": "测量",
+        "frequency": "每3个月一次"
+      },
+      {
+        "task_id": "FT057",
+        "name": "血脂四项（LDL-C目标<1.8mmol/L）",
+        "type": "检查",
+        "frequency": "每3个月一次"
+      }
+    ],
+    "reminders": [
+      "坚持双抗治疗（首21天）或单抗长期维持",
+      "识别FAST征并建立紧急响应流程"
+    ]
+  },
+  {
+    "plan_id": "FP020",
+    "name": "系统性红斑狼疮（SLE）活动度动态监测计划",
+    "target_condition": "系统性红斑狼疮",
+    "duration_days": 365,
+    "followup_frequency": "每2个月一次",
+    "tasks": [
+      {
+        "task_id": "FT058",
+        "name": "SLEDAI-2K疾病活动度评分",
+        "type": "问卷",
+        "frequency": "每2个月一次"
+      },
+      {
+        "task_id": "FT059",
+        "name": "24小时尿蛋白定量+补体C3/C4",
+        "type": "检查",
+        "frequency": "每2个月一次"
+      },
+      {
+        "task_id": "FT060",
+        "name": "血常规、肝肾功能、尿沉渣镜检",
+        "type": "检查",
+        "frequency": "每月一次"
+      }
+    ],
+    "reminders": [
+      "严格防晒（SPF≥50），随访时核查光敏史",
+      "激素减量需遵医嘱阶梯式进行"
+    ]
+  },
+  {
+    "plan_id": "FP021",
+    "name": "慢性胃炎伴肠化生癌前状态随访计划",
+    "target_condition": "慢性萎缩性胃炎",
+    "duration_days": 730,
+    "followup_frequency": "每12个月一次",
+    "tasks": [
+      {
+        "task_id": "FT061",
+        "name": "胃镜+靶向活检（OLGA/OLGIM分期）",
+        "type": "检查",
+        "frequency": "每年一次"
+      },
+      {
+        "task_id": "FT062",
+        "name": "血清胃蛋白酶原I/II比值及G-17",
+        "type": "检查",
+        "frequency": "每6个月一次"
+      },
+      {
+        "task_id": "FT063",
+        "name": "幽门螺杆菌根除疗效确认（C13呼气试验）",
+        "type": "检查",
+        "frequency": "根除治疗结束后4周"
+      }
+    ],
+    "reminders": [
+      "根除Hp后仍需定期内镜监测",
+      "避免高盐腌制及熏烤食品"
+    ]
+  },
+  {
+    "plan_id": "FP022",
+    "name": "特发性肺纤维化（IPF）病情进展监测计划",
+    "target_condition": "特发性肺纤维化",
+    "duration_days": 365,
+    "followup_frequency": "每3个月一次",
+    "tasks": [
+      {
+        "task_id": "FT064",
+        "name": "用力肺活量（FVC）及DLCO变化率",
+        "type": "测量",
+        "frequency": "每3个月一次"
+      },
+      {
+        "task_id": "FT065",
+        "name": "圣乔治呼吸问卷（SGRQ）",
+        "type": "问卷",
+        "frequency": "每3个月一次"
+      },
+      {
+        "task_id": "FT066",
+        "name": "高分辨率胸部CT（HRCT）",
+        "type": "检查",
+        "frequency": "每年一次"
+      }
+    ],
+    "reminders": [
+      "确诊后立即启动抗纤维化治疗（尼达尼布/吡非尼酮）",
+      "随访前1周停用止咳药"
+    ]
+  },
+  {
+    "plan_id": "FP023",
+    "name": "慢性盆腔炎性疾病（CPID）复发预防计划",
+    "target_condition": "慢性盆腔炎",
+    "duration_days": 365,
+    "followup_frequency": "每3个月一次",
+    "tasks": [
+      {
+        "task_id": "FT067",
+        "name": "下腹痛VAS评分与性交痛记录",
+        "type": "测量",
+        "frequency": "每月一次"
+      },
+      {
+        "task_id": "FT068",
+        "name": "妇科检查（子宫活动度、附件压痛）",
+        "type": "检查",
+        "frequency": "每3个月一次"
+      },
+      {
+        "task_id": "FT069",
+        "name": "阴道分泌物培养+药敏",
+        "type": "检查",
+        "frequency": "复发时即时检测"
+      }
+    ],
+    "reminders": [
+      "规范使用避孕套预防重复感染",
+      "避免经期性生活及宫腔操作"
+    ]
+  },
+  {
+    "plan_id": "FP024",
+    "name": "慢性荨麻疹生活质量改善计划",
+    "target_condition": "慢性自发性荨麻疹",
+    "duration_days": 365,
+    "followup_frequency": "每2个月一次",
+    "tasks": [
+      {
+        "task_id": "FT070",
+        "name": "UAS7症状评分（风团+瘙痒）",
+        "type": "问卷",
+        "frequency": "每月一次"
+      },
+      {
+        "task_id": "FT071",
+        "name": "生活质量量表（CU-Q2oL）",
+        "type": "问卷",
+        "frequency": "每3个月一次"
+      },
+      {
+        "task_id": "FT072",
+        "name": "总IgE、甲状腺抗体（TPOAb/TgAb）",
+        "type": "检查",
+        "frequency": "每6个月一次"
+      }
+    ],
+    "reminders": [
+      "记录可疑诱因（食物/压力/冷热刺激）",
+      "第二代抗组胺药需足量足疗程使用"
+    ]
+  },
+  {
+    "plan_id": "FP025",
+    "name": "慢性前列腺炎（CP/CPPS）症状导向管理计划",
+    "target_condition": "慢性前列腺炎",
+    "duration_days": 365,
+    "followup_frequency": "每3个月一次",
+    "tasks": [
+      {
+        "task_id": "FT073",
+        "name": "NIH-CPSI症状评分",
+        "type": "问卷",
+        "frequency": "每3个月一次"
+      },
+      {
+        "task_id": "FT074",
+        "name": "尿流率+残余尿量测定",
+        "type": "测量",
+        "frequency": "每6个月一次"
+      },
+      {
+        "task_id": "FT075",
+        "name": "前列腺液常规+细菌培养",
+        "type": "检查",
+        "frequency": "首次随访及复发时"
+      }
+    ],
+    "reminders": [
+      "避免久坐、辛辣饮食及酒精",
+      "规律性生活有助于前列腺引流"
+    ]
+  },
+  {
+    "plan_id": "FP026",
+    "name": "慢性静脉功能不全（CEAP C3–C4）压力治疗随访计划",
+    "target_condition": "慢性静脉功能不全",
+    "duration_days": 365,
+    "followup_frequency": "每3个月一次",
+    "tasks": [
+      {
+        "task_id": "FT076",
+        "name": "静脉临床严重程度评分（VCSS）",
+        "type": "问卷",
+        "frequency": "每3个月一次"
+      },
+      {
+        "task_id": "FT077",
+        "name": "下肢周径测量（髌骨上15cm/下10cm）",
+        "type": "测量",
+        "frequency": "每3个月一次"
+      },
+      {
+        "task_id": "FT078",
+        "name": "下肢静脉超声（反流/血栓）",
+        "type": "检查",
+        "frequency": "每年一次"
+      }
+    ],
+    "reminders": [
+      "医用弹力袜每日穿戴≥12小时",
+      "抬高下肢每日3次，每次15分钟"
+    ]
+  },
+  {
+    "plan_id": "FP027",
+    "name": "慢性胆囊炎/胆石症保守治疗随访计划",
+    "target_condition": "慢性胆囊炎",
+    "duration_days": 365,
+    "followup_frequency": "每6个月一次",
+    "tasks": [
+      {
+        "task_id": "FT079",
+        "name": "右上腹疼痛频率与诱发因素记录",
+        "type": "问卷",
+        "frequency": "每月一次"
+      },
+      {
+        "task_id": "FT080",
+        "name": "肝功能（ALT/AST/ALP/GGT）、血脂",
+        "type": "检查",
+        "frequency": "每6个月一次"
+      },
+      {
+        "task_id": "FT081",
+        "name": "腹部超声（胆囊壁厚度/结石大小/胆总管直径）",
+        "type": "检查",
+        "frequency": "每6个月一次"
+      }
+    ],
+    "reminders": [
+      "低脂饮食（脂肪<40g/日）",
+      "突发持续性右上腹痛立即急诊"
+    ]
+  },
+  {
+    "plan_id": "FP028",
+    "name": "慢性鼻窦炎伴鼻息肉（CRSwNP）生物制剂治疗随访计划",
+    "target_condition": "慢性鼻窦炎",
+    "duration_days": 365,
+    "followup_frequency": "每2个月一次",
+    "tasks": [
+      {
+        "task_id": "FT082",
+        "name": "SNOT-22生活质量量表",
+        "type": "问卷",
+        "frequency": "每2个月一次"
+      },
+      {
+        "task_id": "FT083",
+        "name": "鼻内镜Lund-Kennedy评分",
+        "type": "检查",
+        "frequency": "每3个月一次"
+      },
+      {
+        "task_id": "FT084",
+        "name": "外周血嗜酸粒细胞计数与IgE",
+        "type": "检查",
+        "frequency": "每3个月一次"
+      }
+    ],
+    "reminders": [
+      "鼻用激素需规范喷洒技术",
+      "生物制剂注射后观察30分钟过敏反应"
+    ]
+  },
+  {
+    "plan_id": "FP029",
+    "name": "慢性腰肌劳损运动康复随访计划",
+    "target_condition": "慢性腰肌劳损",
+    "duration_days": 180,
+    "followup_frequency": "每4周一次",
+    "tasks": [
+      {
+        "task_id": "FT085",
+        "name": "Oswestry功能障碍指数（ODI）",
+        "type": "问卷",
+        "frequency": "每4周一次"
+      },
+      {
+        "task_id": "FT086",
+        "name": "腰部活动度（前屈/后伸/侧屈）测量",
+        "type": "测量",
+        "frequency": "每4周一次"
+      },
+      {
+        "task_id": "FT087",
+        "name": "核心肌群耐力测试（平板支撑时间）",
+        "type": "测量",
+        "frequency": "每4周一次"
+      }
+    ],
+    "reminders": [
+      "每日居家核心训练（桥式/鸟狗式）15分钟",
+      "避免久坐超过45分钟"
+    ]
+  },
+  {
+    "plan_id": "FP030",
+    "name": "慢性失眠认知行为治疗（CBT-I）随访计划",
+    "target_condition": "慢性失眠障碍",
+    "duration_days": 90,
+    "followup_frequency": "每周一次（前4周），之后每2周一次",
+    "tasks": [
+      {
+        "task_id": "FT088",
+        "name": "失眠严重指数量表（ISI）",
+        "type": "问卷",
+        "frequency": "每周一次"
+      },
+      {
+        "task_id": "FT089",
+        "name": "睡眠日记（入睡潜伏期/总睡眠时间/觉醒次数）",
+        "type": "问卷",
+        "frequency": "每日填写"
+      },
+      {
+        "task_id": "FT090",
+        "name": "睡眠卫生习惯自评表",
+        "type": "问卷",
+        "frequency": "每2周一次"
+      }
+    ],
+    "reminders": [
+      "严格遵守睡眠限制与刺激控制原则",
+      "避免白天补觉超过20分钟"
+    ]
+  }
+]

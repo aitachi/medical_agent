@@ -1,0 +1,352 @@
+{
+  "sources": [
+    {
+      "category": "GitHub开源项目-ICD-10编码",
+      "name": "chaseliu/ICD-10-CN",
+      "url": "https://github.com/chaseliu/ICD-10-CN",
+      "format": "CSV",
+      "access_method": "Git克隆或直接下载",
+      "reliability": 4,
+      "description": "ICD-10中文版本，包含disease_catalog.csv和disease.csv",
+      "files": ["disease_catalog.csv", "disease.csv"]
+    },
+    {
+      "category": "GitHub开源项目-ICD-10编码",
+      "name": "724686158/China-ICD-10",
+      "url": "https://github.com/724686158/China-ICD-10",
+      "format": "Excel/TXT",
+      "access_method": "Git克隆或直接下载",
+      "reliability": 5,
+      "description": "包含3位代码类目表、6位扩展代码表、疾病分类与代码修订版",
+      "features": ["3位代码类目表", "6位扩展代码表", "章节名称及代码"]
+    },
+    {
+      "category": "GitHub开源项目-ICD-10编码",
+      "name": "QLU-NLP/icdevaluator",
+      "url": "https://github.com/QLU-NLP/icdevaluator",
+      "format": "JSON/CSV",
+      "access_method": "Git克隆或直接下载",
+      "reliability": 4,
+      "description": "基于脱敏病历数据构建的中文电子病历ICD自动编码数据集，涉及10个科室19种主要疾病编码"
+    },
+    {
+      "category": "GitHub开源项目-医学知识库",
+      "name": "Mengqi97/chinese-medical-dataset",
+      "url": "https://github.com/Mengqi97/chinese-medical-dataset",
+      "format": "多种格式",
+      "access_method": "Git克隆或直接下载",
+      "reliability": 5,
+      "description": "中文医学数据集详细整理，包含Huatuo-26M（2600万医疗问答对），涵盖疾病、症状、治疗方式、药品信息等"
+    },
+    {
+      "category": "GitHub开源项目-医学知识库",
+      "name": "corpus-dataset/Chinese_medical_NLP",
+      "url": "https://github.com/corpus-dataset/Chinese_medical_NLP",
+      "format": "JSON/CSV",
+      "access_method": "Git克隆或直接下载",
+      "reliability": 5,
+      "description": "中文医药问答数据集超过10万条，CMeKG 1.0包含6310种疾病、19853种药物、1237种诊疗项目"
+    },
+    {
+      "category": "GitHub开源项目-医学知识库",
+      "name": "ChatGLM-Med",
+      "url": "https://github.com/SCIR-HI/Med-ChatGLM",
+      "format": "JSON/Parquet",
+      "access_method": "Git克隆或直接下载",
+      "reliability": 4,
+      "description": "基于中文医学知识的ChatGLM模型微调，使用医学知识图谱和GPT3.5构建指令数据集"
+    },
+    {
+      "category": "GitHub开源项目-医学知识库",
+      "name": "OpenCMKG",
+      "url": "https://github.com/RuiqingDing/OpenCMKG",
+      "format": "JSON/CSV",
+      "access_method": "Git克隆或直接下载",
+      "reliability": 4,
+      "description": "开源的中文医疗知识图谱，聚合多个数据源"
+    },
+    {
+      "category": "GitHub开源项目-医学知识库",
+      "name": "BianQue扁鹊",
+      "url": "https://github.com/scutcyr/BianQue",
+      "format": "JSON",
+      "access_method": "Git克隆或直接下载",
+      "reliability": 4,
+      "description": "中文医疗对话模型，能够进行多轮对话问诊，结合医学知识给出诊断建议"
+    },
+    {
+      "category": "GitHub开源项目-医学知识库",
+      "name": "CareGPT",
+      "url": "https://github.com/WangRongsheng/CareGPT",
+      "format": "JSON",
+      "access_method": "Git克隆或直接下载",
+      "reliability": 4,
+      "description": "医疗大语言模型，集成多个医疗微调数据集"
+    },
+    {
+      "category": "GitHub开源项目-药品数据库",
+      "name": "sydmizar/drugs-datasets",
+      "url": "https://github.com/sydmizar/drugs-datasets",
+      "format": "CSV/JSON",
+      "access_method": "Git克隆或直接下载",
+      "reliability": 4,
+      "description": "包含药物、活性药物成分、疾病和副作用的数据库，用于药物-疾病相互作用分析"
+    },
+    {
+      "category": "GitHub开源项目-药品数据库",
+      "name": "xiaomingaaa/drugbank",
+      "url": "https://github.com/xiaomingaaa/drugbank",
+      "format": "XML/CSV",
+      "access_method": "Git克隆或直接下载",
+      "reliability": 3,
+      "description": "DrugBank数据处理工具，获取药物SDF结构文件、药物相关信息、DrugBank ID映射"
+    },
+    {
+      "category": "GitHub开源项目-药品数据库",
+      "name": "uglyPharmaParser",
+      "url": "https://github.com/janschiefer/uglyPharmaParser",
+      "format": "XML",
+      "access_method": "Git克隆或直接下载",
+      "reliability": 3,
+      "description": "从免费公共来源生成开放药物数据库（结构化XML文件）"
+    },
+    {
+      "category": "GitHub开源项目-检验项目",
+      "name": "baoxuliang/healthcaredatastandard",
+      "url": "https://github.com/baoxuliang/healthcaredatastandard",
+      "format": "CSV/JSON",
+      "access_method": "Git克隆或直接下载",
+      "reliability": 4,
+      "description": "包含医学检验项目常用代码、医疗数据标准WS/T"
+    },
+    {
+      "category": "GitHub开源项目-检验项目",
+      "name": "OpenClaw-Medical-Skills",
+      "url": "https://github.com/FreedomIntelligence/OpenClaw-Medical-Skills",
+      "format": "JSON",
+      "access_method": "Git克隆或直接下载",
+      "reliability": 4,
+      "description": "包含检验结果解释与参考范围、趋势分析、危急值提醒"
+    },
+    {
+      "category": "政府公开数据-ICD-10",
+      "name": "国家卫健委疾病分类与代码标准",
+      "url": "https://www.nhc.gov.cn/cmsresources/mohbgt/cmsrsdocument/doc13971.doc",
+      "format": "DOC/PDF",
+      "access_method": "直接下载",
+      "reliability": 5,
+      "description": "国家卫健委官方发布的疾病分类与代码标准文档"
+    },
+    {
+      "category": "政府公开数据-ICD-10",
+      "name": "疾病代码表PDF",
+      "url": "https://www.nhc.gov.cn/mohwsbwstjxxzx/dczlxz/201809/8e46a2feccac441a9d080fce33aba60d.shtml",
+      "format": "PDF",
+      "access_method": "直接下载",
+      "reliability": 5,
+      "description": "国家卫健委发布的疾病代码表PDF"
+    },
+    {
+      "category": "政府公开数据-ICD-10",
+      "name": "医学诊断值域代码",
+      "url": "https://www.nhc.gov.cn/wjw/s9497/201108/52750/files/1739782540454_92322.pdf",
+      "format": "PDF",
+      "access_method": "直接下载",
+      "reliability": 5,
+      "description": "卫生信息数据元值域代码第10部分：医学诊断（包含ICD-10国际疾病分类标准编码）"
+    },
+    {
+      "category": "政府公开数据-药品",
+      "name": "国家药监局药品监管数据共享平台",
+      "url": "https://zhjg.nmpa.gov.cn/",
+      "format": "API",
+      "access_method": "接口订阅（需注册）",
+      "reliability": 5,
+      "description": "国家药品监管数据共享平台，提供药品、医疗器械、化妆品等数据接口"
+    },
+    {
+      "category": "政府公开数据-药品",
+      "name": "国家药监局违法数据查处接口规范",
+      "url": "https://zhjg.nmpa.gov.cn/datacatalog/advices/attach_download/66d52fd3128ef978ca0e7bf6",
+      "format": "PDF",
+      "access_method": "直接下载",
+      "reliability": 5,
+      "description": "违法行为查处数据接口规范（含药品、医疗器械、化妆品）"
+    },
+    {
+      "category": "政府公开数据-临床指南",
+      "name": "中华医学会临床指南",
+      "url": "https://www.cma.org.cn/col/col90/index.html",
+      "format": "PDF",
+      "access_method": "官方网站下载",
+      "reliability": 5,
+      "description": "中华医学会官方发布的各专科分会相关指南和表格"
+    },
+    {
+      "category": "政府公开数据-临床指南",
+      "name": "中华医学电子期刊资源库",
+      "url": "https://videodata.cma-cmc.com.cn/",
+      "format": "PDF",
+      "access_method": "在线访问下载",
+      "reliability": 5,
+      "description": "囊括40种中华医学会电子版系列期刊发表的指南规范、专家共识等"
+    },
+    {
+      "category": "医学网站-疾病库",
+      "name": "OpenKG思知医疗知识图谱",
+      "url": "http://openkg.cn/dataset/medical",
+      "format": "CSV",
+      "access_method": "直接下载",
+      "reliability": 4,
+      "description": "包含Disease.csv，疾病简介、科室分类、患病信息，包含疾病所属科室8820条三元组、疾病一般用药14693条三元组"
+    },
+    {
+      "category": "医学网站-疾病库",
+      "name": "医脉通疾病库",
+      "url": "http://disease.medlive.cn/",
+      "format": "HTML",
+      "access_method": "网页爬虫获取",
+      "reliability": 4,
+      "description": "医脉通疾病分类与代码，可通过Python爬虫获取疾病名称数据"
+    },
+    {
+      "category": "医学网站-药品",
+      "name": "丁香园医疗数据开放平台",
+      "url": "https://open.dxy.cn/",
+      "format": "JSON",
+      "access_method": "API接口调用",
+      "reliability": 5,
+      "description": "提供疾病科普服务、用药说明查询服务、中国上市药品基本信息API、药品用法用量API"
+    },
+    {
+      "category": "医学网站-药品",
+      "name": "丁香园用药助手",
+      "url": "https://drugs.dxy.cn/",
+      "format": "Web/API",
+      "access_method": "API接口或网页访问",
+      "reliability": 5,
+      "description": "智能处方审核，基于用药助手和Insight专业药学数据库的API服务"
+    },
+    {
+      "category": "医学网站-临床指南",
+      "name": "医卓指南平台",
+      "url": "https://guide.medlive.cn/",
+      "format": "PDF/HTML",
+      "access_method": "在线浏览或下载",
+      "reliability": 5,
+      "description": "按科室分类浏览各类临床指南，支持按指南类型、科室、年份筛选"
+    },
+    {
+      "category": "医学网站-临床指南",
+      "name": "临床指南APP",
+      "url": "https://sj.qq.com/appdetail/cn.medlive.guideline.android",
+      "format": "APP/PDF",
+      "access_method": "APP下载",
+      "reliability": 4,
+      "description": "提供一站式检索，支持在线阅读、PDF下载及分享，包含30000+份药品说明书"
+    },
+    {
+      "category": "国际医学数据库-药品",
+      "name": "openFDA Drug Label API",
+      "url": "https://open.fda.gov/apis/drug/label/download/",
+      "format": "JSON",
+      "access_method": "RESTful API或批量下载",
+      "reliability": 5,
+      "description": "FDA开放药品标签API，提供RESTful API和批量数据集下载"
+    },
+    {
+      "category": "国际医学数据库-药品",
+      "name": "DailyMed SPL API",
+      "url": "https://dailymed.nlm.nih.gov/dailymed/app-support-web-services.cfm",
+      "format": "XML/JSON",
+      "access_method": "RESTful API",
+      "reliability": 5,
+      "description": "NIH维护的DailyMed RESTful web服务，访问当前SPL（结构化产品标签）信息"
+    },
+    {
+      "category": "国际医学数据库-药品",
+      "name": "RxNorm",
+      "url": "https://www.nlm.nih.gov/research/umls/rxnorm/index.html",
+      "format": "Database",
+      "access_method": "UMLS注册访问",
+      "reliability": 5,
+      "description": "NIH国家医学图书馆提供的临床药物标准化名称数据库，属于UMLS系统"
+    },
+    {
+      "category": "国际医学数据库-检验",
+      "name": "LOINC数据库",
+      "url": "https://loinc.org/downloads/",
+      "format": "CSV/Text",
+      "access_method": "免费注册下载",
+      "reliability": 5,
+      "description": "国际标准检验项目代码数据库，包含参考范围信息，LOINC用户指南有中文版"
+    },
+    {
+      "category": "综合平台-API",
+      "name": "阿里云MedicalKnow健康图谱API",
+      "url": "https://help.aliyun.com/document_detail/3026107.html",
+      "format": "JSON",
+      "access_method": "阿里云API调用",
+      "reliability": 4,
+      "description": "基于权威医疗数据的健康图谱API，支持医疗类属性查询或聚类类查询"
+    },
+    {
+      "category": "综合平台-API",
+      "name": "腾讯医典内容库",
+      "url": "https://healthcare.tencent.com/production/16",
+      "format": "API",
+      "access_method": "API接口调用",
+      "reliability": 4,
+      "description": "提供内容导出能力，支持H5嵌入快速建页"
+    },
+    {
+      "category": "综合平台-API",
+      "name": "Dr7.ai医疗AI中心",
+      "url": "https://dr7.ai/zh",
+      "format": "API",
+      "access_method": "API接口调用",
+      "reliability": 3,
+      "description": "全球医疗AI模型统一API网关，为医生提供AI诊断，为开发者提供API接口"
+    },
+    {
+      "category": "知识图谱",
+      "name": "CMeKG中文医学知识图谱",
+      "url": "https://github.com/RuiqingDing/OpenCMKG",
+      "format": "JSON/CSV",
+      "access_method": "Git克隆或直接下载",
+      "reliability": 5,
+      "description": "参考ICD-10、ATC、MeSH等权威国际医学标准术语集构建"
+    },
+    {
+      "category": "知识图谱",
+      "name": "OpenKG医疗知识图谱",
+      "url": "http://openkg.cn/data/",
+      "format": "多种格式",
+      "access_method": "在线下载",
+      "reliability": 4,
+      "description": "开放知识图谱平台，包含常识、百科、金融、医疗等领域数据集"
+    }
+  ],
+  "summary": {
+    "total_sources": 38,
+    "categories": {
+      "GitHub开源项目-ICD-10编码": 3,
+      "GitHub开源项目-医学知识库": 6,
+      "GitHub开源项目-药品数据库": 3,
+      "GitHub开源项目-检验项目": 2,
+      "政府公开数据-ICD-10": 3,
+      "政府公开数据-药品": 2,
+      "政府公开数据-临床指南": 2,
+      "医学网站-疾病库": 2,
+      "医学网站-药品": 2,
+      "医学网站-临床指南": 2,
+      "国际医学数据库-药品": 3,
+      "国际医学数据库-检验": 1,
+      "综合平台-API": 3,
+      "知识图谱": 2
+    },
+    "data_formats": ["CSV", "JSON", "XML", "PDF", "DOC", "HTML", "Excel", "Database"],
+    "access_methods": ["Git克隆", "直接下载", "API接口", "网页爬虫", "在线访问", "APP下载"]
+  },
+  "last_updated": "2026-03-26"
+}

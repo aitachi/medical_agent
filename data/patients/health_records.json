@@ -1,0 +1,281 @@
+{
+  "total": 50000,
+  "generated_at": "2026-03-26",
+  "description": "健康档案数据 - 对应患者ID - 匿名化",
+  "health_records": [
+    {
+      "patient_id": "P00001",
+      "medical_history": [
+        {"condition": "上呼吸道感染", "diagnosis_date": "2022-03-15", "status": "已痊愈", "hospital": "北京市儿童医院"}
+      ],
+      "allergies": [],
+      "medications": [
+        {"name": "布洛芬混悬液", "dosage": "5ml", "frequency": "必要时", "start_date": "2022-03-15", "end_date": "2022-03-18"}
+      ],
+      "surgeries": [],
+      "family_history": [
+        {"relation": "父亲", "condition": "过敏性鼻炎"},
+        {"relation": "母亲", "condition": "无特殊病史"}
+      ],
+      "lifestyle": {
+        "smoking": "否",
+        "drinking": "否",
+        "exercise_frequency": "每周3-4次",
+        "sleep_hours": "9-10小时",
+        "diet": "均衡饮食"
+      }
+    },
+    {
+      "patient_id": "P00002",
+      "medical_history": [
+        {"condition": "急性扁桃体炎", "diagnosis_date": "2023-06-20", "status": "已痊愈", "hospital": "上海儿童医学中心"},
+        {"condition": "支气管炎", "diagnosis_date": "2024-01-10", "status": "已痊愈", "hospital": "上海儿童医学中心"}
+      ],
+      "allergies": [
+        {"substance": "青霉素", "reaction": "皮疹", "severity": "轻度"}
+      ],
+      "medications": [
+        {"name": "阿莫西林颗粒", "dosage": "125mg", "frequency": "每日3次", "start_date": "2023-06-20", "end_date": "2023-06-27"}
+      ],
+      "surgeries": [],
+      "family_history": [
+        {"relation": "父亲", "condition": "高血压"},
+        {"relation": "母亲", "condition": "糖尿病"}
+      ],
+      "lifestyle": {
+        "smoking": "否",
+        "drinking": "否",
+        "exercise_frequency": "每周2次",
+        "sleep_hours": "8-9小时",
+        "diet": "偏食"
+      }
+    },
+    {
+      "patient_id": "P00003",
+      "medical_history": [],
+      "allergies": [],
+      "medications": [],
+      "surgeries": [
+        {"procedure": "阑尾切除术", "date": "2023-08-15", "hospital": "广州市妇女儿童医疗中心", "outcome": "顺利"}
+      ],
+      "family_history": [
+        {"relation": "父亲", "condition": "无特殊病史"},
+        {"relation": "母亲", "condition": "无特殊病史"}
+      ],
+      "lifestyle": {
+        "smoking": "否",
+        "drinking": "否",
+        "exercise_frequency": "每周5次",
+        "sleep_hours": "10小时",
+        "diet": "均衡饮食"
+      }
+    },
+    {
+      "patient_id": "P00011",
+      "medical_history": [
+        {"condition": "近视", "diagnosis_date": "2015-06-10", "status": "持续", "hospital": "北京同仁医院"}
+      ],
+      "allergies": [],
+      "medications": [],
+      "surgeries": [
+        {"procedure": "LASIK近视手术", "date": "2020-07-20", "hospital": "北京协和医院", "outcome": "良好"}
+      ],
+      "family_history": [
+        {"relation": "祖父", "condition": "冠心病"},
+        {"relation": "祖母", "condition": "糖尿病"}
+      ],
+      "lifestyle": {
+        "smoking": "偶尔",
+        "drinking": "社交场合",
+        "exercise_frequency": "每周1次",
+        "sleep_hours": "6-7小时",
+        "diet": "外卖为主"
+      }
+    },
+    {
+      "patient_id": "P00012",
+      "medical_history": [
+        {"condition": "偏头痛", "diagnosis_date": "2018-09-15", "status": "偶发", "hospital": "华山医院"},
+        {"condition": "慢性胃炎", "diagnosis_date": "2021-03-20", "status": "控制中", "hospital": "瑞金医院"}
+      ],
+      "allergies": [
+        {"substance": "海鲜", "reaction": "皮疹", "severity": "中度"}
+      ],
+      "medications": [
+        {"name": "奥美拉唑", "dosage": "20mg", "frequency": "每日1次", "start_date": "2021-03-25", "end_date": "持续"},
+        {"name": "布洛芬缓释胶囊", "dosage": "300mg", "frequency": "必要时", "start_date": "2019-01-10", "end_date": "持续"}
+      ],
+      "surgeries": [],
+      "family_history": [
+        {"relation": "母亲", "condition": "偏头痛"},
+        {"relation": "外祖母", "condition": "抑郁症"}
+      ],
+      "lifestyle": {
+        "smoking": "否",
+        "drinking": "否",
+        "exercise_frequency": "每周2次",
+        "sleep_hours": "7小时",
+        "diet": "清淡饮食"
+      }
+    },
+    {
+      "patient_id": "P00021",
+      "medical_history": [
+        {"condition": "脂肪肝", "diagnosis_date": "2022-05-10", "status": "持续", "hospital": "山西省人民医院"},
+        {"condition": "高尿酸血症", "diagnosis_date": "2023-08-20", "status": "控制中", "hospital": "山西省人民医院"}
+      ],
+      "allergies": [],
+      "medications": [
+        {"name": "非布司他", "dosage": "40mg", "frequency": "每日1次", "start_date": "2023-09-01", "end_date": "持续"}
+      ],
+      "surgeries": [],
+      "family_history": [
+        {"relation": "父亲", "condition": "高血压"},
+        {"relation": "母亲", "condition": "糖尿病"}
+      ],
+      "lifestyle": {
+        "smoking": "是",
+        "drinking": "经常",
+        "exercise_frequency": "很少",
+        "sleep_hours": "6小时",
+        "diet": "高脂饮食"
+      }
+    },
+    {
+      "patient_id": "P00022",
+      "medical_history": [
+        {"condition": "子宫肌瘤", "diagnosis_date": "2021-03-15", "status": "观察中", "hospital": "齐鲁医院"},
+        {"condition": "乳腺增生", "diagnosis_date": "2022-07-20", "status": "稳定", "hospital": "山东省立医院"}
+      ],
+      "allergies": [
+        {"substance": "磺胺类药物", "reaction": "皮疹", "severity": "中度"}
+      ],
+      "medications": [],
+      "surgeries": [],
+      "family_history": [
+        {"relation": "母亲", "condition": "子宫肌瘤"},
+        {"relation": "外祖母", "condition": "乳腺癌"}
+      ],
+      "lifestyle": {
+        "smoking": "否",
+        "drinking": "偶尔",
+        "exercise_frequency": "每周3次",
+        "sleep_hours": "7-8小时",
+        "diet": "均衡饮食"
+      }
+    },
+    {
+      "patient_id": "P00031",
+      "medical_history": [
+        {"condition": "高血压", "diagnosis_date": "2018-06-15", "status": "控制中", "hospital": "安贞医院"},
+        {"condition": "2型糖尿病", "diagnosis_date": "2020-09-20", "status": "控制中", "hospital": "协和医院"}
+      ],
+      "allergies": [],
+      "medications": [
+        {"name": "氨氯地平", "dosage": "5mg", "frequency": "每日1次", "start_date": "2018-07-01", "end_date": "持续"},
+        {"name": "二甲双胍", "dosage": "500mg", "frequency": "每日2次", "start_date": "2020-10-01", "end_date": "持续"},
+        {"name": "阿司匹林", "dosage": "100mg", "frequency": "每日1次", "start_date": "2019-01-15", "end_date": "持续"}
+      ],
+      "surgeries": [
+        {"procedure": "白内障手术", "date": "2022-03-10", "hospital": "同仁医院", "outcome": "良好"}
+      ],
+      "family_history": [
+        {"relation": "父亲", "condition": "高血压、冠心病"},
+        {"relation": "母亲", "condition": "糖尿病"}
+      ],
+      "lifestyle": {
+        "smoking": "已戒烟",
+        "drinking": "偶尔",
+        "exercise_frequency": "每周3次",
+        "sleep_hours": "7小时",
+        "diet": "低盐低脂饮食"
+      }
+    },
+    {
+      "patient_id": "P00032",
+      "medical_history": [
+        {"condition": "骨质疏松", "diagnosis_date": "2019-04-15", "status": "治疗中", "hospital": "华东医院"},
+        {"condition": "高脂血症", "diagnosis_date": "2017-08-20", "status": "控制中", "hospital": "瑞金医院"}
+      ],
+      "allergies": [],
+      "medications": [
+        {"name": "阿托伐他汀", "dosage": "20mg", "frequency": "每日1次", "start_date": "2017-09-01", "end_date": "持续"},
+        {"name": "阿伦磷酸钠", "dosage": "70mg", "frequency": "每周1次", "start_date": "2019-05-01", "end_date": "持续"},
+        {"name": "钙尔奇D", "dosage": "600mg", "frequency": "每日1次", "start_date": "2019-05-01", "end_date": "持续"}
+      ],
+      "surgeries": [
+        {"procedure": "胆囊切除术", "date": "2015-10-20", "hospital": "中山医院", "outcome": "顺利"}
+      ],
+      "family_history": [
+        {"relation": "母亲", "condition": "骨质疏松、骨折"}
+      ],
+      "lifestyle": {
+        "smoking": "否",
+        "drinking": "否",
+        "exercise_frequency": "每周4次",
+        "sleep_hours": "7-8小时",
+        "diet": "高钙饮食"
+      }
+    },
+    {
+      "patient_id": "P00041",
+      "medical_history": [
+        {"condition": "高血压", "diagnosis_date": "2005-03-15", "status": "控制中", "hospital": "阜外医院"},
+        {"condition": "冠心病", "diagnosis_date": "2012-06-20", "status": "稳定", "hospital": "安贞医院"},
+        {"condition": "慢性肾功能不全", "diagnosis_date": "2018-09-10", "status": "进展中", "hospital": "协和医院"}
+      ],
+      "allergies": [
+        {"substance": "碘造影剂", "reaction": "皮疹", "severity": "中度"}
+      ],
+      "medications": [
+        {"name": "硝苯地平控释片", "dosage": "30mg", "frequency": "每日1次", "start_date": "2005-04-01", "end_date": "持续"},
+        {"name": "美托洛尔", "dosage": "25mg", "frequency": "每日2次", "start_date": "2012-07-01", "end_date": "持续"},
+        {"name": "阿司匹林", "dosage": "100mg", "frequency": "每日1次", "start_date": "2012-07-01", "end_date": "持续"},
+        {"name": "阿托伐他汀", "dosage": "20mg", "frequency": "每日1次", "start_date": "2012-07-01", "end_date": "持续"},
+        {"name": "单硝酸异山梨酯", "dosage": "20mg", "frequency": "每日2次", "start_date": "2015-03-01", "end_date": "持续"}
+      ],
+      "surgeries": [
+        {"procedure": "冠脉支架植入术", "date": "2012-07-15", "hospital": "阜外医院", "outcome": "良好"},
+        {"procedure": "白内障手术", "date": "2018-05-20", "hospital": "同仁医院", "outcome": "良好"}
+      ],
+      "family_history": [
+        {"relation": "父亲", "condition": "高血压、脑卒中"},
+        {"relation": "母亲", "condition": "糖尿病"}
+      ],
+      "lifestyle": {
+        "smoking": "已戒烟10年",
+        "drinking": "否",
+        "exercise_frequency": "每周2次",
+        "sleep_hours": "6-7小时",
+        "diet": "低盐低脂低蛋白饮食"
+      }
+    },
+    {
+      "patient_id": "P00042",
+      "medical_history": [
+        {"condition": "2型糖尿病", "diagnosis_date": "2008-04-20", "status": "控制不佳", "hospital": "瑞金医院"},
+        {"condition": "糖尿病周围神经病变", "diagnosis_date": "2018-06-15", "status": "进展中", "hospital": "华山医院"},
+        {"condition": "糖尿病视网膜病变", "diagnosis_date": "2020-09-10", "status": "稳定", "hospital": "五官科医院"}
+      ],
+      "allergies": [],
+      "medications": [
+        {"name": "甘精胰岛素", "dosage": "12u", "frequency": "每晚1次", "start_date": "2015-01-01", "end_date": "持续"},
+        {"name": "二甲双胍", "dosage": "500mg", "frequency": "每日2次", "start_date": "2008-05-01", "end_date": "持续"},
+        {"name": "西格列汀", "dosage": "100mg", "frequency": "每日1次", "start_date": "2018-03-01", "end_date": "持续"},
+        {"name": "甲钴胺", "dosage": "500mg", "frequency": "每日3次", "start_date": "2018-07-01", "end_date": "持续"}
+      ],
+      "surgeries": [],
+      "family_history": [
+        {"relation": "父亲", "condition": "糖尿病"},
+        {"relation": "母亲", "condition": "糖尿病"}
+      ],
+      "lifestyle": {
+        "smoking": "否",
+        "drinking": "否",
+        "exercise_frequency": "很少",
+        "sleep_hours": "5-6小时",
+        "diet": "糖尿病饮食"
+      }
+    }
+  ]
+}

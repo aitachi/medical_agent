@@ -1,0 +1,462 @@
+[
+  {
+    "item_id": "LAB001",
+    "name": "白细胞",
+    "english_name": "White Blood Cell Count",
+    "category": "血常规",
+    "specimen": "全血",
+    "reference_range": "4.0–10.0 ×10⁹/L",
+    "clinical_significance": "反映机体免疫状态和炎症反应程度",
+    "abnormal_indications": "升高见于细菌感染、应激、白血病；降低见于病毒感染、骨髓抑制、自身免疫性疾病"
+  },
+  {
+    "item_id": "LAB002",
+    "name": "红细胞",
+    "english_name": "Red Blood Cell Count",
+    "category": "血常规",
+    "specimen": "全血",
+    "reference_range": "男性：4.3–5.8×10¹²/L；女性：3.8–5.1×10¹²/L",
+    "clinical_significance": "评估贫血或红细胞增多症的重要指标",
+    "abnormal_indications": "减少提示贫血；增多见于脱水、慢性缺氧、真性红细胞增多症"
+  },
+  {
+    "item_id": "LAB003",
+    "name": "血红蛋白",
+    "english_name": "Hemoglobin",
+    "category": "血常规",
+    "specimen": "全血",
+    "reference_range": "男性：130–175 g/L；女性：115–150 g/L",
+    "clinical_significance": "直接反映血液携氧能力，诊断贫血的核心参数",
+    "abnormal_indications": "降低提示贫血（缺铁、失血、溶血等）；升高见于脱水、慢性肺病、真性红细胞增多症"
+  },
+  {
+    "item_id": "LAB004",
+    "name": "血小板",
+    "english_name": "Platelet Count",
+    "category": "血常规",
+    "specimen": "全血",
+    "reference_range": "125–350 ×10⁹/L",
+    "clinical_significance": "参与止血与凝血过程，评估出血或血栓风险",
+    "abnormal_indications": "减少见于ITP、再生障碍性贫血、脾亢；增多见于反应性血小板增多、原发性血小板增多症"
+  },
+  {
+    "item_id": "LAB005",
+    "name": "红细胞压积",
+    "english_name": "Hematocrit",
+    "category": "血常规",
+    "specimen": "全血",
+    "reference_range": "男性：38.0–50.8%；女性：33.5–45.0%",
+    "clinical_significance": "反映红细胞在全血中所占体积比例，辅助贫血分类及脱水评估",
+    "abnormal_indications": "降低提示贫血或稀释性改变；升高见于脱水、慢性缺氧、真性红细胞增多症"
+  },
+  {
+    "item_id": "LAB006",
+    "name": "平均红细胞体积",
+    "english_name": "Mean Corpuscular Volume",
+    "category": "血常规",
+    "specimen": "全血",
+    "reference_range": "80–100 fL",
+    "clinical_significance": "用于贫血形态学分类（小细胞性、正细胞性、大细胞性）",
+    "abnormal_indications": "<80 fL提示小细胞性贫血（如缺铁性贫血）；>100 fL提示大细胞性贫血（如巨幼细胞性贫血、酒精性肝病）"
+  },
+  {
+    "item_id": "LAB007",
+    "name": "ALT/谷丙转氨酶",
+    "english_name": "Alanine Aminotransferase",
+    "category": "肝功能",
+    "specimen": "血清",
+    "reference_range": "0–40 U/L",
+    "clinical_significance": "主要存在于肝细胞胞质中，是反映肝细胞损伤最敏感的指标之一",
+    "abnormal_indications": "升高见于病毒性肝炎、药物性肝损伤、脂肪性肝病、急性肝坏死等；显著升高（>10倍ULN）多提示急性肝细胞损伤"
+  },
+  {
+    "item_id": "LAB008",
+    "name": "AST/谷草转氨酶",
+    "english_name": "Aspartate Aminotransferase",
+    "category": "肝功能",
+    "specimen": "血清",
+    "reference_range": "0–40 U/L",
+    "clinical_significance": "存在于肝细胞线粒体及胞质，特异性较ALT低，AST/ALT比值有助于判断肝病性质",
+    "abnormal_indications": "升高见于肝炎、肝硬化、心肌梗死、肌肉疾病；AST/ALT >2常见于酒精性肝病或肝硬化"
+  },
+  {
+    "item_id": "LAB009",
+    "name": "GGT/谷氨酰转肽酶",
+    "english_name": "Gamma-Glutamyl Transferase",
+    "category": "肝功能",
+    "specimen": "血清",
+    "reference_range": "0–50 U/L（男性），0–40 U/L（女性）",
+    "clinical_significance": "主要分布于肝胆系统，对胆汁淤积和酒精性肝损伤敏感",
+    "abnormal_indications": "升高见于胆道梗阻、酒精性肝病、药物性肝损伤、脂肪肝；持续显著升高需警惕胆管癌或原发性肝癌"
+  },
+  {
+    "item_id": "LAB010",
+    "name": "ALP/碱性磷酸酶",
+    "english_name": "Alkaline Phosphatase",
+    "category": "肝功能",
+    "specimen": "血清",
+    "reference_range": "40–150 U/L（成人）",
+    "clinical_significance": "广泛分布于肝胆管上皮、骨、肠、胎盘等，肝源性升高常伴GGT同步升高",
+    "abnormal_indications": "升高见于胆汁淤积性肝病（如原发性胆汁性胆管炎、胆总管结石）、骨代谢疾病；儿童及妊娠期可生理性升高"
+  },
+  {
+    "item_id": "LAB011",
+    "name": "总胆红素(TBIL)",
+    "english_name": "Total Bilirubin",
+    "category": "肝功能",
+    "specimen": "血清",
+    "reference_range": "3.4–17.1 μmol/L",
+    "clinical_significance": "反映胆红素生成、摄取、结合及排泄全过程，升高提示溶血、肝细胞损害或胆道梗阻",
+    "abnormal_indications": "TBIL >34.2 μmol/L出现隐性黄疸；>171 μmol/L提示显性黄疸；结合胆红素占比>50%倾向肝细胞性或胆汁淤积性黄疸；<20%倾向溶血性黄疸"
+  },
+  {
+    "item_id": "LAB012",
+    "name": "白蛋白(ALB)",
+    "english_name": "Albumin",
+    "category": "肝功能",
+    "specimen": "血清",
+    "reference_range": "40–55 g/L",
+    "clinical_significance": "由肝细胞合成，半衰期约21天，反映肝脏合成功能及营养状态",
+    "abnormal_indications": "降低见于慢性肝病（如肝硬化）、营养不良、肾病综合征、严重感染；ALB <30 g/L提示肝功能失代偿可能；持续下降预后不良"
+  },
+  {
+    "item_id": "LAB013",
+    "name": "肌酐",
+    "english_name": "Creatinine",
+    "category": "肾功能",
+    "specimen": "血清",
+    "reference_range": "男性：53–106 μmol/L；女性：44–97 μmol/L",
+    "clinical_significance": "反映肾小球滤过功能的常用指标，受肌肉量、年龄、性别影响较小，较尿素氮更稳定。",
+    "abnormal_indications": "升高提示肾小球滤过率下降，见于急性/慢性肾损伤、肾衰竭；降低可见于肌肉萎缩、严重肝病或妊娠。"
+  },
+  {
+    "item_id": "LAB014",
+    "name": "尿素氮",
+    "english_name": "Blood Urea Nitrogen (BUN)",
+    "category": "肾功能",
+    "specimen": "血清",
+    "reference_range": "2.9–7.5 mmol/L",
+    "clinical_significance": "反映肾小球滤过功能，但易受肾前性（如脱水、心衰）、肾后性（如尿路梗阻）及蛋白质摄入、肝功能等因素影响。",
+    "abnormal_indications": "升高常见于肾功能不全、高蛋白饮食、消化道出血、心力衰竭；降低可见于严重肝病、低蛋白饮食或妊娠。"
+  },
+  {
+    "item_id": "LAB015",
+    "name": "尿酸",
+    "english_name": "Uric Acid (UA)",
+    "category": "肾功能",
+    "specimen": "血清",
+    "reference_range": "男性：208–428 μmol/L；女性：155–357 μmol/L",
+    "clinical_significance": "嘌呤代谢终产物，主要经肾脏排泄；血尿酸水平与肾小管排泄功能密切相关。",
+    "abnormal_indications": "升高见于痛风、慢性肾病、肾小管排泄障碍、高嘌呤饮食、肿瘤溶解综合征；降低罕见，可见于肝豆状核变性、严重肝肾功能衰竭。"
+  },
+  {
+    "item_id": "LAB016",
+    "name": "胱抑素C",
+    "english_name": "Cystatin C",
+    "category": "肾功能",
+    "specimen": "血清",
+    "reference_range": "0.55–1.05 mg/L",
+    "clinical_significance": "内源性半胱氨酸蛋白酶抑制剂，由有核细胞恒定产生，不受肌肉量、年龄、性别及炎症影响，是评估早期肾小球滤过率（eGFR）的敏感指标。",
+    "abnormal_indications": "升高提示肾小球滤过功能下降，较肌酐更早发现轻度肾损伤；可用于糖尿病肾病、高血压肾损害的早期筛查。"
+  },
+  {
+    "item_id": "LAB017",
+    "name": "总胆固醇",
+    "english_name": "Total Cholesterol",
+    "category": "血脂",
+    "specimen": "血清",
+    "reference_range": "2.8～5.17 mmol/L",
+    "clinical_significance": "反映脂质代谢总体水平，是动脉粥样硬化的重要危险因素之一。",
+    "abnormal_indications": "升高见于高胆固醇血症、动脉粥样硬化、肾病综合征、胆汁淤积等；降低见于严重肝病、营养不良、甲亢等。"
+  },
+  {
+    "item_id": "LAB018",
+    "name": "甘油三酯",
+    "english_name": "Triglycerides",
+    "category": "血脂",
+    "specimen": "血清",
+    "reference_range": "0.56～1.70 mmol/L",
+    "clinical_significance": "反映体内甘油三酯代谢状态，显著升高是急性胰腺炎的独立危险因素。",
+    "abnormal_indications": "升高见于高甘油三酯血症、糖尿病、肥胖、酗酒、肾病综合征等；降低见于甲亢、严重肝病、吸收不良综合征等。"
+  },
+  {
+    "item_id": "LAB019",
+    "name": "HDL-C/高密度脂蛋白胆固醇",
+    "english_name": "High-Density Lipoprotein Cholesterol",
+    "category": "血脂",
+    "specimen": "血清",
+    "reference_range": "1.0～1.55 mmol/L（男性）；1.29～1.55 mmol/L（女性）",
+    "clinical_significance": "具有抗动脉粥样硬化作用，是‘好胆固醇’，水平与冠心病风险呈负相关。",
+    "abnormal_indications": "降低见于冠心病、脑血管病、糖尿病、代谢综合征、慢性肾病等；升高多为良性，少数见于原发性高HDL-C血症。"
+  },
+  {
+    "item_id": "LAB020",
+    "name": "LDL-C/低密度脂蛋白胆固醇",
+    "english_name": "Low-Density Lipoprotein Cholesterol",
+    "category": "血脂",
+    "specimen": "血清",
+    "reference_range": "1.9～3.37 mmol/L（理想水平＜2.6 mmol/L；高危人群目标值＜1.8 mmol/L）",
+    "clinical_significance": "主要携带胆固醇至外周组织，促进动脉粥样硬化形成，是调脂治疗的主要靶点。",
+    "abnormal_indications": "升高是动脉粥样硬化性心血管疾病（ASCVD）的独立危险因素；降低可见于甲亢、严重肝病、吸收不良等。"
+  },
+  {
+    "item_id": "LAB021",
+    "name": "空腹血糖",
+    "english_name": "Fasting Plasma Glucose (FPG)",
+    "category": "血糖",
+    "specimen": "血清或血浆",
+    "reference_range": "3.9–6.1 mmol/L",
+    "clinical_significance": "反映基础胰岛素分泌功能及肝脏葡萄糖输出情况，是糖尿病筛查和诊断的主要指标之一。",
+    "abnormal_indications": "升高：糖尿病、应激性高血糖、库欣综合征等；降低：胰岛素瘤、严重肝病、肾上腺皮质功能减退等。"
+  },
+  {
+    "item_id": "LAB022",
+    "name": "糖化血红蛋白",
+    "english_name": "Hemoglobin A1c (HbA1c)",
+    "category": "血糖",
+    "specimen": "全血（EDTA抗凝）",
+    "reference_range": "4.0%–5.6%",
+    "clinical_significance": "反映过去2–3个月的平均血糖水平，不受短期血糖波动影响，用于糖尿病长期血糖控制评估及诊断。",
+    "abnormal_indications": "升高（≥5.7%）：提示糖尿病前期或糖尿病；显著升高（≥8.0%）：提示血糖控制不佳；降低罕见，可见于溶血性贫血、失血、慢性肾衰竭等。"
+  },
+  {
+    "item_id": "LAB023",
+    "name": "胰岛素",
+    "english_name": "Insulin",
+    "category": "血糖",
+    "specimen": "血清（需冰浴送检，分离血清后-20℃速冻）",
+    "reference_range": "2.6–24.9 μU/mL（空腹）",
+    "clinical_significance": "直接反映胰岛β细胞分泌功能，常与血糖联合分析评估胰岛素抵抗及分泌缺陷。",
+    "abnormal_indications": "空腹胰岛素升高伴高血糖：胰岛素抵抗（如肥胖、2型糖尿病早期）；空腹胰岛素降低伴高血糖：胰岛β细胞功能衰竭（如1型糖尿病、晚期2型糖尿病）；低血糖时胰岛素不抑制：提示胰岛素瘤。"
+  },
+  {
+    "item_id": "LAB024",
+    "name": "钾离子",
+    "english_name": "Potassium (K+)",
+    "category": "电解质",
+    "specimen": "血清",
+    "reference_range": "3.5–5.5 mmol/L",
+    "clinical_significance": "维持心肌、神经及骨骼肌细胞静息电位和兴奋性，参与酸碱平衡调节。",
+    "abnormal_indications": "升高（高钾血症）见于肾衰竭、溶血、酸中毒、药物（如ACEI、螺内酯）；降低（低钾血症）见于呕吐腹泻、利尿剂使用、碱中毒、醛固酮增多症。"
+  },
+  {
+    "item_id": "LAB025",
+    "name": "钠离子",
+    "english_name": "Sodium (Na+)",
+    "category": "电解质",
+    "specimen": "血清",
+    "reference_range": "135–145 mmol/L",
+    "clinical_significance": "维持细胞外液渗透压、血容量及神经肌肉兴奋性，参与跨膜电位形成。",
+    "abnormal_indications": "升高（高钠血症）见于脱水、高渗性利尿、原发性醛固酮增多症；降低（低钠血症）见于心衰、肝硬化、肾病综合征、SIADH、过度输注低渗液。"
+  },
+  {
+    "item_id": "LAB026",
+    "name": "氯离子",
+    "english_name": "Chloride (Cl-)",
+    "category": "电解质",
+    "specimen": "血清",
+    "reference_range": "96–108 mmol/L",
+    "clinical_significance": "维持体液渗透压、酸碱平衡（与HCO₃⁻协同调节）及胃酸分泌。",
+    "abnormal_indications": "升高（高氯血症）见于高钠血症、代谢性酸中毒（如肾小管性酸中毒）、过度补氯；降低（低氯血症）见于呕吐、胃液引流、代谢性碱中毒、心衰利尿治疗。"
+  },
+  {
+    "item_id": "LAB027",
+    "name": "钙离子",
+    "english_name": "Calcium (Ca²⁺)",
+    "category": "电解质",
+    "specimen": "血清",
+    "reference_range": "2.12–2.52 mmol/L",
+    "clinical_significance": "参与凝血、神经肌肉传导、心肌收缩、酶激活及骨骼矿化。",
+    "abnormal_indications": "升高（高钙血症）见于原发性甲状旁腺功能亢进、恶性肿瘤骨转移、维生素D中毒；降低（低钙血症）见于慢性肾病、甲状旁腺功能减退、维生素D缺乏、急性胰腺炎、严重低白蛋白血症（需校正）。"
+  },
+  {
+    "item_id": "LAB028",
+    "name": "镁离子",
+    "english_name": "Magnesium (Mg²⁺)",
+    "category": "电解质",
+    "specimen": "血清",
+    "reference_range": "0.67–1.04 mmol/L",
+    "clinical_significance": "作为多种酶（如ATP酶、激酶）的辅因子，参与能量代谢、核酸合成、神经肌肉功能及心律稳定。",
+    "abnormal_indications": "升高（高镁血症）见于肾衰竭、过量补镁、甲状腺功能减退；降低（低镁血症）见于长期营养不良、慢性腹泻、酒精滥用、利尿剂（如呋塞米）、糖尿病酮症酸中毒。"
+  },
+  {
+    "item_id": "LAB029",
+    "name": "凝血酶原时间",
+    "english_name": "Prothrombin Time",
+    "category": "凝血",
+    "specimen": "血浆",
+    "reference_range": "11.0–13.5秒",
+    "clinical_significance": "反映外源性凝血途径（因子I、II、V、VII、X）功能，用于监测华法林抗凝治疗及肝病、维生素K缺乏等评估。",
+    "abnormal_indications": "延长：维生素K缺乏、肝功能障碍、DIC、华法林过量、凝血因子缺乏；缩短：高凝状态、血栓前状态。"
+  },
+  {
+    "item_id": "LAB030",
+    "name": "活化部分凝血活酶时间",
+    "english_name": "Activated Partial Thromboplastin Time",
+    "category": "凝血",
+    "specimen": "血浆",
+    "reference_range": "25.0–35.0秒",
+    "clinical_significance": "反映内源性及共同凝血途径（因子VIII、IX、XI、XII、I、II、V、X）功能，用于肝素治疗监测、血友病筛查及狼疮抗凝物检测。",
+    "abnormal_indications": "延长：血友病A/B、vWD、肝素使用、低纤维蛋白原血症、狼疮抗凝物、严重肝病；缩短：高凝状态、急性血栓事件早期。"
+  },
+  {
+    "item_id": "LAB001",
+    "name": "白细胞计数（WBC）",
+    "category": "血常规",
+    "specimen": "静脉血（EDTA抗凝）",
+    "reference_range": "4.0–10.0 ×10⁹/L",
+    "clinical_significance": "升高提示感染、炎症、白血病等；降低见于骨髓抑制、自身免疫病、病毒感染等"
+  },
+  {
+    "item_id": "LAB002",
+    "name": "血红蛋白（Hb）",
+    "category": "血常规",
+    "specimen": "静脉血（EDTA抗凝）",
+    "reference_range": "男性：130–175 g/L；女性：115–150 g/L",
+    "clinical_significance": "评估贫血或红细胞增多症，结合MCV等参数可鉴别贫血类型"
+  },
+  {
+    "item_id": "LAB003",
+    "name": "血小板计数（PLT）",
+    "category": "血常规",
+    "specimen": "静脉血（EDTA抗凝）",
+    "reference_range": "100–300 ×10⁹/L",
+    "clinical_significance": "减少见于ITP、再生障碍性贫血、DIC；增多见于反应性血小板增多症或原发性骨髓增殖性肿瘤"
+  },
+  {
+    "item_id": "LAB004",
+    "name": "中性粒细胞百分比（NEUT%）",
+    "category": "血常规",
+    "specimen": "静脉血（EDTA抗凝）",
+    "reference_range": "40–75%",
+    "clinical_significance": "升高常见于细菌感染、应激反应；降低见于病毒感染、药物抑制、再生障碍性贫血"
+  },
+  {
+    "item_id": "LAB005",
+    "name": "淋巴细胞百分比（LYMPH%）",
+    "category": "血常规",
+    "specimen": "静脉血（EDTA抗凝）",
+    "reference_range": "20–50%",
+    "clinical_significance": "升高见于病毒感染、慢性淋巴细胞白血病；降低见于免疫缺陷、糖皮质激素使用"
+  },
+  {
+    "item_id": "LAB006",
+    "name": "丙氨酸氨基转移酶（ALT）",
+    "category": "生化",
+    "specimen": "血清",
+    "reference_range": "0–40 U/L",
+    "clinical_significance": "肝细胞损伤敏感指标，ALT显著升高多提示急性病毒性肝炎或药物性肝损伤"
+  },
+  {
+    "item_id": "LAB007",
+    "name": "肌酐（Cr）",
+    "category": "生化",
+    "specimen": "血清",
+    "reference_range": "男性：53–106 μmol/L；女性：44–97 μmol/L",
+    "clinical_significance": "反映肾小球滤过功能，升高提示肾功能不全，需结合eGFR评估"
+  },
+  {
+    "item_id": "LAB008",
+    "name": "空腹血糖（GLU）",
+    "category": "生化",
+    "specimen": "血清（氟化钠抗凝血浆亦可）",
+    "reference_range": "3.9–6.1 mmol/L",
+    "clinical_significance": "糖尿病筛查和诊断核心指标，持续≥7.0 mmol/L（空腹）支持糖尿病诊断"
+  },
+  {
+    "item_id": "LAB009",
+    "name": "总胆固醇（TC）",
+    "category": "生化",
+    "specimen": "血清",
+    "reference_range": "<5.2 mmol/L",
+    "clinical_significance": "动脉粥样硬化重要危险因素，与冠心病风险正相关，需结合LDL-C、HDL-C综合评估"
+  },
+  {
+    "item_id": "LAB010",
+    "name": "国际标准化比值（INR）",
+    "category": "凝血",
+    "specimen": "静脉血（枸橼酸钠抗凝）",
+    "reference_range": "健康人：0.8–1.2；华法林抗凝治疗目标：2.0–3.0（多数适应证）",
+    "clinical_significance": "监测口服维生素K拮抗剂（如华法林）疗效与出血/血栓风险，较PT更标准化"
+  },
+  {
+    "item_id": "LAB011",
+    "name": "活化部分凝血活酶时间（APTT）",
+    "category": "凝血",
+    "specimen": "静脉血（枸橼酸钠抗凝）",
+    "reference_range": "25–35 秒",
+    "clinical_significance": "反映内源性凝血途径功能，延长见于血友病、肝素治疗、狼疮抗凝物等"
+  },
+  {
+    "item_id": "LAB012",
+    "name": "凝血酶原时间（PT）",
+    "category": "凝血",
+    "specimen": "静脉血（枸橼酸钠抗凝）",
+    "reference_range": "11–13.5 秒",
+    "clinical_significance": "评估外源性及共同凝血途径，延长见于维生素K缺乏、肝病、华法林治疗"
+  },
+  {
+    "item_id": "LAB013",
+    "name": "D-二聚体（D-Dimer）",
+    "category": "凝血",
+    "specimen": "血浆（枸橼酸钠抗凝）",
+    "reference_range": "<0.5 mg/L（FEU）",
+    "clinical_significance": "纤维蛋白溶解标志物，显著升高支持急性肺栓塞、深静脉血栓、DIC诊断，但特异性低"
+  },
+  {
+    "item_id": "LAB014",
+    "name": "乙肝表面抗原（HBsAg）",
+    "category": "免疫",
+    "specimen": "血清",
+    "reference_range": "阴性（<0.05 IU/mL）",
+    "clinical_significance": "乙型肝炎病毒感染的标志，阳性提示现症感染，需结合HBV DNA等进一步评估"
+  },
+  {
+    "item_id": "LAB015",
+    "name": "抗核抗体（ANA）",
+    "category": "免疫",
+    "specimen": "血清",
+    "reference_range": "阴性（滴度<1:80）",
+    "clinical_significance": "系统性自身免疫病（如SLE、SSc、MCTD）初筛指标，阳性需结合临床及其他特异性抗体判断"
+  },
+  {
+    "item_id": "LAB016",
+    "name": "C反应蛋白（CRP）",
+    "category": "免疫",
+    "specimen": "血清",
+    "reference_range": "<10 mg/L",
+    "clinical_significance": "急性时相反应蛋白，升高反映炎症、感染、组织损伤或心血管事件风险增加"
+  },
+  {
+    "item_id": "LAB017",
+    "name": "甲状腺刺激激素（TSH）",
+    "category": "免疫",
+    "specimen": "血清",
+    "reference_range": "0.35–4.94 mIU/L（成人）",
+    "clinical_significance": "评估甲状腺功能首选指标，升高提示原发性甲减，降低提示甲亢或中枢性甲减"
+  },
+  {
+    "item_id": "LAB018",
+    "name": "癌胚抗原（CEA）",
+    "category": "免疫",
+    "specimen": "血清",
+    "reference_range": "<5.0 ng/mL（非吸烟者）；<10.0 ng/mL（吸烟者）",
+    "clinical_significance": "结直肠癌等消化道肿瘤辅助诊断及疗效监测指标，非特异性，升高亦见于炎症、吸烟、肝硬化"
+  },
+  {
+    "item_id": "LAB019",
+    "name": "类风湿因子（RF）",
+    "category": "免疫",
+    "specimen": "血清",
+    "reference_range": "<20 IU/mL",
+    "clinical_significance": "类风湿关节炎（RA）常见自身抗体，阳性支持RA诊断，但亦可见于慢性感染、其他自身免疫病及老年人"
+  },
+  {
+    "item_id": "LAB020",
+    "name": "降钙素原（PCT）",
+    "category": "免疫",
+    "specimen": "血清或血浆",
+    "reference_range": "<0.05 ng/mL",
+    "clinical_significance": "细菌感染尤其是脓毒症特异性标志物，较CRP和WBC更具早期诊断和预后评估价值"
+  }
+]
